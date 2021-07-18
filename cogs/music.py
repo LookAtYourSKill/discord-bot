@@ -1,7 +1,10 @@
 import asyncio
 import discord
 import youtube_dl
+from discord import FFmpegPCMAudio, Client
 from discord.ext import commands
+from discord.utils import get
+from youtube_dl import YoutubeDL
 
 intents = discord.Intents().all()
 client = discord.Client(intents=intents)
@@ -68,16 +71,22 @@ class MusicBot(commands.Cog):
 
     @commands.command(name='play_song', help='To play song', aliases=['p', 'play'])
     async def play(self, ctx, url):
-        try:
-            server = ctx.message.guild
-            voice_channel = server.voice_client
+        FFMPEG_OPTIONS = {
+            'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+        voice = get(client.voice_clients, guild=ctx.guild)
 
-            async with ctx.typing():
-                filename = await YTDLSource.from_url(url, loop=bot.loop)
-                voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=filename))
-            await ctx.send(f'**Now playing:** {filename}')
-        except:
-            await ctx.send("The bot is not connected to a voice channel.")
+        if not voice.is_playing():
+            with YoutubeDL(ytdl_format_options) as ydl:
+                info = ydl.extract_info(url, download=False)
+            URL = info['url']
+            voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+            voice.is_playing()
+            await ctx.send('Bot is playing')
+
+        # check if the bot is already playing
+        else:
+            await ctx.send("Bot is already playing")
+            return
 
 def setup(bot):
     bot.add_cog(MusicBot())
