@@ -27,11 +27,11 @@ class Help(commands.Cog):
         embed.add_field(name='**Utilities**',
                         value=f'`invite`, `botinvite`, `ping`, `repeat`',
                         inline=False)
-        embed.add_field(name='**Music**',
-                        value=f'`join`, `leave`, `play`, `resume`, `pause`, `queue`, `loop`, `nowplaying`, `remove`, `skip`')
-        embed.add_field(name='**Socials**',
-                        value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
-                        inline=False)
+        #embed.add_field(name='**Music**',
+        #                value=f'`join`, `leave`, `play`, `resume`, `pause`, `queue`, `loop`, `nowplaying`, `remove`, `skip`')
+        #embed.add_field(name='**Socials**',
+        #                value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
+        #                inline=False)
         embed.set_footer(text=f'Angefordert von {ctx.author}',
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
@@ -40,7 +40,7 @@ class Help(commands.Cog):
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description=f'**Unknown Command!**\n `Use !help to see all commands`',
+                                  description=f'**Unknown Command!**',
                                   color=0x4cd137)
             await asyncio.sleep(1)
             await ctx.message.delete()

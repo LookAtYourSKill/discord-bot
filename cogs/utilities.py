@@ -4,12 +4,13 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 
+bot = commands.Bot(intense=discord.Intents.all(), command_prefix='?')
 
 class Utilities(commands.Cog):
     def __init__(self):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(name='invite', help='?invite')
     async def invite(self, ctx):
         invite = await ctx.channel.create_invite(reason="eShrug")
         embed = discord.Embed(title=' ',
@@ -17,21 +18,21 @@ class Utilities(commands.Cog):
                               color=0x4cd137)
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(name='botinvite', help='?botinvite')
     async def botinvite(self, ctx):
         embed = discord.Embed(title=' ',
                               description=f'{ctx.author.mention} hier ist ein Invite Link zum Bot:\n`https:// discord.com / oauth2 / authorize?client_id = 790965419670241281 & scope = bot & permissions = 4294967287`',
                               color=0x4cd137)
         await ctx.send(embed=embed)
 
-    @commands.command(name='ping')
-    async def ping(self, ctx, member: discord.Member):
+    @commands.command(name='ping', help='?ping [@user]')
+    async def ping(self, ctx, member):
         embed = discord.Embed(title='',
-                              description=f'Der User **{member.display_name}** hat einen Ping von **{round(self.bot.latency * 100)}ms**',
+                              description=f'Der User **{member.display_name}** hat einen Ping von **{round(self.bot.latency * 1000)}ms**',
                               color=0x4cd137)
         await ctx.send(embed=embed, delete_after=5)
 
-    @commands.command(name='repeat', aliases=['mimic', 'copy'])
+    @commands.command(name='repeat', aliases=['mimic', 'copy'], help='?repeat [text]')
     async def do_repeat(self, ctx, *, inp: str):
         await ctx.send(inp)
 
