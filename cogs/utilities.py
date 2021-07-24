@@ -26,9 +26,9 @@ class Utilities(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='ping', help='?ping [@user]')
-    async def ping(self, ctx, member):
+    async def ping(self, ctx):
         embed = discord.Embed(title='',
-                              description=f'Der User **{member.display_name}** hat einen Ping von **{round(self.bot.latency * 1000)}ms**',
+                              description=f'**Du** hast einen Ping von **{round(self.bot.latency * 1000)}ms**',
                               color=0x4cd137)
         await ctx.send(embed=embed, delete_after=5)
 
