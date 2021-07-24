@@ -21,13 +21,11 @@ class Help(commands.Cog):
                         value=f'`ban`, `unban`,`bannedUserList`, `mute`, `unmute`, `kick`, `slowmode`, `clear`',
                         inline=False)
         embed.add_field(name='**Infos**',
-                        value=f'`server`, `user`, `bot`, `avatar`, `help`',
+                        value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',
                         inline=False)
         embed.add_field(name='**Utilities**',
                         value=f'`invite`, `botinvite`, `ping`, `repeat`, `embed`',
                         inline=False)
-        #embed.add_field(name='**Music**',
-        #                value=f'`join`, `leave`, `play`, `resume`, `pause`, `queue`, `loop`, `nowplaying`, `remove`, `skip`')
         #embed.add_field(name='**Socials**',
         #                value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
         #                inline=False)

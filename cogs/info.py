@@ -94,6 +94,12 @@ class Info(commands.Cog):
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
+    @commands.command()
+    async def members(self, ctx):
+        embed = discord.Embed(title='**Server Member**',
+                              description=f'Auf **diesem Server** sind `{ctx.guild.member_count}` member!')
+        await ctx.send(embed=embed)
+
     @commands.command(name='bot', aliases=['botinfo'], help='?botinfo')
     async def bot(self, ctx):
         de = pytz.timezone('Europe/Berlin')
