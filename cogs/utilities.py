@@ -32,6 +32,12 @@ class Utilities(commands.Cog):
                               color=0x4cd137)
         await ctx.send(embed=embed, delete_after=5)
 
+    @commands.command()
+    async def embed(self, ctx, *, text: str):
+        embed = discord.Embed(title='',
+                              description=text)
+        await ctx.send(embed=embed)
+
     @commands.command(name='repeat', aliases=['mimic', 'copy'], help='?repeat [text]')
     async def do_repeat(self, ctx, *, inp: str):
         await ctx.send(inp)

@@ -64,7 +64,6 @@ class Moderation(commands.Cog):
                                   description=f'{member.mention}, du kannst dich **nicht** selbst **bannen**!',
                                   color=0x4cd137, )
             await ctx.send(embed=embed, delete_after=5)
-
         else:
             await member.ban(reason=reason)
             embed = discord.Embed(title=f'',

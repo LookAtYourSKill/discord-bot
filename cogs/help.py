@@ -14,8 +14,7 @@ class Help(commands.Cog):
     async def help(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> Help',
-                              description='Verwende **!help [Command]** für Hilfe über einen Command \nund **!help ['
-                                          'Modul]** für Hilfe über ein Modul.',
+                              description=f'`Prefix = ?`',
                               color=0x4cd137,
                               timestamp=datetime.datetime.utcnow().astimezone(tz=de))
         embed.add_field(name='**Moderation**',
@@ -25,7 +24,7 @@ class Help(commands.Cog):
                         value=f'`server`, `user`, `bot`, `avatar`, `help`',
                         inline=False)
         embed.add_field(name='**Utilities**',
-                        value=f'`invite`, `botinvite`, `ping`, `repeat`',
+                        value=f'`invite`, `botinvite`, `ping`, `repeat`, `embed`',
                         inline=False)
         #embed.add_field(name='**Music**',
         #                value=f'`join`, `leave`, `play`, `resume`, `pause`, `queue`, `loop`, `nowplaying`, `remove`, `skip`')
