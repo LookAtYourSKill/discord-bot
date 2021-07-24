@@ -130,7 +130,7 @@ class Moderation(commands.Cog):
                 embed = discord.Embed(title='**Banned people**',
                                       description=i,
                                       color=0x4cd137)
-                await ctx.send(embed=embed)
+                await ctx.send(embed=embed, delete_after=5)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)

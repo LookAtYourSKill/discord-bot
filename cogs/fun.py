@@ -12,4 +12,4 @@ class fun(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(fun())
+    bot.add_cog(fun(bot))
