@@ -29,6 +29,9 @@ class Help(commands.Cog):
         embed.add_field(name='**Giveaway**',
                         value=f'`create`',
                         inline=False)
+        embed.add_field(name='**usage_**',
+                        value=f'**Example:**`usage_ban`',
+                        inline=False)
         embed.add_field(name='**Socials**',
                         value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
                         inline=False)
