@@ -36,13 +36,12 @@ class CommandErrorHandler(commands.Cog):
             return
 
         if isinstance(error, commands.MissingRequiredArgument):
-            if error.param.name == 'inp':
-                embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                      description=f'Nach **{ctx.command}** fehlt ein Argument!',
-                                      color=0x4cd137)
-                await ctx.send(embed=embed, delete_after=5)
-                await asyncio.sleep(1)
-                await ctx.message.delete()
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                  description=f'Nach **{ctx.command}** fehlt ein Argument!',
+                                  color=0x4cd137)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
 
         if isinstance(error, commands.MemberNotFound):
             if ctx.command.qualified_name == 'tag list':
@@ -84,6 +83,7 @@ class CommandErrorHandler(commands.Cog):
         else:
             print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
             traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+
 
 def setup(bot):
     bot.add_cog(CommandErrorHandler(bot))

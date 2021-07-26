@@ -38,7 +38,7 @@ class Utilities(commands.Cog):
                               description=text)
         await ctx.send(embed=embed)
 
-    @commands.command(name='repeat', aliases=['mimic', 'copy'], help='?repeat [text]')
+    @commands.command(name='repeat', aliases=['mimic', 'copy', 'echo'], help='?repeat [text]')
     async def do_repeat(self, ctx, *, inp: str):
         await ctx.send(inp)
 

@@ -112,7 +112,7 @@ class Moderation(commands.Cog):
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
 
-    @commands.command(Aliases=['banned'])
+    @commands.command(aliases=['banned'])
     @commands.has_permissions(ban_members=True)
     async def bannedUserList(self, ctx):
         empty = []
@@ -132,7 +132,7 @@ class Moderation(commands.Cog):
                                       color=0x4cd137)
                 await ctx.send(embed=embed, delete_after=5)
 
-    @commands.command(Aliases=['purge'])
+    @commands.command(aliases=['purge'])
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount=5, channel: discord.TextChannel = None):
         await asyncio.sleep(1)
@@ -145,6 +145,11 @@ class Moderation(commands.Cog):
 
     @commands.command(aliases=['sm'])
     async def slowmode(self, ctx, sec: int = None, channel: discord.TextChannel = None):
+        if sec == 0:
+            embed = discord.Embed(title='',
+                                  description='Der Channel hat nun `kein Slowmode mehr`!',
+                                  color=0x4cd137)
+            await ctx.send(embed = embed, delete_after=5)
         if not sec:
             sec = 0
         if not channel:

@@ -9,7 +9,7 @@ class Giveaway(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(aliases=['giveaway'])
     async def create(self, ctx, time=None, *, prize=None):
         if time is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -20,7 +20,7 @@ class Giveaway(commands.Cog):
                                   description='Du musst `ein Preis` angeben!')
             return await ctx.send(embed=embed)
         embed = discord.Embed(title=f"🎉{prize}🎉", description=f"{ctx.author.mention} is giving away 🎉**{prize}**🎉")
-        time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400}
+        time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
         giveawaytime = int(time[0]) * time_convert[time[-1]]
         embed.set_footer(text=f"Giveaway ends in {time}")
         gaw_msg = await ctx.send(embed=embed)
