@@ -5,7 +5,7 @@ from discord.ext import commands
 bot = commands.Bot
 
 
-class member_join(commands.Cog):
+class on_member_join(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -24,4 +24,4 @@ class member_join(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(member_join(bot))
+    bot.add_cog(on_member_join(bot))
