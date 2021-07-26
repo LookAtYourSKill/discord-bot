@@ -73,7 +73,7 @@ class Moderation(commands.Cog):
 
             await ctx.message.delete()  # Delete user's message
 
-    @commands.command(aliases=['uban'])
+    @commands.command()
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, *, member):
         banned_users = await ctx.guild.bans()
@@ -112,7 +112,7 @@ class Moderation(commands.Cog):
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
 
-    @commands.command()
+    @commands.command(Aliases=['banned'])
     @commands.has_permissions(ban_members=True)
     async def bannedUserList(self, ctx):
         empty = []
@@ -132,25 +132,7 @@ class Moderation(commands.Cog):
                                       color=0x4cd137)
                 await ctx.send(embed=embed, delete_after=5)
 
-    @commands.command()
-    @commands.has_permissions(ban_members=True)
-    async def banned_users(self, ctx):
-        bannedUser = await ctx.guild.bans()
-        if bannedUser is None:
-            msg = await ctx.send(f'Die Banlist ist leer!')
-
-            await ctx.message.delete()  # Delete user's message
-            await asyncio.sleep(5)  # wait 5 seconds
-            await msg.delete()  # delete bots message
-        else:
-            for users in bannedUser:
-                msg = await ctx.send(users)
-
-                await ctx.message.delete()  # Delete user's message
-                await asyncio.sleep(5)  # wait 5 seconds
-                await msg.delete()  # delete bots message
-
-    @commands.command()
+    @commands.command(Aliases=['purge'])
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount=5, channel: discord.TextChannel = None):
         await asyncio.sleep(1)
