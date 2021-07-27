@@ -30,7 +30,7 @@ class Help(commands.Cog):
                         value=f'`create`',
                         inline=False)
         embed.add_field(name='**Usage**',
-                        value=f'Example:`usage_ban`',
+                        value=f'`Example: usage_ban`',
                         inline=False)
         embed.add_field(name='**Socials**',
                         value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
