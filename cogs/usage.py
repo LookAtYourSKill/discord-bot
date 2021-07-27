@@ -60,7 +60,7 @@ class usage(commands.Cog):
 
     @commands.command()
     async def usage_slowmode(self, ctx):
-        embed = discord.Embed(title='**slowmode [sec]**',
+        embed = discord.Embed(title='**slowmode [`sec`]**',
                               description='Macht ein Slowmode in den Channel! \n'
                                           '\n'
                                           '**Aliases:**`sm`',
@@ -70,7 +70,7 @@ class usage(commands.Cog):
 
     @commands.command()
     async def usage_clear(self, ctx):
-        embed = discord.Embed(title='**clear [amount]**',
+        embed = discord.Embed(title='**clear [`amount`]**',
                               description='Löscht die bestimmte Anzahl von Nachrichten! \n'
                                           '\n'
                                           '**Aliases:**`pruge`',
@@ -90,7 +90,7 @@ class usage(commands.Cog):
 
     @commands.command()
     async def usage_create(self, ctx):
-        embed = discord.Embed(title='**create [time] [prize]**',
+        embed = discord.Embed(title='**create [`time`] [`prize`]**',
                               description='Erstellt ein Giveaway! \n'
                                           '\n'
                                           '**Zeiten:**\n'
@@ -107,7 +107,7 @@ class usage(commands.Cog):
 
     @commands.command()
     async def usage_giveaway(self, ctx):
-        embed = discord.Embed(title='**create [time] [prize]** \n',
+        embed = discord.Embed(title='**create [`time`] [`prize`]** \n',
                               description='Erstellt ein Giveaway! \n'
                                           '\n'
                                           '**Zeiten:**\n'
@@ -124,7 +124,7 @@ class usage(commands.Cog):
 
     @commands.command()
     async def usage_user(self, ctx):
-        embed = discord.Embed(title='**user [@user]** \n',
+        embed = discord.Embed(title='**user** [`@user`] \n',
                               description='Zeigt eine Userinfo über den User an! \n'
                                           '\n'
                                           '**Aliases:**`userinfo`, `info`',
@@ -134,7 +134,7 @@ class usage(commands.Cog):
 
     @commands.command()
     async def usage_avatar(self, ctx):
-        embed = discord.Embed(title='**avatar [@user]** \n',
+        embed = discord.Embed(title='**avatar** [`@user`] \n',
                               description='Zeigt den Avatar des Users an! \n'
                                           '\n'
                                           '**Aliases:**`av`',
@@ -144,7 +144,7 @@ class usage(commands.Cog):
 
     @commands.command()
     async def usage_repeat(self, ctx):
-        embed = discord.Embed(title='**repeat [argument]** \n',
+        embed = discord.Embed(title='**repeat** [`argument`] \n',
                               description='Gibt das wieder, was der User eingegeben hat! \n'
                                           '\n'
                                           '**Aliases:**`echo`, `mimic`, `copy`',
@@ -154,7 +154,7 @@ class usage(commands.Cog):
 
     @commands.command()
     async def usage_embed(self, ctx):
-        embed = discord.Embed(title='**embed [argument]** \n',
+        embed = discord.Embed(title='**embed** [`argument`] \n',
                               description='Gibt die Nachricht des Users als **Embed** wieder! \n'
                                           '\n'
                                           '**Aliases:**`/`',
