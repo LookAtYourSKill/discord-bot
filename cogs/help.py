@@ -18,7 +18,7 @@ class Help(commands.Cog):
                               color=0x4cd137,
                               timestamp=datetime.datetime.utcnow().astimezone(tz=de))
         embed.add_field(name='**Moderation**',
-                        value=f'`ban`, `unban`,`bannedUserList`, `mute`, `unmute`, `kick`, `slowmode`, `clear`',
+                        value=f'`ban`, `unban`, `tempban`,`bannedUserList`, `mute`, `unmute`, `tempmute`, `kick`, `slowmode`, `clear`',
                         inline=False)
         embed.add_field(name='**Infos**',
                         value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',
