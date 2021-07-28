@@ -162,6 +162,40 @@ class usage(commands.Cog):
         embed.set_footer(text='[] verpflichtend | <> optional')
         await ctx.send(embed=embed)
 
+    @commands.command()
+    async def usage_tempban(self, ctx):
+        embed = discord.Embed(title='**tempban** [`@user`] [`time`] [`reason`] \n',
+                              description='Bannt einen User für eine bestimmte Zeit! \n'
+                                          '\n'
+                                          '**Zeiten:**\n'
+                                          '`s` Sekunden\n'
+                                          '`m` Minuten\n'
+                                          '`h` Stunden\n'
+                                          '`d` Tage\n'
+                                          '`w` Wochen\n'
+                                          '\n'
+                                          '**Aliases:**`tban`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verplichtend | <> optinal')
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def usage_tempmute(self, ctx):
+        embed = discord.Embed(title='**tempmute** [`@user`] [`time`] [`reason`] \n',
+                              description='Mutet einen User für eine bestimmte Zeit! \n'
+                                          '\n'
+                                          '**Zeiten:**\n'
+                                          '`s` Sekunden\n'
+                                          '`m` Minuten\n'
+                                          '`h` Stunden\n'
+                                          '`d` Tage\n'
+                                          '`w` Wochen\n'
+                                          '\n'
+                                          '**Aliases:**`tmute`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verplichtend | <> optinal')
+        await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(usage(bot))
