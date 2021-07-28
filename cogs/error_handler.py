@@ -52,7 +52,7 @@ class CommandErrorHandler(commands.Cog):
                 await ctx.message.delete()
 
             if isinstance(error, commands.BotMissingPermissions):
-                embed = discord.Embed(title='<:close:864599591692009513> ERROR',
+                embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'Um diesen Befehl auszuführen, fehlen ``mir die Berechtigungen``!',
                                       color=0x4cd137)
                 await ctx.send(embed=embed, delete_after=5)

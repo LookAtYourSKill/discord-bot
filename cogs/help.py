@@ -29,8 +29,10 @@ class Help(commands.Cog):
         embed.add_field(name='**Giveaway**',
                         value=f'`create`',
                         inline=False)
+        embed.add_field(name='**Fun**',
+                        value='`8ball`, `roll`, `slots`, `rps`')
         embed.add_field(name='**Usage**',
-                        value=f'`Example: usage + module`',
+                        value=f'`usage + module`',
                         inline=False)
         embed.add_field(name='**Socials**',
                         value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
