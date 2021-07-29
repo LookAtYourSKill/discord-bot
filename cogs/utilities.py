@@ -38,7 +38,7 @@ class Utilities(commands.Cog):
                               description=text)
         await ctx.send(embed=embed)
 
-    @commands.command(name='repeat', aliases=['mimic', 'copy', 'echo'], help='?repeat [text]')
+    @commands.command(name='repeat', aliases=['mimic', 'copy', 'echo'])
     async def do_repeat(self, ctx, *, inp: str):
         await ctx.send(inp)
 
@@ -56,7 +56,6 @@ class Utilities(commands.Cog):
                 await ctx.send(embed=embed, delete_after=5)
                 await asyncio.sleep(1)
                 await ctx.message.delete()
-
 
 def setup(bot):
     bot.add_cog(Utilities())

@@ -9,39 +9,41 @@ class fun(commands.Cog):
         self.bot = bot
 
     @commands.command(name='8ball', aliases=['8Ball'])
-    async def ball(self, ctx, question=None):
-        if question is None:
+    async def ball(self, ctx, question: str):
+        if input is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Bitte gebe `eine Frage` ein!')
-        answers = ['Ja', 'Nein', 'Vielleicht']
+            await ctx.send(embed=embed)
+        answers = ['Ja',
+                   'Nein',
+                   'Vielleicht']
         embed = discord.Embed(title='**8Ball**',
                               description=f'Deine Frage:'
                                           f'\n `{question}`'
                                           f'\n'
                                           f'Antwort: **{random.choice(answers)}**')
         await ctx.send(embed=embed)
-        #FIX DAS MAN DIE KOMPLETTE FRAGE SIEHT (muss noch gemacht werden)
+        # FIX DAS MAN DIE KOMPLETTE FRAGE SIEHT (muss noch gemacht werden)
 
-    @commands.command()
-    @commands.cooldown(rate=2, per=1, type=commands.BucketType.member)
+    @commands.command(aliases=['slot'])
+    @commands.cooldown(rate=2, per=1)
     async def slots(self, ctx):
-        emojis = ["🍎", '🍉', '🍇', '🍓', '🍒']
+        emojis = ["🍎", '🍇', '🍒']
 
         grabbed = ''
-        for slot in emojis:
+        for _emoji in emojis:
             grabbed += random.choice(emojis)
 
         winembed = discord.Embed(title='**Slots**',
-                                 description=f'🎉Du hast in **Slots gewonnen**🎉')
+                                 description=f'🎉Du hast in **Slots gewonnen**🎉!\nDu hast {grabbed} gezogen!')
 
         loseembed = discord.Embed(title='**Slots**',
-                                  description='🥲Du hast leider nicht gewonnen🥲')
+                                  description=f'Du hast **leider nicht gewonnen**!\nDu hast {grabbed} gezogen!')
 
         if len(grabbed) == 1:
             await ctx.send(embed=winembed)
         else:
             await ctx.send(embed=loseembed)
-        #FIX DAS MAN DAS WAS GEDREHT WURDE SIEHT ALSO DIE EMOJIS (muss noch gemacht werden)
 
     @commands.command(name='rolling', aliases=['roll'])
     async def würfel(self, ctx):
@@ -56,19 +58,20 @@ class fun(commands.Cog):
                               description=f'Der Würfel ist auf **der Nummer {num}** gelandet!')
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(aliases=['rockpapersissors', 'scheresteinpapier'])
     async def rps(self, ctx, name=None):
         rps = ['Stein', 'Papier', 'Schere']
         if name is None:
             name = name.lower()
         if name is None or name not in rps:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='**Benutze bitte:** `stein`, `schere` oder `papier`!')
+                                  description='**Benutze bitte:** `Stein`, `Schere` oder `Papier`!')
             await ctx.send(embed=embed)
 
         bot_move = random.choice(rps)
         embed = discord.Embed(title='',
-                              description=f'Der Bot hat `{bot_move} gewählt`!')
+                              description=f'**Der Bot** hat `{bot_move} gewählt`!\n'
+                                          f'**Du** hast `{name} gewählt`!')
         await ctx.send(embed=embed)
 
         if bot_move == name:
@@ -83,7 +86,7 @@ class fun(commands.Cog):
                 await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Ja  oke dikka `gewonnen`')
+                                      description=f'{ctx.author.mention} Ja oke dikka `gewonnen`')
                 await ctx.send(embed=embed)
 
         elif name == "Papier":
@@ -93,7 +96,7 @@ class fun(commands.Cog):
                 await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Ja  oke dikka gewonnen')
+                                      description=f'{ctx.author.mention} Ja oke dikka gewonnen')
                 await ctx.send(embed=embed)
 
         elif name == "Schere":
@@ -103,14 +106,14 @@ class fun(commands.Cog):
                 await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Ja  oke dikka gewonnen')
+                                      description=f'{ctx.author.mention} Ja oke dikka gewonnen')
                 await ctx.send(embed=embed)
 
         else:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Unbekannter Fehler ist aufgetreten!')
             await ctx.send(embed=embed)
-            #FIX WENN ES EIN FEHLER GIBT STOPPT ALLES! (Muss noch gemacht werden)
+            # FIX WENN ES EIN FEHLER GIBT STOPPT ALLES! (Muss noch gemacht werden)
 
 
 def setup(bot):

@@ -196,6 +196,46 @@ class usage(commands.Cog):
         embed.set_footer(text='[] verplichtend | <> optinal')
         await ctx.send(embed=embed)
 
+    @commands.command()
+    async def usage_8ball(self, ctx):
+        embed = discord.Embed(title='**8ball** [`Frage`] \n',
+                              description='Beantwortet deine Frage random! \n'
+                                          '\n'
+                                          '**Aliases:**`8Ball`, `ball`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verpflichtend | <> optional')
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def usage_würfel(self, ctx):
+        embed = discord.Embed(title='**würfel**\n',
+                              description='Lässt einen Würfel rollen! \n'
+                                          '\n'
+                                          '**Aliases:**`roll`, `rolling`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verpflichtend | <> optional')
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def usage_rps(self, ctx):
+        embed = discord.Embed(title='**rps** [`Stein`, `Schere` oder `Papier`] \n',
+                              description='Du spielst Schere Stein Papier mit dem Bot! \n'
+                                          '\n'
+                                          '**Aliases:**`rockpapersissors`, `scheresteinpapier`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verpflichtend | <> optional')
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def usage_slots(self, ctx):
+        embed = discord.Embed(title='**slots**\n',
+                              description='Du spielst Gewinnspiel ohne Einsatz! \n'
+                                          '\n'
+                                          '**Aliases:**`slot`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verpflichtend | <> optional')
+        await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(usage(bot))

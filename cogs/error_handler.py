@@ -51,17 +51,17 @@ class CommandErrorHandler(commands.Cog):
                 await asyncio.sleep(1)
                 await ctx.message.delete()
 
-            if isinstance(error, commands.BotMissingPermissions):
-                embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                      description=f'Um diesen Befehl auszuführen, fehlen ``mir die Berechtigungen``!',
-                                      color=0x4cd137)
-                await ctx.send(embed=embed, delete_after=5)
-                await asyncio.sleep(1)
-                await ctx.message.delete()
+        if isinstance(error, commands.BotMissingPermissions):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                  description=f'Um diesen Befehl auszuführen, fehlen ``mir die Berechtigungen``!',
+                                  color=0x4cd137)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
 
-            else:
-                print("Error not caught")
-                print(error)
+        else:
+            print("Error not caught")
+            print(error)
 
         if isinstance(error, commands.MissingPermissions):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
