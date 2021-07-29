@@ -9,11 +9,12 @@ class fun(commands.Cog):
         self.bot = bot
 
     @commands.command(name='8ball', aliases=['8Ball'])
-    async def ball(self, ctx, question: str):
-        if input is None:
+    async def ball(self, ctx, *, question):
+        if question is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Bitte gebe `eine Frage` ein!')
             await ctx.send(embed=embed)
+
         answers = ['Ja',
                    'Nein',
                    'Vielleicht']
@@ -61,8 +62,6 @@ class fun(commands.Cog):
     @commands.command(aliases=['rockpapersissors', 'scheresteinpapier'])
     async def rps(self, ctx, name=None):
         rps = ['Stein', 'Papier', 'Schere']
-        if name is None:
-            name = name.lower()
         if name is None or name not in rps:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='**Benutze bitte:** `Stein`, `Schere` oder `Papier`!')

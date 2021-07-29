@@ -78,9 +78,9 @@ class Info(commands.Cog):
         embed.add_field(name='**Region**',
                         value=f'```{ctx.guild.region}```',
                         inline=True)
-        embed.add_field(name='**Bots**',
-                        value=f'```, ```'.join(list_of_bots),
-                        inline=True)
+        #embed.add_field(name='**Bots**',
+        #                value=f'```, ```'.join(list_of_bots),
+        #                inline=True)
         embed.add_field(name='**Member Count**',
                         value=f'```{ctx.guild.member_count}```',
                         inline=True)
