@@ -31,7 +31,7 @@ class fun(commands.Cog):
         emojis = ["🍎", '🍇', '🍒']
 
         grabbed = ''
-        for _emoji in emojis:
+        for _emoji in range(3):
             grabbed += random.choice(emojis)
 
         winembed = discord.Embed(title='**Slots**',
@@ -40,7 +40,7 @@ class fun(commands.Cog):
         loseembed = discord.Embed(title='**Slots**',
                                   description=f'Du hast **leider nicht gewonnen**!\nDu hast {grabbed} gezogen!')
 
-        if len(grabbed) == 1:
+        if grabbed == '🍎🍎🍎' or grabbed == '🍇🍇🍇' or grabbed == '🍒🍒🍒':
             await ctx.send(embed=winembed)
         else:
             await ctx.send(embed=loseembed)
@@ -113,7 +113,6 @@ class fun(commands.Cog):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Unbekannter Fehler ist aufgetreten!')
             await ctx.send(embed=embed)
-            # FIX WENN ES EIN FEHLER GIBT STOPPT ALLES! (Muss noch gemacht werden)
 
 
 def setup(bot):
