@@ -24,7 +24,7 @@ class Help(commands.Cog):
                         value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',
                         inline=False)
         embed.add_field(name='**Utilities**',
-                        value=f'`invite`, `botinvite`, `ping`, `repeat`, `embed`',
+                        value=f'`invite`, `botinvite`, `repeat`, `embed`',
                         inline=False)
         embed.add_field(name='**Giveaway**',
                         value=f'`create`',

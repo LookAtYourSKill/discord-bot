@@ -81,6 +81,13 @@ class CommandErrorHandler(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
+        if isinstance(error, commands.CommandOnCooldown):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (CommandOnCooldown)
+                                  description=f'{ctx.command} hat gerade noch ein Cooldown {round(error.retry_after)}! Versuche es später erneut!')
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
+
         else:
             print("Error not caught")
             print(error)
