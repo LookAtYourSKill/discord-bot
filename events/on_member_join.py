@@ -4,7 +4,6 @@ from discord.ext import commands
 
 bot = commands.Bot
 
-
 class on_member_join(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -21,7 +20,6 @@ class on_member_join(commands.Cog):
                         value=f'{member.guild.member_count}')
         embed.set_footer(text=f'{member.name} joined ')
         await channel.send(embed=embed)
-
 
 def setup(bot):
     bot.add_cog(on_member_join(bot))

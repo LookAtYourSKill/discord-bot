@@ -36,20 +36,19 @@ class CommandErrorHandler(commands.Cog):
 
         if isinstance(error, commands.MissingRequiredArgument):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description=f'Nach **{ctx.command}** fehlt ein Argument!',
+                                  description=f'Nach **{ctx.command}** fehlt ein Argument (Name o.Ä.)!',
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
 
         if isinstance(error, commands.MemberNotFound):
-            if ctx.command.qualified_name == 'tag list':
-                embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                      description=f'Der ``User konnte nicht gefunden werden``. Bitte versuche es erneut!',
-                                      color=0x4cd137)
-                await ctx.send(embed=embed, delete_after=5)
-                await asyncio.sleep(1)
-                await ctx.message.delete()
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                  description=f'Der ``User konnte nicht gefunden werden``. Bitte versuche es erneut!',
+                                  color=0x4cd137)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
 
         if isinstance(error, commands.BotMissingPermissions):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',

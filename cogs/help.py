@@ -32,11 +32,14 @@ class Help(commands.Cog):
         embed.add_field(name='**Fun**',
                         value='`8ball`, `roll`, `slots`, `rps`')
         embed.add_field(name='**Usage**',
-                        value=f'`usage + module`',
+                        value=f'`usage_ + module`',
                         inline=False)
-        embed.add_field(name='**Socials**',
-                        value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
+        embed.add_field(name='**Levels**',
+                        value=f'`level`, `rank`',
                         inline=False)
+        #embed.add_field(name='**Socials**',
+        #                value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
+        #                inline=False)
         embed.set_footer(text=f'Angefordert von {ctx.author}',
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
