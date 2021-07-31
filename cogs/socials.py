@@ -11,7 +11,7 @@ class Socials(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def awawawtwitch(self, ctx):
+    async def twitch(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> **Twitch von Wichtiger**',
                               description=f'Link: `https://www.twitch.tv/wichtiger`',
@@ -23,7 +23,7 @@ class Socials(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def awawawyoutube(self, ctx):
+    async def youtube(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> **Youtube von Wichtiger**',
                               description=f'Link: `https://www.youtube.com/wichtiger`',
@@ -35,7 +35,7 @@ class Socials(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def awawawstreamplan(self, ctx):
+    async def streamplan(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> **Hier geht zu Wichtigers Streamplan**',
                               description=f'Link: `https://www.twitch.tv/wichtiger/schedule`',
@@ -47,7 +47,7 @@ class Socials(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def awawawtwitter(self, ctx):
+    async def twitter(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> **Hier geht zu Wichtigers Twitter**',
                               description=f'Link: `https://twitter.com/WichtigerYT`',
