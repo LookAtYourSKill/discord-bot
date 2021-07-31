@@ -15,7 +15,7 @@ class Level(commands.Cog):
     async def level(self, ctx, user, member: discord.Member = None):
         if not member:
             id = ctx.message.author.id
-            with open('json_files/users.json', 'r') as f:
+            with open('../utils/json_files/users.json', 'r') as f:
                 users = json.load(f)
             level = users[str(id)]['level']
             de = pytz.timezone('Europe/Berlin')
@@ -30,7 +30,7 @@ class Level(commands.Cog):
             await ctx.send(embed=embed)
         else:
             id = member.id
-            with open('json_files/users.json', 'r') as f:
+            with open('../utils/json_files/users.json', 'r') as f:
                 users = json.load(f)
             level = users[str(id)]['level']
             de = pytz.timezone('Europe/Berlin')
@@ -59,7 +59,7 @@ class Level(commands.Cog):
 
     @commands.Cog.listener()
     async def level_up(self, users, user, message, ctx):
-        with open('json_files/levels.json', 'r') as g:
+        with open('../utils/json_files/levels.json', 'r') as g:
             levels = json.load(g)
 
         experience = users[f'{user.id}']['experience']
@@ -74,12 +74,12 @@ class Level(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, ctx, member):
-        with open('json_files/users.json', 'r') as f:
+        with open('../utils/json_files/users.json', 'r') as f:
             users = json.load(f)
 
         await self.update_data(users, member)
 
-        with open('json_files/users.json', 'r') as f:
+        with open('../utils/json_files/users.json', 'r') as f:
             json.dump(users, f, indent=4)
 
     @commands.command()
@@ -92,14 +92,14 @@ class Level(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.bot is False:
-            with open('json_files/users.json', 'r') as f:
+            with open('../utils/json_files/users.json', 'r') as f:
                 users = json.load(f)
 
             await self.update_data(users, message.authpr)
             await self.add_experience(users, message.author, 5)
             await self.level_up(users, message.author, message)
 
-            with open('json_files/users.json', 'w') as f:
+            with open('../utils/json_files/users.json', 'w') as f:
                 json.dump(users, f, indent=4)
 
         await bot.process_commands(message)

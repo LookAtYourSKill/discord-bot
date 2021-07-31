@@ -35,15 +35,15 @@ class CommandErrorHandler(commands.Cog):
             return
 
         if isinstance(error, commands.MissingRequiredArgument):
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description=f'Nach **{ctx.command}** fehlt ein Argument (Name o.Ä.)!',
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingRequiredArgument)
+                                  description=f'Nach **{ctx.command}** fehlt ein Argument!',
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
 
         if isinstance(error, commands.MemberNotFound):
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MemberNotFound)
                                   description=f'Der ``User konnte nicht gefunden werden``. Bitte versuche es erneut!',
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
@@ -51,9 +51,32 @@ class CommandErrorHandler(commands.Cog):
             await ctx.message.delete()
 
         if isinstance(error, commands.BotMissingPermissions):
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (BotMissingPermission)
                                   description=f'Um diesen Befehl auszuführen, fehlen ``mir die Berechtigungen``!',
                                   color=0x4cd137)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
+
+        if isinstance(error, commands.MissingPermissions):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingPermission)
+                                  description=f'Um diesen Befehl auszuführen, fehlen ``dir die Berechtigungen``!',
+                                  color=0x4cd137)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
+
+        if isinstance(error, commands.CommandNotFound):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (CommandNotFound)
+                                  description=f'**Unknown Command**',
+                                  color=0x4cd137)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
+
+        if isinstance(error, commands.MissingRole):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingRequiredRole)
+                                  description=f'Dir fehlt `eine bestimmte Rolle` um diesen Befehl ausführen zu können!')
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
@@ -62,25 +85,9 @@ class CommandErrorHandler(commands.Cog):
             print("Error not caught")
             print(error)
 
-        if isinstance(error, commands.MissingPermissions):
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description=f'Um diesen Befehl auszuführen, fehlen ``dir die Berechtigungen``!',
-                                  color=0x4cd137)
-            await ctx.send(embed=embed, delete_after=5)
-            await asyncio.sleep(1)
-            await ctx.message.delete()
-
-        if isinstance(error, commands.CommandNotFound):
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description=f'**Unknown Command**',
-                                  color=0x4cd137)
-            await ctx.send(embed=embed, delete_after=5)
-            await asyncio.sleep(1)
-            await ctx.message.delete()
-
-        else:
-            print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
-            traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+        #else:
+        #    print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+        #    traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 
 def setup(bot):

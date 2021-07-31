@@ -141,18 +141,27 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def createMute(self, ctx):
-        guild = ctx.guild
-        muteRole = await guild.create_role('Muted')
-        for channel in guild.channels():
+        muteRole = await ctx.guild.create_role(name='Muted', color=discord.Color.dark_grey())
+        for channel in ctx.guild.channels():
             await channel.set_permissions(muteRole,
                                           speak=False,
                                           send_messages=False,
                                           read_messages=True,
                                           read_message_history=True,
                                           )
-            embed = discord.Embed(title='<:open:869959941321011260>',
-                                  description=f'Die Rolle `{muteRole} wurde erfolgreich erstellt!`')
+            embed = discord.Embed(title='<:open:869959941321011260> Erfolgreich',
+                                  description=f'<:open:869959941321011260> Die Rolle `{muteRole} wurde erfolgreich erstellt!`<:open:869959941321011260>')
             await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                  description=f'Irgendwas ist schiefgelaufen ...\n'
+                                              f'Bitte überprüfe, ob die Rolle {muteRole} schon existiert!')
+            await ctx.send(embed=embed)
+
+    @commands.command()
+    @commands.has_permissions(manage_roles=True)
+    async def create_role(self, ctx, *, name: str, color: discord.Color = discord.Color.default()):
+        await ctx.guild.create_role(name=name, color=color)
 
     @commands.command(aliases=['tmute'])
     @commands.has_permissions(kick_members=True)

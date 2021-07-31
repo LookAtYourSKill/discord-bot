@@ -1,4 +1,5 @@
 import asyncio
+import time
 
 import discord
 from discord.ext import commands
@@ -25,8 +26,18 @@ class Utilities(commands.Cog):
                               color=0x4cd137)
         await ctx.send(embed=embed)
 
-    @commands.command(name='ping', help='?ping [@user]')
-    async def ping(self, ctx):
+    @commands.command(name="AdvancedPing")
+    async def ping(self, ctx: commands.Context):
+        """Get the bot's current websocket and API latency."""
+        start_time = time.time()
+        message = await ctx.send("Testing Ping...")
+        end_time = time.time()
+
+        await message.edit(
+            content=f"Pong! {round(self.bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms")
+
+    @commands.command(name='ping')
+    async def ping(self, ctx: commands.Context):
         embed = discord.Embed(title='',
                               description=f'**Du** hast einen Ping von **{round(self.bot.latency * 1000)}ms**',
                               color=0x4cd137)
