@@ -12,7 +12,7 @@ class Moderation(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member, *, reason=None):
         if ctx.message.author == member.mention:
-            embed = discord.Embed(title=' ',
+            embed = discord.Embed(title='',
                                   description=f'{member.mention}, du kannst dich **nicht** selbst **bannen**!',
                                   color=0x4cd137, )
             await ctx.send(embed=embed, delete_after=5)
@@ -150,12 +150,12 @@ class Moderation(commands.Cog):
                                           read_message_history=True,
                                           )
             embed = discord.Embed(title='<:open:869959941321011260> Erfolgreich',
-                                  description=f'<:open:869959941321011260> Die Rolle `{muteRole} wurde erfolgreich erstellt!`<:open:869959941321011260>')
+                                  description=f'<:open:869959941321011260> Die Mute Rolle `wurde erfolgreich erstellt!`<:open:869959941321011260>')
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description=f'Irgendwas ist schiefgelaufen ...\n'
-                                              f'Bitte überprüfe, ob die Rolle {muteRole} schon existiert!')
+                                              f'Bitte überprüfe, ob die Mute Rolle schon existiert!')
             await ctx.send(embed=embed)
 
     @commands.command()
