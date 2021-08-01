@@ -18,16 +18,16 @@ class Administration(commands.Cog):
     @commands.command(name='load', aliases=['activate'])
     @commands.has_permissions(administrator=True)
     async def load(self, ctx, extension):
-        if not extension:
-            await ctx.send(f'{extension} ist bereits aktiv!')
+        if extension:
+            await ctx.send(f'`{extension}` ist bereits aktiv!')
         self.bot.load_extension(f'cogs.{extension}')
         await ctx.send(f'Loaded Extension `{extension}`')
 
     @commands.command(name='unload', aliases=['deactivate'])
     @commands.has_permissions(administrator=True)
     async def unload(self, ctx, extension):
-        if not extension:
-            await ctx.send(f'{extension} ist nicht aktiv!')
+        if extension:
+            await ctx.send(f'`{extension}` ist nicht aktiv!')
         self.bot.unload_extension(f'cogs.{extension}')
         await ctx.send(f'Unloaded Extension `{extension}`')
 

@@ -88,6 +88,19 @@ class CommandErrorHandler(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
+        if isinstance(error, commands.NoPrivateMessage):
+            try:
+                embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (NoPrivateMessage)
+                                      description=f'Der Command:**{ctx.command}** kann nicht in Privatmessages benutzt werden!')
+                await ctx.author.send(embed=embed)
+            except discord.HTTPException:
+                pass
+
+        if isinstance(error, commands.DisabledCommand):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (DisableCommand)
+                                  description=f'**{ctx.command}** wurde deaktiviert!')
+            await ctx.send(embed=embed)
+
         else:
             print("Error not caught")
             print(error)
