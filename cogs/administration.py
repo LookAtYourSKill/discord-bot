@@ -19,7 +19,7 @@ class Administration(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def load(self, ctx, extension):
         if extension:
-            await ctx.send(f'`{extension}` ist bereits aktiv!')
+            await ctx.send(f'`{extension}` ist **Aktiviert**!')
         self.bot.load_extension(f'cogs.{extension}')
         await ctx.send(f'Loaded Extension `{extension}`')
 
@@ -27,7 +27,7 @@ class Administration(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def unload(self, ctx, extension):
         if extension:
-            await ctx.send(f'`{extension}` ist nicht aktiv!')
+            await ctx.send(f'`{extension}` ist **Deaktiviert**!')
         self.bot.unload_extension(f'cogs.{extension}')
         await ctx.send(f'Unloaded Extension `{extension}`')
 
