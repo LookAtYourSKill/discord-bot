@@ -15,7 +15,7 @@ class Administration(commands.Cog):
                               description=f'Successfully changed bot status to **{text}**')
         await ctx.send(embed=embed)
 
-    @commands.command(name='load')
+    @commands.command(name='load', aliases=['activate'])
     @commands.has_permissions(administrator=True)
     async def load(self, ctx, extension):
         if not extension:
@@ -23,7 +23,7 @@ class Administration(commands.Cog):
         self.bot.load_extension(f'cogs.{extension}')
         await ctx.send(f'Loaded Extension `{extension}`')
 
-    @commands.command(name='unload')
+    @commands.command(name='unload', aliases=['deactivate'])
     @commands.has_permissions(administrator=True)
     async def unload(self, ctx, extension):
         if not extension:
