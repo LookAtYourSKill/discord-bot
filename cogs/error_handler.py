@@ -1,9 +1,9 @@
 import asyncio
+from distutils import extension
 import discord
 import traceback
 import sys
 from discord.ext import commands
-
 
 class CommandErrorHandler(commands.Cog):
 
@@ -91,7 +91,7 @@ class CommandErrorHandler(commands.Cog):
         if isinstance(error, commands.NoPrivateMessage):
             try:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (NoPrivateMessage)
-                                      description=f'Der Command:**{ctx.command}** kann nicht in Privatmessages benutzt werden!')
+                                      description=f'Der Command: **{ctx.command}** kann nicht in Privatmessages benutzt werden!')
                 await ctx.author.send(embed=embed)
             except discord.HTTPException:
                 pass
@@ -101,8 +101,28 @@ class CommandErrorHandler(commands.Cog):
                                   description=f'**{ctx.command}** wurde deaktiviert!')
             await ctx.send(embed=embed)
 
+        if isinstance(error, commands.ExtensionAlreadyLoaded):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
+                                  description=f'`{extension}` ist bereits **Aktiviert**!')
+            await ctx.send(embed=embed)
+
+        if isinstance(error, commands.ExtensionNotFound):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionNotFound)
+                                  description=f'`{extension}` wurde **nicht gefunden**!')
+            await ctx.send(embed=embed)
+
+        if isinstance(error, commands.ExtensionNotLoaded):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
+                                  description=f'`{extension}` ist bereits **Deaktiviert**!')
+            await ctx.send(embed=embed)
+
+        #if isinstance(error, commands.ExtensionError):
+        #    embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
+        #                          description=f'Es gab ein Fehler mit der Extension `({extension})`! **Bitte versuche es erneut**')
+        #    await ctx.send(embed=embed)
+
         else:
-            print("Error not caught")
+            print("Error not caught in chat")
             print(error)
 
         #else:
