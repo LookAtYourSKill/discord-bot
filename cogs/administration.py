@@ -19,20 +19,35 @@ class Administration(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def load(self, ctx, extension):
         self.bot.load_extension(f'cogs.{extension}')
-        await ctx.send(f'Loaded Extension `{extension}`')
+        await ctx.send(f'**Loaded** Extension `{extension}`')
+
+    #@load.error()
+    #async def load_error(self, ctx, error, extension):
+    #    if isinstance(error, commands.NotOwner):
+    #        await ctx.channel.send("You must be the owner to use this command.")
+    #        print(error)
+    #    if isinstance(error, commands.MissingRequiredArgument):
+    #        await ctx.channel.send("You must tell me which extension to load")
+    #        print(error)
+    #    if isinstance(error, commands.ExtensionAlreadyLoaded):
+    #        await ctx.channel.send("Extension Already loaded")
+    #        print(error)
+    #    else:
+    #         await ctx.channel.send("An error as occured, please contact the bot owner")
+    #         print(error)
 
     @commands.command(name='unload', aliases=['deactivate'])
     @commands.has_permissions(administrator=True)
     async def unload(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
-        await ctx.send(f'Unloaded Extension `{extension}`')
+        await ctx.send(f'**Unloaded** Extension `{extension}`')
 
     @commands.command(name='reload')
     @commands.has_permissions(administrator=True)
     async def reload(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
         self.bot.load_extension(f'cogs.{extension}')
-        await ctx.send(f'Reloaded Extension `{extension}`')
+        await ctx.send(f'**Reloaded** Extension `{extension}`')
 
 def setup(bot):
     bot.add_cog(Administration(bot))

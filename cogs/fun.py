@@ -24,7 +24,6 @@ class fun(commands.Cog):
                                           f'\n'
                                           f'Antwort: **{random.choice(answers)}**')
         await ctx.send(embed=embed)
-        # FIX DAS MAN DIE KOMPLETTE FRAGE SIEHT (muss noch gemacht werden)
 
     @commands.command(aliases=['slot'])
     @commands.cooldown(rate=2, per=1)
@@ -67,51 +66,52 @@ class fun(commands.Cog):
                                   description='**Benutze bitte:** `Stein`, `Schere` oder `Papier`!')
             await ctx.send(embed=embed)
 
-        bot_move = random.choice(rps)
-        embed = discord.Embed(title='',
-                              description=f'**Der Bot** hat `{bot_move} gewählt`!\n'
-                                          f'**Du** hast `{name} gewählt`!')
-        await ctx.send(embed=embed)
-
-        if bot_move == name:
-            embed = discord.Embed(title='',
-                                  description=f'{ctx.author.mention} Das ist ein `unentschieden`!')
-            await ctx.send(embed=embed)
-
-        elif name == "Stein":
-            if bot_move == "Papier":
-                embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Du hast einfach `verloren`')
-                await ctx.send(embed=embed)
-            else:
-                embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Ja oke dikka `gewonnen`')
-                await ctx.send(embed=embed)
-
-        elif name == "Papier":
-            if bot_move == "Schere":
-                embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Du hast einfach verloren')
-                await ctx.send(embed=embed)
-            else:
-                embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Ja oke dikka gewonnen')
-                await ctx.send(embed=embed)
-
-        elif name == "Schere":
-            if bot_move == "Stein":
-                embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Du hast einfach verloren')
-                await ctx.send(embed=embed)
-            else:
-                embed = discord.Embed(title='',
-                                      description=f'{ctx.author.mention} Ja oke dikka gewonnen')
-                await ctx.send(embed=embed)
-
         else:
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='Unbekannter Fehler ist aufgetreten!')
+            bot_move = random.choice(rps)
+            embed = discord.Embed(title='',
+                                  description=f'**Der Bot** hat `{bot_move} gewählt`!\n'
+                                              f'**Du** hast `{name} gewählt`!')
             await ctx.send(embed=embed)
+
+            if bot_move == name:
+                embed = discord.Embed(title='',
+                                      description=f'{ctx.author.mention} Das ist ein `unentschieden`!')
+                await ctx.send(embed=embed)
+
+            elif name == "Stein":
+                if bot_move == "Papier":
+                    embed = discord.Embed(title='',
+                                          description=f'{ctx.author.mention} Du hast einfach `verloren`')
+                    await ctx.send(embed=embed)
+                else:
+                    embed = discord.Embed(title='',
+                                          description=f'{ctx.author.mention} Ja oke dikka `gewonnen`')
+                    await ctx.send(embed=embed)
+
+            elif name == "Papier":
+                if bot_move == "Schere":
+                    embed = discord.Embed(title='',
+                                          description=f'{ctx.author.mention} Du hast einfach verloren')
+                    await ctx.send(embed=embed)
+                else:
+                    embed = discord.Embed(title='',
+                                          description=f'{ctx.author.mention} Ja oke dikka gewonnen')
+                    await ctx.send(embed=embed)
+
+            elif name == "Schere":
+                if bot_move == "Stein":
+                    embed = discord.Embed(title='',
+                                          description=f'{ctx.author.mention} Du hast einfach verloren')
+                    await ctx.send(embed=embed)
+                else:
+                    embed = discord.Embed(title='',
+                                          description=f'{ctx.author.mention} Ja oke dikka gewonnen')
+                    await ctx.send(embed=embed)
+
+            else:
+                embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                      description='Unbekannter Fehler ist aufgetreten!')
+                await ctx.send(embed=embed)
 
 
 def setup(bot):

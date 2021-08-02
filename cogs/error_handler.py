@@ -1,9 +1,7 @@
 import asyncio
-from distutils import extension
 import discord
-import traceback
-import sys
 from discord.ext import commands
+
 
 class CommandErrorHandler(commands.Cog):
 
@@ -36,7 +34,7 @@ class CommandErrorHandler(commands.Cog):
 
         if isinstance(error, commands.MissingRequiredArgument):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingRequiredArgument)
-                                  description=f'Nach **{ctx.command}** fehlt ein Argument!',
+                                  description=f'Nach **{ctx.command}** fehlt ein Argument (**Name** oder Ähnliches)!',
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
@@ -83,7 +81,7 @@ class CommandErrorHandler(commands.Cog):
 
         if isinstance(error, commands.CommandOnCooldown):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (CommandOnCooldown)
-                                  description=f'{ctx.command} hat gerade noch ein Cooldown {round(error.retry_after)}! Versuche es später erneut!')
+                                  description=f'`{ctx.command}` hat gerade noch **ein Cooldown {round(error.retry_after)}**!Versuche es später erneut!')
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
@@ -101,25 +99,20 @@ class CommandErrorHandler(commands.Cog):
                                   description=f'**{ctx.command}** wurde deaktiviert!')
             await ctx.send(embed=embed)
 
-        if isinstance(error, commands.ExtensionAlreadyLoaded):
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
-                                  description=f'`{extension}` ist bereits **Aktiviert**!')
-            await ctx.send(embed=embed)
-
         if isinstance(error, commands.ExtensionNotFound):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionNotFound)
-                                  description=f'`{extension}` wurde **nicht gefunden**!')
+                                  description=f'`Diese Extension` wurde **nicht gefunden**!')
+            await ctx.send(embed=embed)
+
+        if isinstance(error, commands.ExtensionAlreadyLoaded):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
+                                  description=f'`Diese Extension` ist bereits **Aktiviert**!')
             await ctx.send(embed=embed)
 
         if isinstance(error, commands.ExtensionNotLoaded):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
-                                  description=f'`{extension}` ist bereits **Deaktiviert**!')
+                                  description=f'`Diese Extension` ist bereits **Deaktiviert**!')
             await ctx.send(embed=embed)
-
-        #if isinstance(error, commands.ExtensionError):
-        #    embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
-        #                          description=f'Es gab ein Fehler mit der Extension `({extension})`! **Bitte versuche es erneut**')
-        #    await ctx.send(embed=embed)
 
         else:
             print("Error not caught in chat")
