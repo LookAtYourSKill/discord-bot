@@ -49,7 +49,7 @@ class Administration(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['delrole'])
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_roles=True)
     async def delete_role(self, ctx, *, role_name):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
         if role:

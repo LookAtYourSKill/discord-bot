@@ -139,7 +139,7 @@ class Moderation(commands.Cog):
         await member.send(embed=embed)
 
     @commands.command()
-    @commands.has_permissions(kick_members=True)
+    @commands.has_permissions(manage_roles=True)
     async def createMute(self, ctx):
         muteRole = await ctx.guild.create_role(name='Muted', color=discord.Color.dark_grey())
         for channel in ctx.guild.channels():
@@ -150,12 +150,12 @@ class Moderation(commands.Cog):
                                           read_message_history=True,
                                           )
             embed = discord.Embed(title='<:open:869959941321011260> Erfolgreich',
-                                  description=f'<:open:869959941321011260> Die Mute Rolle `wurde erfolgreich erstellt!`<:open:869959941321011260>')
+                                  description=f'<:open:869959941321011260> Die Mute Rolle `wurde erfolgreich erstellt!`')
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description=f'Irgendwas ist schiefgelaufen ...\n'
-                                              f'Bitte überprüfe, ob die Mute Rolle schon existiert!')
+                                  description=f'Irgendwas ist **schiefgelaufen** ...\n'
+                                              f'`Bitte überprüfe, ob die Mute Rolle schon existiert!`')
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['tmute'])
@@ -230,6 +230,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
 
     @commands.command(aliases=['sm'])
+    @commands.has_permissions(manage_channels=True)
     async def slowmode(self, ctx, sec: int = None, channel: discord.TextChannel = None):
         if sec == 0:
             embed = discord.Embed(title='',
