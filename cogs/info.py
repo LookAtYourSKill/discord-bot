@@ -25,8 +25,8 @@ class Info(commands.Cog):
         embed.set_thumbnail(url=f'{member.avatar_url}')
         embed.add_field(name='**Name**',
                         value=f'```Name: {member.name}#{member.discriminator}\n'
-                              f'Nick: {(member.nick if member.nick else "Nein")}\n'
-                              f'ID: {member.id}```',
+                              f'ID: {member.id}\n'
+                              f'Nick: {(member.nick if member.nick else "Nein")}\n```',
                         inline=False)
         embed.add_field(name='**Account**',
                         value=f'```Discord Beigetreten: {member.created_at.strftime("%d.%m.%Y")}\n'
