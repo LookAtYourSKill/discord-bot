@@ -158,11 +158,6 @@ class Moderation(commands.Cog):
                                               f'Bitte überprüfe, ob die Mute Rolle schon existiert!')
             await ctx.send(embed=embed)
 
-    @commands.command()
-    @commands.has_permissions(manage_roles=True)
-    async def create_role(self, ctx, *, name: str, color: discord.Color = discord.Color.default()):
-        await ctx.guild.create_role(name=name, color=color)
-
     @commands.command(aliases=['tmute'])
     @commands.has_permissions(kick_members=True)
     async def tempmute(self, ctx, member: discord.Member, time=None, reason=None):

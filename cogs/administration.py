@@ -23,21 +23,6 @@ class Administration(commands.Cog):
                               description=f'**Loaded** Extension `{extension}`')
         await ctx.send(embed=embed)
 
-    #@load.error()
-    #async def load_error(self, ctx, error, extension):
-    #    if isinstance(error, commands.NotOwner):
-    #        await ctx.channel.send("You must be the owner to use this command.")
-    #        print(error)
-    #    if isinstance(error, commands.MissingRequiredArgument):
-    #        await ctx.channel.send("You must tell me which extension to load")
-    #        print(error)
-    #    if isinstance(error, commands.ExtensionAlreadyLoaded):
-    #        await ctx.channel.send("Extension Already loaded")
-    #        print(error)
-    #    else:
-    #         await ctx.channel.send("An error as occured, please contact the bot owner")
-    #         print(error)
-
     @commands.command(name='unload', aliases=['deactivate'])
     @commands.has_permissions(administrator=True)
     async def unload(self, ctx, extension):
@@ -46,7 +31,7 @@ class Administration(commands.Cog):
                               description=f'**Unloaded** Extension `{extension}`')
         await ctx.send(embed=embed)
 
-    @commands.command(name='reload')
+    @commands.command(name='reload', aliases=['rl'])
     @commands.has_permissions(administrator=True)
     async def reload(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
@@ -54,6 +39,31 @@ class Administration(commands.Cog):
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'**Reloaded** Extension `{extension}`')
         await ctx.send(embed=embed)
+
+    @commands.command(aliases=['addrole'])
+    @commands.has_permissions(manage_roles=True)
+    async def create_role(self, ctx, *, name: str, color: discord.Color = discord.Color.default()):
+        await ctx.guild.create_role(name=name, color=color)
+        embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                              description=f'Die Rolle **{name}** wurde erstellt!')
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['delrole'])
+    @commands.has_permissions(administrator=True)
+    async def delete_role(self, ctx, *, role_name):
+        role = discord.utils.get(ctx.guild.roles, name=role_name)
+        if role:
+            try:
+                await role.delete()
+                embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                                      description=f'Die Rolle **{role_name}** wurde gelöscht!')
+                await ctx.send(embed=embed)
+            except discord.Forbidden:
+                pass
+        else:
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                  description=f'Die Rolle **existiert nicht**!')
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Administration(bot))
