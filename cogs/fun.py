@@ -34,10 +34,10 @@ class fun(commands.Cog):
         for _emoji in range(3):
             grabbed += random.choice(emojis)
 
-        winembed = discord.Embed(title='**Slots**',
+        winembed = discord.Embed(title=' ',
                                  description=f'🎉Du hast in **Slots gewonnen**🎉!\nDu hast {grabbed} gezogen!')
 
-        loseembed = discord.Embed(title='**Slots**',
+        loseembed = discord.Embed(title=' ',
                                   description=f'Du hast **leider nicht gewonnen**!\nDu hast {grabbed} gezogen!')
 
         if grabbed == '🍎🍎🍎' or grabbed == '🍇🍇🍇' or grabbed == '🍒🍒🍒':
