@@ -19,7 +19,9 @@ class Administration(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def load(self, ctx, extension):
         self.bot.load_extension(f'cogs.{extension}')
-        await ctx.send(f'**Loaded** Extension `{extension}`')
+        embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                              description=f'**Loaded** Extension `{extension}`')
+        await ctx.send(embed=embed)
 
     #@load.error()
     #async def load_error(self, ctx, error, extension):
@@ -40,14 +42,18 @@ class Administration(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def unload(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
-        await ctx.send(f'**Unloaded** Extension `{extension}`')
+        embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                              description=f'**Unloaded** Extension `{extension}`')
+        await ctx.send(embed=embed)
 
     @commands.command(name='reload')
     @commands.has_permissions(administrator=True)
     async def reload(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
         self.bot.load_extension(f'cogs.{extension}')
-        await ctx.send(f'**Reloaded** Extension `{extension}`')
+        embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                              description=f'**Reloaded** Extension `{extension}`')
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Administration(bot))

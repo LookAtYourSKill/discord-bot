@@ -14,8 +14,8 @@ class Info(commands.Cog):
 
     @commands.command(name='user', aliases=['userinfo', 'info'], help='?userinfo [@user]')
     async def user(self, ctx, member: discord.Member):
-        if member.mention is None:
-            member = ctx.author.mention
+        if member is None:
+            member = ctx.author
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
                               description='',
