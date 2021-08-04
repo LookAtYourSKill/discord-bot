@@ -1,5 +1,8 @@
 import asyncio
+import os
+import string
 import time
+import random
 
 import discord
 from discord.ext import commands
@@ -51,5 +54,17 @@ class Utilities(commands.Cog):
                 await asyncio.sleep(1)
                 await ctx.message.delete()
 
+    @commands.command()
+    async def password(self, ctx):
+        length = 20
+        chars = string.ascii_letters + string.digits + '!@#$%^&*()'
+        random.seed = (os.urandom(1024))
+
+        await ctx.message.author.send('Dein Passwort wurde erstellt!', delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
+        await ctx.message.author.send(''.join(random.choice(chars) for i in range(length)), delete_after=10)
+
 def setup(bot):
-    bot.add_cog(Utilities())
+    bot.add_cog(Utilities()
+                )

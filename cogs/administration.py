@@ -1,3 +1,5 @@
+import asyncio
+
 import discord
 from discord.ext import commands
 
@@ -42,13 +44,13 @@ class Administration(commands.Cog):
 
     @commands.command(aliases=['addrole'])
     @commands.has_permissions(manage_roles=True)
-    async def create_role(self, ctx, *, name: str, color: discord.Color = discord.Color.default()):
-        await ctx.guild.create_role(name=name, color=color)
+    async def create_role(self, ctx, *, role_name: str, color: discord.Color = discord.Color.random()):
+        await ctx.guild.create_role(role_name=role_name, color=color)
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
-                              description=f'Die Rolle **{name}** wurde erstellt!')
+                              description=f'Die Rolle **{role_name}** wurde erstellt!')
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['delrole'])
+    @commands.command(aliases=['delrole', 'rmrole'])
     @commands.has_permissions(manage_roles=True)
     async def delete_role(self, ctx, *, role_name):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
@@ -57,13 +59,18 @@ class Administration(commands.Cog):
                 await role.delete()
                 embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                                       description=f'Die Rolle **{role_name}** wurde gelöscht!')
-                await ctx.send(embed=embed)
+                await ctx.send(embed=embed, delete_after=5)
+                await asyncio.sleep(1)
+                await ctx.message.delete()
             except discord.Forbidden:
                 pass
         else:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description=f'Die Rolle **existiert nicht**!')
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
 
 def setup(bot):
-    bot.add_cog(Administration(bot))
+    bot.add_cog(Administration(bot)
+                )

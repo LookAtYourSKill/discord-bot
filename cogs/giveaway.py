@@ -8,15 +8,6 @@ class Giveaway(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=['gawrole', 'creategaw'])
-    @commands.has_permissions(manage_channels=True)
-    async def createGAWRole(self, ctx):
-        guild = ctx.guild
-        giveawayrole = await guild.create_role(name="Giveaway", color=discord.Color.green())
-        embed = discord.Embed(title='<:open:869959941321011260>',
-                              description=f'Die Rolle `**{giveawayrole}** wurde erfolgreich erstellt!`')
-        await ctx.send(embed=embed)
-
     @commands.command(aliases=['giveaway'])
     @commands.has_role('Giveaway')
     async def create(self, ctx, time=None, *, prize=None):
@@ -46,5 +37,7 @@ class Giveaway(commands.Cog):
         winner = random.choice(users)
         await ctx.send(f"YAAY 🎉{winner.mention} has won **{prize}**🎉")
 
+
 def setup(bot):
-    bot.add_cog(Giveaway(bot))
+    bot.add_cog(Giveaway(bot)
+                )

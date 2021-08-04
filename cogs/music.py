@@ -89,4 +89,5 @@ class MusicBot(commands.Cog):
             return
 
 def setup(bot):
-    bot.add_cog(MusicBot())
+    bot.add_cog(MusicBot()
+                )

@@ -26,13 +26,16 @@ class Help(commands.Cog):
                         value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',
                         inline=False)
         embed.add_field(name='**Utilities**',
-                        value=f'`invite`, `botinvite`, `repeat`, `embed`',
+                        value=f'`invite`, `botinvite`, `repeat`, `embed`, `password`',
                         inline=False)
         embed.add_field(name='**Giveaway**',
-                        value=f'`create`',
+                        value=f'`create`, `createGAWRole`',
                         inline=False)
         embed.add_field(name='**Fun**',
-                        value='`8ball`, `roll`, `slots`, `rps`')
+                        value='`8ball`, `roll`, `slots`, `rps`',
+                        inline=False)
+        embed.add_field(name='**Gifs**',
+                        value='`hug`, `laugh`, `punch`, `cry`, `kiss`, `cat`, `rage`, `highfive`, `handshake`')
         embed.add_field(name='**Usage**',
                         value=f'`usage_ + module`',
                         inline=False)
@@ -58,4 +61,5 @@ class Help(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Help(bot))
+    bot.add_cog(Help(bot)
+                )

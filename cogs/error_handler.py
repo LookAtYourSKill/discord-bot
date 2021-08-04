@@ -64,6 +64,14 @@ class CommandErrorHandler(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
+        if isinstance(error, discord.Forbidden):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingPermission)
+                                  description=f'`Etwas ist schief gelaufen!`',
+                                  color=0x4cd137)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
+
         if isinstance(error, commands.CommandNotFound):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (CommandNotFound)
                                   description=f'**Unknown Command**',
@@ -90,38 +98,49 @@ class CommandErrorHandler(commands.Cog):
             try:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (NoPrivateMessage)
                                       description=f'Der Command: **{ctx.command}** kann nicht in Privatmessages benutzt werden!')
-                await ctx.author.send(embed=embed)
+                await ctx.author.send(embed=embed, delete_after=5)
+                await asyncio.sleep(1)
+                await ctx.message.delete()
             except discord.HTTPException:
                 pass
 
         if isinstance(error, commands.DisabledCommand):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (DisableCommand)
                                   description=f'**{ctx.command}** wurde deaktiviert!')
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
 
         if isinstance(error, commands.ExtensionNotFound):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionNotFound)
                                   description=f'`Diese Extension` wurde **nicht gefunden**!')
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
 
         if isinstance(error, commands.ExtensionAlreadyLoaded):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
                                   description=f'`Diese Extension` ist bereits **Aktiviert**!')
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
 
         if isinstance(error, commands.ExtensionNotLoaded):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
                                   description=f'`Diese Extension` ist bereits **Deaktiviert**!')
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
 
         else:
             print("Error not caught in chat")
             print(error)
 
-        #else:
+        # else:
         #    print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         #    traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 
 
 def setup(bot):
-    bot.add_cog(CommandErrorHandler(bot))
+    bot.add_cog(CommandErrorHandler(bot)
+                )

@@ -61,4 +61,5 @@ class Socials(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Socials(bot))
+    bot.add_cog(Socials(bot)
+                )
