@@ -126,7 +126,7 @@ class CommandErrorHandler(commands.Cog):
             await ctx.message.delete()
 
         if isinstance(error, commands.ExtensionNotLoaded):
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionAlreadyLoaded)
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionNotLoaded)
                                   description=f'`Diese Extension` ist bereits **Deaktiviert**!')
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)

@@ -35,7 +35,7 @@ class Giveaway(commands.Cog):
         users.pop(users.index(self.bot.user))
 
         winner = random.choice(users)
-        await ctx.send(f"YAAY 🎉{winner.mention} has won **{prize}**🎉")
+        await ctx.send(f"YAY 🎉{winner.mention} has won **{prize}**🎉")
 
 
 def setup(bot):
