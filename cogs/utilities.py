@@ -10,6 +10,7 @@ from discord.ext.commands import bot
 
 bot = commands.Bot(intense=discord.Intents.all(), command_prefix='?')
 
+
 class Utilities(commands.Cog):
     def __init__(self):
         self.bot = bot
@@ -54,6 +55,22 @@ class Utilities(commands.Cog):
                 await asyncio.sleep(1)
                 await ctx.message.delete()
 
+    @commands.command(name='invites')
+    async def user_invites(self, ctx, member: discord.Member = None):
+        member = member if member else ctx.author
+        invites_raw = [invite for invite in (await ctx.guild.invites()) if invite.inviter.id == member.id]
+        invites: int = 0
+        for invite in invites_raw:
+            invites += invite.uses
+        embed = discord.Embed(title='Invites',
+                              color=0xff00c8)
+        embed.add_field(name=f'Invited from {member}',
+                        value=f"You've invited **{invites}** members to the server!")
+        embed.set_footer(text=f'Requested by {ctx.author.name}',
+                         icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+        #await ctx.send(f"Member {member.mention} has {invites} invites")
+
     @commands.command()
     async def password(self, ctx):
         length = 20
@@ -64,6 +81,7 @@ class Utilities(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
         await ctx.message.author.send(''.join(random.choice(chars) for i in range(length)), delete_after=10)
+
 
 def setup(bot):
     bot.add_cog(Utilities()

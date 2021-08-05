@@ -42,6 +42,5 @@ class createRoles(commands.Cog):
                                       description=f'Die Rolle `{muteRole} wurde erfolgreich erstellt!`')
                 await ctx.send(embed=embed)
 
-
 def setup(bot):
     bot.add_cog(createRoles(bot))
