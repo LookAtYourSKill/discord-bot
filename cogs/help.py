@@ -20,7 +20,7 @@ class Help(commands.Cog):
         embed.add_field(name='**Administration**',
                         value='`addrole`, `delrole`, `reload`, `unload`, `load`, `setstatus`')
         embed.add_field(name='**Moderation**',
-                        value=f'`ban`, `unban`, `tempban`,`bannedUserList`, `mute`, `unmute`, `createMute`, `tempmute`, `kick`, `slowmode`, `clear`',
+                        value=f'`ban`, `unban`, `tempban`,`bannedUserList`, `mute`, `unmute`, `createMute`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`',
                         inline=False)
         embed.add_field(name='**Infos**',
                         value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',

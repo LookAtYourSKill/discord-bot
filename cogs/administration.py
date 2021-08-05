@@ -15,7 +15,9 @@ class Administration(commands.Cog):
         await self.bot.change_presence(activity=discord.Game(name=text))
         embed = discord.Embed(title='<:open:869959941321011260> Erfolgreich',
                               description=f'Successfully changed bot status to **{text}**')
-        await ctx.send(embed=embed)
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
 
     @commands.command(name='load', aliases=['activate'])
     @commands.has_permissions(administrator=True)
@@ -23,7 +25,9 @@ class Administration(commands.Cog):
         self.bot.load_extension(f'cogs.{extension}')
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'**Loaded** Extension `{extension}`')
-        await ctx.send(embed=embed)
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
 
     @commands.command(name='unload', aliases=['deactivate'])
     @commands.has_permissions(administrator=True)
@@ -31,7 +35,9 @@ class Administration(commands.Cog):
         self.bot.unload_extension(f'cogs.{extension}')
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'**Unloaded** Extension `{extension}`')
-        await ctx.send(embed=embed)
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
 
     @commands.command(name='reload', aliases=['rl'])
     @commands.has_permissions(administrator=True)
@@ -40,7 +46,9 @@ class Administration(commands.Cog):
         self.bot.load_extension(f'cogs.{extension}')
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'**Reloaded** Extension `{extension}`')
-        await ctx.send(embed=embed)
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
 
     @commands.command(aliases=['addrole'])
     @commands.has_permissions(manage_roles=True)
@@ -48,7 +56,9 @@ class Administration(commands.Cog):
         await ctx.guild.create_role(role_name=role_name, color=color)
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'Die Rolle **{role_name}** wurde erstellt!')
-        await ctx.send(embed=embed)
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
 
     @commands.command(aliases=['delrole', 'rmrole'])
     @commands.has_permissions(manage_roles=True)
@@ -70,6 +80,7 @@ class Administration(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
+
 
 def setup(bot):
     bot.add_cog(Administration(bot)
