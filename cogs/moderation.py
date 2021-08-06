@@ -24,6 +24,12 @@ class Moderation(commands.Cog):
             embed = discord.Embed(title=f'',
                                   description=f'Der User **{member.mention}** wurde wegen `{reason}` gebannt!',
                                   color=0x4cd137)
+            embed.add_field(name='**Information**',
+                            value=f'Gebannter User : `{member.mention}`\n'
+                                  f'User ID : `{member.id}`\n'
+                                  f'Reason : `{reason}`\n'
+                                  f'Gebannt von : `{ctx.author}`',
+                            inline=False)
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
@@ -69,6 +75,13 @@ class Moderation(commands.Cog):
         embed = discord.Embed(title=f'',
                               description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gebannt!',
                               color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Gebannter User : `{member}`\n'
+                              f'User ID : `{member.id}`\n'
+                              f'Reason : `{reason}`\n'
+                              f'Time : {time}\n'
+                              f'Gebannt von : `{ctx.author}`',
+                        inline=False)
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()  # Delete user's message
         await asyncio.sleep(tempbantime)
@@ -110,6 +123,12 @@ class Moderation(commands.Cog):
         embed = discord.Embed(title=f'',
                               description=f'Der User **{member.name}** wurde wegen `{reason}` gemuted!',
                               color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Muted User : `{member}`\n'
+                              f'User ID : `{member.id}`\n'
+                              f'Reason : `{reason}`\n'
+                              f'Muted von : `{ctx.author}`',
+                        inline=False)
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
         embed = discord.Embed(title=f'',
@@ -169,12 +188,26 @@ class Moderation(commands.Cog):
         embed = discord.Embed(title=f'',
                               description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gemuted!',
                               color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Tempmuted User : `{member}`\n'
+                              f'User ID : `{member.id}`\n'
+                              f'Reason : `{reason}`\n'
+                              f'Time : {time}\n'
+                              f'Tempmuted von : `{ctx.author}`',
+                        inline=False)
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
         embed = discord.Embed(title=f'',
                               description=f'Du wurdest auf dem Server **{ctx.guild.name}** für `{time}` wegen `{reason}` gemuted!',
                               color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Tempmuted User : `{member}`\n'
+                              f'User ID : `{member.id}`\n'
+                              f'Reason : `{reason}`\n'
+                              f'Time : {time}\n'
+                              f'Tempmuted von : `{ctx.author}`',
+                        inline=False)
         await member.send(embed=embed)
         await asyncio.sleep(tempmutetime)
         await member.remove_roles(mutedRole)
@@ -185,7 +218,7 @@ class Moderation(commands.Cog):
         if member == ctx.author:
             embed = discord.Embed(title=' ',
                                   description=f'{member.mention}, du kannst dich selbst **nicht kicken**!',
-                                  color=0x4cd137, )
+                                  color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
@@ -197,28 +230,46 @@ class Moderation(commands.Cog):
             embed = discord.Embed(title=f'',
                                   description=f'Der User **{member.name}** wurde wegen `{reason}` gekickt!',
                                   color=0x4cd137)
+            embed.add_field(name='**Information**',
+                            value=f'Kicked User : `{member}`\n'
+                                  f'User ID : `{member.id}`\n'
+                                  f'Reason : `{reason}`\n'
+                                  f'Gekickt von : `{ctx.author}`',
+                            inline=False)
             await ctx.send(embed=embed, delete_after=5)
+            await ctx.message.delete()
 
     @commands.command(name='dc', aliases=['vckick', 'vc'])
     @commands.has_permissions(kick_members=True)
     async def vc_kick(self, ctx, member: discord.Member):
         await member.edit(voice_channel=None)
-        embed = discord.Embed(title=' ',
+        embed = discord.Embed(title='',
                               description=f'**{member}** wurde `aus dem Voice Channel gekickt!`',
                               color=0xff00c8)
+        embed.add_field(name='**Information**',
+                        value=f'Disconnected User : `{member}`\n'
+                              f'User ID : `{member.id}`\n'
+                              f'Disconnected von : `{ctx.author}`',
+                        inline=False)
         await ctx.send(embed=embed, delete_after=5)
         await asyncio.sleep(1)
         await ctx.message.delete()
 
     @commands.command(aliases=['purge'])
     @commands.has_permissions(manage_messages=True)
-    async def clear(self, ctx, amount=5):
+    async def clear(self, channel,  ctx, amount=5):
         await asyncio.sleep(1)
         await ctx.message.delete()
         await ctx.channel.purge(limit=amount)
         embed = discord.Embed(title=f'',
                               description=f'Es wurden `{amount} Nachrichten` gelöscht',
                               color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Nachrichten gelöscht : `{amount}`\n'
+                              f'Channel Name : `{channel.name}`\n'
+                              f'Channel ID : `{channel.id}`'
+                              f'Nachrichten gelöscht von : `{ctx.author}`',
+                        inline=False)
         await ctx.send(embed=embed, delete_after=5)
 
     @commands.command(aliases=['sm'])
@@ -239,6 +290,12 @@ class Moderation(commands.Cog):
         embed = discord.Embed(title=f'',
                               description=f'Der Channel **{channel.name}** hat einen Slowmode von `{sec} Sekunden`!',
                               color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Channel Name : `{channel.name}`\n'
+                              f'Channel ID : `{channel.id}`\n'
+                              f'Sekunden : `{sec} Sekunden`\n'
+                              f'Slowmode aktiviert von : `{ctx.author}`',
+                        inline=False)
         await ctx.send(embed=embed, delete_after=5)
 
 

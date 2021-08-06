@@ -14,8 +14,8 @@ class Info(commands.Cog):
 
     @commands.command(name='user', aliases=['userinfo', 'info'], help='?userinfo [@user]')
     async def user(self, ctx, member: discord.Member):
-        if member is None:
-            member = ctx.message.author
+        if not member:
+            member = ctx.author
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
                               description='',
@@ -103,6 +103,8 @@ class Info(commands.Cog):
 
     @commands.command(name='avatar', aliases=['av'], help='?avatar [@user]')
     async def avatar(self, ctx, member: discord.Member):
+        if not member:
+            member = ctx.author
         icon = member.avatar_url
         embed = discord.Embed(title='',
                               color=0x123456,

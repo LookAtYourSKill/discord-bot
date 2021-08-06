@@ -3,7 +3,6 @@ import os
 import string
 import time
 import random
-
 import discord
 from discord.ext import commands
 from discord.ext.commands import bot
@@ -64,12 +63,23 @@ class Utilities(commands.Cog):
             invites += invite.uses
         embed = discord.Embed(title='Invites',
                               color=0xff00c8)
-        embed.add_field(name=f'Invited from {member}',
+        embed.add_field(name=f'Invites from {member}',
                         value=f"You've invited **{invites}** members to the server!")
         embed.set_footer(text=f'Requested by {ctx.author.name}',
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
-        #await ctx.send(f"Member {member.mention} has {invites} invites")
+        # await ctx.send(f"Member {member.mention} has {invites} invites")
+
+    @commands.command()
+    async def senddm(self, ctx, member: discord.Member = None, *, text=None):
+        embed = discord.Embed(title='You got MAIL!', color=0xff00c8)
+        embed.add_field(name='From:',
+                        value=f"{ctx.author.mention}",
+                        inline=False)
+        embed.add_field(name='Message: ',
+                        value=f"{text}",
+                        inline=True)
+        await member.send(embed=embed)
 
     @commands.command()
     async def password(self, ctx):
