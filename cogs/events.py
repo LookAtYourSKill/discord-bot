@@ -18,6 +18,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
+        channel = discord.utils.get(member.guild.channels, id=855515768341921818)
         embed = discord.Embed(title=f'> Welcome',
                               description=f'{member.mention} Joined {member.guild.name}',
                               color=discord.Color.random(),
@@ -26,7 +27,6 @@ class Events(commands.Cog):
         embed.add_field(name=f'Total members',
                         value=f'{member.guild.member_count}')
         embed.set_footer(text=f'{member.name} joined ')
-        channel = discord.utils.get(member.guild.channels, id=855515768341921818)
         await channel.send(embed=embed)
 
     @commands.Cog.listener()

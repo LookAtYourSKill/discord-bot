@@ -50,6 +50,10 @@ class Moderation(commands.Cog):
             embed = discord.Embed(title=f'',
                                   description=f'Der User {user.mention} wurde entbannt!',
                                   color=0x4cd137)
+            embed.add_field(name='**Information**',
+                            value=f'Entbannter User : `{user}`\n'
+                                  f'User ID : {user.id}'
+                                  f'Entbannt von : {ctx.author}')
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
@@ -62,6 +66,27 @@ class Moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
+
+    @commands.command(name='unbanall', aliases=['uball'])
+    @commands.has_permissions(ban_members=True)
+    async def mass_unban(self, ctx):
+        ban_list = await ctx.guild.bans()
+        for users in ban_list:
+            try:
+                await ctx.guild.unban(user=users.user)
+            except:
+                pass
+        embed = discord.Embed(title='',
+                              description='`Unbanned all banned Users`',
+                              color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Users to unban : `{len(ban_list)}`\n'
+                              f'Entbannt von : `{ctx.author}`')
+        await ctx.send(embed=embed, delete_after=5)
+        await ctx.message.delete()
+
+        channel = self.bot.get_channel(id=872945922743619657)
+        await channel.send(embed=embed)
 
     @commands.command(aliases=['tban'])
     @commands.has_permissions(ban_members=True)
