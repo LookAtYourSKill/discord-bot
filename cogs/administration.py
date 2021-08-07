@@ -81,6 +81,41 @@ class Administration(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def lockdown(self, ctx):
+        await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
+        embed = discord.Embed(title='',
+                              description=f'`{ctx.channel}` ist nun **im Lockdown**',
+                              color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Channel im Lockdown : `{ctx.channel}`\n'
+                              f'In Lockdown gesetzt von : `{ctx.author}`')
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
+
+        channel = self.bot.get_channel(id=872945922743619657)
+        await channel.send(embed=embed)
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def unlock(self, ctx):
+        await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
+
+        embed = discord.Embed(title='',
+                              description=f'`{ctx.channel}` ist nun **nicht mehr im Lockdown**',
+                              color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Unlocked Channel : `{ctx.channel}`\n'
+                              f'Aus dem Lockdown genommen von : `{ctx.author}`')
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
+
+        channel = self.bot.get_channel(id=872945922743619657)
+        await channel.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(Administration(bot)

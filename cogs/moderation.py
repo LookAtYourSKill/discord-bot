@@ -284,7 +284,7 @@ class Moderation(commands.Cog):
 
     @commands.command(aliases=['purge'])
     @commands.has_permissions(manage_messages=True)
-    async def clear(self, ctx, amount=5, channel=discord.TextChannel):
+    async def clear(self, ctx, amount=5):
         await asyncio.sleep(1)
         await ctx.message.delete()
         await ctx.channel.purge(limit=amount)
@@ -293,8 +293,7 @@ class Moderation(commands.Cog):
                               color=0x4cd137)
         embed.add_field(name='**Information**',
                         value=f'Nachrichten gelöscht : `{amount}`\n'
-                              f'Channel Name : `{channel.name}`\n'
-                              f'Channel ID : `{channel.id}`'
+                              f'Channel Name : `{ctx.channel}`\n'
                               f'Nachrichten gelöscht von : `{ctx.author}`',
                         inline=False)
         await ctx.send(embed=embed, delete_after=5)
