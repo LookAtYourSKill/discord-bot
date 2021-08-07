@@ -52,8 +52,8 @@ class Moderation(commands.Cog):
                                   color=0x4cd137)
             embed.add_field(name='**Information**',
                             value=f'Entbannter User : `{user}`\n'
-                                  f'User ID : {user.id}'
-                                  f'Entbannt von : {ctx.author}')
+                                  f'User ID : `{user.id}`\n'
+                                  f'Entbannt von : `{ctx.author}`')
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
