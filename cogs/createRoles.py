@@ -36,7 +36,7 @@ class createRoles(commands.Cog):
         if not role:
             try:
                 muterole = await ctx.guild.create_role(name='Muted', color=discord.Color.darker_gray())
-                embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                embed = discord.Embed(title='<:open:869959941321011260> Successfull',
                                       description=f'Die Rolle **{muterole}** wurde erstellt!')
                 await ctx.send(embed=embed, delete_after=5)
                 await asyncio.sleep(1)

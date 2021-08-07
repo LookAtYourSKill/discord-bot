@@ -14,13 +14,15 @@ class Help(commands.Cog):
     async def help(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> Help',
-                              description=f'`Prefix = ?`',
+                              description=f'`Prefix : ?`\n'
+                                          f'`Programmiert in Python`\n'
+                                          f'`Von LookAtYourSkill#0001`',
                               color=0x4cd137,
                               timestamp=datetime.datetime.utcnow().astimezone(tz=de))
         embed.add_field(name='**Administration**',
                         value='`addrole`, `delrole`, `reload`, `unload`, `load`, `setstatus`')
         embed.add_field(name='**Moderation**',
-                        value=f'`ban`, `unban`, `tempban`,`bannedUserList`, `mute`, `unmute`, `createMute`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`',
+                        value=f'`ban`, `unban`, `tempban`,`bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`',
                         inline=False)
         embed.add_field(name='**Infos**',
                         value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',
@@ -29,7 +31,7 @@ class Help(commands.Cog):
                         value=f'`invite`, `invites`, `botinvite`, `repeat`, `embed`, `senddm`, `password`',
                         inline=False)
         embed.add_field(name='**Giveaway**',
-                        value=f'`create`, `createGAWRole`',
+                        value=f'`create`, `gawrole`',
                         inline=False)
         embed.add_field(name='**Fun**',
                         value='`8ball`, `roll`, `slots`, `rps`',
@@ -42,9 +44,9 @@ class Help(commands.Cog):
         embed.add_field(name='**Levels**',
                         value=f'`level`, `rank`',
                         inline=False)
-        embed.add_field(name='**Socials**',
-                        value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
-                        inline=False)
+        #embed.add_field(name='**Socials**',
+        #                value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
+        #                inline=False)
         embed.set_footer(text=f'Angefordert von {ctx.author}',
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)

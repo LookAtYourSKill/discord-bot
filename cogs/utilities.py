@@ -23,6 +23,7 @@ class Utilities(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='botinvite', help='?botinvite')
+    @commands.has_permissions(administrator=True)
     async def botinvite(self, ctx):
         embed = discord.Embed(title=' ',
                               description=f'{ctx.author.mention} hier ist ein Invite Link zum Bot:\n`https:// discord.com / oauth2 / authorize?client_id = 790965419670241281 & scope = bot & permissions = 4294967287`',
@@ -80,6 +81,12 @@ class Utilities(commands.Cog):
                         value=f"{text}",
                         inline=True)
         await member.send(embed=embed)
+
+        embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                              description='**Die Nachricht** wurde `Erfolgreich gesendet`!')
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
 
     @commands.command()
     async def password(self, ctx):

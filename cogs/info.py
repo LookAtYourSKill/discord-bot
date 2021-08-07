@@ -28,9 +28,11 @@ class Info(commands.Cog):
                               f'ID: {member.id}\n'
                               f'Nick: {(member.nick if member.nick else "Nein")}\n```',
                         inline=False)
+        #members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         embed.add_field(name='**Account**',
                         value=f'```Discord Beigetreten: {member.created_at.strftime("%d.%m.%Y")}\n'
                               f'Server Beigetreten: {member.joined_at.strftime("%d.%m.%Y")}\n'
+                              #f'```Join Position : {str(members.index(member)+1)}```\n'
                               f'Booster: {("Ja" if member.premium_since else "Nein")}\n'
                               f'Bot: {("Ja" if member.bot else "Nein")}```',
                         inline=False)
@@ -79,6 +81,14 @@ class Info(commands.Cog):
                         value=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitlieder!')
         await ctx.send(embed=embed)
 
+    @commands.command()
+    @commands.is_owner()
+    async def join_position(self, ctx, member: discord.Member = None):
+        if not member:
+            member = ctx.author
+        members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
+        await ctx.send(f'```Join Position : {str(members.index(member)+1)}```')
+
     @commands.command(name='bot', aliases=['botinfo'], help='?botinfo')
     async def bot(self, ctx):
         de = pytz.timezone('Europe/Berlin')
@@ -97,12 +107,12 @@ class Info(commands.Cog):
         embed.add_field(name='**Server Anzahl**',
                         value=f'```{len(self.bot.guilds)}```',
                         inline=True)
-        embed.set_footer(text=f'Angefrodert von {ctx.author.name}#{ctx.author.discriminator}',
+        embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
     @commands.command(name='avatar', aliases=['av'], help='?avatar [@user]')
-    async def avatar(self, ctx, member: discord.Member):
+    async def avatar(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
         icon = member.avatar_url
@@ -115,6 +125,15 @@ class Info(commands.Cog):
         embed.set_footer(icon_url=ctx.author.avatar_url,
                          text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}')
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def banner(self, ctx, member: discord.Member = None):
+        if not member:
+            member = ctx.author
+        embed = discord.Embed(title='',
+                              color=discord.Color.random(),
+                              timestamp=datetime.datetime.utcnow())
+        embed.set_image(url=member.guild.banner)
 
 
 def setup(bot):
