@@ -9,8 +9,8 @@ class Administration(commands.Cog):
         self.bot = bot
 
     @commands.command(name="setstatus")
-    @commands.has_permissions(administrator=True)
-    @commands.cooldown(rate=1, per=30)
+    @commands.is_owner()
+    @commands.cooldown(rate=30, per=1)
     async def setstatus(self, ctx: commands.Context, *, text: str):
         await self.bot.change_presence(activity=discord.Game(name=text))
         embed = discord.Embed(title='<:open:869959941321011260> Erfolgreich',

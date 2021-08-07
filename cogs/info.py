@@ -31,10 +31,14 @@ class Info(commands.Cog):
         #members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         embed.add_field(name='**Account**',
                         value=f'```Discord Beigetreten: {member.created_at.strftime("%d.%m.%Y")}\n'
-                              f'Server Beigetreten: {member.joined_at.strftime("%d.%m.%Y")}\n'
+                              f'Bot : {("Ja" if member.bot else "Nein")}\n'
+                              f'Farbe : {member.color}\n'
+                              f'Status : {member.status}```',
                               #f'```Join Position : {str(members.index(member)+1)}```\n'
-                              f'Booster: {("Ja" if member.premium_since else "Nein")}\n'
-                              f'Bot: {("Ja" if member.bot else "Nein")}```',
+                        inline=False)
+        embed.add_field(name='**Server**',
+                        value=f'```Server Beigetreten : {member.joined_at.strftime("%d.%m.%Y")}\n'
+                              f'Booster: {("Ja" if member.premium_since else "Nein")}```',
                         inline=False)
         embed.add_field(name='**Rollen**',
                         value=f'```Rollen des Users: {len(member.roles) - 1}\n'
@@ -61,13 +65,14 @@ class Info(commands.Cog):
                               f'Region : {ctx.guild.region}```',
                         inline=False)
         embed.add_field(name='**Daten**',
-                        value=f'```Erstellt: {ctx.guild.created_at.strftime("%d.%m.%Y")}```',
+                        value=f'```Erstellt: {ctx.guild.created_at.strftime("%d.%m.%Y")}\n',
+                              #f'Boost Status : {ctx.guild.}```',
                         inline=False)
         embed.add_field(name='**Member**',
                         value=f'```{ctx.guild.member_count}```',
                         inline=False)
         embed.add_field(name='**Roles**',
-                        value=f'```Deafault Role : {ctx.guild.default_role}\n'
+                        value=f'```Default Role : {ctx.guild.default_role}\n'
                               f'Alle Rollen : {str(role_count)}```',
                         inline=False)
         embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
