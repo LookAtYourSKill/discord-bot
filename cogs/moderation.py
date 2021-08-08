@@ -138,6 +138,7 @@ class Moderation(commands.Cog):
                                       description=i,
                                       color=0x4cd137)
                 await ctx.send(embed=embed, delete_after=5)
+                await ctx.message.delete()
 
     @commands.command()
     @commands.has_permissions(kick_members=True)

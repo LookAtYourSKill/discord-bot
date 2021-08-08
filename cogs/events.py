@@ -29,35 +29,6 @@ class Events(commands.Cog):
         embed.set_footer(text=f'{member.name} joined ')
         await channel.send(embed=embed)
 
-    @commands.Cog.listener()
-    async def on_member_ban(self, guild, member):
-        logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
-        channel = guild.get_channel(872945922743619657)
-        logs = logs[0]
-        if logs.target == member:
-            embed = discord.Embed(title='BackUp Ban Log',
-                                  color=discord.Color.random())
-            embed.add_field(name=f'**Information**',
-                            value=f'`{logs.user}` has just unbanned `{logs.target}`\n'
-                                  f'The time : `{logs.created_at.strftime("%d.%m.%Y, %H:%M:%S")}`\n'
-                                  f'The reason : `{logs.reason}`',
-                            inline=False)
-            await channel.send(embed=embed)
-
-    @commands.Cog.listener()
-    async def on_member_unban(self, guild, member):
-        logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
-        channel = guild.get_channel(872945922743619657)
-        logs = logs[0]
-        if logs.target == member:
-            embed = discord.Embed(title='BackUp Unban Log',
-                                  color=discord.Color.random())
-            embed.add_field(name=f'**Information**',
-                            value=f'`{logs.user}` has just unbanned `{logs.target}`\n'
-                                  f'The time : `{logs.created_at.strftime("%d.%m.%Y, %H:%M:%S")}`',
-                            inline=False)
-            await channel.send(embed=embed)
-
 
 def setup(bot):
     bot.add_cog(Events(bot))
