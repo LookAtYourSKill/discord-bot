@@ -9,7 +9,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message, member: discord.Member = None):
-        if message.content.startswith("@Ich seh dich"):
+        if message.content.startswith("<@790965419670241281>"):
             embed = discord.Embed(title="Prefix", color=0xff00c8)
             embed.add_field(name="You pinged me",
                             value=f"My Prefix is **?**",
