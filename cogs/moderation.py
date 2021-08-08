@@ -314,12 +314,14 @@ class Moderation(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
         await ctx.channel.purge(limit=amount)
+        channel = ctx.channel
         embed = discord.Embed(title=f'',
                               description=f'Es wurden `{amount} Nachrichten` gelöscht',
                               color=0x4cd137)
         embed.add_field(name='**Information**',
                         value=f'Nachrichten gelöscht : `{amount}`\n'
-                              f'Channel Name : `{ctx.channel}`\n'
+                              f'Channel Name : `{channel.name}`\n'
+                              f'Channel ID : `{channel.id}`\n'
                               f'Nachrichten gelöscht von : `{ctx.author}`',
                         inline=False)
         await ctx.send(embed=embed, delete_after=5)
@@ -331,31 +333,39 @@ class Moderation(commands.Cog):
     @commands.has_permissions(manage_channels=True)
     async def slowmode(self, ctx, sec: int = None, channel: discord.TextChannel = None):
         if sec == 0:
+            channel = ctx.channel
             embed = discord.Embed(title='',
                                   description='Der Channel hat nun `kein Slowmode mehr`!',
                                   color=0x4cd137)
+            embed.add_field(name='**Information**',
+                            value=f'Channel Name : `{channel.name}`\n'
+                                  f'Channel ID : `{channel.id}`\n'
+                                  f'Sekunden : `{sec} Sekunden`\n'
+                                  f'Slowmode deaktiviert von : `{ctx.author}`',
+                            inline=False)
             await ctx.send(embed=embed, delete_after=5)
-        if not sec:
-            sec = 0
-        if not channel:
+
+            channel = self.bot.get_channel(id=872945922743619657)
+            await channel.send(embed=embed)
+
+        else:
             channel = ctx.channel
-        await channel.edit(slowmode_delay=sec)
-        embed = discord.Embed(title=f'',
-                              description=f'Der Channel **{channel.name}** hat einen Slowmode von `{sec} Sekunden`!',
-                              color=0x4cd137)
-        embed.add_field(name='**Information**',
-                        value=f'Channel Name : `{channel.name}`\n'
-                              f'Channel ID : `{channel.id}`\n'
-                              f'Sekunden : `{sec} Sekunden`\n'
-                              f'Slowmode aktiviert von : `{ctx.author}`',
-                        inline=False)
-        await asyncio.sleep(1)
-        await ctx.message.delete()
-        await ctx.send(embed=embed, delete_after=5)
+            await channel.edit(slowmode_delay=sec)
+            embed = discord.Embed(title=f'',
+                                  description=f'Der Channel **{channel.name}** hat einen Slowmode von `{sec} Sekunden`!',
+                                  color=0x4cd137)
+            embed.add_field(name='**Information**',
+                            value=f'Channel Name : `{channel.name}`\n'
+                                  f'Channel ID : `{channel.id}`\n'
+                                  f'Sekunden : `{sec} Sekunden`\n'
+                                  f'Slowmode aktiviert von : `{ctx.author}`',
+                            inline=False)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
+            await ctx.send(embed=embed, delete_after=5)
 
-        channel = self.bot.get_channel(id=872945922743619657)
-        await channel.send(embed=embed)
-
+            channel = self.bot.get_channel(id=872945922743619657)
+            await channel.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Moderation(bot)
