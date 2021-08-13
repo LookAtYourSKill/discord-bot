@@ -294,9 +294,6 @@ class Moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=872945922743619657)
-            await channel.send(embed=embed)
-
     @commands.command(name='dc', aliases=['vckick', 'vc'])
     @commands.has_permissions(kick_members=True)
     async def vc_kick(self, ctx, member: discord.Member):

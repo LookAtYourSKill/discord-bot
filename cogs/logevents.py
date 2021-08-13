@@ -37,5 +37,20 @@ class LogEvents(commands.Cog):
                             inline=False)
             await channel.send(embed=embed)
 
+    @commands.Cog.listener()
+    async def on_member_kick(self, guild, member):
+        logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.kick).flatten()
+        channel = guild.get_channel(872945922743619657)
+        logs = logs[0]
+        if logs.target == member:
+            embed = discord.Embed(title='BackUp Kick Log',
+                                  color=discord.Color.random())
+            embed.add_field(name=f'**Information**',
+                            value=f'`{logs.user}` has kicked `{logs.target}`\n'
+                                  f'User ID : `{logs.target.id}`\n'
+                                  f'The time : `{logs.created_at.strftime("%d.%m.%Y, %H:%M:%S")}`',
+                            inline=False)
+            await channel.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(LogEvents(bot))
