@@ -20,7 +20,7 @@ class Automod(commands.Cog):
                     counter += 1
 
             file.writelines(f"{str(message.author.id)}\n")
-            if counter > 5:
+            if counter >10:
                 await message.guild.kick(message.author, reason="spam")
                 channel = message.guild.get_channel(872945922743619657)
                 embed = discord.Embed(title='',

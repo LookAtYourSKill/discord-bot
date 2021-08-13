@@ -5,18 +5,15 @@ import discord
 import pytz
 from discord.ext import commands
 
-bot = commands.Bot
-
-
 class Info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='user', aliases=['userinfo', 'info'], help='?userinfo [@user]')
     async def user(self, ctx, member: discord.Member):
+        de = pytz.timezone('Europe/Berlin')
         if not member:
             member = ctx.author
-        de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
                               description='',
                               color=0x4cd137,
@@ -65,8 +62,8 @@ class Info(commands.Cog):
                               f'Region : {ctx.guild.region}```',
                         inline=False)
         embed.add_field(name='**Daten**',
-                        value=f'```Erstellt: {ctx.guild.created_at.strftime("%d.%m.%Y")}\n',
-                              #f'Boost Status : {ctx.guild.}```',
+                        value=f'```Erstellt: {ctx.guild.created_at.strftime("%d.%m.%Y")}\n'
+                              f'Boost Status : {ctx.guild.premium_subscription_count}/30```',
                         inline=False)
         embed.add_field(name='**Member**',
                         value=f'```{ctx.guild.member_count}```',
@@ -83,7 +80,7 @@ class Info(commands.Cog):
     async def members(self, ctx):
         embed = discord.Embed(title='**Server Member**', )
         embed.add_field(name='**Mitglieder**',
-                        value=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitlieder!')
+                        value=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitglieder!')
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -96,6 +93,7 @@ class Info(commands.Cog):
 
     @commands.command(name='bot', aliases=['botinfo'], help='?botinfo')
     async def bot(self, ctx):
+        BOT_VERSION = 'v1.1'
         de = pytz.timezone('Europe/Berlin')
         python_version = '{}.{}.{}'.format(*sys.version_info[:3])
         embed = discord.Embed(title=f'> Bot Info ',
@@ -109,8 +107,8 @@ class Info(commands.Cog):
         embed.add_field(name='Versionen',
                         value=f'```Python: {python_version}\nDiscord: {discord.__version__}```',
                         inline=True)
-        embed.add_field(name='**Server Anzahl**',
-                        value=f'```{len(self.bot.guilds)}```',
+        embed.add_field(name='**Bot Version**',
+                        value=f'```{BOT_VERSION}```',
                         inline=True)
         embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
                          icon_url=ctx.author.avatar_url)
@@ -129,16 +127,6 @@ class Info(commands.Cog):
         embed.set_image(url=icon)
         embed.set_footer(icon_url=ctx.author.avatar_url,
                          text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}')
-        await ctx.send(embed=embed)
-
-    @commands.command()
-    async def banner(self, ctx, member: discord.Member = None):
-        if not member:
-            member = ctx.author
-        embed = discord.Embed(title='',
-                              color=discord.Color.random(),
-                              timestamp=datetime.datetime.utcnow())
-        embed.set_image(url=member.guild.banner)
 
 
 def setup(bot):
