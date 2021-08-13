@@ -22,7 +22,15 @@ class Automod(commands.Cog):
             file.writelines(f"{str(message.author.id)}\n")
             if counter > 5:
                 await message.guild.kick(message.author, reason="spam")
-                channel =
+                channel = message.guild.get_channel(872945922743619657)
+                embed = discord.Embed(title='',
+                                      description='',
+                                      color=discord.Color.random())
+                embed.add_field(name='**Spam Detection Kick**',
+                                value=f'Kicked User : `{message.author.name}#{message.author.discriminator}`\n'
+                                      f'User ID : `{message.author.id}`\n'
+                                      f'Gekickt von : `Ich seh dich#0264`')
+                await channel.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Automod(bot))
