@@ -9,7 +9,7 @@ class LogEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_member_ban(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
-        channel = guild.get_channel(872945922743619657)
+        channel = guild.get_channel(CHANNEL ID)
         logs = logs[0]
         if logs.target == member:
             embed = discord.Embed(title='BackUp Ban Log',
@@ -25,7 +25,7 @@ class LogEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_member_unban(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
-        channel = guild.get_channel(872945922743619657)
+        channel = guild.get_channel(CHANNEL ID)
         logs = logs[0]
         if logs.target == member:
             embed = discord.Embed(title='BackUp Unban Log',
