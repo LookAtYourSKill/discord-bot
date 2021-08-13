@@ -2,6 +2,8 @@ import datetime
 import discord
 from discord.ext import commands
 
+bot = commands.Bot(intense=discord.Intents.all(), command_prefix='?', help_command=commands.MinimalHelpCommand())
+bot.remove_command('help')
 
 class Events(commands.Cog):
     def __init__(self, bot):
@@ -9,10 +11,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.content.startswith('@790965419670241281'):
+        if message.content.startswith('<@790965419670241281>'):
             embed = discord.Embed(title="Prefix", color=0xff00c8)
-            embed.add_field(name="You pinged me",
-                            value=f"My Prefix is **?**",
+            embed.add_field(name="Wowowow a Ping",
+                            value=f"Mein Prefix: **?**\n"
+                                  f"Mit ?help kannst du dir alle command anschauen!",
                             inline=False)
             await message.author.send(embed=embed)
 

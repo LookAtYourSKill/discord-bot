@@ -342,6 +342,7 @@ class Moderation(commands.Cog):
     async def slowmode(self, ctx, sec: int = None, channel: discord.TextChannel = None):
         if sec == 0:
             channel = ctx.channel
+            await channel.edit(slowmode_delay=0)
             embed = discord.Embed(title='',
                                   description='Der Channel hat nun `kein Slowmode mehr`!',
                                   color=0x4cd137)

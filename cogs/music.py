@@ -37,7 +37,7 @@ class MusicBot(commands.Cog):
 
     @commands.command(name='play', aliases=['p'])
     async def play(self, ctx, url):
-        ctx.voice_client.pause()
+        await ctx.voice_client.pause()
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 - reconnect_streamed 1 -reconnect_delay_max 5',
                           'options': '-vn',
                           'executable': r'C:\ffmpeg\ffmpeg-N-103179-gac0408522a-win64-gpl\bin\ffmpeg.exe'}
