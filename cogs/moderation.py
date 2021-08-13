@@ -373,6 +373,7 @@ class Moderation(commands.Cog):
             channel = self.bot.get_channel(id=872945922743619657)
             await channel.send(embed=embed)
 
+
 def setup(bot):
     bot.add_cog(Moderation(bot)
                 )
