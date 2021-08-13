@@ -20,7 +20,8 @@ class Help(commands.Cog):
                               color=0x4cd137,
                               timestamp=datetime.datetime.utcnow().astimezone(tz=de))
         embed.add_field(name='**Administration**',
-                        value='`addrole`, `delrole`, `reload`, `unload`, `load`, `setstatus`')
+                        value='`reload`, `unload`, `load`, `setstatus`',
+                        inline=False)
         embed.add_field(name='**Moderation**',
                         value=f'`ban`, `unban`,  `unbanid`, `unbanall`, `tempban`,`bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`',
                         inline=False)
@@ -30,6 +31,8 @@ class Help(commands.Cog):
         embed.add_field(name='**Utilities**',
                         value=f'`invite`, `invites`, `botinvite`, `repeat`, `embed`, `senddm`, `password`',
                         inline=False)
+        embed.add_field(name='**Roles**',
+                        value='`giverole`, `removerole`, `addrole`, `deleterole`')
         embed.add_field(name='**Giveaway**',
                         value=f'`create`, `gawrole`',
                         inline=False)

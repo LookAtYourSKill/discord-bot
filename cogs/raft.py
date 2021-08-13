@@ -12,6 +12,7 @@ class Raft(commands.Cog):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description=f'You\'re not in a voice channel!')
             await ctx.send(embed=embed)
+            await ctx.message.delete()
         voice_channel = ctx.author.voice.channel
         if ctx.voice_client is None:
             await voice_channel.connect()
