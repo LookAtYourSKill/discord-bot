@@ -28,7 +28,7 @@ class fun(commands.Cog):
     @commands.command(aliases=['slot'])
     @commands.cooldown(rate=2, per=1)
     async def slots(self, ctx):
-        emojis = ["🍎", '🍇', '🍒']
+        emojis = ["🍎", '🍇', '🍒', '🍉', '🍓']
 
         grabbed = ''
         for _emoji in range(3):
@@ -40,7 +40,7 @@ class fun(commands.Cog):
         loseembed = discord.Embed(title=' ',
                                   description=f'Du hast **leider nicht gewonnen**!\nDu hast {grabbed} gezogen!')
 
-        if grabbed == '🍎🍎🍎' or grabbed == '🍇🍇🍇' or grabbed == '🍒🍒🍒':
+        if grabbed == '🍎🍎🍎' or grabbed == '🍇🍇🍇' or grabbed == '🍒🍒🍒' or grabbed == '🍉🍉🍉' or grabbed == '🍓🍓🍓':
             await ctx.send(embed=winembed)
         else:
             await ctx.send(embed=loseembed)
