@@ -22,7 +22,7 @@ class Help(commands.Cog):
         embed.add_field(name='**Administration**',
                         value='`addrole`, `delrole`, `reload`, `unload`, `load`, `setstatus`')
         embed.add_field(name='**Moderation**',
-                        value=f'`ban`, `unban`, `unbanall`, `tempban`,`bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`',
+                        value=f'`ban`, `unban`,  `unbanid`, `unbanall`, `tempban`,`bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`',
                         inline=False)
         embed.add_field(name='**Infos**',
                         value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',
@@ -33,6 +33,12 @@ class Help(commands.Cog):
         embed.add_field(name='**Giveaway**',
                         value=f'`create`, `gawrole`',
                         inline=False)
+        embed.add_field(name='Music',
+                        value='`Coming Soon`',
+                        inline=False)
+        embed.add_field(name='For the Vibe',
+                        value='`raft`',
+                        inline=False)
         embed.add_field(name='**Fun**',
                         value='`8ball`, `roll`, `slots`, `rps`',
                         inline=False)
@@ -41,9 +47,9 @@ class Help(commands.Cog):
         embed.add_field(name='**Usage**',
                         value=f'`usage_ + module`',
                         inline=False)
-        embed.add_field(name='**Levels**',
-                        value=f'`level`, `rank`',
-                        inline=False)
+        #embed.add_field(name='**Levels**',
+        #                value=f'`level`, `rank`',
+        #                inline=False)
         #embed.add_field(name='**Socials**',
         #                value=f'`twitch`, `youtube`, `twitter`, `streamplan`',
         #                inline=False)

@@ -97,7 +97,7 @@ class CommandErrorHandler(commands.Cog):
         if isinstance(error, commands.NoPrivateMessage):
             try:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (NoPrivateMessage)
-                                      description=f'Der Command: **{ctx.command}** kann nicht in Privatmessages benutzt werden!')
+                                      description=f'Der Command: **{ctx.command}** kann nicht in Privatmessanges benutzt werden!')
                 await ctx.author.send(embed=embed, delete_after=5)
                 await asyncio.sleep(1)
                 await ctx.message.delete()
@@ -128,6 +128,13 @@ class CommandErrorHandler(commands.Cog):
         if isinstance(error, commands.ExtensionNotLoaded):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (ExtensionNotLoaded)
                                   description=f'`Diese Extension` ist bereits **Deaktiviert**!')
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
+
+        if isinstance(error, discord.Forbidden):
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (Discord Forbidden)
+                                  description=f'Etwas ist schiefgelaufen! Versuche es **im einem Textchannel** o.Ä. erneut! ')
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()

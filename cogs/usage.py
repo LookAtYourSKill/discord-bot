@@ -207,11 +207,11 @@ class usage(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def usage_würfel(self, ctx):
-        embed = discord.Embed(title='**würfel**\n',
+    async def usage_roll(self, ctx):
+        embed = discord.Embed(title='**roll**\n',
                               description='Lässt einen Würfel rollen! \n'
                                           '\n'
-                                          '**Aliases:**`roll`, `rolling`',
+                                          '**Aliases:**`würfel`, `rolling`',
                               color=0x4cd137)
         embed.set_footer(text='[] verpflichtend | <> optional')
         await ctx.send(embed=embed)
@@ -232,6 +232,36 @@ class usage(commands.Cog):
                               description='Du spielst Gewinnspiel ohne Einsatz! \n'
                                           '\n'
                                           '**Aliases:**`slot`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verpflichtend | <> optional')
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def usage_unbanid(self, ctx):
+        embed = discord.Embed(title='**unbanid** [`User ID`]\n',
+                              description='Unban mit ID \n'
+                                          '\n'
+                                          '**Aliases:**`idunban`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verpflichtend | <> optional')
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def usage_vckick(self, ctx):
+        embed = discord.Embed(title='**vckick** [`@user`]\n',
+                              description='Disconnected einen User von einem Voicechannel! \n'
+                                          '\n'
+                                          '**Aliases:**`/`',
+                              color=0x4cd137)
+        embed.set_footer(text='[] verpflichtend | <> optional')
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def usage_invites(self, ctx):
+        embed = discord.Embed(title='**invites** [@user]\n',
+                              description='Schauen wie viele Invites der User auf dem Server hat! \n'
+                                          '\n'
+                                          '**Aliases:**`/`',
                               color=0x4cd137)
         embed.set_footer(text='[] verpflichtend | <> optional')
         await ctx.send(embed=embed)

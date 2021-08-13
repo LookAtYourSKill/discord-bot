@@ -33,9 +33,6 @@ class Moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=872945922743619657)
-            await channel.send(embed=embed)
-
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, *, member):
@@ -56,9 +53,6 @@ class Moderation(commands.Cog):
                                   f'Entbannt von : `{ctx.author}`')
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
-
-            channel = self.bot.get_channel(id=872945922743619657)
-            await channel.send(embed=embed)
             return
         else:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
@@ -66,6 +60,20 @@ class Moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
+
+    @commands.command(name='idunban', aliases=['unbanid'])
+    async def id_unban(self, ctx, id: int):
+        user = await self.bot.fetch_user(id)
+        await ctx.guild.unban(user)
+        embed = discord.Embed(title=f'',
+                              description=f'Der User {user.mention} wurde entbannt!',
+                              color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Entbannter User : `{user}`\n'
+                              f'User ID : `{user.id}`\n'
+                              f'Entbannt von : `{ctx.author}`')
+        await ctx.send(embed=embed, delete_after=5)
+        await ctx.message.delete()
 
     @commands.command(name='unbanall', aliases=['uball'])
     @commands.has_permissions(ban_members=True)

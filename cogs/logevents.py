@@ -15,7 +15,8 @@ class LogEvents(commands.Cog):
             embed = discord.Embed(title='BackUp Ban Log',
                                   color=discord.Color.random())
             embed.add_field(name=f'**Information**',
-                            value=f'`{logs.user}` has just unbanned `{logs.target}`\n'
+                            value=f'`{logs.user}` has banned `{logs.target}`\n'
+                                  f'User ID : `{logs.target.id}`\n'
                                   f'The time : `{logs.created_at.strftime("%d.%m.%Y, %H:%M:%S")}`\n'
                                   f'The reason : `{logs.reason}`',
                             inline=False)
@@ -30,7 +31,8 @@ class LogEvents(commands.Cog):
             embed = discord.Embed(title='BackUp Unban Log',
                                   color=discord.Color.random())
             embed.add_field(name=f'**Information**',
-                            value=f'`{logs.user}` has just unbanned `{logs.target}`\n'
+                            value=f'`{logs.user}` has unbanned `{logs.target}`\n'
+                                  f'User ID : `{logs.target.id}`\n'
                                   f'The time : `{logs.created_at.strftime("%d.%m.%Y, %H:%M:%S")}`',
                             inline=False)
             await channel.send(embed=embed)
