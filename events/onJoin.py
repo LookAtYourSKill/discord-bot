@@ -7,7 +7,6 @@ class onJoin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
         channel = discord.utils.get(member.guild.channels, id=855515768341921818)
