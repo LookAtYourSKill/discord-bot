@@ -4,7 +4,7 @@ from discord.ext import commands
 from discord.ext.commands import bot
 import os
 
-bot = commands.Bot(intense=discord.Intents.all(), command_prefix='?', help_command=commands.MinimalHelpCommand())
+bot = commands.Bot(intense=discord.Intents.all(), command_prefix='?')
 bot.remove_command('help')
 
 @bot.event
@@ -23,8 +23,13 @@ async def status_task():
             status=discord.Status.online)
         await asyncio.sleep(3600)
 
-for filename in os.listdir('./cogs'):
-    if filename.endswith('.py'):
-        bot.load_extension(f'cogs.{filename[:-3]}')
+if __name__ == '__main__':
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            bot.load_extension(f'cogs.{filename[:-3]}')
 
-bot.run('TOKEN HERE')
+    for filename in os.listdir('./events'):
+        if filename.endswith('.py'):
+            bot.load_extension(f'events.{filename[:-3]}')
+
+bot.run('TOKEN')
