@@ -11,7 +11,7 @@ class MusicBot(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def join(self, ctx, channel: discord.VoiceChannel):
+    async def join(self, ctx):
         if ctx.author.voice is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description=f'You\'re not in a voice channel!')
@@ -20,12 +20,12 @@ class MusicBot(commands.Cog):
         if ctx.voice_client is None:
             await voice_channel.connect()
             embed = discord.Embed(title='',
-                                  description='Connected to the channel!')
+                                  description='Connected to your channel!')
             await ctx.send(embed=embed)
         else:
             await ctx.voice_client.move_to(voice_channel)
             embed = discord.Embed(title='',
-                                  description='Connected to the channel!')
+                                  description=' Moved to your channel!')
             await ctx.send(embed=embed)
 
     @commands.command(name='leave', aliases=['l'])
@@ -37,7 +37,7 @@ class MusicBot(commands.Cog):
 
     @commands.command(name='play', aliases=['p'])
     async def play(self, ctx, url):
-        ctx.voice_client.stop()
+        ctx.voice_client.pause()
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 - reconnect_streamed 1 -reconnect_delay_max 5',
                           'options': '-vn',
                           'executable': r'C:\ffmpeg\ffmpeg-N-103179-gac0408522a-win64-gpl\bin\ffmpeg.exe'}

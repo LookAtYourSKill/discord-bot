@@ -8,13 +8,13 @@ class Events(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_message(self, message, member: discord.Member = None):
-        if message.content.startswith("<@790965419670241281>"):
+    async def on_message(self, message):
+        if message.content.startswith('@790965419670241281'):
             embed = discord.Embed(title="Prefix", color=0xff00c8)
             embed.add_field(name="You pinged me",
                             value=f"My Prefix is **?**",
                             inline=False)
-            await member.send(embed=embed)
+            await message.author.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):

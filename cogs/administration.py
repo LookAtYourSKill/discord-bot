@@ -60,7 +60,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(aliases=['delrole', 'rmrole'])
+    @commands.command(aliases=['delrole'])
     @commands.has_permissions(manage_roles=True)
     async def delete_role(self, ctx, *, role_name):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
