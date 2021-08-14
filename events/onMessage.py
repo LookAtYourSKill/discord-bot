@@ -1,5 +1,4 @@
-import json
-
+import asyncio
 import discord
 from discord.ext import commands
 
@@ -25,8 +24,10 @@ class onMessage(commands.Cog):
                     counter += 1
 
             file.writelines(f"{str(message.author.id)}\n")
-            if counter > 15:
+            if counter > 10:
                 await message.guild.kick(message.author, reason="spam")
+                await asyncio.sleep(10)
+                file.truncate(0)
                 channel = message.guild.get_channel(872945922743619657)
                 embed = discord.Embed(title='',
                                       description='',
@@ -37,7 +38,8 @@ class onMessage(commands.Cog):
                                       f'Gekickt von : `Ich seh dich#0264`')
                 await channel.send(embed=embed)
 
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", 'r') as file:
+        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json",
+                  'r') as file:
             bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
         message_content = message.content.strip().lower()
         for bad_word in bad_words:
