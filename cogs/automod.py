@@ -20,7 +20,7 @@ class Automod(commands.Cog):
             else:
                 data.append(text)
                 print(data)
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", "w") as file:
+        with open("./utils/json_files/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(title='',
                                   description='')
@@ -32,7 +32,7 @@ class Automod(commands.Cog):
 
     @commands.command(name='blrm', aliases=['blacklistremove'])
     async def blacklist_remove(self, ctx, text):
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", "r") as f:
+        with open("./utils/json_files/blacklist.json", "r") as f:
             data = json.load(f)
             if text not in data:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -41,7 +41,7 @@ class Automod(commands.Cog):
                 return
             else:
                 data.remove(text)
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", "w") as file:
+        with open("./utils/json_files/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(title='',
                                   description='')

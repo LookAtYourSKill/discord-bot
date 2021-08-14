@@ -7,13 +7,13 @@ class onMessage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", 'r') as file:
+    with open("./utils/json_files/blacklist.json", 'r') as file:
         bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
 
     @commands.Cog.listener()
     async def on_message(self, message):
         counter = 0
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/spam-detection.json",
+        with open("./utils/json_files/spam-detection.json",
                   "r+") as file:
             for lines in file:
                 if lines.strip("\n") == str(message.author.id):
@@ -32,8 +32,7 @@ class onMessage(commands.Cog):
                                       f'Gekickt von : `Ich seh dich#0264`')
                 await channel.send(embed=embed)
 
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json",
-                  'r') as file:
+        with open("./utils/json_files/blacklist.json", 'r') as file:
             bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
         message_content = message.content.strip().lower()
         for bad_word in bad_words:
