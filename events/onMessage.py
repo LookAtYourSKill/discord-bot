@@ -7,10 +7,6 @@ class onMessage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    with open('C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/spam-detection.json',
-              'r+') as file:
-        file.truncate(0)
-
     with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", 'r') as file:
         bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
 
