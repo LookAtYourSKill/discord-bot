@@ -37,7 +37,7 @@ class onMessage(commands.Cog):
         message_content = message.content.strip().lower()
         for bad_word in bad_words:
             if bad_word in message_content:
-                await self.bot.send(message.channel, f"{message.author.mention}, your message has been censored.")
+                await self.bot.send(message.channel, f"{message.author.mention}, your message has been deleted.")
                 await self.bot.delete_message(message)
 
         message_attachments = message.attachments
