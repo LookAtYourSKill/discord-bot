@@ -1,3 +1,5 @@
+import json
+
 import discord
 from discord.ext import commands
 
@@ -9,6 +11,9 @@ class onMessage(commands.Cog):
     with open('C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/spam-detection.json',
               'r+') as file:
         file.truncate(0)
+
+    with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", 'r') as file:
+        bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -31,6 +36,15 @@ class onMessage(commands.Cog):
                                       f'User ID : `{message.author.id}`\n'
                                       f'Gekickt von : `Ich seh dich#0264`')
                 await channel.send(embed=embed)
+
+        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", 'r') as file:
+            bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
+        message_content = message.content.strip().lower()
+        async for bad_word in bad_words:
+            if bad_word in message_content:
+                await self.bot.send_message(message.channel,
+                                            f"{message.author.mention}, your message has been censored.")
+                await self.bot.delete_message(message)
 
         if message.content.startswith('<@790965419670241281>'):
             embed = discord.Embed(title="Prefix", color=0xff00c8)
