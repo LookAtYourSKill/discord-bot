@@ -40,11 +40,23 @@ class onMessage(commands.Cog):
         with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", 'r') as file:
             bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
         message_content = message.content.strip().lower()
-        async for bad_word in bad_words:
+        for bad_word in bad_words:
             if bad_word in message_content:
                 await self.bot.send_message(message.channel,
                                             f"{message.author.mention}, your message has been censored.")
                 await self.bot.delete_message(message)
+
+        message_attachments = message.attachments
+        if len(message_attachments) > 0:
+            for attachment in message_attachments:
+                if attachment.filename.endswith(".dll"):
+                    await message.delete()
+                    await message.channel.send("No DLL's allowed!")
+                elif attachment.filename.endswith('.exe'):
+                    await message.delete()
+                    await message.channel.send("No EXE's allowed!")
+                else:
+                    break
 
         if message.content.startswith('<@790965419670241281>'):
             embed = discord.Embed(title="Prefix", color=0xff00c8)
