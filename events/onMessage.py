@@ -26,8 +26,6 @@ class onMessage(commands.Cog):
             file.writelines(f"{str(message.author.id)}\n")
             if counter > 10:
                 await message.guild.kick(message.author, reason="spam")
-                await asyncio.sleep(10)
-                file.truncate(0)
                 channel = message.guild.get_channel(872945922743619657)
                 embed = discord.Embed(title='',
                                       description='',
@@ -44,8 +42,7 @@ class onMessage(commands.Cog):
         message_content = message.content.strip().lower()
         for bad_word in bad_words:
             if bad_word in message_content:
-                await self.bot.send_message(message.channel,
-                                            f"{message.author.mention}, your message has been censored.")
+                await self.bot.send(message.channel, f"{message.author.mention}, your message has been censored.")
                 await self.bot.delete_message(message)
 
         message_attachments = message.attachments
