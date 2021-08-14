@@ -12,6 +12,10 @@ async def on_ready():
     print(f'Botid: {bot.user.id} - Name: {bot.user.name}')
     print(f'Bot Logged in as "{bot.user.name}"')
     bot.loop.create_task(status_task())
+    while True:
+        await asyncio.sleep(10)
+        with open("./utils/json_files/spam-detection.json", "r+") as file:
+            file.truncate(0)
 
 
 async def status_task():
