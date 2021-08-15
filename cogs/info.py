@@ -76,11 +76,10 @@ class Info(commands.Cog):
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(name='member')
     async def members(self, ctx):
-        embed = discord.Embed(title='**Server Member**', )
-        embed.add_field(name='**Mitglieder**',
-                        value=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitglieder!')
+        embed = discord.Embed(title='**Member Count**',
+                              description=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitglieder!')
         await ctx.send(embed=embed)
 
     @commands.command()
