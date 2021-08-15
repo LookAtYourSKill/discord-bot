@@ -65,7 +65,7 @@ class onMessage(commands.Cog):
         if message.content.startswith('<@!790965419670241281>'):
             embed = discord.Embed(title="Ping",
                                   description=f"Mein Prefix: **?**\n"
-                                              f"Mit **?help** kannst du `dir alle command anschauen!`",
+                                              f"Mit **?help** kannst du `dir alle Commands anschauen!`",
                                   color=0xff00c8)
             await message.author.send(embed=embed)
 
