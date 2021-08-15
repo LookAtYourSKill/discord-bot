@@ -1,4 +1,6 @@
 import asyncio
+import json
+
 import discord
 from discord.ext import commands
 
@@ -7,9 +9,7 @@ class onMessage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    with open("./utils/json_files/blacklist.json", 'r') as file:
-        bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
-
+#################################################AUTOMOD################################################################
     @commands.Cog.listener()
     async def on_message(self, message):
         counter = 0
@@ -33,9 +33,10 @@ class onMessage(commands.Cog):
                 await channel.send(embed=embed)
 
         with open("./utils/json_files/blacklist.json", 'r') as file:
-            bad_words = [bad_word.strip().lower() for bad_word in file.readlines()]
+            json.load(file)
+            blacklist = '.utils/json_files/blacklist.json'
         message_content = message.content.strip().lower()
-        for bad_word in bad_words:
+        for bad_word in blacklist:
             if bad_word in message_content:
                 await message.send(f"{message.author.mention}, your message has been deleted.")
                 await message.delete()
@@ -45,19 +46,27 @@ class onMessage(commands.Cog):
             for attachment in message_attachments:
                 if attachment.filename.endswith(".dll"):
                     await message.delete()
-                    await message.channel.send("No DLL's allowed!")
+                    embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                          description='Hier sind keine Datein, mit dem **Dateinamen Ende \'dll\' erlaubt**')
+                    await message.channel.send(embed=embed, delete_after=5)
                 elif attachment.filename.endswith('.exe'):
                     await message.delete()
-                    await message.channel.send("No EXE's allowed!")
+                    embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                          description='Hier sind keine Datein, mit dem **Dateinamen Ende \'exe\' erlaubt**')
+                    await message.channel.send(embed=embed, delete_after=5)
+                elif attachment.filename.endswith('.bat'):
+                    await message.delete()
+                    embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                          description='Hier sind keine Datein, mit dem **Dateinamen Ende \'bat\' erlaubt**')
+                    await message.channel.send(embed=embed, delete_after=5)
                 else:
                     break
-
-        if message.content.startswith('<@790965419670241281>'):
-            embed = discord.Embed(title="Prefix", color=0xff00c8)
-            embed.add_field(name="Wowowow a Ping",
-                            value=f"Mein Prefix: **?**\n"
-                                  f"Mit ?help kannst du dir alle command anschauen!",
-                            inline=False)
+##################################################ONPING################################################################
+        if message.content.startswith('<@!790965419670241281>'):
+            embed = discord.Embed(title="Ping",
+                                  description=f"Mein Prefix: **?**\n"
+                                              f"Mit **?help** kannst du `dir alle command anschauen!`",
+                                  color=0xff00c8)
             await message.author.send(embed=embed)
 
 

@@ -9,6 +9,7 @@ class Automod(commands.Cog):
         self.bot = bot
 
     @commands.command(name='bladd', aliases=['blacklistadd'])
+    @commands.has_permissions(manage_messages=True)
     async def blacklist_add(self, ctx, text):
         with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json_files/blacklist.json", "r") as f:
             data = json.load(f)
@@ -33,6 +34,7 @@ class Automod(commands.Cog):
             await ctx.message.delete()
 
     @commands.command(name='blrm', aliases=['blacklistremove'])
+    @commands.has_permissions(manage_messages=True)
     async def blacklist_remove(self, ctx, text):
         with open("./utils/json_files/blacklist.json", "r") as f:
             data = json.load(f)
@@ -56,6 +58,7 @@ class Automod(commands.Cog):
             await ctx.message.delete()
 
     @commands.command(name='blshow', aliases=['blacklistshow'])
+    @commands.has_permissions(manage_messages=True)
     async def blacklist_show(self, ctx):
         with open('./utils/json_files/blacklist.json', 'r') as f:
             data = json.load(f)

@@ -73,13 +73,6 @@ class MusicBot(commands.Cog):
                               description=f'Now playing : `{ctx.voice_client.current()}`')
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def loop(self, ctx):
-        embed = discord.Embed(title='',
-                              description=f'Loop is activated')
-        await ctx.send(embed=embed)
-        await ctx.voice_client.loop()
-
     @commands.command(name='volume')
     async def volume(self, ctx: commands.Context, *, volume: int):
         """Sets the volume of the player."""

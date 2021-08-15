@@ -26,7 +26,7 @@ class Utilities(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def botinvite(self, ctx):
         embed = discord.Embed(title=' ',
-                              description=f'{ctx.author.mention} hier ist ein Invite Link zum Bot:\n`https:// discord.com / oauth2 / authorize?client_id = 790965419670241281 & scope = bot & permissions = 4294967287`',
+                              description=f'{ctx.author.mention} hier ist ein Invite Link zum Bot:\n`https://discord.com/oauth2/authorize?client_id=790965419670241281&scope=bot&permissions=261993005047`',
                               color=0x4cd137)
         await ctx.send(embed=embed)
 

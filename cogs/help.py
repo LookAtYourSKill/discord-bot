@@ -26,7 +26,7 @@ class Help(commands.Cog):
                         value=f'`ban`, `unban`,  `unbanid`, `unbanall`, `tempban`,`bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`',
                         inline=False)
         embed.add_field(name='**Automod**',
-                        value='`blacklist_add`, `blacklist_remove`',
+                        value='`blacklist_add`, `blacklist_remove`, `blacklist_show`',
                         inline=False)
         embed.add_field(name='**Infos**',
                         value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',
@@ -40,7 +40,7 @@ class Help(commands.Cog):
                         value=f'`create`, `gawrole`',
                         inline=False)
         embed.add_field(name='Music',
-                        value='`Coming Soon`',
+                        value='`play (not working)`, `leave`, `resume`, `pause`, `nowplaying`',
                         inline=False)
         embed.add_field(name='For the Vibe',
                         value='`raft`',

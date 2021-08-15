@@ -129,7 +129,7 @@ class Moderation(commands.Cog):
         channel = self.bot.get_channel(id=872945922743619657)
         await channel.send(embed=embed)
 
-    @commands.command(aliases=['banned'])
+    @commands.command(name='banned')
     @commands.has_permissions(ban_members=True)
     async def bannedUserList(self, ctx):
         empty = []
@@ -143,10 +143,9 @@ class Moderation(commands.Cog):
         else:
             for i in bannedUser:
                 embed = discord.Embed(title='**Banned people**',
-                                      description=i,
+                                      description=f'{i}',
                                       color=0x4cd137)
                 await ctx.send(embed=embed)
-                await ctx.message.delete()
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
