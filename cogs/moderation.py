@@ -136,7 +136,7 @@ class Moderation(commands.Cog):
         bannedUser = await ctx.guild.bans()
         if bannedUser == empty:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='`Die Banlist ist leer`!',
+                                  description='`Die Banlist ist leer!`',
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
@@ -145,7 +145,7 @@ class Moderation(commands.Cog):
                 embed = discord.Embed(title='**Banned people**',
                                       description=i,
                                       color=0x4cd137)
-                await ctx.send(embed=embed, delete_after=5)
+                await ctx.send(embed=embed)
                 await ctx.message.delete()
 
     @commands.command()

@@ -15,7 +15,8 @@ class Automod(commands.Cog):
             if text in data:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'`Das Wort ({text})` ist **bereits in der Blacklist!**')
-                await ctx.send(embed=embed)
+                await ctx.send(embed=embed, delete_after=5)
+                await ctx.message.delete()
                 return
             else:
                 data.append(text)
@@ -28,7 +29,8 @@ class Automod(commands.Cog):
                             value=f'Hinzugefügtes Wort:\n'
                                   f'`{text}`',
                             inline=False)
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await ctx.message.delete()
 
     @commands.command(name='blrm', aliases=['blacklistremove'])
     async def blacklist_remove(self, ctx, text):
@@ -37,7 +39,8 @@ class Automod(commands.Cog):
             if text not in data:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'`Das Wort ({text})` ist **nicht in der Blacklist!**')
-                await ctx.send(embed=embed)
+                await ctx.send(embed=embed, delete_after=5)
+                await ctx.message.delete()
                 return
             else:
                 data.remove(text)
@@ -49,7 +52,32 @@ class Automod(commands.Cog):
                             value=f'**Entferntes Wort:**\n'
                                   f'`{text}`',
                             inline=False)
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await ctx.message.delete()
+
+    @commands.command(name='blshow', aliases=['blacklistshow'])
+    async def blacklist_show(self, ctx):
+        with open('./utils/json_files/blacklist.json', 'r') as f:
+            data = json.load(f)
+            blacklist = './utils/json_files/blacklist.json'
+            empty = []
+            if blacklist == empty:
+                embed = discord.Embed(title='',
+                                      description='')
+                embed.add_field(name='<:close:864599591692009513> **ERROR**',
+                                value='`Die Blacklist ist leer!`',
+                                inline=False)
+                await ctx.send(embed=embed, delete_after=5)
+                await ctx.message.delete()
+            else:
+                embed = discord.Embed(title='',
+                                      description='')
+                embed.add_field(name='**Blacklist Words**',
+                                value=f'`{data}`',
+                                inline=False)
+                await ctx.send(embed=embed, delete_after=5)
+                await ctx.author.send(embed=embed)
+                await ctx.message.delete()
 
 
 def setup(bot):

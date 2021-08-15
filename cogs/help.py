@@ -25,6 +25,9 @@ class Help(commands.Cog):
         embed.add_field(name='**Moderation**',
                         value=f'`ban`, `unban`,  `unbanid`, `unbanall`, `tempban`,`bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`',
                         inline=False)
+        embed.add_field(name='**Automod**',
+                        value='`blacklist_add`, `blacklist_remove`',
+                        inline=False)
         embed.add_field(name='**Infos**',
                         value=f'`server`, `user`, `bot`, `avatar`, `members`, `help`',
                         inline=False)

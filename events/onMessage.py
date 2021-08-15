@@ -37,8 +37,8 @@ class onMessage(commands.Cog):
         message_content = message.content.strip().lower()
         for bad_word in bad_words:
             if bad_word in message_content:
-                await self.bot.send(message.channel, f"{message.author.mention}, your message has been deleted.")
-                await self.bot.delete_message(message)
+                await message.send(f"{message.author.mention}, your message has been deleted.")
+                await message.delete()
 
         message_attachments = message.attachments
         if len(message_attachments) > 0:

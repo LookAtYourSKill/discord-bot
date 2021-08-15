@@ -9,7 +9,7 @@ class Info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='user', aliases=['userinfo', 'info'], help='?userinfo [@user]')
+    @commands.command(name='user', aliases=['userinfo', 'info'])
     async def user(self, ctx, member: discord.Member):
         de = pytz.timezone('Europe/Berlin')
         if not member:
@@ -45,7 +45,7 @@ class Info(commands.Cog):
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(name='server', aliases=['serverinfo', 'guild'], help='?serverinfo [guildid]')
+    @commands.command(name='server', aliases=['serverinfo', 'guild'])
     async def server(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         role_count = len(ctx.guild.roles)
@@ -91,9 +91,10 @@ class Info(commands.Cog):
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         await ctx.send(f'```Join Position : {str(members.index(member)+1)}```')
 
-    @commands.command(name='bot', aliases=['botinfo'], help='?botinfo')
+    @commands.command(name='bot', aliases=['botinfo'])
     async def bot(self, ctx):
         BOT_VERSION = 'v1.1'
+        PREFIX = '?'
         de = pytz.timezone('Europe/Berlin')
         python_version = '{}.{}.{}'.format(*sys.version_info[:3])
         embed = discord.Embed(title=f'> Bot Info ',
@@ -102,19 +103,19 @@ class Info(commands.Cog):
                               timestamp=datetime.datetime.utcnow().astimezone(tz=de))
 
         embed.add_field(name='**Besitzer**',
-                        value='```LookAtYourSkill#0001 \nID : 493370963807830016```',
+                        value='```LookAtYourSkill#0001\nID: 493370963807830016```',
                         inline=True)
         embed.add_field(name='Versionen',
                         value=f'```Python: {python_version}\nDiscord: {discord.__version__}```',
                         inline=True)
-        embed.add_field(name='**Bot Version**',
-                        value=f'```{BOT_VERSION}```',
+        embed.add_field(name='**Other**',
+                        value=f'```Bot Version: {BOT_VERSION}\nBot Prefix: {PREFIX}```',
                         inline=True)
         embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(name='avatar', aliases=['av'], help='?avatar [@user]')
+    @commands.command(name='avatar', aliases=['av'])
     async def avatar(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
