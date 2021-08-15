@@ -18,7 +18,8 @@ class Utilities(commands.Cog):
     async def invite(self, ctx):
         invite = await ctx.channel.create_invite(reason="eShrug")
         embed = discord.Embed(title=' ',
-                              description=f'{ctx.author.mention} hier ist ein Invite Link zum Server: **{ctx.guild.name}**!\n`{invite}`',
+                              description=f'{ctx.author.mention} Invite Link zum Server **{ctx.guild.name}**\n'
+                                          f'[Invite]({invite})',
                               color=0x4cd137)
         await ctx.send(embed=embed)
 
@@ -26,7 +27,9 @@ class Utilities(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def botinvite(self, ctx):
         embed = discord.Embed(title=' ',
-                              description=f'{ctx.author.mention} hier ist ein Invite Link zum Bot:\n`https://discord.com/oauth2/authorize?client_id=790965419670241281&scope=bot&permissions=261993005047`',
+                              description=f'{ctx.author.mention} hier sind zwei Invite Links zum Bot \n'
+                                          f'[Botinvite (Custom Rechte)](https://discord.com/oauth2/authorize?client_id=790965419670241281&scope=bot&permissions=261993005047)\n'
+                                          f'[Botinvite (Administrator Rechte)](https://discord.com/oauth2/authorize?client_id=790965419670241281&scope=bot&permissions=8)',
                               color=0x4cd137)
         await ctx.send(embed=embed)
 

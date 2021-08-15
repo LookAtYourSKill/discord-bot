@@ -32,14 +32,14 @@ class onMessage(commands.Cog):
                                       f'Gekickt von : `Ich seh dich#0264`')
                 await channel.send(embed=embed)
 
-        with open("./utils/json_files/blacklist.json", 'r') as file:
-            json.load(file)
-            blacklist = '.utils/json_files/blacklist.json'
-        message_content = message.content.strip().lower()
-        for bad_word in blacklist:
-            if bad_word in message_content:
-                await message.send(f"{message.author.mention}, your message has been deleted.")
-                await message.delete()
+        #with open("./utils/json_files/blacklist.json", 'r') as file:
+        #    json.load(file)
+        #    blacklist = '.utils/json_files/blacklist.json'
+        #message_content = message.content.strip().lower()
+        #for bad_word in blacklist:
+        #    if bad_word in message_content:
+        #        await message.send(f"{message.author.mention}, your message has been deleted.")
+        #        await message.delete()
 
         message_attachments = message.attachments
         if len(message_attachments) > 0:

@@ -50,7 +50,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(name='lock')
     @commands.has_permissions(administrator=True)
     async def lockdown(self, ctx):
         await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
@@ -85,6 +85,10 @@ class Administration(commands.Cog):
         channel = self.bot.get_channel(id=872945922743619657)
         await channel.send(embed=embed)
 
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def say(self, ctx, *, text):
+        await ctx.send(f'@everyone {text}')
 
 def setup(bot):
     bot.add_cog(Administration(bot)

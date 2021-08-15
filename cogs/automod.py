@@ -82,6 +82,31 @@ class Automod(commands.Cog):
                 await ctx.author.send(embed=embed)
                 await ctx.message.delete()
 
+    @commands.command(name='blclear', aliases=['blacklistclear'])
+    @commands.has_permissions(manage_messages=True)
+    async def blacklist_clear(self, ctx):
+        with open('./utils/json_files/blacklist.json', 'r') as f:
+            data = json.load(f)
+            blacklist = './utils/json_files/blacklist.json'
+            if not blacklist:
+                embed = discord.Embed(title='',
+                                      description='')
+                embed.add_field(name='<:close:864599591692009513> **ERROR**',
+                                value='`Die Blacklist ist bereits leer!`',
+                                inline=False)
+                await ctx.send(embed=embed, delete_after=5)
+                await ctx.message.delete()
+            else:
+                with open("./utils/json_files/spam-detection.json", "r+") as file:
+                    await asyncio.sleep(1)
+                    file.truncate(0)
+                embed = discord.Embed(title='',
+                                      description='')
+                embed.add_field(name='<:open:869959941321011260> **Deleted All Blacklist Words**',
+                                value=f'Deleted Words: `{data}`',
+                                inline=False)
+                await ctx.send(embed=embed, delete_after=5)
+                await ctx.message.delete()
 
 def setup(bot):
     bot.add_cog(Automod(bot))
