@@ -68,7 +68,7 @@ class onMessage(commands.Cog):
                                               f"Mit **?help** kannst du `dir alle Commands anschauen!`",
                                   color=0xff00c8)
             await message.author.send(embed=embed)
-
+            await message.delete()
 
 def setup(bot):
     bot.add_cog(onMessage(bot))

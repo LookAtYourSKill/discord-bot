@@ -88,7 +88,8 @@ class Administration(commands.Cog):
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def say(self, ctx, *, text):
-        await ctx.send(f'@everyone {text}')
+        role = ctx.guild.default_role
+        await ctx.send(f'{role} {text}')
 
 def setup(bot):
     bot.add_cog(Administration(bot)
