@@ -41,7 +41,7 @@ class createRoles(commands.Cog):
                 await ctx.send(embed=embed, delete_after=5)
                 await asyncio.sleep(1)
                 await ctx.message.delete()
-                for channel in ctx.guild.channels():
+                for channel in ctx.guild.channels:
                     await channel.set_permissions(muterole,
                                                   speak=False,
                                                   send_messages=False,

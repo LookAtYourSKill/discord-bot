@@ -1,19 +1,23 @@
-import asyncio
 import json
-
 import discord
 from discord.ext import commands
+
+def remove_afk(self, afk):
+    if '[AFK]' in afk.split():
+        return ' '.join(afk.split()[1:])
+    else:
+        return afk
 
 
 class onMessage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-#################################################AUTOMOD################################################################
+###################################################AUTOMOD##############################################################
     @commands.Cog.listener()
     async def on_message(self, message):
         counter = 0
-        with open("./utils/json_files/spam-detection.json",
+        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/spam-detection.json",
                   "r+") as file:
             for lines in file:
                 if lines.strip("\n") == str(message.author.id):
@@ -32,11 +36,11 @@ class onMessage(commands.Cog):
                                       f'Gekickt von : `Ich seh dich#0264`')
                 await channel.send(embed=embed)
 
-        #with open("./utils/json_files/blacklist.json", 'r') as file:
+        # with open("./utils/json/blacklist.json", 'r') as file:
         #    json.load(file)
-        #    blacklist = '.utils/json_files/blacklist.json'
-        #message_content = message.content.strip().lower()
-        #for bad_word in blacklist:
+        #    blacklist = '.utils/json/blacklist.json'
+        # message_content = message.content.strip().lower()
+        # for bad_word in blacklist:
         #    if bad_word in message_content:
         #        await message.send(f"{message.author.mention}, your message has been deleted.")
         #        await message.delete()
@@ -61,7 +65,7 @@ class onMessage(commands.Cog):
                     await message.channel.send(embed=embed, delete_after=5)
                 else:
                     break
-##################################################ONPING################################################################
+        ##################################################ONPING################################################################
         if message.content.startswith('<@!790965419670241281>'):
             embed = discord.Embed(title="Ping",
                                   description=f"Mein Prefix: **?**\n"
@@ -69,6 +73,21 @@ class onMessage(commands.Cog):
                                   color=0xff00c8)
             await message.author.send(embed=embed)
             await message.delete()
+        ##################################################AFKS##################################################################
+        #if message.author.id in data.keys():
+        #    data.pop(message.author.id)
+        #    try:
+        #        await message.author.edit(nick=remove_afk(message.author.display_name))
+        #    except:
+        #        pass
+        #    await message.channel.send(f'Welcome back {message.author.name}, I removed you AFK')
+
+        #for id, reason in data.items():
+        #    member = message.guild.members, id = id
+        #    if (message.reference and member == (await message.channel.fetch_message(
+        #            message.reference.message_id)).author) or member.id in message.raw_mentions:
+        #        await message.reply(f"{member.name} is AFK: {reason}")
+
 
 def setup(bot):
     bot.add_cog(onMessage(bot))

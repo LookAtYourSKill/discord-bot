@@ -1,7 +1,8 @@
 import datetime
+import json
+
 import discord
 from discord.ext import commands
-
 
 class onJoin(commands.Cog):
     def __init__(self, bot):
@@ -19,7 +20,6 @@ class onJoin(commands.Cog):
                         value=f'{member.guild.member_count}')
         embed.set_footer(text=f'{member.name} joined ')
         await channel.send(embed=embed)
-
 
 def setup(bot):
     bot.add_cog(onJoin(bot))
