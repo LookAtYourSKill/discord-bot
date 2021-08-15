@@ -22,9 +22,9 @@ async def status_task():
     while True:
         await bot.change_presence(
             activity=discord.Activity(
-                type=discord.ActivityType.playing,
-                name='Some Commands 🔥 | !help'),
-            status=discord.Status.online)
+                type=discord.ActivityType.watching,
+                name=f'?help | {len(bot.guilds)} servers'),
+            status=discord.Status.idle)
         await asyncio.sleep(3600)
 
 if __name__ == '__main__':
