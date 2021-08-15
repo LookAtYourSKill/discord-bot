@@ -21,7 +21,6 @@ class Automod(commands.Cog):
                 return
             else:
                 data.append(text)
-                print(data)
         with open("./utils/json_files/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(title='',
@@ -102,7 +101,7 @@ class Automod(commands.Cog):
                     file.truncate(0)
                 embed = discord.Embed(title='',
                                       description='')
-                embed.add_field(name='<:open:869959941321011260> **Deleted All Blacklist Words**',
+                embed.add_field(name='<:open:869959941321011260> **Deleted All Blacklisted Words**',
                                 value=f'Deleted Words: `{data}`',
                                 inline=False)
                 await ctx.send(embed=embed, delete_after=5)
