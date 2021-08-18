@@ -44,8 +44,11 @@ class Administration(commands.Cog):
     async def reload(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
         self.bot.load_extension(f'cogs.{extension}')
+        self.bot.unload_extension(f'events.{extension}')
+        self.bot.load_extension(f'events.{extension}')
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
-                              description=f'**Reloaded** Extension `{extension}`')
+                              description=f'**Reloaded** Extension `{extension}`\n'
+                                          f'All in all {len(extension)} Extensions!')
         await ctx.send(embed=embed, delete_after=5)
         await asyncio.sleep(1)
         await ctx.message.delete()

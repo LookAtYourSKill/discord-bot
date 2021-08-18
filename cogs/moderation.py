@@ -11,7 +11,7 @@ class Moderation(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member, *, reason=None):
+    async def ban(self, ctx, member: discord.Member, *, reason='None'):
         if member == ctx.author:
             embed = discord.Embed(title='',
                                   description=f'{member.mention}, du kannst dich **nicht selbst bannen**!',
