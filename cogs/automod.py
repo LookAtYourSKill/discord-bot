@@ -99,6 +99,8 @@ class Automod(commands.Cog):
                 with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/spam-detection.json", "r+") as file:
                     await asyncio.sleep(1)
                     file.truncate(0)
+                with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/spam-detection.json", "r+") as file:
+                    json.dump(file, data, indent=4)
                 embed = discord.Embed(title='',
                                       description='')
                 embed.add_field(name='<:open:869959941321011260> **Deleted All Blacklisted Words**',
