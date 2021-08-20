@@ -19,9 +19,29 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(name='load', aliases=['activate'])
+    @commands.command(name='loadevent', aliases=['activate_event'])
     @commands.has_permissions(administrator=True)
-    async def load(self, ctx, extension):
+    async def load_event(self, ctx, extension):
+        self.bot.load_extension(f'events.{extension}')
+        embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                              description=f'**Loaded** Event `{extension}`')
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
+
+    @commands.command(name='unloadevent', aliases=['deactivate_event'])
+    @commands.has_permissions(administrator=True)
+    async def unload_event(self, ctx, extension):
+        self.bot.unload_extension(f'events.{extension}')
+        embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                              description=f'**Unloaded** Event `{extension}`')
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
+
+    @commands.command(name='loadcog', aliases=['activate_cog', 'load'])
+    @commands.has_permissions(administrator=True)
+    async def load_cog(self, ctx, extension):
         self.bot.load_extension(f'cogs.{extension}')
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'**Loaded** Extension `{extension}`')
@@ -29,9 +49,9 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(name='unload', aliases=['deactivate'])
+    @commands.command(name='unloadcog', aliases=['deactivate_cog'])
     @commands.has_permissions(administrator=True)
-    async def unload(self, ctx, extension):
+    async def unload_cog(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'**Unloaded** Extension `{extension}`')
@@ -39,16 +59,38 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(name='reload', aliases=['rl'])
+    #@commands.command(name='reloadall', aliases=['rlall'])
+    #@commands.has_permissions(administrator=True)
+    #async def reload_all(self, ctx, extension=None):
+    #    self.bot.unload_extension(f'cogs.{extension}')
+    #    self.bot.load_extension(f'cogs.{extension}')
+    #    self.bot.unload_extension(f'events.{extension}')
+    #    self.bot.load_extension(f'events.{extension}')
+    #    embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+    #                          description=f'**Reloaded** all Extensions\n'
+    #                                      f'All in all `{len(extension)} Extensions!`')
+    #    await ctx.send(embed=embed, delete_after=5)
+    #    await asyncio.sleep(1)
+    #    await ctx.message.delete()
+
+    @commands.command(name='reloadcog', aliases=['rlcog'])
     @commands.has_permissions(administrator=True)
-    async def reload(self, ctx, extension):
+    async def reload_cogs(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
         self.bot.load_extension(f'cogs.{extension}')
+        embed = discord.Embed(title='<:open:869959941321011260> Successfully',
+                              description=f'**Reloaded** Extension `{extension}`')
+        await ctx.send(embed=embed, delete_after=5)
+        await asyncio.sleep(1)
+        await ctx.message.delete()
+
+    @commands.command(name='reloadevent', aliases=['rlevent'])
+    @commands.has_permissions(administrator=True)
+    async def reload_event(self, ctx, extension):
         self.bot.unload_extension(f'events.{extension}')
         self.bot.load_extension(f'events.{extension}')
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
-                              description=f'**Reloaded** Extension `{extension}`\n'
-                                          f'All in all {len(extension)} Extensions!')
+                              description=f'**Reloaded** Event `{extension}`')
         await ctx.send(embed=embed, delete_after=5)
         await asyncio.sleep(1)
         await ctx.message.delete()

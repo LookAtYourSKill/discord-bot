@@ -64,7 +64,9 @@ class createRoles(commands.Cog):
             await user.add_roles(role, reason=None)
             embed = discord.Embed(title='',
                                   description=f'Dem User **{user}** wurde die Rolle `{role} gegeben!`')
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
         except:
             pass
 
@@ -75,7 +77,9 @@ class createRoles(commands.Cog):
             await user.remove_roles(role, reason=None)
             embed = discord.Embed(title='',
                                   description=f'Dem User **{user}** wurde die Rolle `{role} entfernt!`')
-            await ctx.send(embed=embed)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
         except:
             pass
 

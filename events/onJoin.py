@@ -17,7 +17,8 @@ class onJoin(commands.Cog):
                               timestamp=datetime.datetime.utcnow())
         embed.set_thumbnail(url=f'{member.icon_url}')
         embed.add_field(name=f'Total members',
-                        value=f'{member.guild.member_count}')
+                        value=f'{member.guild.member_count}',
+                        inline=False)
         embed.set_footer(text=f'{member.name} joined ')
         await channel.send(embed=embed)
 

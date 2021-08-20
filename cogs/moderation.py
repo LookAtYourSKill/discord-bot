@@ -118,7 +118,7 @@ class Moderation(commands.Cog):
                         value=f'Gebannter User : `{member}`\n'
                               f'User ID : `{member.id}`\n'
                               f'Reason : `{reason}`\n'
-                              f'Time : {time}\n'
+                              f'Time : `{time}`\n'
                               f'Gebannt von : `{ctx.author}`',
                         inline=False)
         await ctx.send(embed=embed, delete_after=5)

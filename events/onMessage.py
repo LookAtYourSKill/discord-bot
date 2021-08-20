@@ -90,7 +90,7 @@ class onMessage(commands.Cog):
         #        await message.reply(f"{member.name} is AFK: {reason}")
 
 ##################################################ADMINISTRATION PART###################################################
-        if message.content.startswith('?help reload'):
+        if message.content.startswith('help reload'):
             embed = discord.Embed(title='Help for Reload',
                                   description='Reload every Extension...')
             embed.add_field(name='Usage:',
@@ -98,7 +98,7 @@ class onMessage(commands.Cog):
                             inline=False)
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help unload'):
+        if message.content.startswith('help unload'):
             embed = discord.Embed(title='Help for Unload',
                                   description='Unload the extension you want to...')
             embed.add_field(name='Usage:',
@@ -107,7 +107,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help load'):
+        if message.content.startswith('help load'):
             embed = discord.Embed(title='Help for load',
                                   description='Load the extension you want to...')
             embed.add_field(name='Usage:',
@@ -116,7 +116,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help lock'):
+        if message.content.startswith('help lock'):
             embed = discord.Embed(title='Help for lock',
                                   description='Lock the channel where you send the command...')
             embed.add_field(name='Usage:',
@@ -125,7 +125,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help unlock'):
+        if message.content.startswith('help unlock'):
             embed = discord.Embed(title='Help for unlock',
                                   description='unlock the channel where you send the command...')
             embed.add_field(name='Usage:',
@@ -134,7 +134,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help say'):
+        if message.content.startswith('help say'):
             embed = discord.Embed(title='Help for say',
                                   description='Gives your message back, with an @everyone...')
             embed.add_field(name='Usage:',
@@ -145,7 +145,7 @@ class onMessage(commands.Cog):
 
 ##################################################MODERATION PART#######################################################
 
-        if message.content.startswith('?help ban'):
+        if message.content.startswith('help ban'):
             embed = discord.Embed(title='Help for ban',
                                   description='Ban the member you mention or the id...')
             embed.add_field(name='Usage:',
@@ -154,7 +154,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help unban'):
+        if message.content.startswith('help unban'):
             embed = discord.Embed(title='Help for unban',
                                   description='Unban the member you mention (name#0001)...')
             embed.add_field(name='Usage:',
@@ -163,7 +163,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help unbanid'):
+        if message.content.startswith('help unbanid'):
             embed = discord.Embed(title='Help for unbanid',
                                   description='Unban the member with the id (504717510084395008)...')
             embed.add_field(name='Usage:',
@@ -172,7 +172,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help unbanall'):
+        if message.content.startswith('help unbanall'):
             embed = discord.Embed(title='Help for unbanall',
                                   description='Unban all the members banned on the server...')
             embed.add_field(name='Usage:',
@@ -181,7 +181,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help tempban'):
+        if message.content.startswith('help tempban'):
             embed = discord.Embed(title='Help for tempban',
                                   description='Ban a user for a specific time...')
             embed.add_field(name='Usage:',
@@ -198,7 +198,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help banned'):
+        if message.content.startswith('help banned'):
             embed = discord.Embed(title='Help for bannedUserList',
                                   description='Display all banned members...\n'
                                               '[WARNING SPAM]')
@@ -208,7 +208,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help mute'):
+        if message.content.startswith('help mute'):
             embed = discord.Embed(title='Help for mute',
                                   description='Mutes the member...')
             embed.add_field(name='Usage:',
@@ -217,7 +217,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help unmute'):
+        if message.content.startswith('help unmute'):
             embed = discord.Embed(title='Help for unmute',
                                   description='Unmutes the member...')
             embed.add_field(name='Usage:',
@@ -226,7 +226,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help muterole'):
+        if message.content.startswith('help muterole'):
             embed = discord.Embed(title='Help for muterole',
                                   description='Creates mute role...')
             embed.add_field(name='Usage:',
@@ -235,7 +235,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help tempmute'):
+        if message.content.startswith('help tempmute'):
             embed = discord.Embed(title='Help for tempmute',
                                   description='Mute a user for a specific time...')
             embed.add_field(name='Usage:',
@@ -252,7 +252,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help kick'):
+        if message.content.startswith('help kick'):
             embed = discord.Embed(title='Help for kick',
                                   description='kick a member...')
             embed.add_field(name='Usage:',
@@ -261,7 +261,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help vckick'):
+        if message.content.startswith('help vckick'):
             embed = discord.Embed(title='Help for Voicechannel Kick',
                                   description='Disconnect a member from a Voicechannel...')
             embed.add_field(name='Usage:',
@@ -270,7 +270,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help slowmode'):
+        if message.content.startswith('help slowmode'):
             embed = discord.Embed(title='Help for slowmode',
                                   description='Create or change the slowmode of the channel...')
             embed.add_field(name='Usage:',
@@ -279,7 +279,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-        if message.content.startswith('?help clear'):
+        if message.content.startswith('help clear'):
             embed = discord.Embed(title='Help for clear',
                                   description='Clear a channel with a specific amount of messages...')
             embed.add_field(name='Usage:',
