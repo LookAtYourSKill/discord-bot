@@ -102,7 +102,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for Unload',
                                   description='Unload the extension you want to...')
             embed.add_field(name='Usage:',
-                            value='?unload <extension>',
+                            value='?unload <`extension`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -111,7 +111,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for load',
                                   description='Load the extension you want to...')
             embed.add_field(name='Usage:',
-                            value='?load <extension>',
+                            value='?load <`extension`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -138,7 +138,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for say',
                                   description='Gives your message back, with an @everyone...')
             embed.add_field(name='Usage:',
-                            value='?say <message>',
+                            value='?say <`message`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -149,7 +149,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for ban',
                                   description='Ban the member you mention or the id...')
             embed.add_field(name='Usage:',
-                            value='?ban <id or mention> [reason]',
+                            value='?ban <`id or mention`> [`reason`]',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -158,7 +158,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for unban',
                                   description='Unban the member you mention (name#0001)...')
             embed.add_field(name='Usage:',
-                            value='?unban <member>',
+                            value='?unban <`member`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -167,7 +167,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for unbanid',
                                   description='Unban the member with the id (504717510084395008)...')
             embed.add_field(name='Usage:',
-                            value='?unban <id>',
+                            value='?unbanid <`id`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -185,7 +185,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for tempban',
                                   description='Ban a user for a specific time...')
             embed.add_field(name='Usage:',
-                            value='?tempban <member> <time> [reason]\n'
+                            value='?tempban <`member`> <`time`> [`reason`]\n'
                                   '\n'
                                   '**Zeiten:**\n'
                                   '`s` Sekunden\n'
@@ -212,7 +212,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for mute',
                                   description='Mutes the member...')
             embed.add_field(name='Usage:',
-                            value='?mute <member>',
+                            value='?mute <`member`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -221,7 +221,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for unmute',
                                   description='Unmutes the member...')
             embed.add_field(name='Usage:',
-                            value='?unmute <member>',
+                            value='?unmute <`member`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -239,7 +239,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for tempmute',
                                   description='Mute a user for a specific time...')
             embed.add_field(name='Usage:',
-                            value='?tempban <member> <time> [reason]\n'
+                            value='?tempban <`member`> <`time`> [`reason`]\n'
                                   '\n'
                                   '**Zeiten:**\n'
                                   '`s` Sekunden\n'
@@ -256,7 +256,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for kick',
                                   description='kick a member...')
             embed.add_field(name='Usage:',
-                            value='?kick <member> [reason]',
+                            value='?kick <`member`> [`reason`]',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -265,7 +265,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for Voicechannel Kick',
                                   description='Disconnect a member from a Voicechannel...')
             embed.add_field(name='Usage:',
-                            value='?vckick <member>',
+                            value='?vckick <`member`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -274,7 +274,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for slowmode',
                                   description='Create or change the slowmode of the channel...')
             embed.add_field(name='Usage:',
-                            value='?slowmode <seconds>',
+                            value='?slowmode <`seconds`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -283,7 +283,7 @@ class onMessage(commands.Cog):
             embed = discord.Embed(title='Help for clear',
                                   description='Clear a channel with a specific amount of messages...')
             embed.add_field(name='Usage:',
-                            value='?clear <amount>',
+                            value='?clear <`amount`>',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
