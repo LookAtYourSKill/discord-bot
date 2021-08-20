@@ -10,7 +10,7 @@ class onJoin(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
-        channel = discord.utils.get(member.guild.channels, id=855515768341921818)
+        channel = self.bot.get_channel(id=855515768341921818)
         embed = discord.Embed(title=f'> Welcome',
                               description=f'{member.mention} Joined {member.guild.name}',
                               color=discord.Color.random(),

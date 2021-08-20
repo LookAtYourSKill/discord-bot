@@ -338,6 +338,37 @@ class Moderation(commands.Cog):
         channel = self.bot.get_channel(id=872945922743619657)
         await channel.send(embed=embed)
 
+    @commands.command()
+    async def nuke(self, ctx, channel: discord.TextChannel = None):
+        if channel is None:
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                  description='You didn\'t **mentioned a channel!**')
+            await ctx.send(embed=embed)
+            return
+
+        nuke_channel = discord.utils.get(ctx.guild.channels, name=channel.name)
+
+        if nuke_channel is not None:
+            new_channel = await nuke_channel.clone(reason="Has been Nuked!")
+            await nuke_channel.delete()
+            embed = discord.Embed(title='<:open:869959941321011260> **Successful**',
+                                  description='This Channel **has been Nuked!**',
+                                  color=discord.Color.random())
+            embed.add_field(name='**Information**',
+                            value=f'Channel Name : `{channel.name}`\n'
+                                  f'Channel ID : `{channel.id}`\n'
+                                  f'Channel Nuked von : `{ctx.author}`',
+                            inline=False)
+            await new_channel.send(embed=embed, delete_after=5)
+
+            channel = self.bot.get_channel(id=872945922743619657)
+            await channel.send(embed=embed)
+
+        else:
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                  description=f'**No channel** named **{channel.name} was found!**')
+            await ctx.send(embed=embed)
+
     @commands.command(aliases=['sm'])
     @commands.has_permissions(manage_channels=True)
     async def slowmode(self, ctx, sec: int = None, channel: discord.TextChannel = None):
