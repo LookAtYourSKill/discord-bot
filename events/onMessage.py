@@ -31,9 +31,9 @@ class onMessage(commands.Cog):
 
 ##################################################BLACKLIST CHECK#######################################################
 
-        #with open("./utils/json/blacklist.json", 'r') as file:
+        #with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", 'r') as file:
         #    json.load(file)
-        #    blacklist = '.utils/json/blacklist.json'
+        #    blacklist = 'C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json'
         #if message.author.bot:
         #    return
         #for bad_word in blacklist:
