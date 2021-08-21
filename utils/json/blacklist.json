@@ -1,5 +1,7 @@
-[
-    "wort1",
-    "wort2",
-    "wort3"
-]
+{
+    "blacklist": [
+        "wort1",
+        "wort2",
+        "wort3"
+    ]
+}
