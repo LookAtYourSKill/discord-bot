@@ -1,5 +1,4 @@
 import datetime
-import json
 
 import discord
 from discord.ext import commands
@@ -10,7 +9,8 @@ class onJoin(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
-        channel = self.bot.get_channel(id=855515768341921818)
+        channel = self.bot.get_channel(855515768341921818)
+        await channel.send('Es ist ein neuer Member gejoint!')
         embed = discord.Embed(title=f'> Welcome',
                               description=f'{member.mention} Joined {member.guild.name}',
                               color=discord.Color.random(),

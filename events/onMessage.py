@@ -29,14 +29,19 @@ class onMessage(commands.Cog):
                                       f'Gekickt von : `Ich seh dich#0264`')
                 await channel.send(embed=embed)
 
-        # with open("./utils/json/blacklist.json", 'r') as file:
+##################################################BLACKLIST CHECK#######################################################
+
+        #with open("./utils/json/blacklist.json", 'r') as file:
         #    json.load(file)
         #    blacklist = '.utils/json/blacklist.json'
-        # message_content = message.content.strip().lower()
-        # for bad_word in blacklist:
-        #    if bad_word in message_content:
-        #        await message.send(f"{message.author.mention}, your message has been deleted.")
+        #if message.author.bot:
+        #    return
+        #for bad_word in blacklist:
+        #    if bad_word in message.content.strip().lower():
         #        await message.delete()
+        #        embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+        #                              description='Deine Message `wurde gelöscht`, da du ein Wort `aus der Blacklist darin hattest!`\n**Bitte unterlasse dies!**')
+        #        await message.channel.send(embed=embed, delete_after=5)
 
 ##################################################ANTI BAD FILE#########################################################
 
