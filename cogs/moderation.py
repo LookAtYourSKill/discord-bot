@@ -339,6 +339,7 @@ class Moderation(commands.Cog):
         await channel.send(embed=embed)
 
     @commands.command()
+    @commands.has_permissions(manage_channels=True)
     async def nuke(self, ctx, channel: discord.TextChannel = None):
         if channel is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
