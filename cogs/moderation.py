@@ -98,17 +98,18 @@ class Moderation(commands.Cog):
 
     @commands.command(aliases=['tban'])
     @commands.has_permissions(ban_members=True)
-    async def tempban(self, ctx, member: discord.Member, time=None, reason=None):
+    async def tempban(self, ctx, member: discord.Member, time=None, *, reason='Nicht angegeben'):
         if time is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Du musst `eine Zeit` angeben!')
             return await ctx.send(embed=embed)
         if reason is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='Die `Reason` is nicht angegeben!')
+                                  description='Die `Reason` is nicht angegeben!\n'
+                                              'Sie wurde **automatisch auf \'Nicht angegeben\' gesetzt!**')
             return await ctx.send(embed=embed)
-        time_convert = {"s": 1, "min": 60, "h": 3600, "d": 86400, "w": 604800, "m": 2629743, "y": 31556926}
-        tempbantime = int(time[0]) * time_convert[time[-1]]
+        time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
+        tempbantime = int(time[:-1]) * time_convert[time[-1]]
         guild = ctx.guild
         await guild.ban(reason=reason)
         embed = discord.Embed(title=f'',
@@ -146,10 +147,9 @@ class Moderation(commands.Cog):
                                       description=f'{i}',
                                       color=0x4cd137)
                 await ctx.send(embed=embed)
-                await asyncio.sleep(1)
-                embed = discord.Embed(title='',
-                                      description=f'Gebe `?clear {len(bannedUser * 2)}` ein, `um die vielen Nachrichten zu löschen!`')
-                await ctx.send(embed=embed, delete_after=5)
+            embed = discord.Embed(title='',
+                                  description=f'Gebe `?clear {len(bannedUser + 1)}` ein, `um die vielen Nachrichten zu löschen!`')
+            await ctx.send(embed=embed, delete_after=5)
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
@@ -225,11 +225,11 @@ class Moderation(commands.Cog):
         if reason is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Die `Reason` is nicht angegeben!\n'
-                                              'Sie wurde **automatisch auf \'Not provided\' gesetzt!**')
+                                              'Sie wurde **automatisch auf \'Nicht angegeben\' gesetzt!**')
             return await ctx.send(embed=embed)
 
-        time_convert = {"s": 1, "min": 60, "h": 3600, "d": 86400, "w": 604800, "m": 2629743, "y": 31556926}
-        tempmutetime = int(time[0]) * time_convert[time[-1]]
+        time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
+        tempmutetime = int(time[:-1]) * time_convert[time[-1]]
         guild = ctx.guild
         mutedRole = discord.utils.get(guild.roles, name="Muted")
         if not mutedRole:

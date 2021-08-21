@@ -75,7 +75,7 @@ class Administration(commands.Cog):
 
     @commands.command(name='reloadcog', aliases=['rlcog'])
     @commands.has_permissions(administrator=True)
-    async def reload_cogs(self, ctx, extension):
+    async def reload_cog(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
         self.bot.load_extension(f'cogs.{extension}')
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
