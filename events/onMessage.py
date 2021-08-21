@@ -2,6 +2,7 @@ import json
 import discord
 from discord.ext import commands
 
+
 class onMessage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -9,16 +10,17 @@ class onMessage(commands.Cog):
 ###################################################AUTOMOD##############################################################
     @commands.Cog.listener()
     async def on_message(self, message):
+        if message.author.bot:
+            return
         counter = 0
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/spam-detection.json",
-                  "r+") as file:
+        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/spam-detection.json", "r+") as file:
             for lines in file:
                 if lines.strip("\n") == str(message.author.id):
                     counter += 1
 
             file.writelines(f"{str(message.author.id)}\n")
-            if counter > 10:
-                await message.guild.kick(message.author, reason="spam")
+            if counter > 7:
+                await message.guild.kick(message.author, reason="Spam Detection")
                 channel = message.guild.get_channel(872945922743619657)
                 embed = discord.Embed(title='',
                                       description='',
@@ -31,17 +33,16 @@ class onMessage(commands.Cog):
 
 ##################################################BLACKLIST CHECK#######################################################
 
-        #with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", 'r') as file:
-        #    json.load(file)
-        #    blacklist = 'C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json'
-        #if message.author.bot:
-        #    return
-        #for bad_word in blacklist:
-        #    if bad_word in message.content.strip().lower():
-        #        await message.delete()
-        #        embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-        #                              description='Deine Message `wurde gelöscht`, da du ein Wort `aus der Blacklist darin hattest!`\n**Bitte unterlasse dies!**')
-        #        await message.channel.send(embed=embed, delete_after=5)
+        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", 'r') as f:
+            data = json.load(f)
+        for bad_word in data["blacklist"]:
+            #print(bad_word)
+            if bad_word in message.content.lower():
+                #print(message.content.lower())
+                await message.delete()
+                embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                      description='Deine Message `wurde gelöscht`, da du ein Wort `aus der Blacklist darin hattest!`\n**Bitte unterlasse dies!**')
+                await message.channel.send(embed=embed, delete_after=5)
 
 ##################################################ANTI BAD FILE#########################################################
 
@@ -69,8 +70,6 @@ class onMessage(commands.Cog):
 ##################################################LINK PROTECTION#######################################################
         invLink = ['https://', 'http://']
 
-        if message.author.bot:
-            return
         for synonym in invLink:
             if synonym in message.content.lower():
                 await message.delete()
@@ -89,7 +88,7 @@ class onMessage(commands.Cog):
             await message.delete()
 
 ##################################################AFKS##################################################################
-        #def remove_afk(self, afk):
+        # def remove_afk(self, afk):
         #    if '[AFK]' in afk.split():
         #        return ' '.join(afk.split()[1:])
         #    else:
@@ -344,6 +343,7 @@ class onMessage(commands.Cog):
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
+
 
 ##################################################AUTOMOD PART##########################################################
 

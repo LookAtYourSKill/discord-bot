@@ -13,14 +13,14 @@ class Automod(commands.Cog):
     async def blacklist_add(self, ctx, text):
         with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "r") as f:
             data = json.load(f)
-            if text in data:
+            if text in data["blacklist"]:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'`Das Wort ({text})` ist **bereits in der Blacklist!**')
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.message.delete()
                 return
             else:
-                data.append(text)
+                data["blacklist"].append(text)
         with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(title='',
@@ -37,14 +37,14 @@ class Automod(commands.Cog):
     async def blacklist_remove(self, ctx, text):
         with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "r") as f:
             data = json.load(f)
-            if text not in data:
+            if text not in data["blacklist"]:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'`Das Wort ({text})` ist **nicht in der Blacklist!**')
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.message.delete()
                 return
             else:
-                data.remove(text)
+                data["blacklist"].remove(text)
         with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(title='',
@@ -75,7 +75,7 @@ class Automod(commands.Cog):
                 embed = discord.Embed(title='',
                                       description='')
                 embed.add_field(name='**Blacklist Words**',
-                                value=f'`{data}`',
+                                value=f'`{data["blacklist"]}`',
                                 inline=False)
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.author.send(embed=embed)

@@ -8,7 +8,7 @@ class onJoin(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_member_join(self, member: discord.Member):
+    async def on_member_join(self, member):
         channel = self.bot.get_channel(855515768341921818)
         await channel.send('Es ist ein neuer Member gejoint!')
         embed = discord.Embed(title=f'> Welcome',
