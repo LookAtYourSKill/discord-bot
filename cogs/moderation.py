@@ -2,7 +2,6 @@ import asyncio
 import discord
 from discord.ext import commands
 
-
 class Moderation(commands.Cog):
     def __init__(self, bot):
         self.channel = None
@@ -408,7 +407,6 @@ class Moderation(commands.Cog):
 
             channel = self.bot.get_channel(id=872945922743619657)
             await channel.send(embed=embed)
-
 
 def setup(bot):
     bot.add_cog(Moderation(bot)
