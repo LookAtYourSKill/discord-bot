@@ -344,8 +344,392 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-
 ##################################################AUTOMOD PART##########################################################
+
+        if message.content.startswith('help blacklist_add'):
+            embed = discord.Embed(title='Help for blacklist_add',
+                                  description='`Add a word to a blacklist...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?blacklist_add** <`bad_word`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help blacklist_remove'):
+            embed = discord.Embed(title='Help for blacklist_remove',
+                                  description='`Remove a word to a blacklist...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?blacklist_remove** <`bad_word`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help blacklist_show'):
+            embed = discord.Embed(title='Help for blacklist_show',
+                                  description='`Display all words on the blacklist...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?blacklist_show**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help blacklist_clear'):
+            embed = discord.Embed(title='Help for blacklist_clear',
+                                  description='`Clear the blacklist...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?blacklist_clear**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+##################################################INFOS#################################################################
+
+        if message.content.startswith('help server'):
+            embed = discord.Embed(title='Help for server',
+                                  description='`Display Infos about the server...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?server**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help user'):
+            embed = discord.Embed(title='Help for user',
+                                  description='`Display Infos about a user...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?user** <`member`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help bot'):
+            embed = discord.Embed(title='Help for bot',
+                                  description='`Display Infos about this bot...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?bot**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help avatar'):
+            embed = discord.Embed(title='Help for avatar',
+                                  description='`Display a users avatar...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?avatar** `member`',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help members'):
+            embed = discord.Embed(title='Help for members',
+                                  description='`Shows you how many users are on the server...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?bot**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+##################################################UTILITIES#############################################################
+
+        if message.content.startswith('help invite'):
+            embed = discord.Embed(title='Help for invite',
+                                  description='`Create an invite...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?invite**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help invites'):
+            embed = discord.Embed(title='Help for invites',
+                                  description='`Shows the invites of a member...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?invites** <`member`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help botinvite'):
+            embed = discord.Embed(title='Help for botinvite',
+                                  description='`Give you 2 invites for the bot...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?botinvite**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help repeat'):
+            embed = discord.Embed(title='Help for repeat',
+                                  description='`Give your text back...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?repeat** <`text`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help embed'):
+            embed = discord.Embed(title='Help for embed',
+                                  description='`Creates an Embed, with the text you wrote...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?embed** <`text`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help senddm'):
+            embed = discord.Embed(title='Help for senddm',
+                                  description='`Send a user an dm with the text you want...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?senddm** <`text`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help password'):
+            embed = discord.Embed(title='Help for password',
+                                  description='`Creates an random password with 20 random digits...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?password**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+##################################################ROLES#################################################################
+
+        if message.content.startswith('help giverole'):
+            embed = discord.Embed(title='Help for giverole',
+                                  description='`Give a role to a user...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?giverole** <`member`> <`role`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help removerole'):
+            embed = discord.Embed(title='Help for removerole',
+                                  description='`Remove a role from a user...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?giverole** <`member`> <`role`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help addrole'):
+            embed = discord.Embed(title='Help for addrole',
+                                  description='`Create a new role...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?addrole** <`rolename`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help deleterole'):
+            embed = discord.Embed(title='Help for deleterole',
+                                  description='`Delete an existing role...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?deleterole** <`rolename`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+##################################################GIVEAWAY##############################################################
+
+        if message.content.startswith('help create'):
+            embed = discord.Embed(title='Help for create',
+                                  description='`Create a giveaway...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?create** <`time`> <`prize`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help gawrole'):
+            embed = discord.Embed(title='Help for gawrole',
+                                  description='`Create the required role for the giveaways...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?gawrole**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+##################################################MUSIC#################################################################
+
+        if message.content.startswith('help play'):
+            embed = discord.Embed(title='Help for play',
+                                  description='`Add a song to play in a voice channel...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?play** <`song_url`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help leave'):
+            embed = discord.Embed(title='Help for leave',
+                                  description='`Let the bot leave from the voice channel...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?leave**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help resume'):
+            embed = discord.Embed(title='Help for resume',
+                                  description='`Let the bot resuming playing the song...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?resume**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help pause'):
+            embed = discord.Embed(title='Help for pause',
+                                  description='`Let the bot pause playing the song...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?pause**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help nowplaying'):
+            embed = discord.Embed(title='Help for nowplaying',
+                                  description='`Display what song the bot play now...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?leave**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+##################################################FOR THE VIBE##########################################################
+
+        if message.content.startswith('help raft'):
+            embed = discord.Embed(title='Help for raft',
+                                  description='`Playing the raft theme song...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?raft**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+##################################################FUN###################################################################
+
+        if message.content.startswith('help 8ball'):
+            embed = discord.Embed(title='Help for 8ball',
+                                  description='`You can ask a question and the bot will answer it randomly...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?8ball** <`question`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help roll'):
+            embed = discord.Embed(title='Help for roll',
+                                  description='`Let a dice roll...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?roll**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help rps'):
+            embed = discord.Embed(title='Help for rps',
+                                  description='`Play rock paper scissors against the bot...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?rps** <`\'rock\', \'paper\' or \'scissors\'`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help slots'):
+            embed = discord.Embed(title='Help for slots',
+                                  description='`Playing on a automat like in a casino...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?slots**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+##################################################GIFS##################################################################
+
+        if message.content.startswith('help hug'):
+            embed = discord.Embed(title='Help for hug',
+                                  description='`You can visually hug a person...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?hug** <`member`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help laugh'):
+            embed = discord.Embed(title='Help for laugh',
+                                  description='`You can laugh...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?laugh**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help punch'):
+            embed = discord.Embed(title='Help for punch',
+                                  description='`You can visually punch a person...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?punch** <`member`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help cry'):
+            embed = discord.Embed(title='Help for cry',
+                                  description='`You can cry...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?cry**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help kiss'):
+            embed = discord.Embed(title='Help for kiss',
+                                  description='`You can visually kiss a person...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?kiss** <`member`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help cat'):
+            embed = discord.Embed(title='Help for cat',
+                                  description='`The bot gives out a cat gif...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?slots**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help rage'):
+            embed = discord.Embed(title='Help for rage',
+                                  description='`You can rage...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?slots**',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help highfive'):
+            embed = discord.Embed(title='Help for highfive',
+                                  description='`You can highfive a person...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?highfive** <`member`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help handshake'):
+            embed = discord.Embed(title='Help for handshake',
+                                  description='`You can handshake a person...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?handshake** <`member`>',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(onMessage(bot))
