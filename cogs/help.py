@@ -33,6 +33,9 @@ class Help(commands.Cog):
         embed.add_field(name='**Utilities**',
                         value=f'`invite`, `invites`, `botinvite`, `repeat`, `embed`, `senddm`, `password`',
                         inline=False)
+        embed.add_field(name='**Math**',
+                        value=f'`addition`, `subtraction`, `multiplication`, `dividation`',
+                        inline=False)
         embed.add_field(name='**Roles**',
                         value='`giverole`, `removerole`, `addrole`, `deleterole`')
         embed.add_field(name='**Giveaway**',

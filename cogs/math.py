@@ -6,18 +6,33 @@ class Math(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(name='addition', aliases=['add', 'plus'])
     async def addition(self, ctx, first: int, second: int):
         result = first + second
-        await ctx.send(f'You wanted me to add **{first}** and **{second}**.\n'
-                       f'The Result is **{result}**')
+        embed = discord.Embed(title='**Math Addition**',
+                              description=f'The result from **{first}** and **{second}** is **{result}**!')
+        await ctx.send(embed=embed)
 
-    @commands.command()
-    async def substraction(self, ctx, first: int, second: int, third: int):
-        result = first - second - third
-        await ctx.send(f'You wanted me to subtract **{first}** and **{second}** and **{third}**.\n'
-                       f'The Result is **{result}**')
+    @commands.command(name='subtract', aliases=['sub', 'minus'])
+    async def subtraction(self, ctx, first: int, second: int):
+        result = first - second
+        embed = discord.Embed(title='**Math Subtract**',
+                              description=f'The result from **{first}** and **{second}** is **{result}**!')
+        await ctx.send(embed=embed)
 
+    @commands.command(name='multiplicate', aliases=['mal'])
+    async def multiplication(self, ctx, first: int, second: int):
+        result = first * second
+        embed = discord.Embed(title='**Math Multiplicate**',
+                              description=f'The result from **{first}** and **{second}** is **{result}**!')
+        await ctx.send(embed=embed)
+
+    @commands.command(name='divide', aliases=['geteilt'])
+    async def dividation(self, ctx, first: int, second: int):
+        result = first / second
+        embed = discord.Embed(title='**Math Divide**',
+                              description=f'The result from **{first}** and **{second}** is **{result}**!')
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Math(bot))

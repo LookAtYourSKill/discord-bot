@@ -5,6 +5,7 @@ import discord
 import pytz
 from discord.ext import commands
 
+
 class Info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -25,13 +26,13 @@ class Info(commands.Cog):
                               f'ID: {member.id}\n'
                               f'Nick: {(member.nick if member.nick else "Nein")}\n```',
                         inline=False)
-        #members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
+        # members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         embed.add_field(name='**Account**',
                         value=f'```Discord Beigetreten: {member.created_at.strftime("%d.%m.%Y")}\n'
                               f'Bot : {("Ja" if member.bot else "Nein")}\n'
                               f'Farbe : {member.color}\n'
                               f'Status : {member.status}```',
-                              #f'```Join Position : {str(members.index(member)+1)}```\n'
+                        # f'```Join Position : {str(members.index(member)+1)}```\n'
                         inline=False)
         embed.add_field(name='**Server**',
                         value=f'```Server Beigetreten : {member.joined_at.strftime("%d.%m.%Y")}\n'
@@ -88,7 +89,13 @@ class Info(commands.Cog):
         if not member:
             member = ctx.author
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
-        await ctx.send(f'```Join Position : {str(members.index(member)+1)}```')
+        await ctx.send(f'```Join Position : {str(members.index(member) + 1)}```')
+
+    @commands.command()
+    async def joined(self, ctx):
+        embed = discord.Embed(title='**Member joined**',
+                              description=f'You joined at the `{ctx.author.joined_at.strftime("%d.%m.%Y")}`')
+        await ctx.send(embed=embed)
 
     @commands.command(name='bot', aliases=['botinfo'])
     async def bot(self, ctx):
