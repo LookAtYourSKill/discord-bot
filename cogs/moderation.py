@@ -342,8 +342,9 @@ class Moderation(commands.Cog):
     async def nuke(self, ctx, channel: discord.TextChannel = None):
         if channel is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='You didn\'t **mentioned a channel!**')
-            await ctx.send(embed=embed)
+                                  description='You didn\'t **mentioned a channel!**\n')
+            await ctx.send(embed=embed, delete_after=5)
+            await ctx.message.delete()
             return
 
         nuke_channel = discord.utils.get(ctx.guild.channels, name=channel.name)
