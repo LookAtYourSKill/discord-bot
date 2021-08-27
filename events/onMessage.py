@@ -497,6 +497,44 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
+##################################################MATH##################################################################
+
+        if message.content.startswith('help addition'):
+            embed = discord.Embed(title='Help for addition',
+                                  description='`Add you 2 digits together...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?addition** `<first>` `<second>`',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help subtraction'):
+            embed = discord.Embed(title='Help for subtraction',
+                                  description='`Subtract you 2 digits together...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?subtraction** `<first>` `<second>`',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help multiplication'):
+            embed = discord.Embed(title='Help for multiplication',
+                                  description='`Multiply you 2 digits together...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?multiplication** `<first>` `<second>`',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
+        if message.content.startswith('help dividation'):
+            embed = discord.Embed(title='Help for dividation',
+                                  description='`Divide you 2 digits together...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?dividation** `<first>` `<second>`',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
 ##################################################ROLES#################################################################
 
         if message.content.startswith('help giverole'):
