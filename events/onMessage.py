@@ -776,28 +776,25 @@ class onMessage(commands.Cog):
     async def on_message_edit(self, old, new):
         channel = self.bot.get_channel(872945922743619657)
         embed = discord.Embed(title="Message Edited",
-                              description=f"[Jump to the Message]({new.jump_url})",
+                              description=f"{old.author.mention} has edited a message in {old.channel.mention} [Jump to the Message]({new.jump_url})",
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
-        embed.add_field(name="Old Message", value=f'`{old.content}`')
-        embed.add_field(name="New Message", value=f'`{new.content}`')
-        embed.add_field(name="Channel", value=f'{old.channel.mention}', inline=False)
-        embed.add_field(name="Author", value=f'{old.author.mention}', inline=False)
-        embed.set_thumbnail(
-            url="https://th.bing.com/th/id/R66dbcbb7f70864efa5e4e8097e865a28?rik=KbhIVKRoP5CCLw&riu=http%3a%2f%2fwww.recycling.com%2fwp-content%2fuploads%2f2016%2f06%2frecycling-symbol-icon-outline-solid-dark-green.png&ehk=uUs07SqPyEepr2jBZhiGSUkO1QbzTCvEobnhAM%2fddU8%3d&risl=&pid=ImgRaw")
+        embed.add_field(name="Old Message", value=f'`{old.content}`', inline=False)
+        embed.add_field(name="New Message", value=f'`{new.content}`', inline=False)
+        #embed.add_field(name="Channel", value=f'{old.channel.mention}', inline=False)
+        #embed.add_field(name="Author", value=f'{old.author.mention}', inline=False)
         await channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         channel = self.bot.get_channel(872945922743619657)
         embed = discord.Embed(title="Message Deleted",
+                              description=f'A message from {message.author.mention} was deleted in {message.channel.mention} ',
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Message", value=f'`{message.content}`', inline=False)
-        embed.add_field(name="Author", value=f'{message.author.mention}', inline=False)
-        embed.add_field(name="Channel", value=f'{message.channel.mention}', inline=False)
-        embed.set_thumbnail(
-            url="https://icons.iconarchive.com/icons/cornmanthe3rd/plex/512/System-recycling-bin-full-icon.png")
+        #embed.add_field(name="Author", value=f'{message.author.mention}', inline=False)
+        #embed.add_field(name="Channel", value=f'{message.channel.mention}', inline=False)
         await channel.send(embed=embed)
 
 def setup(bot):

@@ -13,6 +13,13 @@ class Info(commands.Cog):
     @commands.command(name='user', aliases=['userinfo', 'info'])
     async def user(self, ctx, member: discord.Member):
         de = pytz.timezone('Europe/Berlin')
+        if member is None:
+            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (Missing Member)
+                                  description=f'Du musst ein member angeben (zum Beispiel: ?user @LookAtYourSkill#0001)!',
+                                  color=0x4cd137)
+            await ctx.send(embed=embed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
         if not member:
             member = ctx.author
         embed = discord.Embed(title=f'> Userinfo für {member.display_name}',

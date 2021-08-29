@@ -1,7 +1,8 @@
 import asyncio
+import sys
+import traceback
 import discord
 from discord.ext import commands
-
 
 class Administration(commands.Cog):
     def __init__(self, bot):
@@ -58,9 +59,9 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    #@commands.command(name='reloadall', aliases=['rlall'])
-    #@commands.has_permissions(administrator=True)
-    #async def reload_all(self, ctx, extension=None):
+    # @commands.command(name='reloadall', aliases=['rlall'])
+    # @commands.has_permissions(administrator=True)
+    # async def reload_all(self, ctx, extension=None):
     #    self.bot.unload_extension(f'cogs.{extension}')
     #    self.bot.load_extension(f'cogs.{extension}')
     #    self.bot.unload_extension(f'events.{extension}')
@@ -134,6 +135,7 @@ class Administration(commands.Cog):
     async def say(self, ctx, *, text):
         role = ctx.guild.default_role
         await ctx.send(f'{role} {text}')
+
 
 def setup(bot):
     bot.add_cog(Administration(bot)

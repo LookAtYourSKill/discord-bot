@@ -50,13 +50,13 @@ class fun(commands.Cog):
         num = random.randint(1, 6)
         embed = discord.Embed(title='',
                               description='Würfel rollt...')
-        await ctx.send(embed=embed, delete_after=1)
+        würfel_message = await ctx.send(embed=embed)
 
         await asyncio.sleep(1)
 
         embed = discord.Embed(title='',
                               description=f'Der Würfel ist auf **der Nummer {num}** gelandet!')
-        await ctx.send(embed=embed)
+        await würfel_message.edit(embed=embed)
 
     @commands.command(aliases=['rockpapersissors', 'scheresteinpapier'])
     async def rps(self, ctx, name=None):
@@ -105,7 +105,7 @@ class fun(commands.Cog):
                     await ctx.send(embed=embed)
                 else:
                     embed = discord.Embed(title='',
-                                          description=f'{ctx.author.mention} Ja oke dikka gewonnen')
+                                          description=f'{ctx.author.mention} Ja oke gewonnen')
                     await ctx.send(embed=embed)
 
             else:
