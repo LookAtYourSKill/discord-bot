@@ -8,7 +8,7 @@ class Automod(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='bladd', aliases=['blacklistadd'])
+    @commands.command(name='blacklist_add', aliases=['blacklistadd', 'bladd'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_add(self, ctx, text):
         with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "r") as f:
@@ -32,7 +32,7 @@ class Automod(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-    @commands.command(name='blrm', aliases=['blacklistremove'])
+    @commands.command(name='blacklist_remove', aliases=['blacklistremove', 'blrm'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_remove(self, ctx, text):
         with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "r") as f:
@@ -56,7 +56,7 @@ class Automod(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-    @commands.command(name='blshow', aliases=['blacklistshow'])
+    @commands.command(name='blacklist_show', aliases=['blacklistshow', 'blshow'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_show(self, ctx):
         with open('C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json', 'r') as f:
@@ -81,7 +81,7 @@ class Automod(commands.Cog):
                 await ctx.author.send(embed=embed)
                 await ctx.message.delete()
 
-    @commands.command(name='blclear', aliases=['blacklistclear'])
+    @commands.command(name='blacklist_clear', aliases=['blacklistclear', 'blclear'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_clear(self, ctx):
         with open('C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json', 'r') as f:

@@ -19,7 +19,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(name='loadevent', aliases=['activate_event'])
+    @commands.command(name='load_event', aliases=['activate_event', 'loadevent'])
     @commands.has_permissions(administrator=True)
     async def load_event(self, ctx, extension):
         self.bot.load_extension(f'events.{extension}')
@@ -29,7 +29,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(name='unloadevent', aliases=['deactivate_event'])
+    @commands.command(name='unload_event', aliases=['deactivate_event', 'unloadevent'])
     @commands.has_permissions(administrator=True)
     async def unload_event(self, ctx, extension):
         self.bot.unload_extension(f'events.{extension}')
@@ -39,7 +39,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(name='loadcog', aliases=['activate_cog', 'load'])
+    @commands.command(name='load_cog', aliases=['activate_cog', 'loadcog'])
     @commands.has_permissions(administrator=True)
     async def load_cog(self, ctx, extension):
         self.bot.load_extension(f'cogs.{extension}')
@@ -49,7 +49,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(name='unloadcog', aliases=['deactivate_cog'])
+    @commands.command(name='unload_cog', aliases=['deactivate_cog', 'unloadcog'])
     @commands.has_permissions(administrator=True)
     async def unload_cog(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
@@ -73,7 +73,7 @@ class Administration(commands.Cog):
     #    await asyncio.sleep(1)
     #    await ctx.message.delete()
 
-    @commands.command(name='reloadcog', aliases=['rlcog'])
+    @commands.command(name='reload_cog', aliases=['rlcog', 'reloadcog'])
     @commands.has_permissions(administrator=True)
     async def reload_cog(self, ctx, extension):
         self.bot.unload_extension(f'cogs.{extension}')
@@ -84,7 +84,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command(name='reloadevent', aliases=['rlevent'])
+    @commands.command(name='reload_event', aliases=['rlevent', 'reloadevent'])
     @commands.has_permissions(administrator=True)
     async def reload_event(self, ctx, extension):
         self.bot.unload_extension(f'events.{extension}')
