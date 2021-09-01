@@ -11,7 +11,7 @@ class Automod(commands.Cog):
     @commands.command(name='blacklist_add', aliases=['blacklistadd', 'bladd'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_add(self, ctx, text):
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "r") as f:
+        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", "r") as f:
             data = json.load(f)
             if text in data["blacklist"]:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -21,7 +21,7 @@ class Automod(commands.Cog):
                 return
             else:
                 data["blacklist"].append(text)
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "w") as file:
+        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(title='',
                                   description='')
@@ -35,7 +35,7 @@ class Automod(commands.Cog):
     @commands.command(name='blacklist_remove', aliases=['blacklistremove', 'blrm'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_remove(self, ctx, text):
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "r") as f:
+        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", "r") as f:
             data = json.load(f)
             if text not in data["blacklist"]:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -45,7 +45,7 @@ class Automod(commands.Cog):
                 return
             else:
                 data["blacklist"].remove(text)
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", "w") as file:
+        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(title='',
                                   description='')
@@ -59,9 +59,9 @@ class Automod(commands.Cog):
     @commands.command(name='blacklist_show', aliases=['blacklistshow', 'blshow'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_show(self, ctx):
-        with open('C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json', 'r') as f:
+        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
-            blacklist = 'C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json'
+            blacklist = 'C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json'
             empty = []
             if blacklist == empty:
                 embed = discord.Embed(title='',
@@ -84,9 +84,9 @@ class Automod(commands.Cog):
     @commands.command(name='blacklist_clear', aliases=['blacklistclear', 'blclear'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_clear(self, ctx):
-        with open('C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json', 'r') as f:
+        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
-            blacklist = 'C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json'
+            blacklist = 'C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json'
             if not blacklist:
                 embed = discord.Embed(title='',
                                       description='')
@@ -96,10 +96,10 @@ class Automod(commands.Cog):
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.message.delete()
             else:
-                with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/spam-detection.json", "r+") as file:
+                with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/spam-detection.json", "r+") as file:
                     await asyncio.sleep(1)
-                    file.truncate(0)
-                with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/spam-detection.json", "r+") as file:
+                    data["blacklist"].remove(data)
+                with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/spam-detection.json", "r+") as file:
                     json.dump(file, data, indent=4)
                 embed = discord.Embed(title='',
                                       description='')
