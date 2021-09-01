@@ -2,6 +2,9 @@ import asyncio
 import discord
 from discord.ext import commands
 
+MESSAGE_CHANNEL = [872945922743619657]
+MODERATION_LOG_CHANNEL = [882721258301685790]
+
 class Moderation(commands.Cog):
     def __init__(self, bot):
         self.channel = None
@@ -92,7 +95,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=882721258301685790)
         await channel.send(embed=embed)
 
     @commands.command(aliases=['tban'])
@@ -126,7 +129,7 @@ class Moderation(commands.Cog):
         await asyncio.sleep(tempbantime)
         await member.unban()
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=882721258301685790)
         await channel.send(embed=embed)
 
     @commands.command(name='banned')
@@ -177,7 +180,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=882721258301685790)
         await channel.send(embed=embed)
 
         embed = discord.Embed(title=f'',
@@ -201,7 +204,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=882721258301685790)
         await channel.send(embed=embed)
 
         embed = discord.Embed(title=f'',
@@ -254,7 +257,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=882721258301685790)
         await channel.send(embed=embed)
 
         embed = discord.Embed(title=f'',
@@ -313,7 +316,7 @@ class Moderation(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=882721258301685790)
         await channel.send(embed=embed)
 
     @commands.command(aliases=['purge'])
@@ -334,7 +337,7 @@ class Moderation(commands.Cog):
                         inline=False)
         await ctx.send(embed=embed, delete_after=5)
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=882721258301685790)
         await channel.send(embed=embed)
 
     @commands.command()
@@ -362,7 +365,7 @@ class Moderation(commands.Cog):
                             inline=False)
             await new_channel.send(embed=embed, delete_after=5)
 
-            channel = self.bot.get_channel(id=872945922743619657)
+            channel = self.bot.get_channel(id=882721258301685790)
             await channel.send(embed=embed)
 
         else:
@@ -387,7 +390,7 @@ class Moderation(commands.Cog):
                             inline=False)
             await ctx.send(embed=embed, delete_after=5)
 
-            channel = self.bot.get_channel(id=872945922743619657)
+            channel = self.bot.get_channel(id=882721258301685790)
             await channel.send(embed=embed)
 
         else:
@@ -406,8 +409,9 @@ class Moderation(commands.Cog):
             await ctx.message.delete()
             await ctx.send(embed=embed, delete_after=5)
 
-            channel = self.bot.get_channel(id=872945922743619657)
+            channel = self.bot.get_channel(id=882721258301685790)
             await channel.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(Moderation(bot)

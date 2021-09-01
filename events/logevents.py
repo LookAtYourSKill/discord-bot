@@ -9,10 +9,10 @@ class LogEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_member_ban(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
-        channel = guild.get_channel(872945922743619657)
+        channel = guild.get_channel(882721258301685790)
         logs = logs[0]
         if logs.target == member:
-            embed = discord.Embed(title='BackUp Ban Log',
+            embed = discord.Embed(title='Ban Log',
                                   color=discord.Color.random())
             embed.add_field(name=f'**Information**',
                             value=f'`{logs.user}` has banned `{logs.target}`\n'
@@ -25,10 +25,10 @@ class LogEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_member_unban(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
-        channel = guild.get_channel(872945922743619657)
+        channel = guild.get_channel(882721258301685790)
         logs = logs[0]
         if logs.target == member:
-            embed = discord.Embed(title='BackUp Unban Log',
+            embed = discord.Embed(title='Unban Log',
                                   color=discord.Color.random())
             embed.add_field(name=f'**Information**',
                             value=f'`{logs.user}` has unbanned `{logs.target}`\n'
@@ -40,10 +40,10 @@ class LogEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_member_kick(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.kick).flatten()
-        channel = guild.get_channel(872945922743619657)
+        channel = guild.get_channel(882721258301685790)
         logs = logs[0]
         if logs.target == member:
-            embed = discord.Embed(title='BackUp Kick Log',
+            embed = discord.Embed(title='Kick Log',
                                   color=discord.Color.random())
             embed.add_field(name=f'**Information**',
                             value=f'`{logs.user}` has kicked `{logs.target}`\n'
