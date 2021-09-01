@@ -16,7 +16,7 @@ class onMessage(commands.Cog):
         if message.author.bot:
             return
         counter = 0
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/spam-detection.json", "r+") as file:
+        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/spam-detection.json", "r+") as file:
             for lines in file:
                 if lines.strip("\n") == str(message.author.id):
                     counter += 1
@@ -36,7 +36,7 @@ class onMessage(commands.Cog):
 
 ##################################################BLACKLIST CHECK#######################################################
 
-        with open("C:/Users/simon/PycharmProjects/pythonProject/Discord Bot/utils/json/blacklist.json", 'r') as f:
+        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", 'r') as f:
             data = json.load(f)
         for bad_word in data["blacklist"]:
             #print(bad_word)
