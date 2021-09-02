@@ -2,7 +2,7 @@ import asyncio
 import discord
 from discord.ext import commands
 
-MESSAGE_CHANNEL = [872945922743619657]
+MESSAGE_LOG_CHANNEL = [872945922743619657]
 MODERATION_LOG_CHANNEL = [882721258301685790]
 
 class Moderation(commands.Cog):
