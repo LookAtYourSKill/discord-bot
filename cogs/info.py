@@ -10,16 +10,26 @@ class Info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @staticmethod
+    def getRoles(roles):
+        roles.reverse()
+        roles = [f'{role.mention}' for role in roles if not role.is_default()]
+        thing = ''
+
+        for role in roles:
+            if len(thing + str(role)) > 970:
+                thing += '...'
+                break
+            thing += f'{role} '
+
+        else:
+            return thing
+
     @commands.command(name='user', aliases=['userinfo', 'info'])
     async def user(self, ctx, member: discord.Member):
         de = pytz.timezone('Europe/Berlin')
-        if member is None:
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (Missing Member)
-                                  description=f'Du musst ein member angeben (zum Beispiel: ?user @LookAtYourSkill#0001)!',
-                                  color=0x4cd137)
-            await ctx.send(embed=embed, delete_after=5)
-            await asyncio.sleep(1)
-            await ctx.message.delete()
+        members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
+        roles = self.getRoles(member.roles)
         if not member:
             member = ctx.author
         embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
@@ -33,20 +43,20 @@ class Info(commands.Cog):
                               f'ID: {member.id}\n'
                               f'Nick: {(member.nick if member.nick else "Nein")}\n```',
                         inline=False)
-        # members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         embed.add_field(name='**Account**',
                         value=f'```Discord Beigetreten: {member.created_at.strftime("%d.%m.%Y")}\n'
                               f'Bot : {("Ja" if member.bot else "Nein")}\n'
                               f'Farbe : {member.color}\n'
-                              f'Status : {member.status}```',
-                        # f'```Join Position : {str(members.index(member)+1)}```\n'
+                              f'Status : {member.status}\n'
+                              f'Join Position : {str(members.index(member)+1)}```',
                         inline=False)
         embed.add_field(name='**Server**',
                         value=f'```Server Beigetreten : {member.joined_at.strftime("%d.%m.%Y")}\n'
                               f'Booster: {("Ja" if member.premium_since else "Nein")}```',
                         inline=False)
         embed.add_field(name='**Rollen**',
-                        value=f'```Rollen des Users: {len(member.roles) - 1}\n'
+                        value=f'{roles}'
+                              f'```Rollen des Users: {len(member.roles) - 1}\n'
                               f'Höchste Rolle: {member.top_role.name}```',
                         inline=False)
         embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
@@ -56,6 +66,8 @@ class Info(commands.Cog):
     @commands.command(name='server', aliases=['serverinfo', 'guild'])
     async def server(self, ctx):
         de = pytz.timezone('Europe/Berlin')
+        roles = self.getRoles(ctx.guild.roles)
+        days = (datetime.datetime.utcnow() - ctx.guild.created_at).days
         role_count = len(ctx.guild.roles)
         embed = discord.Embed(title=f' ',
                               description=' ',
@@ -71,12 +83,21 @@ class Info(commands.Cog):
                         inline=False)
         embed.add_field(name='**Daten**',
                         value=f'```Erstellt: {ctx.guild.created_at.strftime("%d.%m.%Y")}\n'
+                              f'Vor {days} Tagen Erstellt\n'
                               f'Boost Status : {ctx.guild.premium_subscription_count}/30```',
                         inline=False)
+        embed.add_field(name='**Channel**',
+                        value=f'```Insgesamt : {len(ctx.guild.channels)}\n'
+                              f'Textchannel : {len(ctx.guild.text_channels)}\n'
+                              f'Voicechannel : {len(ctx.guild.voice_channels)}\n'
+                              f'Kategorien : {len(ctx.guild.categories)}```')
         embed.add_field(name='**Member**',
                         value=f'```{ctx.guild.member_count}```',
                         inline=False)
-        embed.add_field(name='**Roles**',
+        embed.add_field(name='**Rollen**',
+                        value=f'{roles}',
+                        inline=False)
+        embed.add_field(name='**Rollen**',
                         value=f'```Default Role : {ctx.guild.default_role}\n'
                               f'Alle Rollen : {str(role_count)}```',
                         inline=False)
@@ -96,12 +117,16 @@ class Info(commands.Cog):
         if not member:
             member = ctx.author
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
-        await ctx.send(f'```Join Position : {str(members.index(member) + 1)}```')
+        await ctx.send(f'`Join Position : {str(members.index(member) + 1)}`')
 
     @commands.command()
-    async def joined(self, ctx):
+    async def joined(self, ctx, member: discord.Member = None):
+        if not member:
+            member = ctx.author
+        members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         embed = discord.Embed(title='**Member joined**',
-                              description=f'You joined at the `{ctx.author.joined_at.strftime("%d.%m.%Y")}`')
+                              description=f'You joined at the `{ctx.author.joined_at.strftime("%d.%m.%Y")}`\n'
+                                          f'Join Position : `{str(members.index(member) + 1)}`')
         await ctx.send(embed=embed)
 
     @commands.command(name='bot', aliases=['botinfo'])
@@ -141,6 +166,7 @@ class Info(commands.Cog):
         embed.set_image(url=icon)
         embed.set_footer(icon_url=ctx.author.avatar_url,
                          text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}')
+        await ctx.send(embed=embed)
 
 
 def setup(bot):

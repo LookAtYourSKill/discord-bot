@@ -34,7 +34,8 @@ class CommandErrorHandler(commands.Cog):
 
         if isinstance(error, commands.MissingRequiredArgument):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingRequiredArgument)
-                                  description=f'Nach **{ctx.command}** fehlt ein Argument (**Name** oder Ähnliches)!',
+                                  description=f'Nach **{ctx.command}** fehlt ein Argument!\n'
+                                              f'`{error}`',
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
@@ -59,14 +60,6 @@ class CommandErrorHandler(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingPermission)
                                   description=f'Um diesen Befehl auszuführen, fehlen ``dir die Berechtigungen``!',
-                                  color=0x4cd137)
-            await ctx.send(embed=embed, delete_after=5)
-            await asyncio.sleep(1)
-            await ctx.message.delete()
-
-        if isinstance(error, discord.Forbidden):
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingPermission)
-                                  description=f'`Etwas ist schief gelaufen!`',
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
@@ -134,18 +127,20 @@ class CommandErrorHandler(commands.Cog):
 
         if isinstance(error, discord.Forbidden):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (Discord Forbidden)
-                                  description=f'Etwas ist schiefgelaufen! Versuche es **im einem Textchannel** o.Ä. erneut! ')
+                                  description=f'Etwas ist schiefgelaufen!\n'
+                                              f'__ERROR__\n'
+                                              f'`{error}`')
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
 
         else:
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='**Der Error, wurde nicht gefunden!** Vielleicht kannst du damit etwas anfangen')
-            embed.add_field(name='__ERROR__',
-                            value=f'`{error}`',
-                            inline=False)
-            await ctx.send(embed=embed, delete_after=5)
+            #embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+            #                      description='**Der Error, wurde nicht gefunden!** Vielleicht kannst du damit etwas anfangen')
+            #embed.add_field(name='__ERROR__',
+            #                value=f'`{error}`',
+            #                inline=False)
+            #await ctx.send(embed=embed, delete_after=5)
             print("Error not caught in chat")
             await ctx.message.delete()
             print(error)

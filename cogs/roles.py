@@ -85,8 +85,8 @@ class createRoles(commands.Cog):
 
     @commands.command(aliases=['addrole'])
     @commands.has_permissions(manage_roles=True)
-    async def create_role(self, ctx, *, role_name: str, color: discord.Color = discord.Color.random()):
-        await ctx.guild.create_role(role_name=role_name, color=color)
+    async def create_role(self, ctx, *, role_name, color: discord.Color = discord.Color.random()):
+        await ctx.guild.create_role(name=role_name, color=color)
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'Die Rolle **{role_name}** wurde erstellt!')
         await ctx.send(embed=embed, delete_after=5)

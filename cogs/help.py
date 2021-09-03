@@ -19,7 +19,7 @@ class Help(commands.Cog):
                               color=0x4cd137,
                               timestamp=datetime.datetime.utcnow().astimezone(tz=de))
         embed.add_field(name='**Administration**',
-                        value='`reload_cog`, `reload_event`, `unload_cog`, `load_cog`, `unload_event`, `load_event`, `setstatus`, `lock`, `unlock`, `say`, `restart`',
+                        value='`reload_cog`, `reload_event`, `unload_cog`, `load_cog`, `unload_event`, `load_event`, `setstatus`, `lock`, `unlock`, `say`',
                         inline=False)
         embed.add_field(name='**Moderation**',
                         value=f'`ban`, `unban`, `unbanid`, `unbanall`, `tempban`, `bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`, `nuke`',
