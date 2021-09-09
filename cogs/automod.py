@@ -109,5 +109,25 @@ class Automod(commands.Cog):
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.message.delete()
 
+    @commands.command()
+    @commands.has_permissions(manage_messages=True)
+    async def channel_blacklist_add(self):
+        pass
+
+    @commands.command()
+    @commands.has_permissions(manage_messages=True)
+    async def channel_blacklist_remove(self):
+        pass
+
+    @commands.command()
+    @commands.has_permissions(manage_messages=True)
+    async def channel_blacklist_show(self):
+        pass
+
+    @commands.command()
+    @commands.has_permissions(manage_messages=True)
+    async def channel_blacklist_clear(self):
+        pass
+
 def setup(bot):
     bot.add_cog(Automod(bot))
