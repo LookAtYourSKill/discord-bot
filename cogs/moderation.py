@@ -32,6 +32,7 @@ class Moderation(commands.Cog):
                                   f'Reason : `{reason}`\n'
                                   f'Gebannt von : `{ctx.author}`',
                             inline=False)
+            await member.send(embed=embed)
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
@@ -124,6 +125,7 @@ class Moderation(commands.Cog):
                               f'Time : `{time}`\n'
                               f'Gebannt von : `{ctx.author}`',
                         inline=False)
+        await member.send(embed=embed)
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()  # Delete user's message
         await asyncio.sleep(tempbantime)
