@@ -1,9 +1,12 @@
 import asyncio
+import json
+
 import discord
 from discord.ext import commands
 
 MESSAGE_LOG_CHANNEL = [872945922743619657]
 MODERATION_LOG_CHANNEL = [882721258301685790]
+
 
 class Moderation(commands.Cog):
     def __init__(self, bot):
@@ -413,6 +416,92 @@ class Moderation(commands.Cog):
 
             channel = self.bot.get_channel(id=882721258301685790)
             await channel.send(embed=embed)
+
+    @commands.command()
+    async def warn(self, ctx, *, member=discord.Member, reason=None):
+        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'r+') as f:
+            data = json.load(f)
+
+        if str(member.id) not in data[str(ctx.guild.id)]["warns"]:
+            data[str(ctx.guild.id)]["warns"][str(member.id)] = {}
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Name"] = str(member)
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] = 1
+            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            embed = discord.Embed(title='Warn System')
+            embed.add_field(name=f'Der Member {member} hat seine **erste Verwarnung** auf {member.guild.name} erhalten',
+                            value=f'von {ctx.author} wegen dem Grund {reason}',
+                            inline=False)
+            await ctx.send(embed=embed)
+
+        elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
+            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            embed = discord.Embed(title='Warn System')
+            embed.add_field(
+                name=f'Der Member {member} hat seine **zweite Verwarnung** auf {member.guild.name} erhalten',
+                value=f'von {ctx.author} wegen dem Grund {reason}',
+                inline=False)
+            await ctx.send(embed=embed)
+
+        elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
+            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            embed = discord.Embed(title='Warn System')
+            embed.add_field(
+                name=f'Der Member {member} hat seine **dritte Verwarnung** auf {member.guild.name} erhalten **und wird somit gebannt!**',
+                value=f'von {ctx.author} wegen dem Grund {reason}',
+                inline=False)
+            await ctx.send(embed=embed)
+            await member.ban(reason=reason)
+
+    @commands.command()
+    async def unwarn(self, ctx, *, member: int):
+        member = self.bot.get_user(member)
+        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'r+') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
+            data[str(ctx.guild.id)]["warns"].pop(str(member.id))
+            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+        elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
+            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+        elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 3:
+            try:
+                user = await self.bot.get_user(member.id)
+                if str(member) == str(user):
+                    await ctx.guild.unban(user)
+                    await ctx.send('Entbannt')
+                    return
+                else:
+                    ban_error = discord.Embed(title='.',
+                                              description='.')
+                    ban_error.add_field(name='...',
+                                        value='...',
+                                        inline=False)
+                    await ctx.send(embed=ban_error)
+                data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
+                with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+                    json.dump(data, f, indent=4)
+
+            except:
+                unban_error = discord.Embed(title='.',
+                                            description='.')
+                unban_error.add_field(name='...',
+                                      value='...',
+                                      inline=False)
+                await ctx.send(embed=unban_error)
 
 
 def setup(bot):
