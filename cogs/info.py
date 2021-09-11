@@ -37,7 +37,7 @@ class Info(commands.Cog):
         embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
                               description='',
                               color=0x4cd137,
-                              timestamp=datetime.datetime.utcnow().astimezone(tz=de))
+                              timestamp=datetime.datetime.utcnow()) #.astimezone(tz=de))
 
         embed.set_thumbnail(url=f'{member.avatar_url}')
         embed.add_field(name='**Name**',
@@ -74,7 +74,7 @@ class Info(commands.Cog):
         embed = discord.Embed(title=f' ',
                               description=' ',
                               color=0x4cd137,
-                              timestamp=datetime.datetime.utcnow().astimezone(tz=de))
+                              timestamp=datetime.datetime.utcnow()) #.astimezone(tz=de))
 
         embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
         embed.add_field(name=f'> Info für {ctx.guild.name}',
@@ -140,7 +140,7 @@ class Info(commands.Cog):
         embed = discord.Embed(title=f'> Bot Info ',
                               description='',
                               color=0x4cd137,
-                              timestamp=datetime.datetime.utcnow().astimezone(tz=de))
+                              timestamp=datetime.datetime.utcnow()) #.astimezone(tz=de))
 
         embed.add_field(name='**Besitzer**',
                         value='```LookAtYourSkill#0001\nID: 493370963807830016```',

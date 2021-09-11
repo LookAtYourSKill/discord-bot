@@ -17,7 +17,7 @@ class Help(commands.Cog):
         embed = discord.Embed(title=f'> Help',
                               description=f'`Verwende help [Command] für Hilfe über einen Command`',
                               color=0x4cd137,
-                              timestamp=datetime.datetime.utcnow().astimezone(tz=de))
+                              timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
         embed.add_field(name='**Administration**',
                         value='`reload_cog`, `reload_event`, `unload_cog`, `load_cog`, `unload_event`, `load_event`, `setstatus`, `lock`, `unlock`, `say`',
                         inline=False)
