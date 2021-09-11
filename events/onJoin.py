@@ -23,14 +23,20 @@ class onJoin(commands.Cog):
 
     @commands.Cog.listener()
     async def antialt(self, member=None):
-        if member.created_at < 7:
-            embed = discord.Embed(title='**Antialt Kick**',
+        days = (datetime.datetime.utcnow() - member.created_at).days
+        if days < 7:
+            embed = discord.Embed(title='**Antialt Detection Kick**',
                                   description=f'Your Account has to be at least 7 Days old!\n'
-                                              f'Your Account Age : `{member.created_at.strftime("%d.%m.%Y")}` years old\n'
+                                              f'Your Account Age : `{days}` days old\n'
                                               f'Must atleast be : `7` Days old')
             await member.send(embed=embed)
-            await member.kick()
+            await member.kick(reason='Anti Alt Detection')
 
+            embed = discord.Embed(title='**Antialt Detection Kick**',
+                                  description=f'{member} wurde von der Alt Detection gekickt.')
+
+            channel = self.bot.get_channel(id=882721258301685790)
+            await channel.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(onJoin(bot))

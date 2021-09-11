@@ -27,6 +27,8 @@ class Info(commands.Cog):
 
     @commands.command(name='user', aliases=['userinfo', 'info'])
     async def user(self, ctx, member: discord.Member):
+        if not member:
+            member = ctx.author
         de = pytz.timezone('Europe/Berlin')
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         roles = self.getRoles(member.roles)

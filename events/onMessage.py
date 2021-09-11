@@ -779,8 +779,12 @@ class onMessage(commands.Cog):
                               description=f"{old.author.mention} has edited a message in {old.channel.mention} [Jump to the Message]({new.jump_url})",
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
-        embed.add_field(name="Old Message", value=f'`{old.content}`', inline=False)
-        embed.add_field(name="New Message", value=f'`{new.content}`', inline=False)
+        embed.add_field(name="Old Message",
+                        value=f'{old.content}',
+                        inline=False)
+        embed.add_field(name="New Message",
+                        value=f'{new.content}',
+                        inline=False)
         #embed.add_field(name="Channel", value=f'{old.channel.mention}', inline=False)
         #embed.add_field(name="Author", value=f'{old.author.mention}', inline=False)
         await channel.send(embed=embed)
@@ -792,7 +796,9 @@ class onMessage(commands.Cog):
                               description=f'A message from {message.author.mention} was deleted in {message.channel.mention} ',
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
-        embed.add_field(name="Message", value=f'`{message.content}`', inline=False)
+        embed.add_field(name="Message",
+                        value=f'{message.content}',
+                        inline=False)
         #embed.add_field(name="Author", value=f'{message.author.mention}', inline=False)
         #embed.add_field(name="Channel", value=f'{message.channel.mention}', inline=False)
         await channel.send(embed=embed)
