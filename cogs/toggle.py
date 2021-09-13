@@ -25,7 +25,7 @@ class Toggle(commands.Cog):
                                       description='')
                 embed.add_field(name='Du hast **Cogs gewählt!**\n'
                                      'Hier eine Liste der Cogs:',
-                                value='`administration`, `automod`, `error_handler`, `fun`, `gifs`, `giveaway`, `help`, `info`, `math`, `moderation`, `music`, `raft`, `roles`, `rules`, `toggle`, `utilities`')
+                                value='`administration`, `automod`, `channel`, `error_handler`, `fun`, `gifs`, `giveaway`, `help`, `info`, `math`, `moderation`, `music`, `raft`, `roles`, `rules`, `toggle`, `utilities`')
                 embed.set_footer(text='Um den Command zu beenden schreibe einfach exit!')
                 await ctx.send(embed=embed)
                 while True:
@@ -88,6 +88,36 @@ class Toggle(commands.Cog):
                                 self.bot.load_extension('cogs.automod')
                                 embed = discord.Embed(title='<:open:869959941321011260> Successful',
                                                       description='Loaded the Extension `automod`')
+                                await ctx.send(embed=embed)
+
+                    if 'channel' in message.content:
+                        embed = discord.Embed(title='Kategorie : Cogs',
+                                              description='Du hast in der **Kategorie Cogs** die Extension `channel` ausgewählt.')
+                        message = await ctx.send(embed=embed)
+                        await asyncio.sleep(2)
+                        embed = discord.Embed(title='Kategorie : Cogs, Extension : channel',
+                                              description='Was möchtest du mit der Extension machen?\n'
+                                                          '`reload`, `unload`, `Load`')
+                        await message.edit(embed=embed)
+                        while True:
+                            message = await self.bot.wait_for('message', check=lambda message: message.author == member)
+                            if 'reload' in message.content:
+                                self.bot.unload_extension('cogs.channel')
+                                self.bot.load_extension('cogs.channel')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Reloaded the Extension `channel`')
+                                await ctx.send(embed=embed)
+
+                            if 'unload' in message.content:
+                                self.bot.unload_extension('cogs.channel')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Unload the Extension `channel`')
+                                await ctx.send(embed=embed)
+
+                            if 'Load' in message.content:
+                                self.bot.load_extension('cogs.channel')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Loaded the Extension `channel`')
                                 await ctx.send(embed=embed)
 
                     if 'error_handler' in message.content:
@@ -511,8 +541,9 @@ class Toggle(commands.Cog):
                                 await ctx.send(embed=embed)
 
                     elif 'exit' in message.content or 'Exit' in message.content:
-                        embed = discord.Embed(title='Du hast den Command verlassen!',
-                                              description='You exited the command')
+                        embed = discord.Embed(title='Du hast die Auswahl von Cogs verlassen!',
+                                              description='Jetzt kannst du `Events` auswählen, oder den command komplett verlassen mit `exit`')
+                        embed.set_footer(text='You exited the selection between Cogs')
                         await ctx.send(embed=embed)
                         break
 
@@ -825,8 +856,9 @@ class Toggle(commands.Cog):
                                 await ctx.send(embed=embed)
 
                     elif 'exit' in message.content or 'Exit' in message.content:
-                        embed = discord.Embed(title='Du hast den Command verlassen!',
-                                              description='You exited the command')
+                        embed = discord.Embed(title='Du hast die Auswahl von Cogs verlassen!',
+                                              description='Jetzt kannst du `Events` auswählen, oder den command komplett verlassen mit `exit`')
+                        embed.set_footer(text='You exited the selection between Cogs')
                         await ctx.send(embed=embed)
                         break
 
@@ -842,6 +874,7 @@ class Toggle(commands.Cog):
                 embed.add_field(name='Ungültige Eingabe!',
                                 value='Bitte benutzt `Cogs`, `Events` oder `Exit`')
                 await ctx.send(embed=embed, delete_after=5)
+
 
 def setup(bot):
     bot.add_cog(Toggle(bot))
