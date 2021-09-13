@@ -70,7 +70,7 @@ class MusicBot(commands.Cog):
     @commands.command(name='nowplaying', aliases=['np'])
     async def now_playing(self, ctx):
         embed = discord.Embed(title='',
-                              description=f'Now playing : `{ctx.voice_client.current()}`')
+                              description=f'Now playing : `{ctx.voice_client.now_playing()}`')
         await ctx.send(embed=embed)
 
     @commands.command(name='volume')
