@@ -51,27 +51,27 @@ class MusicBot(commands.Cog):
             embed = discord.Embed(title='',
                                   description='**Started Playing**')
             await ctx.send(embed=embed)
-            vc.play(source)
+            await vc.play(source)
 
-    @commands.command()
-    async def pause(self, ctx):
-        embed = discord.Embed(title='',
-                              description=f'Paused Playing')
-        await ctx.send(embed=embed)
-        await ctx.voice_client.pause()
+    #@commands.command()
+    #async def pause(self, ctx):
+    #    embed = discord.Embed(title='',
+    #                          description=f'Paused Playing')
+    #    await ctx.send(embed=embed)
+    #    await ctx.voice_client.pause()
 
-    @commands.command()
-    async def resume(self, ctx):
-        embed = discord.Embed(title='',
-                              description=f'Resumed Playing')
-        await ctx.send(embed=embed)
-        await ctx.voice_client.resume()
+    #@commands.command()
+    #async def resume(self, ctx):
+    #    embed = discord.Embed(title='',
+    #                          description=f'Resumed Playing')
+    #    await ctx.send(embed=embed)
+    #    await ctx.voice_client.resume()
 
-    @commands.command(name='nowplaying', aliases=['np'])
-    async def now_playing(self, ctx):
-        embed = discord.Embed(title='',
-                              description=f'Now playing : `{ctx.voice_client.now_playing()}`')
-        await ctx.send(embed=embed)
+    #@commands.command(name='nowplaying', aliases=['np'])
+    #async def now_playing(self, ctx):
+    #    embed = discord.Embed(title='',
+    #                          description=f'Now playing : `{ctx.voice_client.now_playing()}`')
+    #    await ctx.send(embed=embed)
 
     @commands.command(name='volume')
     async def volume(self, ctx: commands.Context, *, volume: int):

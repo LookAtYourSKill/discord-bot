@@ -10,13 +10,14 @@ class onMessage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-###################################################AUTOMOD##############################################################
+    ###################################################AUTOMOD##############################################################
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.bot:
             return
         counter = 0
-        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/spam-detection.json", "r+") as file:
+        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/spam-detection.json",
+                  "r+") as file:
             for lines in file:
                 if lines.strip("\n") == str(message.author.id):
                     counter += 1
@@ -34,20 +35,20 @@ class onMessage(commands.Cog):
                                       f'Gekickt von : `Ich seh dich#0264`')
                 await channel.send(embed=embed)
 
-##################################################BLACKLIST CHECK#######################################################
+        ##################################################BLACKLIST CHECK#######################################################
 
         with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", 'r') as f:
             data = json.load(f)
         for bad_word in data["blacklist"]:
-            #print(bad_word)
+            # print(bad_word)
             if bad_word in message.content.lower():
-                #print(message.content.lower())
+                # print(message.content.lower())
                 await message.delete()
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description='Deine Message `wurde gelöscht`, da du ein Wort `aus der Blacklist darin hattest!`\n**Bitte unterlasse dies!**')
                 await message.channel.send(embed=embed, delete_after=5)
 
-##################################################ANTI BAD FILE#########################################################
+        ##################################################ANTI BAD FILE#########################################################
 
         message_attachments = message.attachments
         if len(message_attachments) > 0:
@@ -70,7 +71,7 @@ class onMessage(commands.Cog):
                 else:
                     break
 
-##################################################LINK PROTECTION#######################################################
+        ##################################################LINK PROTECTION#######################################################
         invLink = ['https://', 'http://']
 
         for synonym in invLink:
@@ -80,7 +81,7 @@ class onMessage(commands.Cog):
                                       description='Hier sind **keine Links erlaubt**!')
                 await message.channel.send(embed=embed, delete_after=5)
 
-##################################################ONPING################################################################
+        ##################################################ONPING################################################################
 
         if message.content.startswith('<@!790965419670241281>'):
             embed = discord.Embed(title="Ping",
@@ -90,7 +91,7 @@ class onMessage(commands.Cog):
             await message.author.send(embed=embed)
             await message.delete()
 
-##################################################AFKS##################################################################
+        ##################################################AFKS##################################################################
         # def remove_afk(self, afk):
         #    if '[AFK]' in afk.split():
         #        return ' '.join(afk.split()[1:])
@@ -111,7 +112,7 @@ class onMessage(commands.Cog):
         #            message.reference.message_id)).author) or member.id in message.raw_mentions:
         #        await message.reply(f"{member.name} is AFK: {reason}")
 
-##################################################ADMINISTRATION PART###################################################
+        ##################################################ADMINISTRATION PART###################################################
         if message.content.startswith('help reload_cog'):
             embed = discord.Embed(title='Help for reload_cog',
                                   description='`Reload Extension you mention...`')
@@ -193,7 +194,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################MODERATION PART#######################################################
+        ##################################################MODERATION PART#######################################################
 
         if message.content.startswith('help ban'):
             embed = discord.Embed(title='Help for ban',
@@ -347,7 +348,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################AUTOMOD PART##########################################################
+        ##################################################AUTOMOD PART##########################################################
 
         if message.content.startswith('help blacklist_add'):
             embed = discord.Embed(title='Help for blacklist_add',
@@ -385,7 +386,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################INFOS#################################################################
+        ##################################################INFOS#################################################################
 
         if message.content.startswith('help server'):
             embed = discord.Embed(title='Help for server',
@@ -432,7 +433,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################UTILITIES#############################################################
+        ##################################################UTILITIES#############################################################
 
         if message.content.startswith('help invite'):
             embed = discord.Embed(title='Help for invite',
@@ -497,7 +498,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################MATH##################################################################
+        ##################################################MATH##################################################################
 
         if message.content.startswith('help addition'):
             embed = discord.Embed(title='Help for addition',
@@ -535,7 +536,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################ROLES#################################################################
+        ##################################################ROLES#################################################################
 
         if message.content.startswith('help giverole'):
             embed = discord.Embed(title='Help for giverole',
@@ -573,7 +574,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################GIVEAWAY##############################################################
+        ##################################################GIVEAWAY##############################################################
 
         if message.content.startswith('help create'):
             embed = discord.Embed(title='Help for create',
@@ -593,7 +594,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################MUSIC#################################################################
+        ##################################################MUSIC#################################################################
 
         if message.content.startswith('help play'):
             embed = discord.Embed(title='Help for play',
@@ -640,7 +641,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################FOR THE VIBE##########################################################
+        ##################################################FOR THE VIBE##########################################################
 
         if message.content.startswith('help raft'):
             embed = discord.Embed(title='Help for raft',
@@ -651,7 +652,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################FUN###################################################################
+        ##################################################FUN###################################################################
 
         if message.content.startswith('help 8ball'):
             embed = discord.Embed(title='Help for 8ball',
@@ -689,7 +690,7 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
-##################################################GIFS##################################################################
+        ##################################################GIFS##################################################################
 
         if message.content.startswith('help hug'):
             embed = discord.Embed(title='Help for hug',
@@ -780,13 +781,13 @@ class onMessage(commands.Cog):
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Old Message",
-                        value=f'{old.content}',
+                        value=f': {old.content}',
                         inline=False)
         embed.add_field(name="New Message",
-                        value=f'{new.content}',
+                        value=f': {new.content}',
                         inline=False)
-        #embed.add_field(name="Channel", value=f'{old.channel.mention}', inline=False)
-        #embed.add_field(name="Author", value=f'{old.author.mention}', inline=False)
+        # embed.add_field(name="Channel", value=f'{old.channel.mention}', inline=False)
+        # embed.add_field(name="Author", value=f'{old.author.mention}', inline=False)
         await channel.send(embed=embed)
 
     @commands.Cog.listener()
@@ -797,11 +798,13 @@ class onMessage(commands.Cog):
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Message",
-                        value=f'{message.content}',
+                        value=f'{(f"Embed oder Nachricht : {message.content}" if message.author.bot else f"{message.content}")}',
+                        #: {message.content}',
                         inline=False)
-        #embed.add_field(name="Author", value=f'{message.author.mention}', inline=False)
-        #embed.add_field(name="Channel", value=f'{message.channel.mention}', inline=False)
+        # embed.add_field(name="Author", value=f'{message.author.mention}', inline=False)
+        # embed.add_field(name="Channel", value=f'{message.channel.mention}', inline=False)
         await channel.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(onMessage(bot))
