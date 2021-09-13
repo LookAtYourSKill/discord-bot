@@ -46,10 +46,10 @@ class Channel(commands.Cog):
     @commands.cooldown(rate=5, per=1)
     async def temp_channel(self, ctx, channel_name, time):
         if not channel_name:
-            await ctx.send('Du hast keine Channel Name angegeben!')
+            await ctx.send('Du hast keine Channel Name angegeben!', delete_after=5)
 
         if not time:
-            await ctx.send('Du hast keine Zeit angegeben!')
+            await ctx.send('Du hast keine Zeit angegeben!', delete_after=5)
 
         guild = ctx.message.guild
         time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
