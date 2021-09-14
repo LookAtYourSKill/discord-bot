@@ -142,7 +142,7 @@ class CommandErrorHandler(commands.Cog):
             #                inline=False)
             #await ctx.send(embed=embed, delete_after=5)
             print("Error not caught in chat")
-            await ctx.message.delete()
+            #await ctx.message.delete()
             print(error)
 
         # else:

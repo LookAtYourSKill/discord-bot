@@ -30,6 +30,7 @@ class Info(commands.Cog):
         if not member:
             member = ctx.author
         de = pytz.timezone('Europe/Berlin')
+        days = (datetime.datetime.utcnow() - member.created_at).days
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         roles = self.getRoles(member.roles)
         if not member:
@@ -47,6 +48,7 @@ class Info(commands.Cog):
                         inline=False)
         embed.add_field(name='**Account**',
                         value=f'```Discord Beigetreten: {member.created_at.strftime("%d.%m.%Y")}\n'
+                              f'Vor {days} Tagen erstellt\n'
                               f'Bot : {("Ja" if member.bot else "Nein")}\n'
                               f'Farbe : {member.color}\n'
                               f'Status : {member.status}\n'

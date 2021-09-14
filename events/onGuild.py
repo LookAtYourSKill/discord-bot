@@ -24,7 +24,7 @@ class on_guild(commands.Cog):
             json.dump(data, f, indent=4)
 
     @commands.Cog.listener()
-    async def on_guild_remove(self, guild):
+    async def on_guild_leave(self, guild):
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'r') as f:
             data = json.load(f)
 

@@ -348,12 +348,22 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(manage_channels=True)
     async def nuke(self, ctx, channel: discord.TextChannel = None):
-        if channel is None:
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='You didn\'t **mentioned a channel!**\n')
-            await ctx.send(embed=embed, delete_after=5)
-            await ctx.message.delete()
-            return
+        if not channel:
+            nuke_channel = ctx.channel
+            new_channel = await nuke_channel.clone(reason="Has been Nuked!")
+            await nuke_channel.delete()
+            embed = discord.Embed(title='<:open:869959941321011260> **Successful**',
+                                  description='This Channel **has been Nuked!**',
+                                  color=discord.Color.random())
+            embed.add_field(name='**Information**',
+                            value=f'Channel Name : `{channel.name}`\n'
+                                  f'Channel ID : `{channel.id}`\n'
+                                  f'Channel Nuked von : `{ctx.author}`',
+                            inline=False)
+            await new_channel.send(embed=embed, delete_after=5)
+
+            channel = self.bot.get_channel(id=882721258301685790)
+            await channel.send(embed=embed)
 
         nuke_channel = discord.utils.get(ctx.guild.channels, name=channel.name)
 

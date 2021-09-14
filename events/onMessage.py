@@ -113,56 +113,11 @@ class onMessage(commands.Cog):
         #        await message.reply(f"{member.name} is AFK: {reason}")
 
         ##################################################ADMINISTRATION PART###################################################
-        if message.content.startswith('help reload_cog'):
-            embed = discord.Embed(title='Help for reload_cog',
-                                  description='`Reload Extension you mention...`')
+        if message.content.startswith('help toggle'):
+            embed = discord.Embed(title='Help for toggle',
+                                  description='`A Chat interactive command, with which you can reload, unload and load plugins...`')
             embed.add_field(name='__Usage:__',
-                            value='**?reload_cog** <`extension`>',
-                            inline=False)
-            embed.set_footer(text='<> verpflichtend | [] optional')
-            await message.channel.send(embed=embed)
-
-        if message.content.startswith('help reload_event'):
-            embed = discord.Embed(title='Help for reload_event',
-                                  description='`Reload the Event you mention...`')
-            embed.add_field(name='__Usage:__',
-                            value='**?reload_event** <`extension`>',
-                            inline=False)
-            embed.set_footer(text='<> verpflichtend | [] optional')
-            await message.channel.send(embed=embed)
-
-        if message.content.startswith('help unload_cog'):
-            embed = discord.Embed(title='Help for unload_cog',
-                                  description='`Unload the Extension you want to...`')
-            embed.add_field(name='__Usage:__',
-                            value='**?unload_cog** <`extension`>',
-                            inline=False)
-            embed.set_footer(text='<> verpflichtend | [] optional')
-            await message.channel.send(embed=embed)
-
-        if message.content.startswith('help unload_event'):
-            embed = discord.Embed(title='Help for unload_event',
-                                  description='`Unload the Event you want to...`')
-            embed.add_field(name='__Usage:__',
-                            value='**?unload_event** <`extension`>',
-                            inline=False)
-            embed.set_footer(text='<> verpflichtend | [] optional')
-            await message.channel.send(embed=embed)
-
-        if message.content.startswith('help load_cog'):
-            embed = discord.Embed(title='Help for load_cog',
-                                  description='`Load the Extension you want to...`')
-            embed.add_field(name='__Usage:__',
-                            value='**?load_cog** <`extension`>',
-                            inline=False)
-            embed.set_footer(text='<> verpflichtend | [] optional')
-            await message.channel.send(embed=embed)
-
-        if message.content.startswith('help load_event'):
-            embed = discord.Embed(title='Help for load_event',
-                                  description='`Load the Event you want to...`')
-            embed.add_field(name='__Usage:__',
-                            value='**?load_event** <`extension`>',
+                            value='**?toggle**',
                             inline=False)
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
@@ -781,10 +736,10 @@ class onMessage(commands.Cog):
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Old Message",
-                        value=f': {old.content}',
+                        value=f'{(f"Embed oder Nachricht: {old.content}" if old.author.bot else f"{old.content}")}',
                         inline=False)
         embed.add_field(name="New Message",
-                        value=f': {new.content}',
+                        value=f'{(f"Embed oder Nachricht: {new.content}" if new.author.bot else f"{new.content}")}',
                         inline=False)
         # embed.add_field(name="Channel", value=f'{old.channel.mention}', inline=False)
         # embed.add_field(name="Author", value=f'{old.author.mention}', inline=False)
@@ -798,7 +753,7 @@ class onMessage(commands.Cog):
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Message",
-                        value=f'{(f"Embed oder Nachricht : {message.content}" if message.author.bot else f"{message.content}")}',
+                        value=f'{(f"Embed oder Nachricht: {message.content}" if message.author.bot else f"{message.content}")}',
                         #: {message.content}',
                         inline=False)
         # embed.add_field(name="Author", value=f'{message.author.mention}', inline=False)
