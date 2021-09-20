@@ -856,8 +856,8 @@ class Toggle(commands.Cog):
                                 await ctx.send(embed=embed)
 
                     elif 'exit' in message.content or 'Exit' in message.content:
-                        embed = discord.Embed(title='Du hast die Auswahl von Cogs verlassen!',
-                                              description='Jetzt kannst du `Events` auswählen, oder den command komplett verlassen mit `exit`')
+                        embed = discord.Embed(title='Du hast die Auswahl von Events verlassen!',
+                                              description='Jetzt kannst du `Cogs` auswählen, oder den command komplett verlassen mit `exit`')
                         embed.set_footer(text='You exited the selection between Cogs')
                         await ctx.send(embed=embed)
                         break

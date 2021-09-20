@@ -113,6 +113,37 @@ class fun(commands.Cog):
                                       description='Unbekannter Fehler ist aufgetreten!')
                 await ctx.send(embed=embed)
 
+    @commands.command()
+    async def num_game(self, ctx):
+        ran_number = random.randint(1, 10)
+        member = ctx.author
+        embed = discord.Embed(title='Numgame',
+                              description='Choose a number between 1-10')
+        await ctx.send(embed=embed)
+        while True:
+            message = await self.bot.wait_for('int', check=lambda message: message.author == member)
+            if ran_number in message.content:
+                await ctx.send(f'You guessed it! It was {ran_number}')
+            else:
+                await ctx.send('Nope')
+
+    @commands.command()
+    async def simp(self, ctx):
+        ran_percent = random.randint(1, 100)
+        embed = discord.Embed(title='Simp Test',
+                              description=f'Simp Rate: **{ran_percent}%**',
+                              color=discord.colour.Color.blurple())
+        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/810855960133894154/871855679768514560/pny0r8v4c0m41.png')
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def sus(self, ctx):
+        ran_percent = random.randint(1, 100)
+        embed = discord.Embed(title='Sus Test',
+                              description=f'Sus Rate: **{ran_percent}%**',
+                              color=discord.colour.Color.red())
+        embed.set_thumbnail(url='https://static.wikia.nocookie.net/0974aaa7-7e44-4887-997b-2bf06efb6297/scale-to-width/755')
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(fun(bot)
