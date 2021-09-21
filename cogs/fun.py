@@ -122,7 +122,7 @@ class fun(commands.Cog):
         await ctx.send(embed=embed)
         while True:
             message = await self.bot.wait_for('int', check=lambda message: message.author == member)
-            if ran_number in message.content:
+            if int(ran_number) in message.content:
                 await ctx.send(f'You guessed it! It was {ran_number}')
             else:
                 await ctx.send('Nope')
