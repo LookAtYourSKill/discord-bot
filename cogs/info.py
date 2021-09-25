@@ -31,6 +31,7 @@ class Info(commands.Cog):
             member = ctx.author
         de = pytz.timezone('Europe/Berlin')
         days = (datetime.datetime.utcnow() - member.created_at).days
+        days2 = (datetime.datetime.utcnow() - member.joined_at).days
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         roles = self.getRoles(member.roles)
         embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
@@ -54,6 +55,7 @@ class Info(commands.Cog):
                         inline=False)
         embed.add_field(name='**Server**',
                         value=f'```Server Beigetreten : {member.joined_at.strftime("%d.%m.%Y")}\n'
+                              f'Vor {days2} Tagen beigetreten\n'
                               f'Booster: {("Ja" if member.premium_since else "Nein")}```',
                         inline=False)
         embed.add_field(name='**Rollen**',

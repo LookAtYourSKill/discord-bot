@@ -453,6 +453,15 @@ class onMessage(commands.Cog):
             embed.set_footer(text='<> verpflichtend | [] optional')
             await message.channel.send(embed=embed)
 
+        if message.content.startswith('help reminder'):
+            embed = discord.Embed(title='Help for reminder',
+                                  description='`Makes an reminder for the wished time...`')
+            embed.add_field(name='__Usage:__',
+                            value='**?reminder** <`time`> [`reason`]',
+                            inline=False)
+            embed.set_footer(text='<> verpflichtend | [] optional')
+            await message.channel.send(embed=embed)
+
         ##################################################MATH##################################################################
 
         if message.content.startswith('help addition'):
