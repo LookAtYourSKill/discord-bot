@@ -33,8 +33,6 @@ class Info(commands.Cog):
         days = (datetime.datetime.utcnow() - member.created_at).days
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         roles = self.getRoles(member.roles)
-        if not member:
-            member = ctx.author
         embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
                               description='',
                               color=0x4cd137,
