@@ -118,7 +118,7 @@ class Utilities(commands.Cog):
             await ctx.send(embed=embed)
 
             await asyncio.sleep(remindertime)
-            await ctx.send(f'{ctx.author.mention} i should remind you now, reason = {reason}')
+            await ctx.send(f'{ctx.author.mention} i should remind you now, ``reason = {reason}``')
 
 
 def setup(bot):
