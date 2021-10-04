@@ -17,11 +17,10 @@ class Info(commands.Cog):
         thing = ''
 
         for role in roles:
-            if len(thing + str(role)) > 970:
+            if len(thing + str(role)) > 800:
                 thing += '...'
                 break
             thing += f'{role} '
-
         else:
             return thing
 
@@ -82,6 +81,7 @@ class Info(commands.Cog):
         embed.add_field(name=f'> Info für {ctx.guild.name}',
                         value=f'```Name : {ctx.guild.name}\n'
                               f'ID : {ctx.guild.id}\n'
+                              f'Owner : {ctx.guild.owner}\n'
                               f'Owner ID : {ctx.guild.owner_id}\n'
                               f'Region : {ctx.guild.region}```',
                         inline=False)
