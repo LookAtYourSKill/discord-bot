@@ -57,10 +57,8 @@ class Info(commands.Cog):
                               f'Vor {days2} Tagen beigetreten\n'
                               f'Booster: {("Ja" if member.premium_since else "Nein")}```',
                         inline=False)
-        embed.add_field(name='**Rollen**',
-                        value=f'{roles}'
-                              f'```Rollen des Users: {len(member.roles) - 1}\n'
-                              f'Höchste Rolle: {member.top_role.name}```',
+        embed.add_field(name=f'**Rollen [{len(member.roles) - 1}]**',
+                        value=f'{roles}',
                         inline=False)
         embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
                          icon_url=ctx.author.avatar_url)
@@ -88,6 +86,7 @@ class Info(commands.Cog):
         embed.add_field(name='**Daten**',
                         value=f'```Erstellt: {ctx.guild.created_at.strftime("%d.%m.%Y")}\n'
                               f'Vor {days} Tagen Erstellt\n'
+                              f'Member : {ctx.guild.member_count}\n'
                               f'Boost Status : {ctx.guild.premium_subscription_count}/30```',
                         inline=False)
         embed.add_field(name='**Channel**',
@@ -95,15 +94,8 @@ class Info(commands.Cog):
                               f'Textchannel : {len(ctx.guild.text_channels)}\n'
                               f'Voicechannel : {len(ctx.guild.voice_channels)}\n'
                               f'Kategorien : {len(ctx.guild.categories)}```')
-        embed.add_field(name='**Member**',
-                        value=f'```{ctx.guild.member_count}```',
-                        inline=False)
-        embed.add_field(name='**Rollen**',
+        embed.add_field(name=f'**Rollen[{len(ctx.guild.roles) - 1}]**',
                         value=f'{roles}',
-                        inline=False)
-        embed.add_field(name='**Rollen**',
-                        value=f'```Default Role : {ctx.guild.default_role}\n'
-                              f'Alle Rollen : {str(role_count)}```',
                         inline=False)
         embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
                          icon_url=ctx.author.avatar_url)
