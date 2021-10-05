@@ -33,7 +33,7 @@ class Utilities(commands.Cog):
                               color=0x4cd137)
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(name='embed')
     async def _embed(self, ctx, *, text: str):
         embed = discord.Embed(title='',
                               description=text)
@@ -74,7 +74,7 @@ class Utilities(commands.Cog):
         await ctx.send(embed=embed)
         # await ctx.send(f"Member {member.mention} has {invites} invites")
 
-    @commands.command()
+    @commands.command(name='senddm')
     async def _senddm(self, ctx, member: discord.Member = None, *, text=None):
         embed = discord.Embed(title='You got MAIL!', color=0xff00c8)
         embed.add_field(name='From:',
@@ -91,7 +91,7 @@ class Utilities(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(name='password', aliases=['pw'])
     async def _password(self, ctx):
         length = 20
         chars = string.ascii_letters + string.digits + '!@#$%^&*()'
@@ -102,7 +102,7 @@ class Utilities(commands.Cog):
         await ctx.message.delete()
         await ctx.message.author.send(''.join(random.choice(chars) for i in range(length)), delete_after=10)
 
-    @commands.command()
+    @commands.command(name='reminder')
     async def _reminder(self, ctx, zeit=None, *, reason='Nicht angegeben'):
         time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
         remindertime = int(zeit[:-1]) * time_convert[zeit[-1]]

@@ -121,7 +121,7 @@ class Info(commands.Cog):
             member = ctx.author
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         embed = discord.Embed(title='**Member joined**',
-                              description=f'You joined at the `{ctx.author.joined_at.strftime("%d.%m.%Y")}`\n'
+                              description=f'You joined at the `{member.joined_at.strftime("%d.%m.%Y")}`\n'
                                           f'Join Position : `{str(members.index(member) + 1)}`')
         await ctx.send(embed=embed)
 
@@ -137,7 +137,7 @@ class Info(commands.Cog):
                               timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
 
         embed.add_field(name='**Besitzer**',
-                        value='```LookAtYourSkill#0001\nID: 493370963807830016```',
+                        value='```LookAtYourSkill#6822\nID: 493370963807830016```',
                         inline=True)
         embed.add_field(name='Versionen',
                         value=f'```Python: {python_version}\nDiscord: {discord.__version__}```',
