@@ -16,7 +16,7 @@ class Utilities(commands.Cog):
 
     @commands.command(name='invite', help='?invite')
     async def invite(self, ctx):
-        invite = await ctx.channel.create_invite(reason="eShrug")
+        invite = await ctx.channel.create_invite(reason="Automated Invite")
         embed = discord.Embed(title=' ',
                               description=f'{ctx.author.mention} Invite Link zum Server **{ctx.guild.name}**\n'
                                           f'[Invite]({invite})',

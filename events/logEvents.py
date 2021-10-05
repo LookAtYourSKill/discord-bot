@@ -6,6 +6,8 @@ class LogEvents(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    MODERATION_LOG_CHANNEL = 882721258301685790
+
     @commands.Cog.listener()
     async def on_member_ban(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()

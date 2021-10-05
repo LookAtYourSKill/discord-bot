@@ -14,7 +14,11 @@ class on_guild(commands.Cog):
             data = json.load(f)
 
         new_server = {
-            "servername": str(guild.name),
+            "SERVERNAME": str(guild.name),
+            "MESSAGE_LOG_CHANNEL": "",
+            "MODERATION_LOG_CHANNEL": "",
+            "WELCOME_CHANNEL": "",
+            "LEAVE_CHANNEL": "",
             "warns": {
 
             }
@@ -29,7 +33,7 @@ class on_guild(commands.Cog):
             data = json.load(f)
 
         old_server = {
-            "servername": str(guild.name),
+            "SERVERNAME": str(guild.name),
             "warns": {
 
             }

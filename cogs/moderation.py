@@ -4,9 +4,6 @@ import json
 import discord
 from discord.ext import commands
 
-MESSAGE_LOG_CHANNEL = [872945922743619657]
-MODERATION_LOG_CHANNEL = [882721258301685790]
-
 
 class Moderation(commands.Cog):
     def __init__(self, bot):
@@ -25,7 +22,7 @@ class Moderation(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
         else:
-            await member.ban(reason=reason)
+            await member.ban(reason=reason, delete_message_days=1)
             embed = discord.Embed(title=f'',
                                   description=f'Der User **{member.mention}** wurde wegen `{reason}` gebannt!',
                                   color=0x4cd137)
@@ -191,6 +188,12 @@ class Moderation(commands.Cog):
         embed = discord.Embed(title=f'',
                               description=f'Du wurdest auf dem Server **{ctx.guild.name}** wegen `{reason}` gemuted!',
                               color=0x4cd137)
+        embed.add_field(name='**Information**',
+                        value=f'Muted User : `{member}`\n'
+                              f'User ID : `{member.id}`\n'
+                              f'Reason : `{reason}`\n'
+                              f'Muted von : `{ctx.author}`',
+                        inline=False)
         await member.send(embed=embed)
 
     @commands.command()
@@ -512,6 +515,48 @@ class Moderation(commands.Cog):
                                       value='...',
                                       inline=False)
                 await ctx.send(embed=unban_error)
+
+    @commands.command()
+    @commands.has_permissions(ban_members=True)
+    async def softban(self, ctx, member: discord.Member, *, reason=None):
+        invite = await ctx.channel.create_invite(max_uses=1)
+        if not member:
+            await ctx.send('Du musst einen User angeben!')
+        else:
+            embed = discord.Embed(description=f'Der User `{member}` wurde wegen `{reason}` gekickt!')
+            await ctx.send(embed=embed, delete_after=5)
+            await ctx.message.delete()
+
+            member_embed = discord.Embed(description=f'Du wurdest von dem Server `{ctx.guild.name}` wegen `{reason}` gekickt!\n'
+                                                     f'\n'
+                                                     f'**Was ist überhaupt dieser Softban?**\n'
+                                                     f'-> Du wurdest gekickt(gebannt und direkt wieder entbannt), damit all deine Nachrichten gelöscht werden.\n'
+                                                     f'\n'
+                                                     f'Hier ist ein Invite zum Server: [Invite]({invite}).')
+            await member.send(embed=member_embed)
+
+            await member.ban(reason=reason, delete_message_days=1)
+            await member.unban()
+
+    @commands.command()
+    @commands.has_permissions(manage_channels=True)
+    async def block(self, ctx, user: discord.Member = None):
+        if not user:
+            return await ctx.send("Du musst einen User angeben!")
+        embed = discord.Embed(description=f'Der User `{user}` wurde in dem Channel `{ctx.channel}` geblockt!')
+        await ctx.send(embed=embed, delete_after=5)
+        await ctx.message.delete()
+        await ctx.channel.set_permissions(target=user, send_messages=False)
+
+    @commands.command()
+    @commands.has_permissions(manage_channels=True)
+    async def unblock(self, ctx, user: discord.Member = None):
+        if not user:
+            return await ctx.send("Du musst einen User angeben!")
+        embed = discord.Embed(description=f'Der User `{user}` wurde in dem Channel `{ctx.channel}` entblockt!')
+        await ctx.send(embed=embed, delete_after=5)
+        await ctx.message.delete()
+        await ctx.channel.set_permissions(target=user, send_messages=True)
 
 
 def setup(bot):
