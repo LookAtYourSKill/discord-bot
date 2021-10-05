@@ -35,7 +35,7 @@ class onJoin(commands.Cog):
             embed = discord.Embed(title='**Antialt Detection Kick**',
                                   description=f'{member} wurde von der Alt Detection gekickt.')
 
-            channel = self.bot.get_channel(id=882721258301685790)
+            channel = self.bot.get_channel(882721258301685790)
             await channel.send(embed=embed)
 
 def setup(bot):

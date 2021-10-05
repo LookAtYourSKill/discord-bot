@@ -43,7 +43,7 @@ class Utilities(commands.Cog):
     async def _do_repeat(self, ctx, *, inp: str):
         await ctx.send(inp)
 
-    @do_repeat.error
+    @_do_repeat.error
     async def do_repeat_handler(self, ctx, error):
         """A local Error Handler for our command do_repeat.
         This will only listen for errors in do_repeat.

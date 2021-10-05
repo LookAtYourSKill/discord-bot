@@ -53,9 +53,6 @@ class Help(commands.Cog):
         embed.add_field(name='**Gifs**',
                         value='`hug`, `laugh`, `punch`, `cry`, `kiss`, `cat`, `rage`, `highfive`, `handshake`',
                         inline=False)
-        # embed.add_field(name='**Usage**',
-        #                value=f'`usage_ + module`',
-        #                inline=False)
         embed.set_footer(text=f'Angefordert von {ctx.author}\n',
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
