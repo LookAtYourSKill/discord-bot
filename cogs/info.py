@@ -25,7 +25,7 @@ class Info(commands.Cog):
             return thing
 
     @commands.command(name='user', aliases=['userinfo', 'info'])
-    async def user(self, ctx, member: discord.Member = None):
+    async def _user(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
         de = pytz.timezone('Europe/Berlin')
@@ -65,7 +65,7 @@ class Info(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='server', aliases=['serverinfo', 'guild'])
-    async def server(self, ctx):
+    async def _server(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         roles = self.getRoles(ctx.guild.roles)
         days = (datetime.datetime.utcnow() - ctx.guild.created_at).days
@@ -101,8 +101,8 @@ class Info(commands.Cog):
                          icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(name='member')
-    async def members(self, ctx):
+    @commands.command(name='members')
+    async def _members(self, ctx):
         embed = discord.Embed(title='**Member Count**',
                               description=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitglieder!')
         await ctx.send(embed=embed)
@@ -115,8 +115,8 @@ class Info(commands.Cog):
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
         await ctx.send(f'`Join Position : {str(members.index(member) + 1)}`')
 
-    @commands.command()
-    async def joined(self, ctx, member: discord.Member = None):
+    @commands.command(name='joined')
+    async def _joined(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
@@ -126,7 +126,7 @@ class Info(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='bot', aliases=['botinfo'])
-    async def bot(self, ctx):
+    async def _bot(self, ctx):
         BOT_VERSION = 'v1.1'
         PREFIX = '?'
         de = pytz.timezone('Europe/Berlin')
@@ -150,7 +150,7 @@ class Info(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='avatar', aliases=['av'])
-    async def avatar(self, ctx, member: discord.Member = None):
+    async def _avatar(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
         icon = member.avatar_url

@@ -9,7 +9,7 @@ class Administration(commands.Cog):
     @commands.command(name="setstatus")
     @commands.is_owner()
     @commands.cooldown(rate=30, per=1)
-    async def setstatus(self, ctx: commands.Context, *, text: str):
+    async def _setstatus(self, ctx: commands.Context, *, text: str):
         await self.bot.change_presence(activity=discord.Game(name=text))
         embed = discord.Embed(title='<:open:869959941321011260> Erfolgreich',
                               description=f'Successfully changed bot status to **{text}**')
@@ -19,7 +19,7 @@ class Administration(commands.Cog):
 
     @commands.command(name='lock', aliases=['lockdown'])
     @commands.has_permissions(administrator=True)
-    async def lock(self, ctx):
+    async def _lock(self, ctx):
         await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
         embed = discord.Embed(title='',
                               description=f'`{ctx.channel}` ist nun **im Lockdown**',
@@ -34,9 +34,9 @@ class Administration(commands.Cog):
         channel = self.bot.get_channel(id=872945922743619657)
         await channel.send(embed=embed)
 
-    @commands.command()
+    @commands.command(name='release', aliases=['unlock'])
     @commands.has_permissions(administrator=True)
-    async def unlock(self, ctx):
+    async def _unlock(self, ctx):
         await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
 
         embed = discord.Embed(title='',
@@ -54,7 +54,7 @@ class Administration(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(administrator=True)
-    async def say(self, ctx, *, text):
+    async def _say(self, ctx, *, text):
         role = ctx.guild.default_role
         await ctx.send(f'{role}, {text}')
 

@@ -8,9 +8,9 @@ class Toggle(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(name='toggle')
     @commands.has_permissions(manage_channels=True)
-    async def toggle(self, ctx, extension=None):
+    async def _toggle(self, ctx, extension=None):
         member = ctx.author
         embed = discord.Embed(title='',
                               description='')

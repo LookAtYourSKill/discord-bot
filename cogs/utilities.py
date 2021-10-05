@@ -15,7 +15,7 @@ class Utilities(commands.Cog):
         self.bot = bot
 
     @commands.command(name='invite', help='?invite')
-    async def invite(self, ctx):
+    async def _invite(self, ctx):
         invite = await ctx.channel.create_invite(reason="Automated Invite")
         embed = discord.Embed(title=' ',
                               description=f'{ctx.author.mention} Invite Link zum Server **{ctx.guild.name}**\n'
@@ -25,7 +25,7 @@ class Utilities(commands.Cog):
 
     @commands.command(name='botinvite', help='?botinvite')
     @commands.has_permissions(administrator=True)
-    async def botinvite(self, ctx):
+    async def _botinvite(self, ctx):
         embed = discord.Embed(title=' ',
                               description=f'{ctx.author.mention} hier sind zwei Invite Links zum Bot \n'
                                           f'[Botinvite (Custom Rechte)](https://discord.com/oauth2/authorize?client_id=790965419670241281&scope=bot&permissions=261993005047)\n'
@@ -34,13 +34,13 @@ class Utilities(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def embed(self, ctx, *, text: str):
+    async def _embed(self, ctx, *, text: str):
         embed = discord.Embed(title='',
                               description=text)
         await ctx.send(embed=embed)
 
     @commands.command(name='repeat', aliases=['mimic', 'copy', 'echo'])
-    async def do_repeat(self, ctx, *, inp: str):
+    async def _do_repeat(self, ctx, *, inp: str):
         await ctx.send(inp)
 
     @do_repeat.error
@@ -59,7 +59,7 @@ class Utilities(commands.Cog):
                 await ctx.message.delete()
 
     @commands.command(name='invites')
-    async def user_invites(self, ctx, member: discord.Member = None):
+    async def _user_invites(self, ctx, member: discord.Member = None):
         member = member if member else ctx.author
         invites_raw = [invite for invite in (await ctx.guild.invites()) if invite.inviter.id == member.id]
         invites: int = 0
@@ -75,7 +75,7 @@ class Utilities(commands.Cog):
         # await ctx.send(f"Member {member.mention} has {invites} invites")
 
     @commands.command()
-    async def senddm(self, ctx, member: discord.Member = None, *, text=None):
+    async def _senddm(self, ctx, member: discord.Member = None, *, text=None):
         embed = discord.Embed(title='You got MAIL!', color=0xff00c8)
         embed.add_field(name='From:',
                         value=f"{ctx.author.mention}",
@@ -92,7 +92,7 @@ class Utilities(commands.Cog):
         await ctx.message.delete()
 
     @commands.command()
-    async def password(self, ctx):
+    async def _password(self, ctx):
         length = 20
         chars = string.ascii_letters + string.digits + '!@#$%^&*()'
         random.seed = (os.urandom(1024))
@@ -103,7 +103,7 @@ class Utilities(commands.Cog):
         await ctx.message.author.send(''.join(random.choice(chars) for i in range(length)), delete_after=10)
 
     @commands.command()
-    async def reminder(self, ctx, zeit=None, *, reason='Nicht angegeben'):
+    async def _reminder(self, ctx, zeit=None, *, reason='Nicht angegeben'):
         time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
         remindertime = int(zeit[:-1]) * time_convert[zeit[-1]]
         if zeit is None:

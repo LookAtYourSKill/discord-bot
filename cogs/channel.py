@@ -7,8 +7,8 @@ class Channel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def delete_channel(self, ctx, channel: discord.TextChannel):
+    @commands.command(name='delchannel', alises=['delete_channel'])
+    async def _delete_channel(self, ctx, channel: discord.TextChannel):
 
         if channel is not None:
             await channel.delete()
@@ -25,8 +25,8 @@ class Channel(commands.Cog):
             await ctx.send(f'No channel named, "{channel}", was found', delete_after=5)
             await ctx.message.delete()
 
-    @commands.command()
-    async def create_channel(self, ctx, channel_name):
+    @commands.command(name='createchannel', alises=['mkchannel'])
+    async def _create_channel(self, ctx, channel_name):
         guild = ctx.message.guild
 
         if not channel_name:
@@ -42,9 +42,9 @@ class Channel(commands.Cog):
             await ctx.send(f'Irgendetwas ist schiefgelaufen!', delete_after=5)
             await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(name='tempchannel', alises=['temp_channel'])
     @commands.cooldown(rate=5, per=1)
-    async def temp_channel(self, ctx, channel_name, time):
+    async def _temp_channel(self, ctx, channel_name, time):
         if not channel_name:
             await ctx.send('Du hast keine Channel Name angegeben!', delete_after=5)
 

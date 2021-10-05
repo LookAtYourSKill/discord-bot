@@ -46,7 +46,7 @@ class fun(commands.Cog):
             await ctx.send(embed=loseembed)
 
     @commands.command(name='rolling', aliases=['roll'])
-    async def würfel(self, ctx):
+    async def _würfel(self, ctx):
         num = random.randint(1, 6)
         embed = discord.Embed(title='',
                               description='Würfel rollt...')
@@ -58,8 +58,8 @@ class fun(commands.Cog):
                               description=f'Der Würfel ist auf **der Nummer {num}** gelandet!')
         await würfel_message.edit(embed=embed)
 
-    @commands.command(aliases=['rockpapersissors', 'scheresteinpapier'])
-    async def rps(self, ctx, name=None):
+    @commands.command(name='rps', aliases=['rockpapersissors', 'scheresteinpapier'])
+    async def _rps(self, ctx, name=None):
         rps = ['Stein', 'Papier', 'Schere']
         if name is None or name not in rps:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -113,8 +113,8 @@ class fun(commands.Cog):
                                       description='Unbekannter Fehler ist aufgetreten!')
                 await ctx.send(embed=embed)
 
-    @commands.command()
-    async def num_game(self, ctx):
+    @commands.command(name='num_game', aliases=['numgame'])
+    async def _num_game(self, ctx):
         ran_number = random.randint(1, 10)
         member = ctx.author
         embed = discord.Embed(title='Numgame',
@@ -127,23 +127,26 @@ class fun(commands.Cog):
             else:
                 await ctx.send('Nope')
 
-    @commands.command()
-    async def simp(self, ctx):
+    @commands.command(name='simp', aliases=['simprate'])
+    async def _simp(self, ctx):
         ran_percent = random.randint(1, 100)
         embed = discord.Embed(title='Simp Test',
                               description=f'Simp Rate: **{ran_percent}%**',
                               color=discord.colour.Color.blurple())
-        embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/810855960133894154/871855679768514560/pny0r8v4c0m41.png')
+        embed.set_thumbnail(
+            url='https://cdn.discordapp.com/attachments/810855960133894154/871855679768514560/pny0r8v4c0m41.png')
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def sus(self, ctx):
+    @commands.command(name='sus', alises=['susrate'])
+    async def _sus(self, ctx):
         ran_percent = random.randint(1, 100)
         embed = discord.Embed(title='Sus Test',
                               description=f'Sus Rate: **{ran_percent}%**',
                               color=discord.colour.Color.red())
-        embed.set_thumbnail(url='https://static.wikia.nocookie.net/0974aaa7-7e44-4887-997b-2bf06efb6297/scale-to-width/755')
+        embed.set_thumbnail(
+            url='https://static.wikia.nocookie.net/0974aaa7-7e44-4887-997b-2bf06efb6297/scale-to-width/755')
         await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(fun(bot)

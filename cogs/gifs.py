@@ -11,8 +11,8 @@ class Gif(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def hug(self, ctx, member: discord.Member):
+    @commands.command(name='hug')
+    async def _hug(self, ctx, member: discord.Member):
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst umarmen!**')
@@ -26,8 +26,8 @@ class Gif(commands.Cog):
             embed.set_image(url=gif)
             await ctx.send(embed=embed)
 
-    @commands.command()
-    async def laugh(self, ctx):
+    @commands.command(name='laugh')
+    async def _laugh(self, ctx):
         gifs = self.gifData['laugh']
         gif = random.choice(gifs)
 
@@ -36,8 +36,8 @@ class Gif(commands.Cog):
         embed.set_image(url=gif)
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def punch(self, ctx, member: discord.Member):
+    @commands.command(name='punch')
+    async def _punch(self, ctx, member: discord.Member):
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst schlagen!**')
@@ -51,8 +51,8 @@ class Gif(commands.Cog):
             embed.set_image(url=gif)
             await ctx.send(embed=embed)
 
-    @commands.command()
-    async def cry(self, ctx):
+    @commands.command(name='cry')
+    async def _cry(self, ctx):
         gifs = self.gifData['cry']
         gif = random.choice(gifs)
 
@@ -61,8 +61,8 @@ class Gif(commands.Cog):
         embed.set_image(url=gif)
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def kiss(self, ctx, member: discord.Member):
+    @commands.command(name='kiss')
+    async def _kiss(self, ctx, member: discord.Member):
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst küssen!**')
@@ -76,8 +76,8 @@ class Gif(commands.Cog):
             embed.set_image(url=gif)
             await ctx.send(embed=embed)
 
-    @commands.command()
-    async def cat(self, ctx):
+    @commands.command(name='cat')
+    async def _cat(self, ctx):
         gifs = self.gifData['cat']
         gif = random.choice(gifs)
 
@@ -86,8 +86,8 @@ class Gif(commands.Cog):
         embed.set_image(url=gif)
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def rage(self, ctx):
+    @commands.command(name='rage')
+    async def _rage(self, ctx):
         gifs = self.gifData['rage']
         gif = random.choice(gifs)
 
@@ -96,8 +96,8 @@ class Gif(commands.Cog):
         embed.set_image(url=gif)
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def highfive(self, ctx, member: discord.Member):
+    @commands.command(name='highfive')
+    async def _highfive(self, ctx, member: discord.Member):
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst ein Highfive geben!**')
@@ -111,8 +111,8 @@ class Gif(commands.Cog):
             embed.set_image(url=gif)
             await ctx.send(embed=embed)
 
-    @commands.command()
-    async def handshake(self, ctx, member: discord.Member):
+    @commands.command(name='handshake')
+    async def _handshake(self, ctx, member: discord.Member):
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst die Hand geben!**')

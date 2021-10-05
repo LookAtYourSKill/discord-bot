@@ -8,9 +8,9 @@ class createRoles(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=['createGAW'])
+    @commands.command(name='gawrole', aliases=['createGAW'])
     @commands.has_permissions(manage_roles=True)
-    async def gawrole(self, ctx):
+    async def _gawrole(self, ctx):
         role = discord.utils.get(ctx.guild.roles, name='Giveaway')
         if not role:
             try:
@@ -29,9 +29,9 @@ class createRoles(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
-    @commands.command(aliases=['createMute'])
+    @commands.command(name='muterole', aliases=['createMute'])
     @commands.has_permissions(manage_roles=True)
-    async def muterole(self, ctx):
+    async def _muterole(self, ctx):
         role = discord.utils.get(ctx.guild.roles, name='Muted')
         if not role:
             try:
@@ -59,7 +59,7 @@ class createRoles(commands.Cog):
 
     @commands.command(name='giverole')
     @commands.has_permissions(manage_roles=True)
-    async def give_role(self, ctx, user: discord.Member, role: discord.Role):
+    async def _give_role(self, ctx, user: discord.Member, role: discord.Role):
         try:
             await user.add_roles(role, reason=None)
             embed = discord.Embed(title='',
@@ -72,7 +72,7 @@ class createRoles(commands.Cog):
 
     @commands.command(name='removerole', aliases=['rmrole'])
     @commands.has_permissions(manage_roles=True)
-    async def remove_role(self, ctx, user: discord.Member, role: discord.Role):
+    async def _remove_role(self, ctx, user: discord.Member, role: discord.Role):
         try:
             await user.remove_roles(role, reason=None)
             embed = discord.Embed(title='',
@@ -80,12 +80,12 @@ class createRoles(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
-        except:
+        except discord.Forbidden:
             pass
 
-    @commands.command(aliases=['addrole'])
+    @commands.command(aliases=['createrole'])
     @commands.has_permissions(manage_roles=True)
-    async def create_role(self, ctx, *, role_name, color: discord.Color = discord.Color.random()):
+    async def _create_role(self, ctx, *, role_name, color: discord.Color = discord.Color.random()):
         await ctx.guild.create_role(name=role_name, color=color)
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'Die Rolle **{role_name}** wurde erstellt!')
@@ -95,7 +95,7 @@ class createRoles(commands.Cog):
 
     @commands.command(aliases=['delrole'])
     @commands.has_permissions(manage_roles=True)
-    async def delete_role(self, ctx, *, role_name):
+    async def _delete_role(self, ctx, *, role_name):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
         if role:
             try:

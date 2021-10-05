@@ -12,7 +12,7 @@ class Help(commands.Cog):
         self.bot = bot
 
     @commands.command(name='help')
-    async def help(self, ctx):
+    async def _help(self, ctx):
         de = pytz.timezone('Europe/Berlin')
         embed = discord.Embed(title=f'> Help',
                               description=f'`Verwende help [Command] für Hilfe über einen Command`',
@@ -22,7 +22,7 @@ class Help(commands.Cog):
                         value='`toggle`, `setstatus`, `lock`, `unlock`, `say`',
                         inline=False)
         embed.add_field(name='**Moderation**',
-                        value=f'`ban`, `unban`, `unbanid`, `unbanall`, `tempban`, `bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`, `nuke`',
+                        value=f'`ban`, `softban`, `unban`, `unbanid`, `unbanall`, `tempban`, `bannedUserList`, `mute`, `unmute`, `muterole`, `tempmute`, `kick`, `vckick`, `slowmode`, `clear`, `nuke`',
                         inline=False)
         embed.add_field(name='**Automod**',
                         value='`blacklist_add`, `blacklist_remove`, `blacklist_show`, `blacklist_clear`',
@@ -37,7 +37,7 @@ class Help(commands.Cog):
                         value=f'`addition`, `subtraction`, `multiplication`, `dividation`',
                         inline=False)
         embed.add_field(name='**Roles**',
-                        value='`giverole`, `removerole`, `addrole`, `deleterole`')
+                        value='`giverole`, `removerole`, `createrole`, `deleterole`')
         embed.add_field(name='**Giveaway**',
                         value=f'`create`, `gawrole`',
                         inline=False)

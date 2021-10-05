@@ -10,8 +10,8 @@ class MusicBot(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
-    async def join(self, ctx):
+    @commands.command(name='join')
+    async def _join(self, ctx):
         if ctx.author.voice is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description=f'You\'re not in a voice channel!')
@@ -29,14 +29,14 @@ class MusicBot(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(name='leave', aliases=['l'])
-    async def disconnect(self, ctx):
+    async def _disconnect(self, ctx):
         embed = discord.Embed(title='',
                               description='Disconnected the channel!')
         await ctx.send(embed=embed)
         await ctx.voice_client.disconnect()
 
     @commands.command(name='play', aliases=['p'])
-    async def play(self, ctx, url):
+    async def _play(self, ctx, url):
         await ctx.voice_client.pause()
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 - reconnect_streamed 1 -reconnect_delay_max 5',
                           'options': '-vn',
@@ -74,7 +74,7 @@ class MusicBot(commands.Cog):
     #    await ctx.send(embed=embed)
 
     @commands.command(name='volume')
-    async def volume(self, ctx: commands.Context, *, volume: int):
+    async def _volume(self, ctx: commands.Context, *, volume: int):
         """Sets the volume of the player."""
 
         if not ctx.voice_client.is_playing:

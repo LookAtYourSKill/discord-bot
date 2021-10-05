@@ -6,9 +6,9 @@ class rules(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(name='rules')
     @commands.has_permissions(manage_channels=True)
-    async def rules(self, ctx):
+    async def _rules(self, ctx):
         embed = discord.Embed(title='',
                               description='```py\n'
                                           'REGELWERK 📜\n'
