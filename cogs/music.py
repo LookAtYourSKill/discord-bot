@@ -37,7 +37,6 @@ class MusicBot(commands.Cog):
 
     @commands.command(name='play', aliases=['p'])
     async def _play(self, ctx, url):
-        await ctx.voice_client.pause()
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 - reconnect_streamed 1 -reconnect_delay_max 5',
                           'options': '-vn',
                           'executable': r'C:\ffmpeg\ffmpeg-N-103179-gac0408522a-win64-gpl\bin\ffmpeg.exe'}
@@ -51,27 +50,27 @@ class MusicBot(commands.Cog):
             embed = discord.Embed(title='',
                                   description='**Started Playing**')
             await ctx.send(embed=embed)
-            await vc.play(source)
+            vc.play(source)
 
-    #@commands.command()
-    #async def pause(self, ctx):
-    #    embed = discord.Embed(title='',
-    #                          description=f'Paused Playing')
-    #    await ctx.send(embed=embed)
-    #    await ctx.voice_client.pause()
+    @commands.command()
+    async def pause(self, ctx):
+        embed = discord.Embed(title='',
+                              description=f'Paused Playing')
+        await ctx.send(embed=embed)
+        ctx.voice_client.pause()
 
-    #@commands.command()
-    #async def resume(self, ctx):
-    #    embed = discord.Embed(title='',
-    #                          description=f'Resumed Playing')
-    #    await ctx.send(embed=embed)
-    #    await ctx.voice_client.resume()
+    @commands.command()
+    async def resume(self, ctx):
+        embed = discord.Embed(title='',
+                              description=f'Resumed Playing')
+        await ctx.send(embed=embed)
+        ctx.voice_client.resume()
 
-    #@commands.command(name='nowplaying', aliases=['np'])
-    #async def now_playing(self, ctx):
-    #    embed = discord.Embed(title='',
-    #                          description=f'Now playing : `{ctx.voice_client.now_playing()}`')
-    #    await ctx.send(embed=embed)
+    @commands.command(name='nowplaying', aliases=['np'])
+    async def now_playing(self, ctx):
+        embed = discord.Embed(title='',
+                              description=f'Now playing : `{ctx.voice_client.now_playing()}`')
+        await ctx.send(embed=embed)
 
     @commands.command(name='volume')
     async def _volume(self, ctx: commands.Context, *, volume: int):

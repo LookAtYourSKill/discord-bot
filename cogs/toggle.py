@@ -25,7 +25,7 @@ class Toggle(commands.Cog):
                                       description='')
                 embed.add_field(name='Du hast **Cogs gewählt!**\n'
                                      'Hier eine Liste der Cogs:',
-                                value='`administration`, `automod`, `channel`, `error_handler`, `fun`, `gifs`, `giveaway`, `help`, `info`, `math`, `moderation`, `music`, `raft`, `roles`, `rules`, `toggle`, `utilities`')
+                                value='`administration`, `automod`, `channel`, `error_handler`, `fun`, `gifs`, `giveaway`, `help`, `info`, `math`, `moderation`, `music`, `raft`, `roles`, `rules`, `setup`, `toggle`, `utilities`')
                 embed.set_footer(text='Um den Command zu beenden schreibe einfach exit!')
                 await ctx.send(embed=embed)
                 while True:
@@ -478,6 +478,36 @@ class Toggle(commands.Cog):
                                 self.bot.load_extension('cogs.rules')
                                 embed = discord.Embed(title='<:open:869959941321011260> Successful',
                                                       description='Loaded the Extension `rules`')
+                                await ctx.send(embed=embed)
+
+                    if 'setup' in message.content:
+                        embed = discord.Embed(title='Kategorie : Cogs',
+                                              description='Du hast in der **Kategorie Cogs** die Extension `setup` ausgewählt.')
+                        message = await ctx.send(embed=embed)
+                        await asyncio.sleep(2)
+                        embed = discord.Embed(title='Kategorie : Cogs, Extension : setup',
+                                              description='Was möchtest du mit der Extension machen?\n'
+                                                          '`reload`, `unload`, `Load`')
+                        await message.edit(embed=embed)
+                        while True:
+                            message = await self.bot.wait_for('message', check=lambda message: message.author == member)
+                            if 'reload' in message.content:
+                                self.bot.unload_extension('cogs.setup')
+                                self.bot.load_extension('cogs.setup')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Reloaded the Extension `setup`')
+                                await ctx.send(embed=embed)
+
+                            if 'unload' in message.content:
+                                self.bot.unload_extension('cogs.setup')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Unload the Extension `setup`')
+                                await ctx.send(embed=embed)
+
+                            if 'Load' in message.content:
+                                self.bot.load_extension('cogs.setup')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Loaded the Extension `setup`')
                                 await ctx.send(embed=embed)
 
                     if 'toggle' in message.content:

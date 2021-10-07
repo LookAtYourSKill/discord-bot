@@ -15,14 +15,11 @@ class on_guild(commands.Cog):
 
         new_server = {
             "SERVERNAME": str(guild.name),
-            "MESSAGE_LOG_CHANNEL": "",
-            "MODERATION_LOG_CHANNEL": "",
-            "WELCOME_CHANNEL": "",
-            "LEAVE_CHANNEL": "",
             "warns": {
 
             }
         }
+
         data[str(guild.id)] = new_server
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'w') as f:
             json.dump(data, f, indent=4)
@@ -38,7 +35,7 @@ class on_guild(commands.Cog):
 
             }
         }
-        data[str(guild.id)] = old_server
+        data[str(guild.id)].remove(old_server)
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'w') as f:
             json.dump(data, f, indent=4)
 

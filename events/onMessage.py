@@ -72,7 +72,7 @@ class onMessage(commands.Cog):
                     break
 
         ##################################################LINK PROTECTION#######################################################
-        invLink = ['https://', 'http://']
+        invLink = ['https://discord.com/']  # , 'http://']
 
         for synonym in invLink:
             if synonym in message.content.lower():
