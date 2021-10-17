@@ -1,7 +1,6 @@
 import datetime
 import json
 import random
-
 import discord
 from discord.ext import commands
 
@@ -72,7 +71,7 @@ class onMessage(commands.Cog):
                     break
 
         ##################################################LINK PROTECTION#######################################################
-        invLink = ['https://discord.com/, https://discord.gg/']  # , 'http://, https://']
+        invLink = ['https://discord, https://discord.gg/']  # , 'http://, https://']
 
         for synonym in invLink:
             if synonym in message.content.lower():
