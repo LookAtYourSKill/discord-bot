@@ -5,6 +5,10 @@ from discord.ext import commands
 
 
 class fun(commands.Cog):
+    """
+    `A lot of funny commands`
+    """
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -46,7 +50,7 @@ class fun(commands.Cog):
             await ctx.send(embed=loseembed)
 
     @commands.command(name='rolling', aliases=['roll'])
-    async def _würfel(self, ctx):
+    async def würfel(self, ctx):
         num = random.randint(1, 6)
         embed = discord.Embed(title='',
                               description='Würfel rollt...')
@@ -59,7 +63,7 @@ class fun(commands.Cog):
         await würfel_message.edit(embed=embed)
 
     @commands.command(name='rps', aliases=['rockpapersissors', 'scheresteinpapier'])
-    async def _rps(self, ctx, name=None):
+    async def rps(self, ctx, name=None):
         rps = ['Stein', 'Papier', 'Schere']
         if name is None or name not in rps:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -115,7 +119,7 @@ class fun(commands.Cog):
                 await message.edit(embed=embed)
 
     @commands.command(name='num_game', aliases=['numgame'])
-    async def _num_game(self, ctx):
+    async def num_game(self, ctx):
         ran_number = random.randint(1, 10)
         member = ctx.author
         embed = discord.Embed(title='Numgame',
@@ -129,7 +133,7 @@ class fun(commands.Cog):
                 await ctx.send('Nope')
 
     @commands.command(name='simp', aliases=['simprate'])
-    async def _simp(self, ctx):
+    async def simp(self, ctx):
         ran_percent = random.randint(1, 100)
         embed = discord.Embed(title='Simp Test',
                               description=f'Simp Rate: **{ran_percent}%**',
@@ -139,7 +143,7 @@ class fun(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='sus', alises=['susrate'])
-    async def _sus(self, ctx):
+    async def sus(self, ctx):
         ran_percent = random.randint(1, 100)
         embed = discord.Embed(title='Sus Test',
                               description=f'Sus Rate: **{ran_percent}%**',

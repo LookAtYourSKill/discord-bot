@@ -3,12 +3,16 @@ from discord.ext import commands
 
 
 class rules(commands.Cog):
+    """
+    `A prepared rule command`
+    """
+
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='rules')
     @commands.has_permissions(manage_channels=True)
-    async def _rules(self, ctx):
+    async def rules(self, ctx):
         embed = discord.Embed(title='',
                               description='```py\n'
                                           'REGELWERK 📜\n'

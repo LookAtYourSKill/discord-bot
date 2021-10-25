@@ -8,8 +8,6 @@ from termcolor import colored
 import os
 
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?')
-bot.remove_command('help')
-
 
 @bot.event
 async def on_ready():
@@ -26,16 +24,6 @@ async def on_ready():
                   "r+") as file:
             file.truncate(0)
 
-
-# async def status_task():
-#    while True:
-#        await bot.change_presence(
-#            activity=discord.Activity(
-#                type=discord.ActivityType.watching,
-#                name=f'?help | {len(bot.guilds)} servers'),
-#            status=discord.Status.idle)
-#        await asyncio.sleep(3600)
-
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         try:
@@ -51,6 +39,8 @@ for filename in os.listdir('./events'):
             print(f'Loaded ' + colored(f'{filename} ', 'green') + f'Successful')
         except discord.Forbidden:
             print(colored(f'Error, something went wrong with {filename}!', 'red'))
+
+bot.load_extension('dch')
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)

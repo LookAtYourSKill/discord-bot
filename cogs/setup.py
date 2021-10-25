@@ -4,12 +4,16 @@ from discord.ext import commands
 
 
 class Setup(commands.Cog):
+    """
+    `It should be a setup command but it isn't working`
+    """
+
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='setup', aliases=['setup_server'])
     @commands.has_permissions(administrator=True)
-    async def _setup_server(self, ctx):
+    async def setup_server(self, ctx):
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'r') as f:
             data = json.load(f)
         member = ctx.author

@@ -3,11 +3,15 @@ from discord.ext import commands
 
 
 class Raft(commands.Cog):
+    """
+    `Only the raft theme song`
+    """
+
     def __init__(self, client):
         self.client = client
 
     @commands.command(name='raft')
-    async def _raft(self, ctx):
+    async def raft(self, ctx):
         if ctx.author.voice is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description=f'You\'re not in a voice channel!')

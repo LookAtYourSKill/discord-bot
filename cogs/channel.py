@@ -4,11 +4,15 @@ import discord
 from discord.ext import commands
 
 class Channel(commands.Cog):
+    """
+    `To create and delete channel`
+    """
+
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='delchannel', alises=['delete_channel'])
-    async def _delete_channel(self, ctx, channel: discord.TextChannel):
+    async def delete_channel(self, ctx, channel: discord.TextChannel):
 
         if channel is not None:
             await channel.delete()
@@ -26,7 +30,7 @@ class Channel(commands.Cog):
             await ctx.message.delete()
 
     @commands.command(name='createchannel', alises=['mkchannel'])
-    async def _create_channel(self, ctx, channel_name):
+    async def create_channel(self, ctx, channel_name):
         guild = ctx.message.guild
 
         if not channel_name:
@@ -44,7 +48,7 @@ class Channel(commands.Cog):
 
     @commands.command(name='tempchannel', alises=['temp_channel'])
     @commands.cooldown(rate=5, per=1)
-    async def _temp_channel(self, ctx, channel_name, time):
+    async def temp_channel(self, ctx, channel_name, time):
         if not channel_name:
             await ctx.send('Du hast keine Channel Name angegeben!', delete_after=5)
 

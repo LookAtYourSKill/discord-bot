@@ -5,12 +5,16 @@ from discord.ext import commands
 
 
 class createRoles(commands.Cog):
+    """
+    `All roles you need for the bot`
+    """
+
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='gawrole', aliases=['createGAW'])
     @commands.has_permissions(manage_roles=True)
-    async def _gawrole(self, ctx):
+    async def gawrole(self, ctx):
         role = discord.utils.get(ctx.guild.roles, name='Giveaway')
         if not role:
             try:
@@ -31,7 +35,7 @@ class createRoles(commands.Cog):
 
     @commands.command(name='muterole', aliases=['createMute'])
     @commands.has_permissions(manage_roles=True)
-    async def _muterole(self, ctx):
+    async def muterole(self, ctx):
         role = discord.utils.get(ctx.guild.roles, name='Muted')
         if not role:
             try:
@@ -72,7 +76,7 @@ class createRoles(commands.Cog):
 
     @commands.command(name='removerole', aliases=['rmrole'])
     @commands.has_permissions(manage_roles=True)
-    async def _remove_role(self, ctx, user: discord.Member, role: discord.Role):
+    async def remove_role(self, ctx, user: discord.Member, role: discord.Role):
         try:
             await user.remove_roles(role, reason=None)
             embed = discord.Embed(title='',
@@ -85,7 +89,7 @@ class createRoles(commands.Cog):
 
     @commands.command(aliases=['createrole'])
     @commands.has_permissions(manage_roles=True)
-    async def _create_role(self, ctx, *, role_name, color: discord.Color = discord.Color.random()):
+    async def create_role(self, ctx, *, role_name, color: discord.Color = discord.Color.random()):
         await ctx.guild.create_role(name=role_name, color=color)
         embed = discord.Embed(title='<:open:869959941321011260> Successfully',
                               description=f'Die Rolle **{role_name}** wurde erstellt!')
@@ -95,7 +99,7 @@ class createRoles(commands.Cog):
 
     @commands.command(aliases=['delrole'])
     @commands.has_permissions(manage_roles=True)
-    async def _delete_role(self, ctx, *, role_name):
+    async def delete_role(self, ctx, *, role_name):
         role = discord.utils.get(ctx.guild.roles, name=role_name)
         if role:
             try:

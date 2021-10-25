@@ -5,12 +5,16 @@ from discord.ext import commands
 
 
 class Toggle(commands.Cog):
+    """
+    `To disable and activate plugins`
+    """
+
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='toggle')
     @commands.has_permissions(manage_channels=True)
-    async def _toggle(self, ctx, extension=None):
+    async def toggle(self, ctx, extension=None):
         member = ctx.author
         embed = discord.Embed(title='',
                               description='')
@@ -25,7 +29,7 @@ class Toggle(commands.Cog):
                                       description='')
                 embed.add_field(name='Du hast **Cogs gewählt!**\n'
                                      'Hier eine Liste der Cogs:',
-                                value='`administration`, `automod`, `channel`, `error_handler`, `fun`, `gifs`, `giveaway`, `help`, `info`, `math`, `moderation`, `music`, `raft`, `roles`, `rules`, `setup`, `toggle`, `utilities`')
+                                value='`administration`, `automod`, `channel`, `error_handler`, `fun`, `gifs`, `giveaway`, `info`, `math`, `moderation`, `music`, `raft`, `roles`, `rules`, `setup`, `toggle`, `utilities`')
                 embed.set_footer(text='Um den Command zu beenden schreibe einfach exit!')
                 await ctx.send(embed=embed)
                 while True:

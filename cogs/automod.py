@@ -5,12 +5,16 @@ from discord.ext import commands
 
 
 class Automod(commands.Cog):
+    """
+    `Automod which make you life easier`
+    """
+
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='blacklist_add', aliases=['blacklistadd', 'bladd'])
     @commands.has_permissions(manage_messages=True)
-    async def _blacklist_add(self, ctx, text):
+    async def blacklist_add(self, ctx, text):
         with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", "r") as f:
             data = json.load(f)
             if text in data["blacklist"]:
@@ -34,7 +38,7 @@ class Automod(commands.Cog):
 
     @commands.command(name='blacklist_remove', aliases=['blacklistremove', 'blrm'])
     @commands.has_permissions(manage_messages=True)
-    async def _blacklist_remove(self, ctx, text):
+    async def blacklist_remove(self, ctx, text):
         with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", "r") as f:
             data = json.load(f)
             if text not in data["blacklist"]:
@@ -58,7 +62,7 @@ class Automod(commands.Cog):
 
     @commands.command(name='blacklist_show', aliases=['blacklistshow', 'blshow'])
     @commands.has_permissions(manage_messages=True)
-    async def _blacklist_show(self, ctx):
+    async def blacklist_show(self, ctx):
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
             blacklist = 'C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json'
@@ -83,7 +87,7 @@ class Automod(commands.Cog):
 
     @commands.command(name='blacklist_clear', aliases=['blacklistclear', 'blclear'])
     @commands.has_permissions(manage_messages=True)
-    async def _blacklist_clear(self, ctx):
+    async def blacklist_clear(self, ctx):
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
             blacklist = 'C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json'
@@ -111,22 +115,22 @@ class Automod(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)
-    async def _channel_blacklist_add(self):
+    async def channel_blacklist_add(self):
         pass
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)
-    async def _channel_blacklist_remove(self):
+    async def channel_blacklist_remove(self):
         pass
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)
-    async def _channel_blacklist_show(self):
+    async def channel_blacklist_show(self):
         pass
 
     @commands.command()
     @commands.has_permissions(manage_channels=True)
-    async def _channel_blacklist_clear(self):
+    async def channel_blacklist_clear(self):
         pass
 
 def setup(bot):
