@@ -31,6 +31,10 @@ class Info(commands.Cog):
 
     @commands.command(name='user', aliases=['userinfo', 'info'])
     async def user(self, ctx, member: discord.Member = None):
+        """
+        Get an info about a specific user or yourself
+        """
+
         if not member:
             member = ctx.author
         de = pytz.timezone('Europe/Berlin')
@@ -71,6 +75,10 @@ class Info(commands.Cog):
 
     @commands.command(name='server', aliases=['serverinfo', 'guild'])
     async def server(self, ctx):
+        """
+        Get multiple infos about a server
+        """
+
         de = pytz.timezone('Europe/Berlin')
         roles = self.getRoles(ctx.guild.roles)
         days = (datetime.datetime.utcnow() - ctx.guild.created_at).days
@@ -115,6 +123,10 @@ class Info(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def join_position(self, ctx, member: discord.Member = None):
+        """
+        Give you the position, at which place you joined the server
+        """
+
         if not member:
             member = ctx.author
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
@@ -122,6 +134,10 @@ class Info(commands.Cog):
 
     @commands.command(name='joined')
     async def joined(self, ctx, member: discord.Member = None):
+        """
+        Give you the position, at which place you joined the server and when you joined
+        """
+
         if not member:
             member = ctx.author
         members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
@@ -132,6 +148,10 @@ class Info(commands.Cog):
 
     @commands.command(name='bot', aliases=['botinfo'])
     async def bot(self, ctx):
+        """
+        Give a little info about the bot
+        """
+
         BOT_VERSION = 'v1.1'
         PREFIX = '?'
         de = pytz.timezone('Europe/Berlin')
@@ -155,7 +175,11 @@ class Info(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='avatar', aliases=['av'])
-    async def _avatar(self, ctx, member: discord.Member = None):
+    async def avatar(self, ctx, member: discord.Member = None):
+        """
+        Give back the profile picture from a user or yourself
+        """
+
         if not member:
             member = ctx.author
         icon = member.avatar_url

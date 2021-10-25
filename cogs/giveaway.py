@@ -15,6 +15,10 @@ class Giveaway(commands.Cog):
     @commands.command(name='create', aliases=['giveaway'])
     @commands.has_role('Giveaway')
     async def create(self, ctx, time=None, *, prize=None):
+        """
+        Creating a giveaway with a specific prize and time
+        """
+
         if time is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Du musst `eine Zeit` angeben!')

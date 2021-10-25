@@ -13,6 +13,10 @@ class rules(commands.Cog):
     @commands.command(name='rules')
     @commands.has_permissions(manage_channels=True)
     async def rules(self, ctx):
+        """
+        Send a message with prepared rules
+        """
+
         embed = discord.Embed(title='',
                               description='```py\n'
                                           'REGELWERK 📜\n'

@@ -18,6 +18,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='hug')
     async def hug(self, ctx, member: discord.Member):
+        """
+        They are gifs
+        """
+
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst umarmen!**')
@@ -33,6 +37,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='laugh')
     async def laugh(self, ctx):
+        """
+        They are gifs
+        """
+
         gifs = self.gifData['laugh']
         gif = random.choice(gifs)
 
@@ -43,6 +51,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='punch')
     async def punch(self, ctx, member: discord.Member):
+        """
+        They are gifs
+        """
+
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst schlagen!**')
@@ -58,6 +70,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='cry')
     async def cry(self, ctx):
+        """
+        They are gifs
+        """
+
         gifs = self.gifData['cry']
         gif = random.choice(gifs)
 
@@ -68,6 +84,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='kiss')
     async def kiss(self, ctx, member: discord.Member):
+        """
+        They are gifs
+        """
+
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst küssen!**')
@@ -83,6 +103,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='cat')
     async def cat(self, ctx):
+        """
+        They are gifs
+        """
+
         gifs = self.gifData['cat']
         gif = random.choice(gifs)
 
@@ -93,6 +117,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='rage')
     async def rage(self, ctx):
+        """
+        They are gifs
+        """
+
         gifs = self.gifData['rage']
         gif = random.choice(gifs)
 
@@ -103,6 +131,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='highfive')
     async def highfive(self, ctx, member: discord.Member):
+        """
+        They are gifs
+        """
+
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst ein Highfive geben!**')
@@ -118,6 +150,10 @@ class Gif(commands.Cog):
 
     @commands.command(name='handshake')
     async def handshake(self, ctx, member: discord.Member):
+        """
+        They are gifs
+        """
+
         if member == ctx.author:
             embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
                                   description='Du kannst dich leider **nicht selbst die Hand geben!**')

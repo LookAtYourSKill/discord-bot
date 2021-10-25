@@ -14,6 +14,10 @@ class Setup(commands.Cog):
     @commands.command(name='setup', aliases=['setup_server'])
     @commands.has_permissions(administrator=True)
     async def setup_server(self, ctx):
+        """
+        Setup the start settings for the bot
+        """
+
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'r') as f:
             data = json.load(f)
         member = ctx.author

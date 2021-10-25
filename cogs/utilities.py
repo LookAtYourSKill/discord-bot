@@ -20,6 +20,10 @@ class Utilities(commands.Cog):
 
     @commands.command(name='invite', help='?invite')
     async def invite(self, ctx):
+        """
+        Create an invite
+        """
+
         invite = await ctx.channel.create_invite(reason="Automated Invite")
         embed = discord.Embed(title=' ',
                               description=f'{ctx.author.mention} Invite Link zum Server **{ctx.guild.name}**\n'
@@ -30,6 +34,10 @@ class Utilities(commands.Cog):
     @commands.command(name='botinvite', help='?botinvite')
     @commands.has_permissions(administrator=True)
     async def botinvite(self, ctx):
+        """
+        Get two invites, with which you can invite the bot
+        """
+
         embed = discord.Embed(title=' ',
                               description=f'{ctx.author.mention} hier sind zwei Invite Links zum Bot \n'
                                           f'[Botinvite (Custom Rechte)](https://discord.com/oauth2/authorize?client_id=790965419670241281&scope=bot&permissions=261993005047)\n'
@@ -39,12 +47,20 @@ class Utilities(commands.Cog):
 
     @commands.command(name='embed')
     async def embed(self, ctx, *, text: str):
+        """
+        Create an embed with your text
+        """
+
         embed = discord.Embed(title='',
                               description=text)
         await ctx.send(embed=embed)
 
     @commands.command(name='repeat', aliases=['mimic', 'copy', 'echo'])
     async def _do_repeat(self, ctx, *, inp: str):
+        """
+        Repeats your input
+        """
+
         await ctx.send(inp)
 
     @_do_repeat.error
@@ -64,6 +80,10 @@ class Utilities(commands.Cog):
 
     @commands.command(name='invites')
     async def user_invites(self, ctx, member: discord.Member = None):
+        """
+        Display all invites form a user
+        """
+
         member = member if member else ctx.author
         invites_raw = [invite for invite in (await ctx.guild.invites()) if invite.inviter.id == member.id]
         invites: int = 0
@@ -80,6 +100,10 @@ class Utilities(commands.Cog):
 
     @commands.command(name='senddm')
     async def senddm(self, ctx, member: discord.Member = None, *, text=None):
+        """
+        Send a user a direct message with the text you want
+        """
+
         embed = discord.Embed(title='You got MAIL!', color=0xff00c8)
         embed.add_field(name='From:',
                         value=f"{ctx.author.mention}",
@@ -97,6 +121,10 @@ class Utilities(commands.Cog):
 
     @commands.command(name='password', aliases=['pw'])
     async def password(self, ctx):
+        """
+        Create a safe password, which only will be visible in your Direct messages for about  10 seconds
+        """
+
         length = 20
         chars = string.ascii_letters + string.digits + '!@#$%^&*()'
         random.seed = (os.urandom(1024))
@@ -108,6 +136,10 @@ class Utilities(commands.Cog):
 
     @commands.command(name='reminder')
     async def reminder(self, ctx, zeit=None, *, reason='Nicht angegeben'):
+        """
+        Creates a reminder for a time you want
+        """
+
         time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
         remindertime = int(zeit[:-1]) * time_convert[zeit[-1]]
         if zeit is None:

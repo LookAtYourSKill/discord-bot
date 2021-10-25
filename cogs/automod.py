@@ -15,6 +15,10 @@ class Automod(commands.Cog):
     @commands.command(name='blacklist_add', aliases=['blacklistadd', 'bladd'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_add(self, ctx, text):
+        """
+        Add a word to the blacklist!
+        """
+
         with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", "r") as f:
             data = json.load(f)
             if text in data["blacklist"]:
@@ -39,6 +43,10 @@ class Automod(commands.Cog):
     @commands.command(name='blacklist_remove', aliases=['blacklistremove', 'blrm'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_remove(self, ctx, text):
+        """
+        Remove a word to the blacklist!
+        """
+
         with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", "r") as f:
             data = json.load(f)
             if text not in data["blacklist"]:
@@ -63,6 +71,10 @@ class Automod(commands.Cog):
     @commands.command(name='blacklist_show', aliases=['blacklistshow', 'blshow'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_show(self, ctx):
+        """
+        Display the whole blacklist!
+        """
+
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
             blacklist = 'C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json'
@@ -88,6 +100,10 @@ class Automod(commands.Cog):
     @commands.command(name='blacklist_clear', aliases=['blacklistclear', 'blclear'])
     @commands.has_permissions(manage_messages=True)
     async def blacklist_clear(self, ctx):
+        """
+        Remove all words out of the blacklist!
+        """
+
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
             blacklist = 'C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json'

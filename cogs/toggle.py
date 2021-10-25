@@ -15,6 +15,10 @@ class Toggle(commands.Cog):
     @commands.command(name='toggle')
     @commands.has_permissions(manage_channels=True)
     async def toggle(self, ctx, extension=None):
+        """
+        Toggle a extension from the cogs or event folder with chat interaction
+        """
+
         member = ctx.author
         embed = discord.Embed(title='',
                               description='')

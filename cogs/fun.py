@@ -14,6 +14,10 @@ class fun(commands.Cog):
 
     @commands.command(name='8ball', aliases=['8Ball'])
     async def ball(self, ctx, *, question):
+        """
+        Ask the bot a question!
+        """
+
         if question is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Bitte gebe `eine Frage` ein!')
@@ -32,6 +36,10 @@ class fun(commands.Cog):
     @commands.command(aliases=['slot'])
     @commands.cooldown(rate=2, per=1)
     async def slots(self, ctx):
+        """
+        Play slots but without a prize
+        """
+
         emojis = ["🍎", '🍇', '🍒', '🍉', '🍓']
 
         grabbed = ''
@@ -50,20 +58,28 @@ class fun(commands.Cog):
             await ctx.send(embed=loseembed)
 
     @commands.command(name='rolling', aliases=['roll'])
-    async def würfel(self, ctx):
+    async def dice(self, ctx):
+        """
+        Roll a dice
+        """
+
         num = random.randint(1, 6)
         embed = discord.Embed(title='',
                               description='Würfel rollt...')
-        würfel_message = await ctx.send(embed=embed)
+        dice_message = await ctx.send(embed=embed)
 
         await asyncio.sleep(1)
 
         embed = discord.Embed(title='',
                               description=f'Der Würfel ist auf **der Nummer {num}** gelandet!')
-        await würfel_message.edit(embed=embed)
+        await dice_message.edit(embed=embed)
 
     @commands.command(name='rps', aliases=['rockpapersissors', 'scheresteinpapier'])
     async def rps(self, ctx, name=None):
+        """
+        Play rock, paper, scissors against the bot!
+        """
+
         rps = ['Stein', 'Papier', 'Schere']
         if name is None or name not in rps:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -120,6 +136,10 @@ class fun(commands.Cog):
 
     @commands.command(name='num_game', aliases=['numgame'])
     async def num_game(self, ctx):
+        """
+        Guess a random number between 1 and 10
+        """
+
         ran_number = random.randint(1, 10)
         member = ctx.author
         embed = discord.Embed(title='Numgame',
@@ -134,6 +154,10 @@ class fun(commands.Cog):
 
     @commands.command(name='simp', aliases=['simprate'])
     async def simp(self, ctx):
+        """
+        Just a random test if you are a simp or not
+        """
+
         ran_percent = random.randint(1, 100)
         embed = discord.Embed(title='Simp Test',
                               description=f'Simp Rate: **{ran_percent}%**',
@@ -144,6 +168,10 @@ class fun(commands.Cog):
 
     @commands.command(name='sus', alises=['susrate'])
     async def sus(self, ctx):
+        """
+        Just a simply test if you are sus or not
+        """
+
         ran_percent = random.randint(1, 100)
         embed = discord.Embed(title='Sus Test',
                               description=f'Sus Rate: **{ran_percent}%**',

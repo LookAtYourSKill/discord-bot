@@ -12,6 +12,10 @@ class Raft(commands.Cog):
 
     @commands.command(name='raft')
     async def raft(self, ctx):
+        """
+        Plays the most chilled song in the world. The Raft Theme song
+        """
+
         if ctx.author.voice is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description=f'You\'re not in a voice channel!')

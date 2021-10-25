@@ -17,7 +17,11 @@ class Moderation(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member, *, reason='None'):
+    async def ban(self, ctx, member: discord.Member, *, reason):
+        """
+        Ban a user from your server
+        """
+
         if member == ctx.author:
             embed = discord.Embed(title='',
                                   description=f'{member.mention}, du kannst dich **nicht selbst bannen**!',
@@ -43,6 +47,10 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, *, member):
+        """
+        Unban a user from your server
+        """
+
         banned_users = await ctx.guild.bans()
         member_name, member_discriminator = member.split('#')
 
@@ -69,7 +77,11 @@ class Moderation(commands.Cog):
             await ctx.message.delete()
 
     @commands.command(name='idunban', aliases=['unbanid'])
-    async def _id_unban(self, ctx, id: int):
+    async def id_unban(self, ctx, id: int):
+        """
+        Unban a user from your server but with the id
+        """
+
         user = await self.bot.fetch_user(id)
         await ctx.guild.unban(user)
         embed = discord.Embed(title=f'',
@@ -85,6 +97,10 @@ class Moderation(commands.Cog):
     @commands.command(name='unbanall', aliases=['uball'])
     @commands.has_permissions(ban_members=True)
     async def mass_unban(self, ctx):
+        """
+        Unban everybody banned on your server
+        """
+
         ban_list = await ctx.guild.bans()
         for users in ban_list:
             try:
@@ -106,6 +122,17 @@ class Moderation(commands.Cog):
     @commands.command(aliases=['tban'])
     @commands.has_permissions(ban_members=True)
     async def tempban(self, ctx, member: discord.Member, time=None, *, reason='Nicht angegeben'):
+        """
+        Ban a user for a specific time
+        Times:
+
+        "s": second/s
+        "m": minute/s
+        "h": hour/s
+        "d": day/s
+        "w": week/s
+        """
+
         if time is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Du musst `eine Zeit` angeben!')
@@ -141,6 +168,10 @@ class Moderation(commands.Cog):
     @commands.command(name='banned')
     @commands.has_permissions(ban_members=True)
     async def bannedUserList(self, ctx):
+        """
+        Display all banned users in chat
+        """
+
         empty = []
         bannedUser = await ctx.guild.bans()
         if bannedUser == empty:
@@ -159,6 +190,10 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def mute(self, ctx, member: discord.Member, *, reason=None):
+        """
+        Give a user a role, with what the user cant wirte in channels
+        """
+
         guild = ctx.guild
         mutedRole = discord.utils.get(guild.roles, name="Muted")
         if not mutedRole:
@@ -200,6 +235,10 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def unmute(self, ctx, member: discord.Member):
+        """
+        Remove the mute role from the user
+        """
+
         mutedRole = discord.utils.get(ctx.guild.roles, name="Muted")
         await member.remove_roles(mutedRole)
         embed = discord.Embed(title=f'',
@@ -229,6 +268,17 @@ class Moderation(commands.Cog):
     @commands.command(aliases=['tmute'])
     @commands.has_permissions(kick_members=True)
     async def tempmute(self, ctx, member: discord.Member, time=None, *, reason='Nicht angegeben'):
+        """
+        Mute a user for a specific time
+        Times:
+
+        "s": second/s
+        "m": minute/s
+        "h": hour/s
+        "d": day/s
+        "w": week/s
+        """
+
         if time is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Du musst `eine Zeit` angeben!')
@@ -286,6 +336,10 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
+        """
+        Kick a user from your server
+        """
+
         if member == ctx.author:
             embed = discord.Embed(title=' ',
                                   description=f'{member.mention}, du kannst dich selbst **nicht kicken**!',
@@ -312,6 +366,10 @@ class Moderation(commands.Cog):
     @commands.command(name='dc', aliases=['vckick', 'vc'])
     @commands.has_permissions(kick_members=True)
     async def vc_kick(self, ctx, member: discord.Member):
+        """
+        Disconnect a user from the vc, if he is in one
+        """
+
         await member.edit(voice_channel=None)
         embed = discord.Embed(title='',
                               description=f'**{member}** wurde `aus dem Voice Channel gekickt!`',
@@ -331,6 +389,10 @@ class Moderation(commands.Cog):
     @commands.command(name='clear', aliases=['purge'])
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount=5):
+        """
+        Clear an amount of messages
+        """
+
         await asyncio.sleep(1)
         await ctx.message.delete()
         await ctx.channel.purge(limit=amount)
@@ -352,6 +414,10 @@ class Moderation(commands.Cog):
     @commands.command(name='nuke')
     @commands.has_permissions(manage_channels=True)
     async def nuke(self, ctx, channel: discord.TextChannel = None):
+        """
+        If in a channel is too much spam, you nuke the channel. It will be cloned automatically
+        """
+
         if not channel:
             nuke_channel = ctx.channel
             new_channel = await nuke_channel.clone(reason="Has been Nuked!")
@@ -395,6 +461,10 @@ class Moderation(commands.Cog):
     @commands.command(name='slowmode', aliases=['sm'])
     @commands.has_permissions(manage_channels=True)
     async def slowmode(self, ctx, sec: int = None, channel: discord.TextChannel = None):
+        """
+        Add or remove a slowmode from a channel
+        """
+
         if sec == 0:
             channel = ctx.channel
             await channel.edit(slowmode_delay=0)
@@ -433,6 +503,10 @@ class Moderation(commands.Cog):
 
     @commands.command(name='warn')
     async def warn(self, ctx, *, member=discord.Member, reason=None):
+        """
+        Warn a user in your server. At 3 Warns the user will get banned!
+        """
+
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'r+') as f:
             data = json.load(f)
 
@@ -476,6 +550,10 @@ class Moderation(commands.Cog):
 
     @commands.command(name='unwarn')
     async def unwarn(self, ctx, *, member: int):
+        """
+        Here you can unwarn the user you warned before with the warn command
+        """
+
         member = self.bot.get_user(member)
         with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'r+') as f:
             data = json.load(f)
@@ -520,6 +598,10 @@ class Moderation(commands.Cog):
     @commands.command(name='softban')
     @commands.has_permissions(ban_members=True)
     async def softban(self, ctx, member: discord.Member, *, reason=None):
+        """
+        The softban is for people, which send Scam/Fishing or invite links. When you softban them they'll get kicked and the messages deleted
+        """
+
         invite = await ctx.channel.create_invite(max_uses=1)
         if not member:
             await ctx.send('Du musst einen User angeben!')
@@ -542,6 +624,10 @@ class Moderation(commands.Cog):
     @commands.command(name='block')
     @commands.has_permissions(manage_channels=True)
     async def block(self, ctx, user: discord.Member = None):
+        """
+        Block a user from chatting in the channel you use the command in
+        """
+
         if not user:
             return await ctx.send("Du musst einen User angeben!")
         embed = discord.Embed(description=f'Der User `{user}` wurde in dem Channel `{ctx.channel}` geblockt!')
@@ -552,6 +638,10 @@ class Moderation(commands.Cog):
     @commands.command(name='unblock')
     @commands.has_permissions(manage_channels=True)
     async def unblock(self, ctx, user: discord.Member = None):
+        """
+        Unblock the user you blocked before in the channel you wrote the block command
+        """
+
         if not user:
             return await ctx.send("Du musst einen User angeben!")
         embed = discord.Embed(description=f'Der User `{user}` wurde in dem Channel `{ctx.channel}` entblockt!')

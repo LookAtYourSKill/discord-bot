@@ -16,6 +16,10 @@ class MusicBot(commands.Cog):
 
     @commands.command(name='join')
     async def join(self, ctx):
+        """
+        Let the player join your channel
+        """
+
         if ctx.author.voice is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description=f'You\'re not in a voice channel!')
@@ -34,6 +38,10 @@ class MusicBot(commands.Cog):
 
     @commands.command(name='leave', aliases=['l'])
     async def disconnect(self, ctx):
+        """
+        Let the player disconnect from the channel you wanted him to join
+        """
+
         embed = discord.Embed(title='',
                               description='Disconnected the channel!')
         await ctx.send(embed=embed)
@@ -41,6 +49,10 @@ class MusicBot(commands.Cog):
 
     @commands.command(name='play', aliases=['p'])
     async def play(self, ctx, url):
+        """
+        Try to play a song from the url you send
+        """
+
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 - reconnect_streamed 1 -reconnect_delay_max 5',
                           'options': '-vn',
                           'executable': r'C:\ffmpeg\ffmpeg-N-103179-gac0408522a-win64-gpl\bin\ffmpeg.exe'}
@@ -58,6 +70,10 @@ class MusicBot(commands.Cog):
 
     @commands.command()
     async def pause(self, ctx):
+        """
+        Let the player pause playing the music
+        """
+
         embed = discord.Embed(title='',
                               description=f'Paused Playing')
         await ctx.send(embed=embed)
@@ -65,6 +81,10 @@ class MusicBot(commands.Cog):
 
     @commands.command()
     async def resume(self, ctx):
+        """
+        Let the player resume playing the music
+        """
+
         embed = discord.Embed(title='',
                               description=f'Resumed Playing')
         await ctx.send(embed=embed)
@@ -72,6 +92,10 @@ class MusicBot(commands.Cog):
 
     @commands.command(name='nowplaying', aliases=['np'])
     async def now_playing(self, ctx):
+        """
+        Display the song which is playing right now
+        """
+
         embed = discord.Embed(title='',
                               description=f'Now playing : `{ctx.voice_client.now_playing()}`')
         await ctx.send(embed=embed)
