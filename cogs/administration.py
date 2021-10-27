@@ -1,6 +1,11 @@
 import asyncio
+import json
 import discord
 from discord.ext import commands
+
+with open("./config.json", "r") as config_file:
+    config = json.load(config_file)
+
 
 class Administration(commands.Cog):
     """
@@ -43,7 +48,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=config["moderation_log_channel"])
         await channel.send(embed=embed)
 
     @commands.command(name='release', aliases=['unlock'])
@@ -65,7 +70,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=872945922743619657)
+        channel = self.bot.get_channel(id=882721258301685790)
         await channel.send(embed=embed)
 
     @commands.command(alises=['announce'])
@@ -77,6 +82,7 @@ class Administration(commands.Cog):
 
         role = ctx.guild.default_role
         await ctx.send(f'{role}, {text}')
+
 
 def setup(bot):
     bot.add_cog(Administration(bot)

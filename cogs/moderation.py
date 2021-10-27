@@ -1,9 +1,10 @@
 import asyncio
 import json
-
 import discord
 from discord.ext import commands
 
+with open("./config.json", "r") as f:
+    config = json.load(f)
 
 class Moderation(commands.Cog):
     """
@@ -116,7 +117,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=882721258301685790)
+        channel = self.bot.get_channel(id=config["moderation_log_channel"])
         await channel.send(embed=embed)
 
     @commands.command(aliases=['tban'])
@@ -162,7 +163,7 @@ class Moderation(commands.Cog):
         await asyncio.sleep(tempbantime)
         await member.unban()
 
-        channel = self.bot.get_channel(id=882721258301685790)
+        channel = self.bot.get_channel(id=config["moderation_log_channel"])
         await channel.send(embed=embed)
 
     @commands.command(name='banned')

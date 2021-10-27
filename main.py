@@ -9,6 +9,7 @@ import os
 
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?')
 
+
 @bot.event
 async def on_ready():
     print(colored(f'Botid: {bot.user.id} - Name: {bot.user.name}#{bot.user.discriminator}', 'green'))
@@ -17,13 +18,14 @@ async def on_ready():
             type=discord.ActivityType.watching,
             name=f'?help | {len(bot.guilds)} servers'),
         status=discord.Status.idle)
-    # bot.loop.create_task(status_task())
     while True:
         await asyncio.sleep(10)
         with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/spam-detection.json",
                   "r+") as file:
             file.truncate(0)
 
+
+print(colored('COG PART', 'red'))
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         try:
@@ -32,10 +34,20 @@ for filename in os.listdir('./cogs'):
         except discord.Forbidden:
             print(colored(f'Error, something went wrong with {filename}!', 'red'))
 
+print(colored('EVENT PART', 'red'))
 for filename in os.listdir('./events'):
     if filename.endswith('.py'):
         try:
             bot.load_extension(f'events.{filename[:-3]}')
+            print(f'Loaded ' + colored(f'{filename} ', 'green') + f'Successful')
+        except discord.Forbidden:
+            print(colored(f'Error, something went wrong with {filename}!', 'red'))
+
+print(colored('LISTENER PART', 'red'))
+for filename in os.listdir('./listener'):
+    if filename.endswith('.py'):
+        try:
+            bot.load_extension(f'listener.{filename[:-3]}')
             print(f'Loaded ' + colored(f'{filename} ', 'green') + f'Successful')
         except discord.Forbidden:
             print(colored(f'Error, something went wrong with {filename}!', 'red'))
