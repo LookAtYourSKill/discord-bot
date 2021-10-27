@@ -10,7 +10,7 @@ class Gif(commands.Cog):
     `They are gifs`
     """
 
-    with open('utils/gifs/gifs.json') as gifs:
+    with open('utils/json/gifs.json') as gifs:
         gifData = json.load(gifs)
 
     def __init__(self, bot):
