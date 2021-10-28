@@ -1,6 +1,11 @@
 import datetime
+import json
+
 import discord
 from discord.ext import commands
+
+with open('./config.json', 'r') as config_file:
+    config = json.load(config_file)
 
 
 class onJoin(commands.Cog):
@@ -9,7 +14,7 @@ class onJoin(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        channel = self.bot.get_channel(855515768341921818)
+        channel = self.bot.get_channel(id=config['welcome_channel'])
         embed = discord.Embed(title=f'> Welcome',
                               description=f'{member.mention} Joined **{member.guild.name}**',
                               color=discord.Color.random(),
@@ -22,7 +27,7 @@ class onJoin(commands.Cog):
         await channel.send(embed=embed)
 
     @commands.Cog.listener()
-    async def antialt(self, member=None):
+    async def antialt(self, member: discord.Member = None):
         days = (datetime.datetime.utcnow() - member.created_at).days
         if days < 7:
             embed = discord.Embed(title='**Antialt Detection Kick**',
@@ -35,8 +40,9 @@ class onJoin(commands.Cog):
             embed = discord.Embed(title='**Antialt Detection Kick**',
                                   description=f'{member} wurde von der Alt Detection gekickt.')
 
-            channel = self.bot.get_channel(882721258301685790)
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
             await channel.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(onJoin(bot))

@@ -4,6 +4,8 @@ import random
 import discord
 from discord.ext import commands
 
+with open('./config.json', 'r') as config_file:
+    config = json.load(config_file)
 
 class onMessage(commands.Cog):
     def __init__(self, bot):
@@ -13,19 +15,18 @@ class onMessage(commands.Cog):
     async def on_message_edit(self, old, new):
         if old.author.bot:
             return
-        channel = self.bot.get_channel(872945922743619657)
-        embed = discord.Embed(title="Message Edited",
+        channel = self.bot.get_channel(id=config['message_log_channel'])
+        embed = discord.Embed(title="",
                               description=f"{old.author.mention} has edited a message in {old.channel.mention} \n[Jump to the Message]({new.jump_url})",
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Old Message",
                         value=f'{old.content}',
-                        # f'{(f"Embed oder Nachricht: {old.content}" if old.author.bot else f"{old.content}")}',
                         inline=False)
         embed.add_field(name="New Message",
                         value=f'{new.content}',
-                        # f'{(f"Embed oder Nachricht: {new.content}" if new.author.bot else f"{new.content}")}',
                         inline=False)
+        embed.set_author(name='Message Edited', icon_url=old.author.avatar_url)
         # embed.add_field(name="Channel", value=f'{old.channel.mention}', inline=False)
         # embed.add_field(name="Author", value=f'{old.author.mention}', inline=False)
         await channel.send(embed=embed)
@@ -34,15 +35,15 @@ class onMessage(commands.Cog):
     async def on_message_delete(self, message):
         if message.author.bot:
             return
-        channel = self.bot.get_channel(872945922743619657)
-        embed = discord.Embed(title="Message Deleted",
+        channel = self.bot.get_channel(id=config['message_log_channel'])
+        embed = discord.Embed(title="",
                               description=f'A message from {message.author.mention} was deleted in {message.channel.mention} ',
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Message",
                         value=f'{message.content}',
-                        # f'{(f"Embed oder Nachricht: {message.content}" if message.author.bot else f"{message.content}")}',
                         inline=False)
+        embed.set_author(name='Message Deleted', icon_url=message.author.avatar_url)
         # embed.add_field(name="Author", value=f'{message.author.mention}', inline=False)
         # embed.add_field(name="Channel", value=f'{message.channel.mention}', inline=False)
         await channel.send(embed=embed)

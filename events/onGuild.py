@@ -15,7 +15,7 @@ class on_guild(commands.Cog):
         new_server = {
             "SERVERNAME": str(guild.name),
             "MESSAGE_LOG_CHANNEL": (),
-            "MOD_LOG_CHANNEL": (),
+            "MODERATION_LOG_CHANNEL": (),
             "WELCOME_CHANNEL": (),
             "LEAVE_CHANNEL": (),
             "WARNS": {
@@ -35,7 +35,7 @@ class on_guild(commands.Cog):
         old_server = {
             "SERVERNAME": str(guild.name),
             "MESSAGE_LOG_CHANNEL": (),
-            "MOD_LOG_CHANNEL": (),
+            "MODERATION_LOG_CHANNEL": (),
             "WELCOME_CHANNEL": (),
             "LEAVE_CHANNEL": (),
             "WARNS": {

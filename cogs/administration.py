@@ -48,7 +48,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=config["moderation_log_channel"])
+        channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
     @commands.command(name='release', aliases=['unlock'])
@@ -70,7 +70,7 @@ class Administration(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=882721258301685790)
+        channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
     @commands.command(alises=['announce'])

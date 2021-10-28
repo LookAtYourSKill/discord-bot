@@ -6,6 +6,7 @@ from discord.ext import commands
 with open("./config.json", "r") as f:
     config = json.load(f)
 
+
 class Moderation(commands.Cog):
     """
     `Moderation commands all you can need`
@@ -117,12 +118,12 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=config["moderation_log_channel"])
+        channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
     @commands.command(aliases=['tban'])
     @commands.has_permissions(ban_members=True)
-    async def tempban(self, ctx, member: discord.Member, time=None, *, reason='Nicht angegeben'):
+    async def tempban(self, ctx, member: discord.Member, time=None, *, reason=None):
         """
         Ban a user for a specific time
         Times:
@@ -219,7 +220,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=882721258301685790)
+        channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
         embed = discord.Embed(title=f'',
@@ -253,7 +254,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=882721258301685790)
+        channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
         embed = discord.Embed(title=f'',
@@ -268,7 +269,7 @@ class Moderation(commands.Cog):
 
     @commands.command(aliases=['tmute'])
     @commands.has_permissions(kick_members=True)
-    async def tempmute(self, ctx, member: discord.Member, time=None, *, reason='Nicht angegeben'):
+    async def tempmute(self, ctx, member: discord.Member, time=None, *, reason=None):
         """
         Mute a user for a specific time
         Times:
@@ -317,7 +318,7 @@ class Moderation(commands.Cog):
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=882721258301685790)
+        channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
         embed = discord.Embed(title=f'',
@@ -384,7 +385,7 @@ class Moderation(commands.Cog):
         await asyncio.sleep(1)
         await ctx.message.delete()
 
-        channel = self.bot.get_channel(id=882721258301685790)
+        channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
     @commands.command(name='clear', aliases=['purge'])
@@ -409,7 +410,7 @@ class Moderation(commands.Cog):
                         inline=False)
         await ctx.send(embed=embed, delete_after=5)
 
-        channel = self.bot.get_channel(id=882721258301685790)
+        channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
     @commands.command(name='nuke')
@@ -433,7 +434,7 @@ class Moderation(commands.Cog):
                             inline=False)
             await new_channel.send(embed=embed, delete_after=5)
 
-            channel = self.bot.get_channel(id=882721258301685790)
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
             await channel.send(embed=embed)
 
         nuke_channel = discord.utils.get(ctx.guild.channels, name=channel.name)
@@ -451,7 +452,7 @@ class Moderation(commands.Cog):
                             inline=False)
             await new_channel.send(embed=embed, delete_after=5)
 
-            channel = self.bot.get_channel(id=882721258301685790)
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
             await channel.send(embed=embed)
 
         else:
@@ -461,7 +462,7 @@ class Moderation(commands.Cog):
 
     @commands.command(name='slowmode', aliases=['sm'])
     @commands.has_permissions(manage_channels=True)
-    async def slowmode(self, ctx, sec: int = None, channel: discord.TextChannel = None):
+    async def slowmode(self, ctx, sec: int = None):
         """
         Add or remove a slowmode from a channel
         """
@@ -480,7 +481,7 @@ class Moderation(commands.Cog):
                             inline=False)
             await ctx.send(embed=embed, delete_after=5)
 
-            channel = self.bot.get_channel(id=882721258301685790)
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
             await channel.send(embed=embed)
 
         else:
@@ -499,11 +500,11 @@ class Moderation(commands.Cog):
             await ctx.message.delete()
             await ctx.send(embed=embed, delete_after=5)
 
-            channel = self.bot.get_channel(id=882721258301685790)
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
             await channel.send(embed=embed)
 
     @commands.command(name='warn')
-    async def warn(self, ctx, *, member=discord.Member, reason=None):
+    async def warn(self, ctx, member=discord.Member, *, reason=None):
         """
         Warn a user in your server. At 3 Warns the user will get banned!
         """
@@ -588,7 +589,7 @@ class Moderation(commands.Cog):
                 with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
                     json.dump(data, f, indent=4)
 
-            except:
+            except discord.Forbidden:
                 unban_error = discord.Embed(title='.',
                                             description='.')
                 unban_error.add_field(name='...',
@@ -611,12 +612,13 @@ class Moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-            member_embed = discord.Embed(description=f'Du wurdest von dem Server `{ctx.guild.name}` wegen `{reason}` gekickt!\n'
-                                                     f'\n'
-                                                     f'**Was ist überhaupt dieser Softban?**\n'
-                                                     f'-> Du wurdest gekickt(gebannt und direkt wieder entbannt), damit all deine Nachrichten gelöscht werden.\n'
-                                                     f'\n'
-                                                     f'Hier ist ein Invite zum Server: [Invite]({invite}).')
+            member_embed = discord.Embed(
+                description=f'Du wurdest von dem Server `{ctx.guild.name}` wegen `{reason}` gekickt!\n'
+                            f'\n'
+                            f'**Was ist überhaupt dieser Softban?**\n'
+                            f'-> Du wurdest gekickt(gebannt und direkt wieder entbannt), damit all deine Nachrichten gelöscht werden.\n'
+                            f'\n'
+                            f'Hier ist ein Invite zum Server: [Invite]({invite}).')
             await member.send(embed=member_embed)
 
             await member.ban(reason=reason, delete_message_days=1)

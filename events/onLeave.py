@@ -1,6 +1,10 @@
 import datetime
+import json
 import discord
 from discord.ext import commands
+
+with open('./config.json', 'r') as config_file:
+    config = json.load(config_file)
 
 class onLeave(commands.Cog):
     def __init__(self, bot):
@@ -8,7 +12,7 @@ class onLeave(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        channel = self.bot.get_channel(855531452385067039)
+        channel = self.bot.get_channel(id=config['leave_channel'])
         embed = discord.Embed(title=f'> Left',
                               description=f'{member.mention} left **{member.guild.name}**',
                               color=discord.Color.random(),

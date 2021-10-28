@@ -52,6 +52,7 @@ for filename in os.listdir('./listener'):
         except discord.Forbidden:
             print(colored(f'Error, something went wrong with {filename}!', 'red'))
 
+print(colored('Finished setting up files!', 'red'))
 bot.load_extension('dch')
 
 with open('config.json', 'r') as config_file:

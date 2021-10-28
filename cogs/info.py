@@ -186,11 +186,11 @@ class Info(commands.Cog):
         embed = discord.Embed(title='',
                               color=0x123456,
                               timestamp=datetime.datetime.utcnow())
-        embed.set_author(name=f'{member.name}#{member.discriminator}',
+        embed.set_author(name=f'{member}',
                          icon_url=icon)
         embed.set_image(url=icon)
         embed.set_footer(icon_url=ctx.author.avatar_url,
-                         text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}')
+                         text=f'Angefordert von {member}')
         await ctx.send(embed=embed)
 
 

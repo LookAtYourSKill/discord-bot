@@ -1,17 +1,19 @@
+import json
+
 import discord
 from discord.ext import commands
 
+with open('./config.json', 'r') as config_file:
+    config = json.load(config_file)
 
 class LogEvents(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    MODERATION_LOG_CHANNEL = 882721258301685790
-
     @commands.Cog.listener()
     async def on_member_ban(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.ban).flatten()
-        channel = guild.get_channel(882721258301685790)
+        channel = guild.get_channel(id=config['moderation_log_channel'])
         logs = logs[0]
         if logs.target == member:
             embed = discord.Embed(title='Ban Log',
@@ -27,7 +29,7 @@ class LogEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_member_unban(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
-        channel = guild.get_channel(882721258301685790)
+        channel = guild.get_channel(id=config['moderation_log_channel'])
         logs = logs[0]
         if logs.target == member:
             embed = discord.Embed(title='Unban Log',
@@ -42,7 +44,7 @@ class LogEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_member_kick(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.kick).flatten()
-        channel = guild.get_channel(882721258301685790)
+        channel = guild.get_channel(id=config['moderation_log_channel'])
         logs = logs[0]
         if logs.target == member:
             embed = discord.Embed(title='Kick Log',
