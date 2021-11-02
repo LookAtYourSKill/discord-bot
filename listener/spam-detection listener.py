@@ -1,6 +1,10 @@
+import json
+
 import discord
 from discord.ext import commands
 
+with open('./config.json', 'r') as config_file:
+    config = json.load(config_file)
 
 class spamDetection(commands.Cog):
     def __init__(self, bot):
@@ -20,7 +24,7 @@ class spamDetection(commands.Cog):
             file.writelines(f"{str(message.author.id)}\n")
             if counter > 7:
                 await message.guild.kick(message.author, reason="Spam Detection")
-                channel = message.guild.get_channel(872945922743619657)
+                channel = message.guild.get_channel(config['moderation_log_channel'])
                 embed = discord.Embed(title='',
                                       description='',
                                       color=discord.Color.random())

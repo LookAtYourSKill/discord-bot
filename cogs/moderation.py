@@ -140,6 +140,7 @@ class Moderation(commands.Cog):
                                   description='Du musst `eine Zeit` angeben!')
             return await ctx.send(embed=embed)
         if reason is None:
+            reason = 'Nicht angegeben'
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Die `Reason` is nicht angegeben!\n'
                                               'Sie wurde **automatisch auf \'Nicht angegeben\' gesetzt!**')
