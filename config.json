@@ -1,7 +1,0 @@
-{
-  "token": "TOKEN",
-  "message_log_channel": message_log_channel_id,
-  "moderation_log_channel": moderation_log_channel_id,
-  "welcome_channel": welcome_channel_id,
-  "leave_channel": leave_channel_id
-}
