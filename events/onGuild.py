@@ -9,7 +9,7 @@ class on_guild(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'r+') as f:
+        with open('utils/json/on_guild.json', 'r+') as f:
             data = json.load(f)
 
         new_server = {
@@ -24,12 +24,12 @@ class on_guild(commands.Cog):
         }
 
         data[str(guild.id)] = new_server
-        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'w') as f:
+        with open('utils/json/on_guild.json', 'w') as f:
             json.dump(data, f, indent=4)
 
     @commands.Cog.listener()
     async def on_guild_leave(self, guild):
-        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'r') as f:
+        with open('utils/json/on_guild.json', 'r') as f:
             data = json.load(f)
 
         old_server = {
@@ -43,7 +43,7 @@ class on_guild(commands.Cog):
             }
         }
         data[str(guild.id)].remove(old_server)
-        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/on_guild.json', 'w') as f:
+        with open('utils/json/on_guild.json', 'w') as f:
             json.dump(data, f, indent=4)
 
 
