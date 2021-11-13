@@ -1,0 +1,10 @@
+{
+  "token": "TOKEN",
+  "message_log_channel": ,
+  "moderation_log_channel": ,
+  "welcome_channel": ,
+  "leave_channel": ,
+  "verify_channel": ,
+  "bot_role": ,
+  "verified_role": 
+}
