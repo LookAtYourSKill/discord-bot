@@ -83,7 +83,7 @@ class createRoles(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
-        except:
+        except discord.Forbidden:
             pass
 
     @commands.command(name='removerole', aliases=['rmrole'])

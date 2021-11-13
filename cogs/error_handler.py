@@ -29,9 +29,6 @@ class CommandErrorHandler(commands.Cog):
         ignored = (commands.CommandNotFound,)
         error = getattr(error, 'original', error)
 
-        if isinstance(error, ignored):
-            return
-
         if isinstance(error, commands.MissingRequiredArgument):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (MissingRequiredArgument)
                                   description=f'Nach **{ctx.command}** fehlt ein Argument!\n'

@@ -14,6 +14,10 @@ class onJoin(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
+        #if member.bot:
+        #    role = discord.utils.get(self.bot.guild.roles, id=config["bot_role"])
+        #    await self.bot.add_role(self.bot, role)
+
         channel = self.bot.get_channel(id=config['welcome_channel'])
         embed = discord.Embed(title=f'> Welcome',
                               description=f'{member.mention} Joined **{member.guild.name}**',
