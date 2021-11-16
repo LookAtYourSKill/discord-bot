@@ -9,7 +9,7 @@ class blacklistListener(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/blacklist.json", 'r') as f:
+        with open("./utils/json/blacklist.json", 'r') as f:
             data = json.load(f)
         for bad_word in data["blacklist"]:
             if bad_word in message.content.lower():

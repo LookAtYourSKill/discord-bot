@@ -175,20 +175,20 @@ class Moderation(commands.Cog):
         Display all banned users in chat
         """
 
-        empty = []
         bannedUser = await ctx.guild.bans()
-        if bannedUser == empty:
+        if not bannedUser:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='`Auf diesem Server ist niemand gebannt!`',
                                   color=0x4cd137)
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
         else:
+            embed = discord.Embed(title='Banned User Check')
             for i in bannedUser:
-                await ctx.send(f"```{i}```")
-            embed = discord.Embed(title='',
-                                  description=f'Gebe `?clear {len(bannedUser) + 1}` ein, `um die vielen Nachrichten zu löschen!`')
-            await ctx.send(embed=embed, delete_after=3)
+                embed.add_field(name='User',
+                                value=f'{i}',
+                                inline=False)
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
