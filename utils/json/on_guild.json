@@ -1,1 +1,10 @@
-{}
+{
+    "855160466452381696": {
+        "SERVERNAME": "BotTesting",
+        "MESSAGE_LOG_CHANNEL": [],
+        "MODERATION_LOG_CHANNEL": [],
+        "WELCOME_CHANNEL": [],
+        "LEAVE_CHANNEL": [],
+        "WARNS": {}
+    }
+}
