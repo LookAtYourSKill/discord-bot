@@ -505,7 +505,7 @@ class Moderation(commands.Cog):
             await channel.send(embed=embed)
 
     @commands.command(name='warn')
-    async def warn(self, ctx, member=discord.Member, *, reason=None):
+    async def warn(self, ctx, member: discord.Member, *, reason=None):
         """
         Warn a user in your server. At 3 Warns the user will get banned!
         """
