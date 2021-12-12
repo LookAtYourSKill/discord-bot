@@ -9,3 +9,6 @@ class Setup(commands.Cog):
     @commands.command()
     async def setup(self):
         pass
+
+def setup(bot):
+    bot.add_cog(Setup(bot))

@@ -26,8 +26,6 @@ class onMessage(commands.Cog):
                         value=f'{new.content}',
                         inline=False)
         embed.set_author(name='Message Edited', icon_url=old.author.avatar_url)
-        # embed.add_field(name="Channel", value=f'{old.channel.mention}', inline=False)
-        # embed.add_field(name="Author", value=f'{old.author.mention}', inline=False)
         await channel.send(embed=embed)
 
     @commands.Cog.listener()
@@ -43,8 +41,6 @@ class onMessage(commands.Cog):
                         value=f'{message.content}',
                         inline=False)
         embed.set_author(name='Message Deleted', icon_url=message.author.avatar_url)
-        # embed.add_field(name="Author", value=f'{message.author.mention}', inline=False)
-        # embed.add_field(name="Channel", value=f'{message.channel.mention}', inline=False)
         await channel.send(embed=embed)
 
 
