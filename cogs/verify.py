@@ -39,7 +39,10 @@ class Verify(commands.Cog):
             msg = await self.bot.wait_for('message', check=check, timeout=15)
             if msg.content == 'KZEXEH':
                 await ctx.send(embed=passembed)
-                await member.add_roles(role)
+                try:
+                    await member.add_roles(role)
+                except discord.Forbidden:
+                    pass
             else:
                 await ctx.send(embed=failembed)
 
