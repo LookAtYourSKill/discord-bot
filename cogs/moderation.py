@@ -107,7 +107,7 @@ class Moderation(commands.Cog):
         for users in ban_list:
             try:
                 await ctx.guild.unban(user=users.user)
-            except:
+            except discord.Forbidden:
                 pass
         embed = discord.Embed(title='',
                               description='`Unbanned all banned Users`',
@@ -123,7 +123,7 @@ class Moderation(commands.Cog):
 
     @commands.command(aliases=['tban'])
     @commands.has_permissions(ban_members=True)
-    async def tempban(self, ctx, member: discord.Member, time=None, *, reason=None):
+    async def tempban(self, ctx, member: discord.Member, time=None, *, reason='Nicht Angegeben'):
         """
         Ban a user for a specific time
         Times:
@@ -143,7 +143,7 @@ class Moderation(commands.Cog):
             reason = 'Nicht angegeben'
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Die `Reason` is nicht angegeben!\n'
-                                              'Sie wurde **automatisch auf \'Nicht angegeben\' gesetzt!**')
+                                              f'Sie wurde **automatisch auf {reason} gesetzt!**')
             return await ctx.send(embed=embed)
         time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
         tempbantime = int(time[:-1]) * time_convert[time[-1]]
@@ -510,14 +510,14 @@ class Moderation(commands.Cog):
         Warn a user in your server. At 3 Warns the user will get banned!
         """
 
-        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'r+') as f:
+        with open('utils/json/warns.json', 'r+') as f:
             data = json.load(f)
 
         if str(member.id) not in data[str(ctx.guild.id)]["warns"]:
             data[str(ctx.guild.id)]["warns"][str(member.id)] = {}
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Name"] = str(member)
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] = 1
-            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+            with open('utils/json/warns.json', 'w') as f:
                 json.dump(data, f, indent=4)
 
             embed = discord.Embed(title='Warn System')
@@ -528,7 +528,7 @@ class Moderation(commands.Cog):
 
         elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
-            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+            with open('utils/json/warns.json', 'w') as f:
                 json.dump(data, f, indent=4)
 
             embed = discord.Embed(title='Warn System')
@@ -540,7 +540,7 @@ class Moderation(commands.Cog):
 
         elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
-            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+            with open('utils/json/warns.json', 'w') as f:
                 json.dump(data, f, indent=4)
 
             embed = discord.Embed(title='Warn System')
@@ -558,18 +558,18 @@ class Moderation(commands.Cog):
         """
 
         member = self.bot.get_user(member)
-        with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'r+') as f:
+        with open('utils/json/warns.json', 'r+') as f:
             data = json.load(f)
 
         if data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
             data[str(ctx.guild.id)]["warns"].pop(str(member.id))
-            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+            with open('utils/json/warns.json', 'w') as f:
                 json.dump(data, f, indent=4)
 
         elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
-            with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+            with open('utils/json/warns.json', 'w') as f:
                 json.dump(data, f, indent=4)
 
         elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 3:
@@ -587,7 +587,7 @@ class Moderation(commands.Cog):
                                         inline=False)
                     await ctx.send(embed=ban_error)
                 data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
-                with open('C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/warns.json', 'w') as f:
+                with open('utils/json/warns.json', 'w') as f:
                     json.dump(data, f, indent=4)
 
             except discord.Forbidden:
