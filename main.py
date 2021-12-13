@@ -24,10 +24,6 @@ async def on_ready():
                   "r+") as file:
             file.truncate(0)
 
-for filename in os.listdir('./cogs'):
-    if filename.startswith('_'):
-        break
-
 print(colored('COG PART', 'red'))
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
