@@ -145,6 +145,7 @@ class roles(commands.Cog):
             await ctx.message.delete()
 
     @commands.command(name='getroles', aliases=['getr'])
+    @commands.has_permissions(manage_roles=True)
     async def get_roles(self, ctx, member: discord.Member):
         embed = discord.Embed(title=f'Roles from {member}')
         for i in member.roles:
@@ -154,6 +155,7 @@ class roles(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='removeroles', aliases=['remover'])
+    @commands.has_permissions(manage_roles=True)
     async def remove_roles(self, ctx, member: discord.Member):
         members_roles = member.roles
 
