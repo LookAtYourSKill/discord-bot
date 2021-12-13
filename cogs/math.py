@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class Math(commands.Cog):
+class math(commands.Cog):
     """
     `You could do it by yourself but it is easier with this`
     """
@@ -55,4 +55,4 @@ class Math(commands.Cog):
         await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(Math(bot))
+    bot.add_cog(math(bot))

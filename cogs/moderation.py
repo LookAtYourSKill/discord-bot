@@ -7,7 +7,7 @@ with open("./config.json", "r") as f:
     config = json.load(f)
 
 
-class Moderation(commands.Cog):
+class moderation(commands.Cog):
     """
     `Moderation commands all you can need`
     """
@@ -655,5 +655,5 @@ class Moderation(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Moderation(bot)
+    bot.add_cog(moderation(bot)
                 )

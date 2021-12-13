@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 
-class Automod(commands.Cog):
+class automod(commands.Cog):
     """
     `Automod which make you life easier`
     """
@@ -150,4 +150,4 @@ class Automod(commands.Cog):
         pass
 
 def setup(bot):
-    bot.add_cog(Automod(bot))
+    bot.add_cog(automod(bot))

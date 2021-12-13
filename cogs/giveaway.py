@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 
-class Giveaway(commands.Cog):
+class giveaway(commands.Cog):
     """
     `A giveaway command`
     """
@@ -47,5 +47,5 @@ class Giveaway(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Giveaway(bot)
+    bot.add_cog(giveaway(bot)
                 )

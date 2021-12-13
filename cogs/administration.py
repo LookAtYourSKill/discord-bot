@@ -7,7 +7,7 @@ with open("./config.json", "r") as config_file:
     config = json.load(config_file)
 
 
-class Administration(commands.Cog):
+class administration(commands.Cog):
     """
     `Admin commands`
     """
@@ -85,5 +85,5 @@ class Administration(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Administration(bot)
+    bot.add_cog(administration(bot)
                 )

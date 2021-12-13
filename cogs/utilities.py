@@ -1,16 +1,13 @@
 import asyncio
 import os
 import string
-import time
 import random
 import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 
-bot = commands.Bot(intense=discord.Intents.all(), command_prefix='?')
 
-
-class Utilities(commands.Cog):
+class utilities(commands.Cog):
     """
     `A few commands may useless my not`
     """
@@ -158,5 +155,5 @@ class Utilities(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Utilities()
+    bot.add_cog(utilities()
                 )

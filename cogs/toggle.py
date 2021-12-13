@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 
-class Toggle(commands.Cog):
+class toggle(commands.Cog):
     """
     `To disable and activate plugins`
     """
@@ -33,7 +33,7 @@ class Toggle(commands.Cog):
                                       description='')
                 embed.add_field(name='Du hast **Cogs gewählt!**\n'
                                      'Hier eine Liste der Cogs:',
-                                value='`administration`, `automod`, `channel`, `error_handler`, `fun`, `gifs`, `giveaway`, `info`, `math`, `moderation`, `music`, `raft`, `roles`, `rules`, `setup`, `toggle`, `utilities`')
+                                value='`administration`, `automod`, `channel`, `error_handler`, `fun`, `gifs`, `giveaway`, `info`, `math`, `moderation`, `music`, `raft`, `roles`, `rules`, `setup`, `toggle`, `utilities`, `verify`')
                 embed.set_footer(text='Um den Command zu beenden schreibe einfach exit!')
                 await ctx.send(embed=embed)
                 while True:
@@ -585,6 +585,43 @@ class Toggle(commands.Cog):
                         await ctx.send(embed=embed)
                         break
 
+                    if 'verify' in message.content:
+                        embed = discord.Embed(title='Kategorie : Cogs',
+                                              description='Du hast in der **Kategorie Cogs** die Extension `verify` ausgewählt.')
+                        message = await ctx.send(embed=embed)
+                        await asyncio.sleep(2)
+                        embed = discord.Embed(title='Kategorie : Cogs, Extension : verify',
+                                              description='Was möchtest du mit der Extension machen?\n'
+                                                          '`reload`, `unload`, `Load`')
+                        await message.edit(embed=embed)
+                        while True:
+                            message = await self.bot.wait_for('message', check=lambda message: message.author == member)
+                            if 'reload' in message.content:
+                                self.bot.unload_extension('cogs.verify')
+                                self.bot.load_extension('cogs.verify')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Reloaded the Extension `verify`')
+                                await ctx.send(embed=embed)
+
+                            if 'unload' in message.content:
+                                self.bot.unload_extension('cogs.verify')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Unload the Extension `verify`')
+                                await ctx.send(embed=embed)
+
+                            if 'Load' in message.content:
+                                self.bot.load_extension('cogs.verify')
+                                embed = discord.Embed(title='<:open:869959941321011260> Successful',
+                                                      description='Loaded the Extension `verify`')
+                                await ctx.send(embed=embed)
+
+                    elif 'exit' in message.content or 'Exit' in message.content:
+                        embed = discord.Embed(title='Du hast die Auswahl von Cogs verlassen!',
+                                              description='Jetzt kannst du `Events` auswählen, oder den command komplett verlassen mit `exit`')
+                        embed.set_footer(text='You exited the selection between Cogs')
+                        await ctx.send(embed=embed)
+                        break
+
             elif "Events" in message.content or 'events' in message.content:
                 embed = discord.Embed(title='',
                                       description='')
@@ -915,4 +952,4 @@ class Toggle(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Toggle(bot))
+    bot.add_cog(toggle(bot))

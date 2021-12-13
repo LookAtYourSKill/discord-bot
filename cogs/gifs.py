@@ -4,7 +4,7 @@ import random
 from discord.ext import commands
 
 
-class Gif(commands.Cog):
+class gifs(commands.Cog):
 
     """
     `They are gifs`
@@ -169,5 +169,5 @@ class Gif(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Gif(bot)
+    bot.add_cog(gifs(bot)
                 )

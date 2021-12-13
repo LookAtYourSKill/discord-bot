@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class Raft(commands.Cog):
+class raft(commands.Cog):
     """
     `Only the raft theme song`
     """
@@ -38,4 +38,4 @@ class Raft(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(Raft(client))
+    client.add_cog(raft(client))

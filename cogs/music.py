@@ -6,7 +6,7 @@ import ffmpeg
 client = commands.Bot(intense=discord.Intents.all(), command_prefix='?')
 
 
-class MusicBot(commands.Cog):
+class music(commands.Cog):
     """
     `Isn't really working at all`
     """
@@ -115,5 +115,5 @@ class MusicBot(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(MusicBot(client)
+    client.add_cog(music(client)
                    )

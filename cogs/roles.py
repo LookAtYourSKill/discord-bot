@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 
-class createRoles(commands.Cog):
+class roles(commands.Cog):
     """
     `All roles you need for the bot`
     """
@@ -143,4 +143,4 @@ class createRoles(commands.Cog):
             await ctx.message.delete()
 
 def setup(bot):
-    bot.add_cog(createRoles(bot))
+    bot.add_cog(roles(bot))
