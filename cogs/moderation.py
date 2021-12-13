@@ -46,40 +46,40 @@ class moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-    @commands.command()
-    @commands.has_permissions(ban_members=True)
-    async def unban(self, ctx, *, member):
-        """
-        Unban a user from your server
-        """
+    # @commands.command()
+    # @commands.has_permissions(ban_members=True)
+    # async def unban(self, ctx, *, member):
+    #    """
+    #    Unban a user from your server
+    #    """
 
-        banned_users = await ctx.guild.bans()
-        member_name, member_discriminator = member.split('#')
+    #    banned_users = await ctx.guild.bans()
+    #    member_name, member_discriminator = member.split('#')
 
-        for ban_entry in banned_users:
-            user = ban_entry.user
+    #    for ban_entry in banned_users:
+    #        user = ban_entry.user
 
-        if (user.name, user.discriminator) == (member_name, member_discriminator):
-            await ctx.guild.unban(user)
-            embed = discord.Embed(title=f'',
-                                  description=f'Der User {user.mention} wurde entbannt!',
-                                  color=0x4cd137)
-            embed.add_field(name='**Information**',
-                            value=f'Entbannter User : `{user}`\n'
-                                  f'User ID : `{user.id}`\n'
-                                  f'Entbannt von : `{ctx.author}`')
-            await ctx.send(embed=embed, delete_after=5)
-            await ctx.message.delete()
-            return
-        else:
-            embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
-                                  description='`Du kannst niemanden entbannen, der nichtmal gebannt ist!`')
-            await ctx.send(embed=embed, delete_after=5)
-            await asyncio.sleep(1)
-            await ctx.message.delete()
+    #    if (user.name, user.discriminator) == (member_name, member_discriminator):
+    #        await ctx.guild.unban(user)
+    #        embed = discord.Embed(title=f'',
+    #                              description=f'Der User {user.mention} wurde entbannt!',
+    #                              color=0x4cd137)
+    #        embed.add_field(name='**Information**',
+    #                        value=f'Entbannter User : `{user}`\n'
+    #                              f'User ID : `{user.id}`\n'
+    #                              f'Entbannt von : `{ctx.author}`')
+    #        await ctx.send(embed=embed, delete_after=5)
+    #        await ctx.message.delete()
+    #        return
+    #    else:
+    #        embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
+    #                              description='`Du kannst niemanden entbannen, der nichtmal gebannt ist!`')
+    #        await ctx.send(embed=embed, delete_after=5)
+    #        await asyncio.sleep(1)
+    #        await ctx.message.delete()
 
-    @commands.command(name='idunban', aliases=['unbanid'])
-    async def id_unban(self, ctx, id: int):
+    @commands.command(name='unban', aliases=['idunban'])
+    async def unban(self, ctx, id: int):
         """
         Unban a user from your server but with the id
         """
@@ -208,6 +208,12 @@ class moderation(commands.Cog):
                                               read_message_history=False,
                                               read_messages=False
                                               )
+
+        members_roles = member.roles
+
+        for i in range(len(members_roles) - 1):
+            await member.remove_roles(members_roles[i + 1])
+
         await member.add_roles(mutedRole, reason=reason)
         embed = discord.Embed(title=f'',
                               description=f'Der User **{member.name}** wurde wegen `{reason}` gemuted!',
@@ -286,16 +292,57 @@ class moderation(commands.Cog):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Du musst `eine Zeit` angeben!')
             return await ctx.send(embed=embed)
-        if reason is None:
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='Die `Reason` is nicht angegeben!\n'
-                                              'Sie wurde **automatisch auf \'Nicht angegeben\' gesetzt!**')
-            return await ctx.send(embed=embed)
 
         time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
         tempmutetime = int(time[:-1]) * time_convert[time[-1]]
         guild = ctx.guild
         mutedRole = discord.utils.get(guild.roles, name="Muted")
+
+        if reason is None:
+            reason = 'Nicht Angegeben'
+            embed = discord.Embed(description='Du hast kein Grund angegeben!\n'
+                                              f'Er wurde **automatisch auf {reason} gesetzt!**')
+            await ctx.author.send(embed=embed)
+
+            members_roles = member.roles
+
+            for i in range(len(members_roles) - 1):
+                await member.remove_roles(members_roles[i + 1])
+
+            await member.add_roles(mutedRole, reason=reason)
+
+            embed = discord.Embed(title=f'',
+                                  description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gemuted!',
+                                  color=0x4cd137)
+            embed.add_field(name='**Information**',
+                            value=f'Tempmuted User : `{member}`\n'
+                                  f'User ID : `{member.id}`\n'
+                                  f'Reason : `{reason}`\n'
+                                  f'Time : `{time}`\n'
+                                  f'Tempmuted von : `{ctx.author}`',
+                            inline=False)
+            await ctx.send(embed=embed, delete_after=5)
+            await ctx.message.delete()
+
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            await channel.send(embed=embed)
+
+            embed = discord.Embed(title=f'',
+                                  description=f'Du wurdest auf dem Server **{ctx.guild.name}** für `{time}` wegen `{reason}` gemuted!',
+                                  color=0x4cd137)
+            embed.add_field(name='**Information**',
+                            value=f'Tempmuted User : `{member}`\n'
+                                  f'User ID : `{member.id}`\n'
+                                  f'Reason : `{reason}`\n'
+                                  f'Time : `{time}`\n'
+                                  f'Tempmuted von : `{ctx.author}`',
+                            inline=False)
+            await member.send(embed=embed)
+
+            await asyncio.sleep(tempmutetime)
+            await member.remove_roles(mutedRole)
+            return
+
         if not mutedRole:
             mutedRole = await guild.create_role(name="Muted")
             for channel in guild.channels:
@@ -305,6 +352,12 @@ class moderation(commands.Cog):
                                               read_message_history=False,
                                               read_messages=False
                                               )
+
+        members_roles = member.roles
+
+        for i in range(len(members_roles) - 1):
+            await member.remove_roles(members_roles[i + 1])
+
         await member.add_roles(mutedRole, reason=reason)
         embed = discord.Embed(title=f'',
                               description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gemuted!',

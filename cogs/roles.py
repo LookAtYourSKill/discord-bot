@@ -1,8 +1,10 @@
 import asyncio
-
+import json
 import discord
 from discord.ext import commands
 
+with open("./config.json", "r") as f:
+    config = json.load(f)
 
 class roles(commands.Cog):
     """
@@ -141,6 +143,33 @@ class roles(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await asyncio.sleep(1)
             await ctx.message.delete()
+
+    @commands.command(name='getroles', aliases=['getr'])
+    async def get_roles(self, ctx, member: discord.Member):
+        embed = discord.Embed(title=f'Roles from {member}')
+        for i in member.roles:
+            embed.add_field(name='Getted Role',
+                            value=f'{i}',
+                            inline=False)
+        await ctx.send(embed=embed)
+
+    @commands.command(name='removeroles', aliases=['remover'])
+    async def remove_roles(self, ctx, member: discord.Member):
+        members_roles = member.roles
+
+        for i in range(len(members_roles) - 1):
+            await member.remove_roles(members_roles[i + 1])
+
+            if len(members_roles) == 1:
+                await ctx.send(f'The member has no roles. {member.mention} should do the ?verify command!')
+
+            else:
+                role = discord.utils.get(ctx.guild.roles, id=916860116207280159)
+                await member.add_roles(role)
+                await member.remove_roles(role)
+
+        await ctx.send(f'Removed {len(members_roles) - 1} from {member.mention} successful!')
+
 
 def setup(bot):
     bot.add_cog(roles(bot))

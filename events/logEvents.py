@@ -29,7 +29,7 @@ class LogEvents(commands.Cog):
     @commands.Cog.listener()
     async def on_member_unban(self, guild, member):
         logs = await guild.audit_logs(limit=1, action=discord.AuditLogAction.unban).flatten()
-        channel = guild.get_channel(id=config['moderation_log_channel'])
+        channel = guild.get_channel(config['moderation_log_channel'])
         logs = logs[0]
         if logs.target == member:
             embed = discord.Embed(title='Unban Log',

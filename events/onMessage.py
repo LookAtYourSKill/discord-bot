@@ -33,8 +33,7 @@ class onMessage(commands.Cog):
         if message.author.bot:
             return
         channel = self.bot.get_channel(id=config['message_log_channel'])
-        embed = discord.Embed(title="",
-                              description=f'A message from {message.author.mention} was deleted in {message.channel.mention} ',
+        embed = discord.Embed(description=f'A message from {message.author.mention} was deleted in {message.channel.mention} ',
                               color=discord.Color.random(),
                               timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Message",

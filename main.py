@@ -6,8 +6,7 @@ from discord.ext.commands import bot
 from termcolor import colored
 import os
 
-bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?')
-
+bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?', owner_id=493370963807830016)
 
 @bot.event
 async def on_ready():
@@ -23,6 +22,9 @@ async def on_ready():
                   "r+") as file:
             file.truncate(0)
 
+for filename in os.listdir('./cogs'):
+    if filename.startswith('_'):
+        break
 
 print(colored('COG PART', 'red'))
 for filename in os.listdir('./cogs'):

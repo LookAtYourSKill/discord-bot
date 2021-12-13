@@ -3,8 +3,6 @@ import youtube_dl
 from discord.ext import commands
 import ffmpeg
 
-client = commands.Bot(intense=discord.Intents.all(), command_prefix='?')
-
 
 class music(commands.Cog):
     """

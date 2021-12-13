@@ -13,7 +13,7 @@ class toggle(commands.Cog):
         self.bot = bot
 
     @commands.command(name='toggle')
-    @commands.has_permissions(manage_channels=True)
+    @commands.is_owner()
     async def toggle(self, ctx, extension=None):
         """
         Toggle a extension from the cogs or event folder with chat interaction

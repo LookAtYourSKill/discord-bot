@@ -10,7 +10,7 @@ with open('./config.json', 'r') as config_file:
 
 class verify(commands.Cog):
     """
-    A Verify Command, for a verification for your server
+    `A Verify Command, for a verification for your server`
     """
 
     def __init__(self, bot):
