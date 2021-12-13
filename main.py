@@ -6,6 +6,8 @@ from discord.ext.commands import bot
 from termcolor import colored
 import os
 
+# TODO: Make the bot saver and add role history stuff, so a guy with a role under you cant remove roles from you...
+
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?', owner_id=493370963807830016)
 
 @bot.event
