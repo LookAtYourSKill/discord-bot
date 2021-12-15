@@ -73,7 +73,7 @@ class administration(commands.Cog):
         channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
-    @commands.command(alises=['announce'])
+    @commands.command(aliases=['announce'])
     @commands.has_permissions(administrator=True)
     async def say(self, ctx, *, text):
         """

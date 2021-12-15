@@ -26,10 +26,10 @@ class verify(commands.Cog):
         def check(m):
             return m.author == ctx.author
 
-        role = ctx.guild.get_role(int(config['verified_role']))
+        role = ctx.guild.get_role(config['verified_role'])
 
-        for roles in ctx.author.roles():
-            if int(role) in roles:
+        for roles in member.roles:
+            if role in roles:
                 await ctx.send('You are already verified!')
             else:
 
