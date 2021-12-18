@@ -4,7 +4,6 @@ import string
 import random
 import discord
 from discord.ext import commands
-from discord.ext.commands import bot
 
 
 class utilities(commands.Cog):
@@ -12,7 +11,7 @@ class utilities(commands.Cog):
     `A few commands may useless my not`
     """
 
-    def __init__(self):
+    def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name='invite', help='?invite')
@@ -155,5 +154,4 @@ class utilities(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(utilities()
-                )
+    bot.add_cog(utilities(bot))

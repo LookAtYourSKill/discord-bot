@@ -4,9 +4,6 @@ import random
 import discord
 from discord.ext import commands
 
-with open('./config.json', 'r') as config_file:
-    config = json.load(config_file)
-
 
 class verify(commands.Cog):
     """
@@ -21,6 +18,9 @@ class verify(commands.Cog):
         """
         `The Verification Command`
         """
+        with open('./config.json', 'r') as config_file:
+            config = json.load(config_file)
+
         member = ctx.author
 
         def check(m):
@@ -43,7 +43,6 @@ class verify(commands.Cog):
                                           description=f'You have passed the verification process! Enjoy your stay',
                                           color=discord.colour.Color.purple())
                 captcha = random.randint(1, 1)
-                # print(f"roles: {ctx.guild.roles}")
 
                 if captcha == 1:
                     embed.set_image(

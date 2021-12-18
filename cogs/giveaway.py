@@ -47,5 +47,4 @@ class giveaway(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(giveaway(bot)
-                )
+    bot.add_cog(giveaway(bot))
