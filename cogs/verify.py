@@ -1,6 +1,7 @@
 import json
 import random
 
+import asyncio
 import discord
 from discord.ext import commands
 
@@ -21,42 +22,87 @@ class verify(commands.Cog):
         with open('./config.json', 'r') as config_file:
             config = json.load(config_file)
 
-        member = ctx.author
+        if ctx.channel == config['verify_channel']:
 
-        def check(m):
-            return m.author == ctx.author
+            member = ctx.author
 
-        role = ctx.guild.get_role(config['verified_role'])
+            def check(m):
+                return m.author == ctx.author
 
-        for roles in member.roles:
-            if role in roles:
-                await ctx.send('You are already verified!')
-            else:
+            role = ctx.guild.get_role(config['verified_role'])
 
-                embed = discord.Embed(title=f'Verification',
-                                      description=f'You have `1` attempt to verify. If you fail, you may be re-evaluated by executing the command again',
+            # for roles in ctx.author.roles:
+            #    if role in roles:
+            #        await ctx.send('You are already verified!')
+            #    else:
+
+            embed = discord.Embed(title=f'Verification',
+                                  description=f'You have `1` attempt to verify. If you fail, you may be re-evaluated by executing the command again',
+                                  color=discord.colour.Color.purple())
+            failembed = discord.Embed(title=f'Verification',
+                                      description=f'You have failed the verification process! Please try again',
                                       color=discord.colour.Color.purple())
-                failembed = discord.Embed(title=f'Verification',
-                                          description=f'You have failed the verification process! Please try again',
-                                          color=discord.colour.Color.purple())
-                passembed = discord.Embed(title=f'Verification',
-                                          description=f'You have passed the verification process! Enjoy your stay',
-                                          color=discord.colour.Color.purple())
-                captcha = random.randint(1, 1)
+            passembed = discord.Embed(title=f'Verification',
+                                      description=f'You have passed the verification process! Enjoy your stay',
+                                      color=discord.colour.Color.purple())
+            timeoutembed = discord.Embed(title=f'Timeout Error',
+                                         description='You\'ve needed too much time. Try it again by executing the command again!',
+                                         color=discord.Color.red())
+            captcha = random.randint(1, 4)
 
-                if captcha == 1:
-                    embed.set_image(
-                        url=f'https://cdn.discordapp.com/attachments/910579746205745283/917283179843452970/wickCaptcha.png')
-                    await ctx.send(embed=embed)
-                    msg = await self.bot.wait_for('message', check=check, timeout=15)
-                    if msg.content == 'KZEXEH':
-                        await ctx.send(embed=passembed)
-                    try:
-                        await member.add_roles(role)
-                    except discord.Forbidden:
-                        pass
-                else:
-                    await ctx.send(embed=failembed)
+            if captcha == 1:
+                embed.set_image(
+                    url=f'https://cdn.discordapp.com/attachments/921773399565553695/921773496827256852/wickCaptcha.png')
+                await ctx.send(embed=embed)
+                msg = await self.bot.wait_for('message', check=check, timeout=15)
+                if msg.content == 'KZEXEH':
+                    await ctx.send(embed=passembed)
+                try:
+                    await member.add_roles(role)
+                except asyncio.TimeoutError:
+                    await ctx.send(embed=timeoutembed)
+
+            elif captcha == 2:
+                embed.set_image(
+                    url=f'https://cdn.discordapp.com/attachments/921773399565553695/921774173892796426/wickCaptcha1.png')
+                await ctx.send(embed=embed)
+                msg = await self.bot.wait_for('message', check=check, timeout=15)
+                if msg.content == 'QVDKGB':
+                    await ctx.send(embed=passembed)
+                try:
+                    await member.add_roles(role)
+                except asyncio.TimeoutError:
+                    await ctx.send(embed=timeoutembed)
+
+            elif captcha == 3:
+                embed.set_image(
+                    url=f'https://cdn.discordapp.com/attachments/921773399565553695/921774173452402758/wickCaptcha2.png')
+                await ctx.send(embed=embed)
+                msg = await self.bot.wait_for('message', check=check, timeout=15)
+                if msg.content == '47859':
+                    await ctx.send(embed=passembed)
+                try:
+                    await member.add_roles(role)
+                except asyncio.TimeoutError:
+                    await ctx.send(embed=timeoutembed)
+
+            elif captcha == 4:
+                embed.set_image(
+                    url=f'https://cdn.discordapp.com/attachments/921773399565553695/921774417829310474/wickCaptcha3.png')
+                await ctx.send(embed=embed)
+                msg = await self.bot.wait_for('message', check=check, timeout=15)
+                if msg.content == 'FZQU02':
+                    await ctx.send(embed=passembed)
+                try:
+                    await member.add_roles(role)
+                except asyncio.TimeoutError:
+                    await ctx.send(embed=timeoutembed)
+
+            else:
+                await ctx.send(embed=failembed)
+
+        else:
+            return
 
 
 def setup(bot):

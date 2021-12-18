@@ -11,6 +11,10 @@ class ticket(commands.Cog):
 
     @commands.command()
     async def new(self, ctx, *, args=None):
+        """
+        Creating a new ticket
+        """
+
         await self.bot.wait_until_ready()
 
         if args is None:
@@ -73,7 +77,7 @@ class ticket(commands.Cog):
         with open("./utils/json/ticket_data.json", 'w') as f:
             json.dump(data, f)
 
-        created_em = discord.Embed(title="Auroris Tickets",
+        created_em = discord.Embed(title="Ticket System",
                                    description=f"Your ticket has been created at {ticket_channel.mention}",
                                    color=0x00a8ff)
 
@@ -81,6 +85,10 @@ class ticket(commands.Cog):
 
     @commands.command()
     async def close(self, ctx):
+        """
+        Close the ticket, where you write it in!
+        """
+
         with open('./utils/json/ticket_data.json') as f:
             data = json.load(f)
 
@@ -93,7 +101,7 @@ class ticket(commands.Cog):
 
             try:
 
-                em = discord.Embed(title="Auroris Tickets",
+                em = discord.Embed(title="Ticket System",
                                    description="Are you sure you want to close this ticket? Reply with `close` if you are sure.",
                                    color=0x00a8ff)
 
@@ -115,6 +123,10 @@ class ticket(commands.Cog):
 
     @commands.command()
     async def addaccess(self, ctx, role_id=None):
+        """
+        Add a role to the access roles for the tickets
+        """
+
         with open('./utils/json/ticket_data.json') as f:
             data = json.load(f)
 
@@ -143,25 +155,25 @@ class ticket(commands.Cog):
                     with open('./utils/json/ticket_data.json', 'w') as f:
                         json.dump(data, f)
 
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description=f"You have successfully added `{role.name}` to the list of roles with access to tickets.",
                                        color=0x00a8ff)
 
                     await ctx.send(embed=em)
 
                 except discord.Forbidden:
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description="That isn't a valid role ID. Please try again with a valid role ID.")
                     await ctx.send(embed=em)
 
             else:
-                em = discord.Embed(title="Auroris Tickets",
+                em = discord.Embed(title="Ticket System",
                                    description="That role already has access to tickets!",
                                    color=0x00a8ff)
                 await ctx.send(embed=em)
 
         else:
-            em = discord.Embed(title="Auroris Tickets",
+            em = discord.Embed(title="Ticket System",
                                description="Sorry, you don't have permission to run that command.",
                                color=0x00a8ff)
             await ctx.send(embed=em)
@@ -201,7 +213,7 @@ class ticket(commands.Cog):
                     with open('./utils/json/ticket_data.json', 'w') as f:
                         json.dump(data, f)
 
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description=f"You have successfully removed `{role.name}` from the list of roles with access to tickets.",
                                        color=0x00a8ff)
 
@@ -209,17 +221,17 @@ class ticket(commands.Cog):
 
                 else:
 
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description="That role already doesn't have access to tickets!", color=0x00a8ff)
                     await ctx.send(embed=em)
 
             except discord.Forbidden:
-                em = discord.Embed(title="Auroris Tickets",
+                em = discord.Embed(title="Ticket System",
                                    description="That isn't a valid role ID. Please try again with a valid role ID.")
                 await ctx.send(embed=em)
 
         else:
-            em = discord.Embed(title="Auroris Tickets",
+            em = discord.Embed(title="Ticket System",
                                description="Sorry, you don't have permission to run that command.",
                                color=0x00a8ff)
             await ctx.send(embed=em)
@@ -255,25 +267,25 @@ class ticket(commands.Cog):
                     with open('./utils/json/ticket_data.json', 'w') as f:
                         json.dump(data, f)
 
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description=f"You have successfully added `{role.name}` to the list of roles that get pinged when new tickets are created!",
                                        color=0x00a8ff)
 
                     await ctx.send(embed=em)
 
                 except discord.Forbidden:
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description="That isn't a valid role ID. Please try again with a valid role ID.")
                     await ctx.send(embed=em)
 
             else:
-                em = discord.Embed(title="Auroris Tickets",
+                em = discord.Embed(title="Ticket System",
                                    description="That role already receives pings when tickets are created.",
                                    color=0x00a8ff)
                 await ctx.send(embed=em)
 
         else:
-            em = discord.Embed(title="Auroris Tickets",
+            em = discord.Embed(title="Ticket System",
                                description="Sorry, you don't have permission to run that command.",
                                color=0x00a8ff)
             await ctx.send(embed=em)
@@ -313,24 +325,24 @@ class ticket(commands.Cog):
                     with open('./utils/json/ticket_data.json', 'w') as f:
                         json.dump(data, f)
 
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description=f"You have successfully removed `{role.name}` from the list of roles that get pinged when new tickets are created.",
                                        color=0x00a8ff)
                     await ctx.send(embed=em)
 
                 else:
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description="That role already isn't getting pinged when new tickets are created!",
                                        color=0x00a8ff)
                     await ctx.send(embed=em)
 
             except discord.Forbidden:
-                em = discord.Embed(title="Auroris Tickets",
+                em = discord.Embed(title="Ticket System",
                                    description="That isn't a valid role ID. Please try again with a valid role ID.")
                 await ctx.send(embed=em)
 
         else:
-            em = discord.Embed(title="Auroris Tickets",
+            em = discord.Embed(title="Ticket System",
                                description="Sorry, you don't have permission to run that command.",
                                color=0x00a8ff)
             await ctx.send(embed=em)
@@ -350,13 +362,13 @@ class ticket(commands.Cog):
             with open('./utils/json/ticket_data.json', 'w') as f:
                 json.dump(data, f)
 
-            em = discord.Embed(title="Auroris Tickets",
+            em = discord.Embed(title="Ticket System",
                                description=f"You have successfully added `{role.name}` to the list of roles that can run admin-level commands!",
                                color=0x00a8ff)
             await ctx.send(embed=em)
 
         except discord.Forbidden:
-            em = discord.Embed(title="Auroris Tickets",
+            em = discord.Embed(title="Ticket System",
                                description="That isn't a valid role ID. Please try again with a valid role ID.")
             await ctx.send(embed=em)
 
@@ -382,20 +394,20 @@ class ticket(commands.Cog):
                 with open('./utils/json/ticket_data.json', 'w') as f:
                     json.dump(data, f)
 
-                em = discord.Embed(title="Auroris Tickets",
+                em = discord.Embed(title="Ticket System",
                                    description=f"You have successfully removed `{role.name}` from the list of roles that get pinged when new tickets are created.",
                                    color=0x00a8ff)
 
                 await ctx.send(embed=em)
 
             else:
-                em = discord.Embed(title="Auroris Tickets",
+                em = discord.Embed(title="Ticket System",
                                    description="That role isn't getting pinged when new tickets are created!",
                                    color=0x00a8ff)
                 await ctx.send(embed=em)
 
         except discord.Forbidden:
-            em = discord.Embed(title="Auroris Tickets",
+            em = discord.Embed(title="Ticket System",
                                description="That isn't a valid role ID. Please try again with a valid role ID.")
             await ctx.send(embed=em)
 

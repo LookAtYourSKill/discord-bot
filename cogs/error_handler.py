@@ -26,7 +26,6 @@ class CommandErrorHandler(commands.Cog):
             if cog._get_overridden_method(cog.cog_command_error) is not None:
                 return
 
-        ignored = (commands.CommandNotFound,)
         error = getattr(error, 'original', error)
 
         if isinstance(error, commands.MissingRequiredArgument):
@@ -132,14 +131,13 @@ class CommandErrorHandler(commands.Cog):
             await ctx.message.delete()
 
         else:
-            #embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+            # embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
             #                      description='**Der Error, wurde nicht gefunden!** Vielleicht kannst du damit etwas anfangen')
-            #embed.add_field(name='__ERROR__',
+            # embed.add_field(name='__ERROR__',
             #                value=f'`{error}`',
             #                inline=False)
-            #await ctx.send(embed=embed, delete_after=5)
+            # await ctx.send(embed=embed, delete_after=5)
             print("Error not caught in chat")
-            #await ctx.message.delete()
             print(error)
 
         # else:
