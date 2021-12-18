@@ -157,6 +157,9 @@ class utilities(commands.Cog):
 
     @commands.command()
     async def spotify(self, ctx, user: discord.Member = None):
+        if not user:
+            user = ctx.author
+
         user = user or ctx.author
         spotify_result = next((activity for activity in user.activities if isinstance(activity, discord.Spotify)), None)
 
