@@ -83,6 +83,14 @@ class CommandErrorHandler(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
+        if isinstance(error, asyncio.TimeoutError):
+            timeoutembed = discord.Embed(title=f'Timeout Error',
+                                         description='You\'ve needed too much time. Try it again by executing the command again!',
+                                         color=discord.Color.red())
+            await ctx.send(embed=timeoutembed, delete_after=5)
+            await asyncio.sleep(1)
+            await ctx.message.delete()
+
         if isinstance(error, commands.NoPrivateMessage):
             try:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',  # (NoPrivateMessage)

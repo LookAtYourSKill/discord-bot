@@ -33,18 +33,13 @@ class verify(commands.Cog):
 
             role = ctx.guild.get_role(config['verified_role'])
 
-            # for roles in ctx.author.roles:
-            #    if role in roles:
-            #        await ctx.send('You are already verified!')
-            #    else:
-
             embed = discord.Embed(title=f'Verification',
                                   description=f'You have `1` attempt to verify. If you fail, you may be re-evaluated by executing the command again',
                                   color=discord.colour.Color.purple())
-            failembed = discord.Embed(title=f'Verification',
+            failembed = discord.Embed(title=f'Verification Failed',
                                       description=f'You have failed the verification process! Please try again',
                                       color=discord.colour.Color.purple())
-            passembed = discord.Embed(title=f'Verification',
+            passembed = discord.Embed(title=f'Verification Successful',
                                       description=f'You have passed the verification process! Enjoy your stay',
                                       color=discord.colour.Color.purple())
             timeoutembed = discord.Embed(title=f'Timeout Error',
@@ -61,7 +56,7 @@ class verify(commands.Cog):
                     await ctx.send(embed=passembed)
                 try:
                     await member.add_roles(role)
-                except asyncio.TimeoutError:
+                except TimeoutError:
                     await ctx.send(embed=timeoutembed)
 
             elif captcha == 2:
@@ -73,7 +68,7 @@ class verify(commands.Cog):
                     await ctx.send(embed=passembed)
                 try:
                     await member.add_roles(role)
-                except asyncio.TimeoutError:
+                except TimeoutError:
                     await ctx.send(embed=timeoutembed)
 
             elif captcha == 3:
@@ -85,7 +80,7 @@ class verify(commands.Cog):
                     await ctx.send(embed=passembed)
                 try:
                     await member.add_roles(role)
-                except asyncio.TimeoutError:
+                except TimeoutError:
                     await ctx.send(embed=timeoutembed)
 
             elif captcha == 4:
@@ -97,7 +92,7 @@ class verify(commands.Cog):
                     await ctx.send(embed=passembed)
                 try:
                     await member.add_roles(role)
-                except asyncio.TimeoutError:
+                except TimeoutError:
                     await ctx.send(embed=timeoutembed)
 
             else:

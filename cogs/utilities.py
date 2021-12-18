@@ -167,7 +167,7 @@ class utilities(commands.Cog):
             await ctx.send(f'``{user.name}`` **is not listening to Spotify.**')
 
         # Images
-        track_background_image = Image.open('./assets/spotify_template.png')
+        track_background_image = Image.open('.\\assets\\spotify_template.png')
         album_image = Image.open(requests.get(spotify_result.album_cover_url, stream=True).raw).convert('RGBA')
 
         # Fonts
