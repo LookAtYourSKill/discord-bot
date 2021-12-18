@@ -6,6 +6,9 @@ import asyncio
 
 
 class ticket(commands.Cog):
+    """
+    `Simple support ticket system for discord server`
+    """
     def __init__(self, bot):
         self.bot = bot
 
@@ -181,6 +184,10 @@ class ticket(commands.Cog):
 
     @commands.command()
     async def delaccess(self, ctx, role_id=None):
+        """
+        Remove a role from the access roles for the tickets
+        """
+
         with open('./utils/json/ticket_data.json') as f:
             data = json.load(f)
 
@@ -239,6 +246,10 @@ class ticket(commands.Cog):
 
     @commands.command()
     async def addpingedrole(self, ctx, role_id=None):
+        """
+        Add a role, to the roles which get pinged when a new ticket get opened
+        """
+
         with open('./utils/json/ticket_data.json') as f:
             data = json.load(f)
 
@@ -293,6 +304,10 @@ class ticket(commands.Cog):
 
     @commands.command()
     async def delpingedrole(self, ctx, role_id=None):
+        """
+        Remove a role from the roles which get pinged when a new ticket get opened
+        """
+
         with open('./utils/json/ticket_data.json') as f:
             data = json.load(f)
 
@@ -351,6 +366,10 @@ class ticket(commands.Cog):
     @commands.command()
     @has_permissions(administrator=True)
     async def addadminrole(self, ctx, role_id=None):
+        """
+        This command gives all users with a specific role access to the admin-level commands for the bot, such as `=addpingedrole` and `=addaccess`.
+        """
+
         try:
             role_id = int(role_id)
             role = ctx.guild.get_role(role_id)
@@ -376,6 +395,10 @@ class ticket(commands.Cog):
     @commands.command()
     @has_permissions(administrator=True)
     async def deladminrole(self, ctx, role_id=None):
+        """
+        This command removes all users with a specific role access to the admin-level commands for the bot, such as `=addpingedrole` and `=addaccess`.
+        """
+
         try:
             role_id = int(role_id)
             role = ctx.guild.get_role(role_id)

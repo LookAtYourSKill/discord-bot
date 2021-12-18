@@ -22,7 +22,9 @@ class verify(commands.Cog):
         with open('./config.json', 'r') as config_file:
             config = json.load(config_file)
 
-        if ctx.channel == config['verify_channel']:
+        channel = ctx.channel
+
+        if channel.id == config['verify_channel']:
 
             member = ctx.author
 
