@@ -81,7 +81,8 @@ class ticket(commands.Cog):
                                    description=f"Your ticket has been created at {ticket_channel.mention}",
                                    color=0x00a8ff)
 
-        await ctx.send(embed=created_em)
+        await ctx.send(embed=created_em, delete_after=5)
+        await ctx.message.delete()
 
     @commands.command()
     async def close(self, ctx):
