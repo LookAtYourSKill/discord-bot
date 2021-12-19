@@ -16,6 +16,7 @@ class fun(commands.Cog):
     async def ball(self, ctx, *, question):
         """
         Ask the bot a question!
+        - **?8ball [`question`]**
         """
 
         if question is None:
@@ -38,6 +39,7 @@ class fun(commands.Cog):
     async def slots(self, ctx):
         """
         Play slots but without a prize
+        - **?slots**
         """
 
         emojis = ["🍎", '🍇', '🍒', '🍉', '🍓']
@@ -61,6 +63,7 @@ class fun(commands.Cog):
     async def dice(self, ctx):
         """
         Roll a dice
+        - **?dice**
         """
 
         num = random.randint(1, 6)
@@ -78,6 +81,7 @@ class fun(commands.Cog):
     async def rps(self, ctx, name=None):
         """
         Play rock, paper, scissors against the bot!
+        - **rps [`Stein, Papier, Schere`]**
         """
 
         rps = ['Stein', 'Papier', 'Schere']
@@ -138,6 +142,7 @@ class fun(commands.Cog):
     async def num_game(self, ctx):
         """
         Guess a random number between 1 and 10
+        - **?numgame**
         """
 
         def check(m):
@@ -170,6 +175,7 @@ class fun(commands.Cog):
     async def simp(self, ctx):
         """
         Just a random test if you are a simp or not
+        - **?simp**
         """
 
         ran_percent = random.randint(1, 100)
@@ -184,6 +190,7 @@ class fun(commands.Cog):
     async def sus(self, ctx):
         """
         Just a simply test if you are sus or not
+        - **?sus**
         """
 
         ran_percent = random.randint(1, 100)

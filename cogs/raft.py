@@ -14,6 +14,7 @@ class raft(commands.Cog):
     async def raft(self, ctx):
         """
         Plays the most chilled song in the world. The Raft Theme song
+        - **?raft**
         """
 
         if ctx.author.voice is None:

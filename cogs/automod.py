@@ -17,6 +17,7 @@ class automod(commands.Cog):
     async def blacklist_add(self, ctx, text):
         """
         Add a word to the blacklist!
+        - **?bladd [`word`]**
         """
 
         with open("utils/json/blacklist.json", "r") as f:
@@ -45,6 +46,7 @@ class automod(commands.Cog):
     async def blacklist_remove(self, ctx, text):
         """
         Remove a word to the blacklist!
+        - **?blrm [`word`]**
         """
 
         with open("utils/json/blacklist.json", "r") as f:
@@ -73,6 +75,7 @@ class automod(commands.Cog):
     async def blacklist_show(self, ctx):
         """
         Display the whole blacklist!
+        - **?blshow**
         """
 
         with open('utils/json/blacklist.json', 'r') as f:
@@ -102,6 +105,7 @@ class automod(commands.Cog):
     async def blacklist_clear(self, ctx):
         """
         Remove all words out of the blacklist!
+        - **?blclear**
         """
 
         with open('utils/json/blacklist.json', 'r') as f:

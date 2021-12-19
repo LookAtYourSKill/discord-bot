@@ -14,6 +14,7 @@ class math(commands.Cog):
     async def addition(self, ctx, first: int, second: int):
         """
         Add two specific numbers together
+        - **?add [`first`] [`second`]**
         """
 
         result = first + second
@@ -25,6 +26,7 @@ class math(commands.Cog):
     async def subtraction(self, ctx, first: int, second: int):
         """
         Subtract two specific numbers from them
+        - **?minus [`first`] [`second`]**
         """
 
         result = first - second
@@ -36,6 +38,7 @@ class math(commands.Cog):
     async def multiplication(self, ctx, first: int, second: int):
         """
         Multiply two number with each other
+        - **?multiplicate [`first`] [`second`]**
         """
 
         result = first * second
@@ -46,7 +49,8 @@ class math(commands.Cog):
     @commands.command(name='divide', aliases=['geteilt'])
     async def dividation(self, ctx, first: int, second: int):
         """
-        Divide two number
+        Divide two numbers
+        - **?divide [`first`] [`second`]**
         """
 
         result = first / second

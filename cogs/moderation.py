@@ -22,6 +22,7 @@ class moderation(commands.Cog):
     async def ban(self, ctx, member: discord.Member, *, reason):
         """
         Ban a user from your server
+        - **?ban [`member`] [`reason`]**
         """
 
         if member == ctx.author:
@@ -50,6 +51,7 @@ class moderation(commands.Cog):
     async def unban(self, ctx, id: int):
         """
         Unban a user from your server but with the id
+        - **?unban [`id`]**
         """
 
         user = await self.bot.fetch_user(id)
@@ -69,6 +71,7 @@ class moderation(commands.Cog):
     async def mass_unban(self, ctx):
         """
         Unban everybody banned on your server
+        - **?unbanall**
         """
 
         ban_list = await ctx.guild.bans()
@@ -94,13 +97,14 @@ class moderation(commands.Cog):
     async def tempban(self, ctx, member: discord.Member, time=None, *, reason='Nicht Angegeben'):
         """
         Ban a user for a specific time
-        Times:
+        - **?tempban [`member`] [`time`] [`reason`]**
 
+        ``Times:
         "s": second/s
         "m": minute/s
         "h": hour/s
         "d": day/s
-        "w": week/s
+        "w": week/s``
         """
 
         if time is None:
@@ -141,6 +145,7 @@ class moderation(commands.Cog):
     async def bannedUserList(self, ctx):
         """
         Display all banned users in chat
+        - **?banned**
         """
 
         bannedUser = await ctx.guild.bans()
@@ -163,6 +168,7 @@ class moderation(commands.Cog):
     async def mute(self, ctx, member: discord.Member, *, reason=None):
         """
         Give a user a role, with what the user cant wirte in channels
+        - **mute [`member`] [`reason`]**
         """
 
         guild = ctx.guild
@@ -214,6 +220,7 @@ class moderation(commands.Cog):
     async def unmute(self, ctx, member: discord.Member):
         """
         Remove the mute role from the user
+        - **?unmute [`member`]**
         """
 
         mutedRole = discord.utils.get(ctx.guild.roles, name="Muted")
@@ -247,13 +254,14 @@ class moderation(commands.Cog):
     async def tempmute(self, ctx, member: discord.Member, time=None, *, reason=None):
         """
         Mute a user for a specific time
-        Times:
+        - **?tempmute [`member`] [`time`] [`reason`]**
 
+        ``Times:
         "s": second/s
         "m": minute/s
         "h": hour/s
         "d": day/s
-        "w": week/s
+        "w": week/s``
         """
 
         if time is None:
@@ -362,6 +370,7 @@ class moderation(commands.Cog):
     async def kick(self, ctx, member: discord.Member, *, reason=None):
         """
         Kick a user from your server
+        - **?kick [`member`] [`reason`]**
         """
 
         if member == ctx.author:
@@ -392,6 +401,7 @@ class moderation(commands.Cog):
     async def vc_kick(self, ctx, member: discord.Member):
         """
         Disconnect a user from the vc, if he is in one
+        - **?dc [`member`]**
         """
 
         await member.edit(voice_channel=None)
@@ -415,6 +425,7 @@ class moderation(commands.Cog):
     async def clear(self, ctx, amount=5):
         """
         Clear an amount of messages
+        - **?clear [`amount`]**
         """
 
         await asyncio.sleep(1)
@@ -440,6 +451,7 @@ class moderation(commands.Cog):
     async def nuke(self, ctx, channel: discord.TextChannel = None):
         """
         If in a channel is too much spam, you nuke the channel. It will be cloned automatically
+        - **?nuke [`channel`]**
         """
 
         if not channel:
@@ -487,6 +499,7 @@ class moderation(commands.Cog):
     async def slowmode(self, ctx, sec: int = None):
         """
         Add or remove a slowmode from a channel
+        - **?sm [`seconds`]**
         """
 
         if sec == 0:
@@ -530,6 +543,7 @@ class moderation(commands.Cog):
     async def softban(self, ctx, member: discord.Member, *, reason=None):
         """
         The softban is for people, which send Scam/Fishing or invite links. When you softban them they'll get kicked and the messages deleted
+        - **?softban [`member`] [`reason`]**
         """
 
         invite = await ctx.channel.create_invite(max_uses=1)
@@ -557,6 +571,7 @@ class moderation(commands.Cog):
     async def block(self, ctx, user: discord.Member = None):
         """
         Block a user from chatting in the channel you use the command in
+        - **?block [`user`]**
         """
 
         if not user:
@@ -571,6 +586,7 @@ class moderation(commands.Cog):
     async def unblock(self, ctx, user: discord.Member = None):
         """
         Unblock the user you blocked before in the channel you wrote the block command
+        - **?unblock [`user`]**
         """
 
         if not user:

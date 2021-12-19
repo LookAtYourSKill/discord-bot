@@ -19,7 +19,8 @@ class verify(commands.Cog):
     @commands.cooldown(rate=120, per=1)
     async def verify(self, ctx):
         """
-        `The Verification Command`
+        The Verification Command
+        - **?verify**
         """
         with open('./config.json', 'r') as config_file:
             config = json.load(config_file)

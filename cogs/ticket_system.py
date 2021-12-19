@@ -16,6 +16,7 @@ class ticket(commands.Cog):
     async def new(self, ctx, *, args=None):
         """
         Creating a new ticket
+        - **?new [`message`]**
         """
 
         await self.bot.wait_until_ready()
@@ -91,6 +92,7 @@ class ticket(commands.Cog):
     async def close(self, ctx):
         """
         Close the ticket, where you write it in!
+        - **?close**
         """
 
         with open('./utils/json/ticket_data.json') as f:
@@ -129,6 +131,7 @@ class ticket(commands.Cog):
     async def addaccess(self, ctx, role_id=None):
         """
         Add a role to the access roles for the tickets
+        - **?addaccess [`roleid`]**
         """
 
         with open('./utils/json/ticket_data.json') as f:
@@ -186,6 +189,7 @@ class ticket(commands.Cog):
     async def delaccess(self, ctx, role_id=None):
         """
         Remove a role from the access roles for the tickets
+        - **?delaccess [`roleid`]**
         """
 
         with open('./utils/json/ticket_data.json') as f:
@@ -248,6 +252,7 @@ class ticket(commands.Cog):
     async def addpingedrole(self, ctx, role_id=None):
         """
         Add a role, to the roles which get pinged when a new ticket get opened
+        - **?addpingedrole [`roleid`]**
         """
 
         with open('./utils/json/ticket_data.json') as f:
@@ -306,6 +311,7 @@ class ticket(commands.Cog):
     async def delpingedrole(self, ctx, role_id=None):
         """
         Remove a role from the roles which get pinged when a new ticket get opened
+        - **?delpingedrole [`roleid`]**
         """
 
         with open('./utils/json/ticket_data.json') as f:
@@ -368,6 +374,7 @@ class ticket(commands.Cog):
     async def addadminrole(self, ctx, role_id=None):
         """
         This command gives all users with a specific role access to the admin-level commands for the bot, such as `=addpingedrole` and `=addaccess`.
+        - **?addadminrole [`roleid`]**
         """
 
         try:
@@ -397,6 +404,7 @@ class ticket(commands.Cog):
     async def deladminrole(self, ctx, role_id=None):
         """
         This command removes all users with a specific role access to the admin-level commands for the bot, such as `=addpingedrole` and `=addaccess`.
+        - **?delpingedrole [`roleid`]**
         """
 
         try:

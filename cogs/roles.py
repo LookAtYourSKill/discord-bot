@@ -19,6 +19,7 @@ class roles(commands.Cog):
     async def gawrole(self, ctx):
         """
         Create the Giveaway role, you need to create giveaways
+        - **?gawrole**
         """
 
         role = discord.utils.get(ctx.guild.roles, name='Giveaway')
@@ -44,6 +45,7 @@ class roles(commands.Cog):
     async def muterole(self, ctx):
         """
         Create a mute role the muted users get
+        - **?muterole**
         """
 
         role = discord.utils.get(ctx.guild.roles, name='Muted')
@@ -76,6 +78,7 @@ class roles(commands.Cog):
     async def give_role(self, ctx, user: discord.Member, role: discord.Role):
         """
         Give a specific role to a specific user
+        - **?giverole [`user`] [`roleid`]**
         """
 
         try:
@@ -93,6 +96,7 @@ class roles(commands.Cog):
     async def remove_role(self, ctx, user: discord.Member, role: discord.Role):
         """
         Remove a role from a user
+        - **?rmrole [`user`] [`roleid`]**
         """
 
         try:
@@ -110,6 +114,7 @@ class roles(commands.Cog):
     async def create_role(self, ctx, *, role_name, color: discord.Color = discord.Color.random()):
         """
         Create a complete new role and with a random color
+        - **?createrole [`role_name`]**
         """
 
         await ctx.guild.create_role(name=role_name, color=color)
@@ -124,6 +129,7 @@ class roles(commands.Cog):
     async def delete_role(self, ctx, *, role_name):
         """
         Delete a role from the server you want it to be removed
+        - **?delrole [`role_name`]**
         """
 
         role = discord.utils.get(ctx.guild.roles, name=role_name)
@@ -149,6 +155,7 @@ class roles(commands.Cog):
     async def get_roles(self, ctx, member: discord.Member):
         """
         You can get all roles from a member in you discord server
+        - **?getr [`member`]**
         """
 
         embed = discord.Embed(title=f'Roles from {member}')
@@ -162,7 +169,8 @@ class roles(commands.Cog):
     @commands.has_permissions(manage_roles=True)
     async def remove_roles(self, ctx, member: discord.Member):
         """
-        You can remove a role from a member of your discord server
+        You can remove all roles from a member of your discord server
+        - **?removeroles [`member`]**
         """
 
         members_roles = member.roles

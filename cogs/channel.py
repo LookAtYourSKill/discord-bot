@@ -11,10 +11,11 @@ class channel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='delchannel', alises=['delete_channel'])
+    @commands.command(name='delchannel', aliases=['delete_channel'])
     async def delete_channel(self, ctx, channel: discord.TextChannel):
         """
         Delete a textchannel
+        - **?delchannel [`channel`]**
         """
 
         if channel is not None:
@@ -32,10 +33,11 @@ class channel(commands.Cog):
             await ctx.send(f'No channel named, "{channel}", was found', delete_after=5)
             await ctx.message.delete()
 
-    @commands.command(name='createchannel', alises=['mkchannel'])
+    @commands.command(name='createchannel', aliases=['mkchannel'])
     async def create_channel(self, ctx, channel_name):
         """
         Create a channel
+        - **?mkchannel [`channel_name`]**
         """
 
         guild = ctx.message.guild
@@ -53,17 +55,19 @@ class channel(commands.Cog):
             await ctx.send(f'Irgendetwas ist schiefgelaufen!', delete_after=5)
             await ctx.message.delete()
 
-    @commands.command(name='tempchannel', alises=['temp_channel'])
+    @commands.command(name='tempchannel', aliases=['temp_channel'])
     @commands.cooldown(rate=5, per=1)
     async def temp_channel(self, ctx, channel_name, time):
         """
         Create a channel for a specific time.
-        `Times:`\n
+        - **tempchannel [`channel_name`] [`time`]**
+
+        `Times:\n
         "s": second/s
         "m": minute/s
         "h": hour/s
         "d": day/s
-        "w": week/s
+        "w": week/s`
         """
 
         if not channel_name:

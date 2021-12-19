@@ -21,6 +21,7 @@ class administration(commands.Cog):
     async def setstatus(self, ctx: commands.Context, *, text: str):
         """
         Change or set the status for the bot
+        **Usage :** ``?setstatus [text]``
         """
 
         await self.bot.change_presence(activity=discord.Game(name=text))
@@ -35,6 +36,7 @@ class administration(commands.Cog):
     async def lock(self, ctx):
         """
         Lock a channel, so nobody can write in it
+        **Usage :** ``?lock``
         """
 
         await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
@@ -56,6 +58,7 @@ class administration(commands.Cog):
     async def unlock(self, ctx):
         """
         Unlock the channel you locked before
+        **Usage :** ``?unlock``
         """
 
         await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
@@ -78,6 +81,7 @@ class administration(commands.Cog):
     async def say(self, ctx, *, text):
         """
         Give back your text with a `@everyone` at the beginning!
+        **Usage :** ``?say [text]``
         """
 
         role = ctx.guild.default_role

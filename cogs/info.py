@@ -7,7 +7,6 @@ from discord.ext import commands
 
 
 class info(commands.Cog):
-
     """
     `With those commands you almost can stalk a user`
     """
@@ -33,6 +32,7 @@ class info(commands.Cog):
     async def user(self, ctx, member: discord.Member = None):
         """
         Get an info about a specific user or yourself
+        - **?user [`member`]**
         """
 
         if not member:
@@ -77,6 +77,7 @@ class info(commands.Cog):
     async def server(self, ctx):
         """
         Get multiple infos about a server
+        - **?server**
         """
 
         de = pytz.timezone('Europe/Berlin')
@@ -116,26 +117,20 @@ class info(commands.Cog):
 
     @commands.command(name='members')
     async def members(self, ctx):
+        """
+        Check all members on the discord server
+        - **?members**
+        """
+
         embed = discord.Embed(title='**Member Count**',
                               description=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitglieder!')
         await ctx.send(embed=embed)
-
-    @commands.command()
-    @commands.is_owner()
-    async def join_position(self, ctx, member: discord.Member = None):
-        """
-        Give you the position, at which place you joined the server
-        """
-
-        if not member:
-            member = ctx.author
-        members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
-        await ctx.send(f'`Join Position : {str(members.index(member) + 1)}`')
 
     @commands.command(name='joined')
     async def joined(self, ctx, member: discord.Member = None):
         """
         Give you the position, at which place you joined the server and when you joined
+        - **?joined [member]**
         """
 
         if not member:
@@ -150,6 +145,7 @@ class info(commands.Cog):
     async def bot(self, ctx):
         """
         Give a little info about the bot
+        - **?bot**
         """
 
         BOT_VERSION = 'v1.1'
@@ -178,6 +174,7 @@ class info(commands.Cog):
     async def avatar(self, ctx, member: discord.Member = None):
         """
         Give back the profile picture from a user or yourself
+        - **?avatar [`member`]**
         """
 
         if not member:

@@ -17,6 +17,7 @@ class toggle(commands.Cog):
     async def toggle(self, ctx, extension=None):
         """
         Toggle a extension from the cogs or event folder with chat interaction
+        - **?toggle**
         """
 
         member = ctx.author

@@ -16,6 +16,7 @@ class music(commands.Cog):
     async def join(self, ctx):
         """
         Let the player join your channel
+        - **?join**
         """
 
         if ctx.author.voice is None:
@@ -34,10 +35,11 @@ class music(commands.Cog):
                                   description=' Moved to your channel!')
             await ctx.send(embed=embed)
 
-    @commands.command(name='leave', aliases=['l'])
+    @commands.command(name='leave', aliases=['l', 'dis'])
     async def disconnect(self, ctx):
         """
         Let the player disconnect from the channel you wanted him to join
+        - **?l**
         """
 
         embed = discord.Embed(title='',
@@ -49,6 +51,7 @@ class music(commands.Cog):
     async def play(self, ctx, url):
         """
         Try to play a song from the url you send
+        - **?p [`url`]**
         """
 
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 - reconnect_streamed 1 -reconnect_delay_max 5',
@@ -70,6 +73,7 @@ class music(commands.Cog):
     async def pause(self, ctx):
         """
         Let the player pause playing the music
+        - **?pause**
         """
 
         embed = discord.Embed(title='',
@@ -81,6 +85,7 @@ class music(commands.Cog):
     async def resume(self, ctx):
         """
         Let the player resume playing the music
+        - **?resume**
         """
 
         embed = discord.Embed(title='',
@@ -90,7 +95,10 @@ class music(commands.Cog):
 
     @commands.command(name='volume')
     async def volume(self, ctx: commands.Context, *, volume: int):
-        """Sets the volume of the player."""
+        """
+        Sets the volume of the player
+        - **?volume [`volume`]**
+        """
 
         if not ctx.voice_client.is_playing:
             return await ctx.send('Nothing being played at the moment.')

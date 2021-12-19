@@ -21,6 +21,7 @@ class utilities(commands.Cog):
     async def invite(self, ctx):
         """
         Create an invite
+        - **?invite**
         """
 
         invite = await ctx.channel.create_invite(reason="Automated Invite")
@@ -35,6 +36,7 @@ class utilities(commands.Cog):
     async def botinvite(self, ctx):
         """
         Get two invites, with which you can invite the bot
+        - **?botinvite**
         """
 
         embed = discord.Embed(title=' ',
@@ -48,6 +50,7 @@ class utilities(commands.Cog):
     async def embed(self, ctx, *, text: str):
         """
         Create an embed with your text
+        - **?embed [`text`]**
         """
 
         embed = discord.Embed(title='',
@@ -58,6 +61,7 @@ class utilities(commands.Cog):
     async def _do_repeat(self, ctx, *, inp: str):
         """
         Repeats your input
+        - **?repeat [`input`]**
         """
 
         await ctx.send(inp)
@@ -81,6 +85,7 @@ class utilities(commands.Cog):
     async def user_invites(self, ctx, member: discord.Member = None):
         """
         Display all invites form a user
+        - **?invites [`member`]**
         """
 
         member = member if member else ctx.author
@@ -89,7 +94,7 @@ class utilities(commands.Cog):
         for invite in invites_raw:
             invites += invite.uses
         embed = discord.Embed(title='Invites',
-                              color=0xff00c8)
+                              color=discord.Color.blue())
         embed.add_field(name=f'Invites from {member}',
                         value=f"You've invited **{invites}** members to the server!")
         embed.set_footer(text=f'Requested by {ctx.author.name}',
@@ -101,9 +106,10 @@ class utilities(commands.Cog):
     async def senddm(self, ctx, member: discord.Member = None, *, text=None):
         """
         Send a user a direct message with the text you want
+        - **?senddm [`member`] [`text`]**
         """
 
-        embed = discord.Embed(title='You got MAIL!', color=0xff00c8)
+        embed = discord.Embed(title='You got MAIL!', color=discord.Color.orange())
         embed.add_field(name='From:',
                         value=f"{ctx.author.mention}",
                         inline=False)
@@ -122,6 +128,7 @@ class utilities(commands.Cog):
     async def password(self, ctx):
         """
         Create a safe password, which only will be visible in your Direct messages for about  10 seconds
+        - **?password**
         """
 
         length = 20
@@ -137,6 +144,7 @@ class utilities(commands.Cog):
     async def reminder(self, ctx, zeit=None, *, reason='Nicht angegeben'):
         """
         Creates a reminder for a time you want
+        - **?reminder [`time`] [`reason`]**
         """
 
         time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
@@ -157,6 +165,11 @@ class utilities(commands.Cog):
 
     @commands.command()
     async def spotify(self, ctx, user: discord.Member = None):
+        """
+        Check if a user listen to spotify. If yes then he'll give back a edited picture with details
+        - **spotify [`member`]**
+        """
+
         if not user:
             user = ctx.author
 

@@ -17,6 +17,7 @@ class giveaway(commands.Cog):
     async def create(self, ctx, time=None, *, prize=None):
         """
         Creating a giveaway with a specific prize and time
+        - **?create [`time`] [`prize`]**
         """
 
         if time is None:

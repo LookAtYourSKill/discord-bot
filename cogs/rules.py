@@ -15,6 +15,7 @@ class rules(commands.Cog):
     async def rules(self, ctx):
         """
         Send a message with prepared rules
+        - **?rules**
         """
 
         embed = discord.Embed(title='',
