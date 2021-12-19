@@ -4,6 +4,7 @@ import random
 import asyncio
 import discord
 from discord.ext import commands
+from discord.utils import get
 
 
 class verify(commands.Cog):
@@ -22,9 +23,15 @@ class verify(commands.Cog):
         with open('./config.json', 'r') as config_file:
             config = json.load(config_file)
 
-        channel = ctx.channel
+        role = get(ctx.guild.roles, id=config['verified_role'])
 
-        if channel.id == config['verify_channel']:
+        if ctx.channel.id == config['verify_channel']:
+
+            if role in ctx.author.roles:
+                embed = discord.Embed(description='Du hast dich **bereits Verifiziert**, oder hast zumindest die `Verified Role`!', color=discord.Color.red())
+                await ctx.message.delete()
+                await ctx.send(embed=embed, delete_after=10)
+                return
 
             member = ctx.author
 

@@ -88,16 +88,6 @@ class music(commands.Cog):
         await ctx.send(embed=embed)
         ctx.voice_client.resume()
 
-    @commands.command(name='nowplaying', aliases=['np'])
-    async def now_playing(self, ctx):
-        """
-        Display the song which is playing right now
-        """
-
-        embed = discord.Embed(title='',
-                              description=f'Now playing : `{ctx.voice_client.now_playing()}`')
-        await ctx.send(embed=embed)
-
     @commands.command(name='volume')
     async def volume(self, ctx: commands.Context, *, volume: int):
         """Sets the volume of the player."""

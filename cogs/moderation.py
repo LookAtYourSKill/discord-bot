@@ -46,38 +46,6 @@ class moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-    # @commands.command()
-    # @commands.has_permissions(ban_members=True)
-    # async def unban(self, ctx, *, member):
-    #    """
-    #    Unban a user from your server
-    #    """
-
-    #    banned_users = await ctx.guild.bans()
-    #    member_name, member_discriminator = member.split('#')
-
-    #    for ban_entry in banned_users:
-    #        user = ban_entry.user
-
-    #    if (user.name, user.discriminator) == (member_name, member_discriminator):
-    #        await ctx.guild.unban(user)
-    #        embed = discord.Embed(title=f'',
-    #                              description=f'Der User {user.mention} wurde entbannt!',
-    #                              color=0x4cd137)
-    #        embed.add_field(name='**Information**',
-    #                        value=f'Entbannter User : `{user}`\n'
-    #                              f'User ID : `{user.id}`\n'
-    #                              f'Entbannt von : `{ctx.author}`')
-    #        await ctx.send(embed=embed, delete_after=5)
-    #        await ctx.message.delete()
-    #        return
-    #    else:
-    #        embed = discord.Embed(title=f'<:close:864599591692009513> **ERROR**',
-    #                              description='`Du kannst niemanden entbannen, der nichtmal gebannt ist!`')
-    #        await ctx.send(embed=embed, delete_after=5)
-    #        await asyncio.sleep(1)
-    #        await ctx.message.delete()
-
     @commands.command(name='unban', aliases=['idunban'])
     async def unban(self, ctx, id: int):
         """
