@@ -6,6 +6,7 @@ from termcolor import colored
 import os
 
 # TODO: Make the bot saver and add role history stuff, so a guy with a role under you cant remove roles from you...
+# TODO: Datenbank überarbeitung
 
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?', owner_id=493370963807830016)
 bot.remove_command('help')
@@ -20,7 +21,7 @@ async def on_ready():
         status=discord.Status.idle)
     while True:
         await asyncio.sleep(10)
-        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/spam-detection.json",
+        with open("./utils/json/spam-detection.json",
                   "r+") as file:
             file.truncate(0)
 
