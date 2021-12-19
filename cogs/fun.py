@@ -140,17 +140,31 @@ class fun(commands.Cog):
         Guess a random number between 1 and 10
         """
 
+        def check(m):
+            return m.author == ctx.author
+
         ran_number = random.randint(1, 10)
-        member = ctx.author
         embed = discord.Embed(title='Numgame',
-                              description='Choose a number between 1-10')
+                              description='Choose a number between 1-10', colour=discord.Color.orange())
         await ctx.send(embed=embed)
         while True:
-            message = await self.bot.wait_for('int', check=lambda message: message.author == member)
-            if int(ran_number) in message.content:
-                await ctx.send(f'You guessed it! It was {ran_number}')
+            message = await self.bot.wait_for('message', check=check)
+            guess = int(message.content)
+            if guess > ran_number:
+                embed = discord.Embed(
+                    description=f'The Number **is a little bit smaller** than you thought... ``The number was {ran_number}``\n'
+                                f'Wish you more luck next time :thumbsup:', colour=discord.Color.blue())
+                await ctx.send(embed=embed)
+            elif guess < ran_number:
+                embed = discord.Embed(
+                    description=f'The Number **is a little bit bigger** than you thought... ``The number was {ran_number}``\n'
+                                f'Wish you more luck next time :thumbsup:', colour=discord.Color.red())
+                await ctx.send(embed=embed)
             else:
-                await ctx.send('Nope')
+                embed = discord.Embed(
+                    description=f'**The Number is exactly what you thought...** ``The number was {ran_number}`` :tada:\n'
+                                f'Hopefully you have the same luck next time :thumbsup:', colour=discord.Color.green())
+                await ctx.send(embed=embed)
 
     @commands.command(name='simp', aliases=['simprate'])
     async def simp(self, ctx):

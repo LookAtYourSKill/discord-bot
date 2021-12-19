@@ -16,7 +16,7 @@ class verify(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    @commands.cooldown(rate=10, per=1)
+    @commands.cooldown(rate=120, per=1)
     async def verify(self, ctx):
         """
         `The Verification Command`
