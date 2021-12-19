@@ -16,6 +16,7 @@ class verify(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    @commands.cooldown(rate=10, per=1)
     async def verify(self, ctx):
         """
         `The Verification Command`
@@ -47,66 +48,87 @@ class verify(commands.Cog):
                                       description=f'You have failed the verification process! Please try again',
                                       color=discord.colour.Color.purple())
             passembed = discord.Embed(title=f'Verification Successful',
-                                      description=f'You have passed the verification process! Enjoy your stay',
+                                      description=f'You have passed the verification process! Enjoy your stay\n'
+                                                  f'You\'ve got the role {role.mention}',
                                       color=discord.colour.Color.purple())
             timeoutembed = discord.Embed(title=f'Timeout Error',
                                          description='You\'ve needed too much time. Try it again by executing the command again!',
                                          color=discord.Color.red())
             captcha = random.randint(1, 4)
 
+            await ctx.message.delete()
+
             if captcha == 1:
                 embed.set_image(
                     url=f'https://cdn.discordapp.com/attachments/921773399565553695/921773496827256852/wickCaptcha.png')
-                await ctx.send(embed=embed)
+                await ctx.send(embed=embed, delete_after=20)
                 msg = await self.bot.wait_for('message', check=check, timeout=15)
-                if msg.content == 'KZEXEH':
-                    await ctx.send(embed=passembed)
-                try:
-                    await member.add_roles(role)
-                except TimeoutError:
-                    await ctx.send(embed=timeoutembed)
+                if msg.content == 'KZEXEH' and not msg.content == 'QVDKGB' and not msg.content == '47859' and not msg.content == 'FZQU02':
+                    await ctx.send(embed=passembed, delete_after=10)
+                    try:
+                        await member.add_roles(role)
+                        await msg.delete()
+                    except TimeoutError:
+                        await ctx.send(embed=timeoutembed)
+                else:
+                    await msg.delete()
+                    await ctx.send(embed=failembed, delete_after=10)
 
             elif captcha == 2:
                 embed.set_image(
                     url=f'https://cdn.discordapp.com/attachments/921773399565553695/921774173892796426/wickCaptcha1.png')
-                await ctx.send(embed=embed)
+                await ctx.send(embed=embed, delete_after=20)
                 msg = await self.bot.wait_for('message', check=check, timeout=15)
-                if msg.content == 'QVDKGB':
-                    await ctx.send(embed=passembed)
-                try:
-                    await member.add_roles(role)
-                except TimeoutError:
-                    await ctx.send(embed=timeoutembed)
+                if msg.content == 'QVDKGB' and not msg.content == 'KZEXEH' and not msg.content == '47859' and not msg.content == 'FZQU02':
+                    await ctx.send(embed=passembed, delete_after=10)
+                    try:
+                        await member.add_roles(role)
+                        await msg.delete()
+                    except TimeoutError:
+                        await ctx.send(embed=timeoutembed)
+                else:
+                    await msg.delete()
+                    await ctx.send(embed=failembed, delete_after=10)
 
             elif captcha == 3:
                 embed.set_image(
                     url=f'https://cdn.discordapp.com/attachments/921773399565553695/921774173452402758/wickCaptcha2.png')
-                await ctx.send(embed=embed)
+                await ctx.send(embed=embed, delete_after=20)
                 msg = await self.bot.wait_for('message', check=check, timeout=15)
-                if msg.content == '47859':
-                    await ctx.send(embed=passembed)
-                try:
-                    await member.add_roles(role)
-                except TimeoutError:
-                    await ctx.send(embed=timeoutembed)
+                if msg.content == '47859' and not msg.content == 'KZEXEH' and not msg.content == 'QVDKGB' and not msg.content == 'FZQU02':
+                    await ctx.send(embed=passembed, delete_after=10)
+                    try:
+                        await member.add_roles(role)
+                        await msg.delete()
+                    except TimeoutError:
+                        await ctx.send(embed=timeoutembed)
+                else:
+                    await msg.delete()
+                    await ctx.send(embed=failembed, delete_after=10)
 
             elif captcha == 4:
                 embed.set_image(
                     url=f'https://cdn.discordapp.com/attachments/921773399565553695/921774417829310474/wickCaptcha3.png')
-                await ctx.send(embed=embed)
+                await ctx.send(embed=embed, delete_after=20)
                 msg = await self.bot.wait_for('message', check=check, timeout=15)
-                if msg.content == 'FZQU02':
-                    await ctx.send(embed=passembed)
-                try:
-                    await member.add_roles(role)
-                except TimeoutError:
-                    await ctx.send(embed=timeoutembed)
+                if msg.content == 'FZQU02' and not msg.content == 'KZEXEH' and not msg.content == 'QVDKGB' and not msg.content == '47859':
+                    await ctx.send(embed=passembed, delete_after=10)
+                    try:
+                        await member.add_roles(role)
+                        await msg.delete()
+                    except TimeoutError:
+                        await ctx.send(embed=timeoutembed)
+                else:
+                    await msg.delete()
+                    await ctx.send(embed=failembed, delete_after=10)
 
             else:
-                await ctx.send(embed=failembed)
+                await ctx.send(embed=failembed, delete_after=5)
 
         else:
-            return
+            await ctx.message.delete()
+            embed = discord.Embed(description='Wrong Channel. Please use the verify channel :smile:', color=discord.Color.red())
+            await ctx.send(embed=embed, delete_after=5)
 
 
 def setup(bot):

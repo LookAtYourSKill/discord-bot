@@ -147,6 +147,10 @@ class roles(commands.Cog):
     @commands.command(name='getroles', aliases=['getr'])
     @commands.has_permissions(manage_roles=True)
     async def get_roles(self, ctx, member: discord.Member):
+        """
+        You can get all roles from a member in you discord server
+        """
+
         embed = discord.Embed(title=f'Roles from {member}')
         for i in member.roles:
             embed.add_field(name='Getted Role',
@@ -157,6 +161,10 @@ class roles(commands.Cog):
     @commands.command(name='removeroles', aliases=['remover'])
     @commands.has_permissions(manage_roles=True)
     async def remove_roles(self, ctx, member: discord.Member):
+        """
+        You can remove a role from a member of your discord server
+        """
+
         members_roles = member.roles
 
         for i in range(len(members_roles) - 1):
