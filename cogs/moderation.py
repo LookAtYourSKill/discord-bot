@@ -285,7 +285,7 @@ class moderation(commands.Cog):
             for i in range(len(members_roles) - 1):
                 await member.remove_roles(members_roles[i + 1])
 
-            await member.add_roles(mutedRole, reason=reason)
+            await member.add_roles(mutedRole)
 
             embed = discord.Embed(title=f'',
                                   description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gemuted!',

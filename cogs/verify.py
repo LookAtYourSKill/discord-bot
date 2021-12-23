@@ -27,7 +27,7 @@ class verify(commands.Cog):
 
         role = get(ctx.guild.roles, id=config['verified_role'])
 
-        if ctx.channel.id == config['verify_channel']:
+        if ctx.channel.id == config['verify_channel'] or ctx.channel.id == 920389678690091079:
 
             if role in ctx.author.roles:
                 embed = discord.Embed(description='Du hast dich **bereits Verifiziert**, oder hast zumindest die `Verified Role`!', color=discord.Color.red())
