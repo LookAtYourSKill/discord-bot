@@ -83,7 +83,6 @@ class info(commands.Cog):
         de = pytz.timezone('Europe/Berlin')
         roles = self.getRoles(ctx.guild.roles)
         days = (datetime.datetime.utcnow() - ctx.guild.created_at).days
-        role_count = len(ctx.guild.roles)
         embed = discord.Embed(title=f' ',
                               description=' ',
                               color=0x4cd137,
@@ -187,7 +186,7 @@ class info(commands.Cog):
                          icon_url=icon)
         embed.set_image(url=icon)
         embed.set_footer(icon_url=ctx.author.avatar_url,
-                         text=f'Angefordert von {member}')
+                         text=f'Angefordert von {ctx.author}')
         await ctx.send(embed=embed)
 
 

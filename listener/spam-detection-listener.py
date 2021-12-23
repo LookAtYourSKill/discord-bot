@@ -6,6 +6,7 @@ from discord.ext import commands
 with open('./config.json', 'r') as config_file:
     config = json.load(config_file)
 
+
 class spamDetection(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -15,8 +16,7 @@ class spamDetection(commands.Cog):
         if message.author.bot:
             return
         counter = 0
-        with open("C:/Users/simon/PycharmProjects/Discord Bot/Discord Bot/utils/json/spam-detection.json",
-                  "r+") as file:
+        with open("utils/json/spam-detection.json", "r+") as file:
             for lines in file:
                 if lines.strip("\n") == str(message.author.id):
                     counter += 1

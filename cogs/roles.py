@@ -82,7 +82,7 @@ class roles(commands.Cog):
         """
 
         try:
-            await user.add_roles(role, reason=None)
+            await user.add_roles(role)
             embed = discord.Embed(title='',
                                   description=f'Dem User **{user}** wurde die Rolle `{role} gegeben!`')
             await ctx.send(embed=embed, delete_after=5)
@@ -100,7 +100,7 @@ class roles(commands.Cog):
         """
 
         try:
-            await user.remove_roles(role, reason=None)
+            await user.remove_roles(role)
             embed = discord.Embed(title='',
                                   description=f'Dem User **{user}** wurde die Rolle `{role} entfernt!`')
             await ctx.send(embed=embed, delete_after=5)

@@ -22,7 +22,8 @@ class ticket(commands.Cog):
         await self.bot.wait_until_ready()
 
         if args is None:
-            message_content = "Please wait, we will be with you shortly!"
+            message_content = "Please wait, we will be with you shortly!\n" \
+                              "Type `?close` in chat, to close the ticket!"
 
         else:
             message_content = "".join(args)
@@ -47,11 +48,12 @@ class ticket(commands.Cog):
                                              embed_links=True, attach_files=True, read_message_history=True,
                                              external_emojis=True)
 
-        em = discord.Embed(title=f"New ticket from {ctx.author.name}#{ctx.author.discriminator}",
+        em = discord.Embed(title=f"Ticket - {ctx.author.name}#{ctx.author.discriminator}",
                            description=f"{message_content}",
                            color=0x00a8ff)
+        em.set_footer(text=f'Ticket System', icon_url='https://cdn.discordapp.com/avatars/790965419670241281/338c086b12cd9e45d8463afe581903ec.webp?size=1024')
 
-        await ticket_channel.send(embed=em)
+        await ticket_channel.send(f'{ctx.author.mention} Hello!', embed=em)
 
         pinged_msg_content = ""
         non_mentionable_roles = []
