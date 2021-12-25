@@ -28,6 +28,12 @@ class info(commands.Cog):
         else:
             return thing
 
+    @staticmethod
+    def dnd_member(ctx):
+        for member in ctx.guild.members:
+            if member.discord.status == 'do_not_disturb':
+                dnd_counter = + 1
+
     @commands.command(name='user', aliases=['userinfo', 'info'])
     async def user(self, ctx, member: discord.Member = None):
         """
@@ -83,6 +89,12 @@ class info(commands.Cog):
         de = pytz.timezone('Europe/Berlin')
         roles = self.getRoles(ctx.guild.roles)
         days = (datetime.datetime.utcnow() - ctx.guild.created_at).days
+        statuses = [
+            len(list(filter(lambda m: str(m.status) == 'online', ctx.guild.members))),
+            len(list(filter(lambda m: str(m.status) == 'idle', ctx.guild.members))),
+            len(list(filter(lambda m: str(m.status) == 'dnd', ctx.guild.members))),
+            len(list(filter(lambda m: str(m.status) == 'offline', ctx.guild.members)))
+        ]
         embed = discord.Embed(title=f' ',
                               description=' ',
                               color=0x4cd137,
@@ -101,6 +113,14 @@ class info(commands.Cog):
                               f'Vor {days} Tagen Erstellt\n'
                               f'Member : {ctx.guild.member_count}\n'
                               f'Boost Status : {ctx.guild.premium_subscription_count}/30```',
+                        inline=False)
+        embed.add_field(name='**Members**',
+                        value=f'```Statuses:\n'
+                              f'🟢 {statuses[0]} | 🟡 {statuses[1]} | 🔴 {statuses[2]} | 🔘 {statuses[3]} \n'
+                              f'User:\n'
+                              f'{len(list(filter(lambda m: not m.bot, ctx.guild.members)))}\n'
+                              f'Bots:\n'
+                              f'{len(list(filter(lambda m: m.bot, ctx.guild.members)))}```',
                         inline=False)
         embed.add_field(name='**Channel**',
                         value=f'```Insgesamt : {len(ctx.guild.channels)}\n'
