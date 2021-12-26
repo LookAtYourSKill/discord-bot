@@ -32,7 +32,8 @@ class raft(commands.Cog):
         vc.play(discord.FFmpegPCMAudio(
             'C:/Users/simon/Videos/4K Video Downloader/Raft/RAFT 1.01 Official Soundtrack   Full.mp3'))
         embed = discord.Embed(title='',
-                              description='Now playing the **Raft theme song!**',
+                              description='Now playing the **Raft Theme song!**\n'
+                                          ' [Link to the song :D](https://www.youtube.com/watch?v=m2P5t8UZz6o)',
                               color=discord.Color.dark_blue())
         embed.set_image(url='https://cdn.discordapp.com/attachments/864513088396591156/875455286368948235/raftpng.png')
         await ctx.send(embed=embed)
