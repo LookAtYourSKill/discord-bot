@@ -1,9 +1,8 @@
 import asyncio
-
 import discord
 from discord.ext import commands
 
-class channel(commands.Cog):
+class Channel(commands.Cog):
     """
     `To create and delete channel`
     """
@@ -88,4 +87,4 @@ class channel(commands.Cog):
         await ctx.send(f'Temp Channel `{channel_name}` **Erfolgreich gelöscht!**', delete_after=5)
 
 def setup(bot):
-    bot.add_cog(channel(bot))
+    bot.add_cog(Channel(bot))
