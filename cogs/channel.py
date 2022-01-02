@@ -11,7 +11,7 @@ class channel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='delchannel', aliases=['delete_channel'])
+    @commands.command(name='delchannel', aliases=['deletechannel'])
     async def delete_channel(self, ctx, channel: discord.TextChannel):
         """
         Delete a textchannel

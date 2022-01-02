@@ -111,14 +111,10 @@ class moderation(commands.Cog):
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Du musst `eine Zeit` angeben!')
             return await ctx.send(embed=embed)
-        if reason is None:
-            reason = 'Nicht angegeben'
-            embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='Die `Reason` is nicht angegeben!\n'
-                                              f'Sie wurde **automatisch auf {reason} gesetzt!**')
-            return await ctx.send(embed=embed)
+
         time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
         tempbantime = int(time[:-1]) * time_convert[time[-1]]
+
         guild = ctx.guild
         await guild.ban(reason=reason)
         embed = discord.Embed(title=f'',
@@ -159,7 +155,7 @@ class moderation(commands.Cog):
             embed = discord.Embed(title='Banned User Check')
             for i in bannedUser:
                 embed.add_field(name='User',
-                                value=f'{i}',
+                                value=f'`{i}`',
                                 inline=False)
             await ctx.send(embed=embed)
 
@@ -279,6 +275,16 @@ class moderation(commands.Cog):
             embed = discord.Embed(description='Du hast kein Grund angegeben!\n'
                                               f'Er wurde **automatisch auf {reason} gesetzt!**')
             await ctx.author.send(embed=embed)
+
+            if not mutedRole:
+                mutedRole = await guild.create_role(name="Muted")
+                for channel in guild.channels:
+                    await channel.set_permissions(mutedRole,
+                                                  speak=False,
+                                                  send_messages=False,
+                                                  read_message_history=False,
+                                                  read_messages=False
+                                                  )
 
             members_roles = member.roles
 

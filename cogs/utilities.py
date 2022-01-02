@@ -140,29 +140,6 @@ class utilities(commands.Cog):
         await ctx.message.delete()
         await ctx.message.author.send(''.join(random.choice(chars) for i in range(length)), delete_after=10)
 
-    @commands.command(name='reminder')
-    async def reminder(self, ctx, zeit=None, *, reason='Nicht angegeben'):
-        """
-        Creates a reminder for a time you want
-        - **?reminder [`time`] [`reason`]**
-        """
-
-        time_convert = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
-        remindertime = int(zeit[:-1]) * time_convert[zeit[-1]]
-        if zeit is None:
-            await ctx.send('Du musst eine Zeit angeben!')
-        elif reason is None:
-            embed = discord.Embed(title='Error',
-                                  description='You did\'nt mentioned a reason.\n'
-                                              'By standard it was set to \'nicht angegeben\'!')
-        else:
-            embed = discord.Embed(title='Reminder',
-                                  description=f'You\'ll be reminded in `{zeit}` because of `{reason}`')
-            await ctx.send(embed=embed)
-
-            await asyncio.sleep(remindertime)
-            await ctx.send(f'{ctx.author.mention} i should remind you now, ``reason = {reason}``')
-
     @commands.command()
     async def spotify(self, ctx, user: discord.Member = None):
         """
