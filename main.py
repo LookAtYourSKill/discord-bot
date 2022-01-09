@@ -55,7 +55,7 @@ for filename in os.listdir('./listener'):
 print(colored('Finished setting up files!', 'red'))
 #bot.load_extension('dch')
 
-with open('config.json', 'r') as config_file:
+with open('etc/config.json', 'r') as config_file:
     config = json.load(config_file)
 
 bot.run(config["token"])

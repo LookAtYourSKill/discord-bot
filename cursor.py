@@ -2,7 +2,7 @@ import mysql.connector
 import mysql.connector.cursor
 import json
 
-with open('config.json', 'r') as config_file:
+with open('etc/config.json', 'r') as config_file:
     config = json.load(config_file)
 
 host = config['host']

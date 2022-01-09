@@ -3,7 +3,7 @@ import json
 import discord
 from discord.ext import commands
 
-with open("./config.json", "r") as f:
+with open("./etc/config.json", "r") as f:
     config = json.load(f)
 
 class roles(commands.Cog):

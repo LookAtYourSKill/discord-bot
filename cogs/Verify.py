@@ -22,7 +22,7 @@ class verify(commands.Cog):
         The Verification Command
         - **?verify**
         """
-        with open('./config.json', 'r') as config_file:
+        with open('./etc/config.json', 'r') as config_file:
             config = json.load(config_file)
 
         role = get(ctx.guild.roles, id=config['verified_role'])

@@ -11,7 +11,7 @@ class Help(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def help3(self, ctx, *content):
+    async def help(self, ctx, *content):
         """
                 Shows this help
                 """
@@ -58,7 +58,7 @@ class Help(commands.Cog):
                             inline=False)
             await ctx.send(embed=embed)
 
-        elif len(content) == 1:
+        elif str(content) == 'Moderation' or str(content) == 'moderation':
             embed = discord.Embed(
                 description=f'Verwende `{prefix}help <command>` to gain more information about the command',
                 color=discord.Color.blurple())
@@ -110,6 +110,7 @@ class Help(commands.Cog):
             embed.add_field(name='unblock <member>',
                             value='Unblock a user from writing in a textchannel',
                             inline=False)
+            embed.set_footer(text='[] optional | <> required')
             await ctx.send(embed=embed)
 
         elif len(content) > 1:

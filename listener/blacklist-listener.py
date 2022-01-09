@@ -17,7 +17,7 @@ class blacklistListener(commands.Cog):
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description='Deine Message `wurde gelöscht`, da du ein Wort `aus der Blacklist darin hattest!`\n**Bitte unterlasse dies!**')
                 await message.channel.send(embed=embed, delete_after=5)
-                with open('../config.json', 'r') as config_file:
+                with open('../etc/config.json', 'r') as config_file:
                     config = json.load(config_file)
                 log_channel = config['moderation_log_channel']
                 await log_channel.send(f'{message.author.mention} hat ein Wort aus der Blacklist geschickt!')
