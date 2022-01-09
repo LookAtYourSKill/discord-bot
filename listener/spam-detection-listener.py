@@ -3,7 +3,7 @@ import json
 import discord
 from discord.ext import commands
 
-with open('./config.json', 'r') as config_file:
+with open('./etc/config.json', 'r') as config_file:
     config = json.load(config_file)
 
 
