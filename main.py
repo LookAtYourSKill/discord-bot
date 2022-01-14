@@ -24,7 +24,7 @@ async def on_ready():
         status=discord.Status.idle)
     while True:
         await asyncio.sleep(10)
-        with open("./utils/json/spam-detection.json",
+        with open("utils/json.template/spam-detection.json",
                   "r+") as file:
             file.truncate(0)
 
