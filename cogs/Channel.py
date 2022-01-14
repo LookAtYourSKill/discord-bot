@@ -33,7 +33,7 @@ class Channel(commands.Cog):
             await ctx.message.delete()
 
     @commands.command(name='createchannel', aliases=['mkchannel'])
-    async def create_channel(self, ctx, channel_name):
+    async def create_channel(self, ctx, *, channel_name):
         """
         Create a channel
         - **?mkchannel [`channel_name`]**
@@ -56,7 +56,7 @@ class Channel(commands.Cog):
 
     @commands.command(name='tempchannel', aliases=['temp_channel'])
     @commands.cooldown(rate=5, per=1)
-    async def temp_channel(self, ctx, channel_name, time):
+    async def temp_channel(self, ctx, *, channel_name, time):
         """
         Create a channel for a specific time.
         - **tempchannel [`channel_name`] [`time`]**

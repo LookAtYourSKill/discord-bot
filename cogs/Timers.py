@@ -64,7 +64,7 @@ class Timers(commands.Cog):
         await winner.send(embed=winner_private_embed)
 
     @commands.command(name='reminder')
-    async def reminder(self, ctx, zeit=None, *, reason='Nicht angegeben'):
+    async def reminder(self, ctx, zeit=None, *, reason='not set'):
         """
         Creates a reminder for a time you want
         - **?reminder [`time`] [`reason`]**
@@ -79,10 +79,19 @@ class Timers(commands.Cog):
         elif reason is None:
             embed = discord.Embed(title='Error',
                                   description='You did\'nt mentioned a reason.\n'
-                                              'By standard it was set to \'nicht angegeben\'!',
+                                              'By standard it was set to \'not set\'!',
                                   color=discord.Color.red())
             await ctx.send(embed=embed)
+
+            embed = discord.Embed(title='Reminder',
+                                  description=f'You\'ll be reminded in `{zeit}` because of `not set`')
+            await ctx.send(embed=embed)
+
+            await asyncio.sleep(remindertime)
+            await ctx.send(f'{ctx.author.mention} i should remind you now, ``reason = not set``')
+
         else:
+
             embed = discord.Embed(title='Reminder',
                                   description=f'You\'ll be reminded in `{zeit}` because of `{reason}`')
             await ctx.send(embed=embed)

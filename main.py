@@ -1,11 +1,12 @@
 import asyncio
 import json
+import time
+
 import discord
 from discord.ext import commands
 from termcolor import colored
 import os
 
-# TODO: Make the bot saver and add role history stuff, so a guy with a role under you cant remove roles from you...
 # TODO: Datenbank überarbeitung
 
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?', owner_id=493370963807830016)
@@ -13,6 +14,8 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
+    startTime = time.time()
+    print(f"Boot-Time: {round(time.time() - startTime, 2)}s")
     print(colored(f'Botid: {bot.user.id} - Name: {bot.user.name}#{bot.user.discriminator}', 'green'))
     await bot.change_presence(
         activity=discord.Activity(

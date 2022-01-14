@@ -1,5 +1,5 @@
-import asyncio
 import datetime
+import time
 import sys
 import discord
 import pytz
@@ -13,6 +13,8 @@ class info(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+
+        sys.path.append('C:/Users/simon/PycharmProjects/Mine/Discord Bot/Discord Bot/main.py')
 
     @staticmethod
     def getRoles(roles):
@@ -167,9 +169,8 @@ class info(commands.Cog):
         - **?bot**
         """
 
-        BOT_VERSION = 'v1.1'
+        BOT_VERSION = 'v1.3'
         PREFIX = '?'
-        de = pytz.timezone('Europe/Berlin')
         python_version = '{}.{}.{}'.format(*sys.version_info[:3])
         embed = discord.Embed(title=f'> Bot Info ',
                               description='',
@@ -183,7 +184,7 @@ class info(commands.Cog):
                         value=f'```Python: {python_version}\nDiscord: {discord.__version__}```',
                         inline=True)
         embed.add_field(name='**Other**',
-                        value=f'```Bot Version: {BOT_VERSION}\nBot Prefix: {PREFIX}```',
+                        value=f'```Bot Version: {BOT_VERSION}\nBot Prefix: {PREFIX}\n',
                         inline=True)
         embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
                          icon_url=ctx.author.avatar_url)

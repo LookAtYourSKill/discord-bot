@@ -6,6 +6,7 @@ from discord.ext import commands
 with open("./etc/config.json", "r") as f:
     config = json.load(f)
 
+
 class roles(commands.Cog):
     """
     `All roles you need for the bot`
@@ -152,26 +153,37 @@ class roles(commands.Cog):
 
     @commands.command(name='getroles', aliases=['getr'])
     @commands.has_permissions(manage_roles=True)
-    async def get_roles(self, ctx, member: discord.Member):
+    async def get_roles(self, ctx, member: discord.Member = None):
         """
         You can get all roles from a member in you discord server
         - **?getr [`member`]**
         """
 
+        if not member:
+            member = ctx.author
+
         embed = discord.Embed(title=f'Roles from {member}')
+        role_list = ''
         for i in member.roles:
-            embed.add_field(name='Getted Role',
-                            value=f'{i}',
-                            inline=False)
+            role_list += f'- `{i}`\n'
+
+        embed.add_field(name='Getted Role',
+                        value=f'{role_list}',
+                        inline=False)
         await ctx.send(embed=embed)
 
     @commands.command(name='removeroles', aliases=['remover'])
     @commands.has_permissions(manage_roles=True)
-    async def remove_roles(self, ctx, member: discord.Member):
+    async def remove_roles(self, ctx, member: discord.Member = None):
         """
         You can remove all roles from a member of your discord server
         - **?removeroles [`member`]**
         """
+
+        if not member:
+            embed = discord.Embed(description=f'Du kannst dir nicht selbst alle Rollen wegnehmen...')
+            await ctx.send(embed=embed)
+            return
 
         members_roles = member.roles
 

@@ -84,17 +84,17 @@ class fun(commands.Cog):
         - **rps [`Stein, Papier, Schere`]**
         """
 
-        rps = ['Stein', 'Papier', 'Schere']
+        rps = ['rock', 'paper', 'scissors']
         if name is None or name not in rps:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                  description='**Benutze bitte:** `Stein`, `Schere` oder `Papier`!')
+                                  description='**Please use:** `rock`, `paper` or `scissors`!')
             await ctx.send(embed=embed)
 
         else:
             bot_move = random.choice(rps)
             embed = discord.Embed(title='',
-                                  description=f'**Der Bot** hat `{bot_move} gewählt`!\n'
-                                              f'**Du** hast `{name} gewählt`!')
+                                  description=f'**The Bot** chose `{bot_move}`!\n'
+                                              f'**You** chose `{name}`!')
             message = await ctx.send(embed=embed)
             await asyncio.sleep(5)
 
@@ -103,8 +103,8 @@ class fun(commands.Cog):
                                       description=f'{ctx.author.mention} Das ist ein `unentschieden`!')
                 await message.edit(embed=embed)
 
-            elif name == "Stein":
-                if bot_move == "Papier":
+            elif name == "rock":
+                if bot_move == "paper":
                     embed = discord.Embed(title='',
                                           description=f'{ctx.author.mention} Du hast `verloren`')
                     await message.edit(embed=embed)
@@ -113,8 +113,8 @@ class fun(commands.Cog):
                                           description=f'{ctx.author.mention} Du hast `gewonnen`')
                     await message.edit(embed=embed)
 
-            elif name == "Papier":
-                if bot_move == "Schere":
+            elif name == "paper":
+                if bot_move == "scissors":
                     embed = discord.Embed(title='',
                                           description=f'{ctx.author.mention} Du hast `verloren`')
                     await message.edit(embed=embed)
@@ -123,8 +123,8 @@ class fun(commands.Cog):
                                           description=f'{ctx.author.mention} Du hast `gewonnen`')
                     await message.edit(embed=embed)
 
-            elif name == "Schere":
-                if bot_move == "Stein":
+            elif name == "scissors":
+                if bot_move == "rock":
                     embed = discord.Embed(title='',
                                           description=f'{ctx.author.mention} Du hast `verloren`')
                     await message.edit(embed=embed)
