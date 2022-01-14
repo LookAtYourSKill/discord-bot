@@ -1,5 +1,4 @@
 import json
-import discord
 from discord.ext import commands
 
 
@@ -13,7 +12,7 @@ class on_guild(commands.Cog):
             data = json.load(f)
 
         new_server = {
-            "SERVERNAME": "BotTesting",
+            "SERVERNAME": f"{str(guild.name)}",
             "MESSAGE_LOG_CHANNEL": (),
             "MODERATION_LOG_CHANNEL": (),
             "WELCOME_CHANNEL": (),
@@ -27,16 +26,16 @@ class on_guild(commands.Cog):
         with open('utils/json/on_guild.json', 'w') as f:
             json.dump(data, f, indent=4)
 
-        with open('utils/json/warns.json', 'w') as f2:
-            data2 = json.load(f2)
+        with open('utils/json/warns.json', 'r') as f:
+            data = json.load(f)
 
         new_warn = {
             "warns": {}
         }
 
         data[str(guild.id)] = new_warn
-        with open('utils/json/warns.json', 'w') as f2:
-            json.dump(data2, f2, indent=4)
+        with open('utils/json/warns.json', 'w') as f:
+            json.dump(data, f, indent=4)
 
     @commands.Cog.listener()
     async def on_guild_leave(self, guild):
@@ -44,7 +43,7 @@ class on_guild(commands.Cog):
             data = json.load(f)
 
         old_server = {
-            "SERVERNAME": "BotTesting",
+            "SERVERNAME": f"{guild.name}",
             "MESSAGE_LOG_CHANNEL": (),
             "MODERATION_LOG_CHANNEL": (),
             "WELCOME_CHANNEL": (),

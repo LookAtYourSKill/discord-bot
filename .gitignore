@@ -1,4 +1,5 @@
 /etc/config.json
+
 /utils/json/warns.json
 /utils/json/blacklist.json
 /utils/json/channel_blacklist.json
