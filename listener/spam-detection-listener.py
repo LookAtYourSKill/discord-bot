@@ -22,7 +22,7 @@ class spamDetection(commands.Cog):
                     counter += 1
 
             file.writelines(f"{str(message.author.id)}\n")
-            if counter > 7:
+            if counter > 100:
                 await message.guild.kick(message.author, reason="Spam Detection")
                 channel = message.guild.get_channel(config['moderation_log_channel'])
                 embed = discord.Embed(title='',

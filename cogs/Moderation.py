@@ -172,7 +172,8 @@ class moderation(commands.Cog):
                                       color=discord.Color.red())
                 await ctx.send(embed=embed)
         else:
-            await ctx.send('Der User hat keine Warns oder wurde nicht Gefunden!')
+            embed = discord.Embed(description=f'Der User hat hat entweder keine Warns oder wurde nicht gefunden!')
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)

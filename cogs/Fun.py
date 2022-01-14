@@ -201,6 +201,25 @@ class fun(commands.Cog):
             url='https://static.wikia.nocookie.net/0974aaa7-7e44-4887-997b-2bf06efb6297/scale-to-width/755')
         await ctx.send(embed=embed)
 
+    @commands.command(name='alzheimer', alises=['alz'])
+    async def alzheimer(self, ctx):
+        """
+        Just a simply test if you are sus or not
+        - **?sus**
+        """
+
+        if ctx.author.id == 427408295427440652:
+            embed = discord.Embed(title='Alzheimer Test',
+                                  description=f'Alzheimer liegt **ganz klar** bei: **100%**',
+                                  color=discord.colour.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            ran_percent = random.randint(1, 100)
+            embed = discord.Embed(title='Alzheimer Test',
+                                  description=f'Alzheimer liegt bei: **{ran_percent}%**',
+                                  color=discord.colour.Color.red())
+            await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(fun(bot))

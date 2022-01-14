@@ -138,7 +138,5 @@ class utilities(commands.Cog):
         await ctx.message.author.send(''.join(random.choice(chars) for i in range(length)), delete_after=10)
 
 
-
-
 def setup(bot):
     bot.add_cog(utilities(bot))

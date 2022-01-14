@@ -14,9 +14,9 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
+    print(colored(f'Botid: {bot.user.id} - Name: {bot.user.name}#{bot.user.discriminator}', 'green'))
     startTime = time.time()
     print(f"Boot-Time: {round(time.time() - startTime, 2)}s")
-    print(colored(f'Botid: {bot.user.id} - Name: {bot.user.name}#{bot.user.discriminator}', 'green'))
     await bot.change_presence(
         activity=discord.Activity(
             type=discord.ActivityType.watching,
@@ -24,7 +24,7 @@ async def on_ready():
         status=discord.Status.idle)
     while True:
         await asyncio.sleep(10)
-        with open("utils/json.template/spam-detection.json",
+        with open("utils/json/spam-detection.json",
                   "r+") as file:
             file.truncate(0)
 
