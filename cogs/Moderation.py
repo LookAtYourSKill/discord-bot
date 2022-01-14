@@ -6,7 +6,6 @@ from discord.ext import commands
 with open("./etc/config.json", "r") as f_org:
     config = json.load(f_org)
 
-
 class moderation(commands.Cog):
     """
     `Moderation commands all you can need`
@@ -42,6 +41,9 @@ class moderation(commands.Cog):
             embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
             await ctx.send(embed=embed)
 
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            await channel.send(embed=embed)
+
         elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
             with open('utils/json/warns.json', 'w') as f:
@@ -54,6 +56,9 @@ class moderation(commands.Cog):
                 inline=False)
             embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
             await ctx.send(embed=embed)
+
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            await channel.send(embed=embed)
 
         elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
@@ -68,7 +73,10 @@ class moderation(commands.Cog):
             embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
             await ctx.send(embed=embed)
 
-            #await member.ban(reason=reason)
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            await channel.send(embed=embed)
+
+            await member.ban(reason=reason)
 
     @commands.command(name='unwarn')
     async def unwarn(self, ctx, *, member: int):
@@ -93,6 +101,9 @@ class moderation(commands.Cog):
             embed.set_footer(text=f'von {ctx.author}')
             await ctx.send(embed=embed)
 
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            await channel.send(embed=embed)
+
         elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
             data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
             with open('utils/json/warns.json', 'w') as f:
@@ -105,6 +116,9 @@ class moderation(commands.Cog):
             embed.set_footer(text=f'von {ctx.author}')
             await ctx.send(embed=embed)
 
+            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            await channel.send(embed=embed)
+
         elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 3:
             try:
                 user = await self.bot.get_user(member.id)
@@ -116,6 +130,9 @@ class moderation(commands.Cog):
                                     inline=False)
                     embed.set_footer(text=f'von {ctx.author}')
                     await ctx.send(embed=embed)
+
+                    channel = self.bot.get_channel(id=config['moderation_log_channel'])
+                    await channel.send(embed=embed)
                     return
                 else:
                     ban_error = discord.Embed(title='__BAN ERROR__',
@@ -132,7 +149,7 @@ class moderation(commands.Cog):
                                             color=discord.Color.red())
                 await ctx.send(embed=unban_error)
 
-    @commands.command(name='warns')
+    @commands.command(name='warns', aliases=['warnings'])
     async def warns(self, ctx, *, member: int):
         member = self.bot.get_user(member)
         with open('utils/json/warns.json', 'r+') as f:
