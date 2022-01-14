@@ -1,1 +1,8 @@
 /etc/config.json
+/utils/json/warns.json
+/utils/json/blacklist.json
+/utils/json/channel_blacklist.json
+/utils/json/spam-detection.json
+/utils/json/ticket_data.json
+/utils/json/gifs.json
+/utils/json/on_guild.json
