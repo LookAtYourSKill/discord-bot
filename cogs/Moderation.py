@@ -111,7 +111,6 @@ class moderation(commands.Cog):
                 if str(member) == str(user):
                     await ctx.guild.unban(user)
                     embed = discord.Embed(title='> Warn System', color=discord.Color.red())
-                    embed = discord.Embed(title='> Warn System', color=discord.Color.red())
                     embed.add_field(name='Zwei Verwarnung noch!',
                                     value=f':police_car: {member} hat nun noch **zwei Verwarnung** und **wurde entbannt**! :police_car:',
                                     inline=False)
