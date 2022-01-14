@@ -20,14 +20,23 @@ class on_guild(commands.Cog):
             "LEAVE_CHANNEL": (),
             "VERIFY_CHANNEL": (),
             "BOT_ROLE": (),
-            "VERIFIED_ROLE": (),
-            "WARNS": {
-                }
+            "VERIFIED_ROLE": ()
             }
 
         data[str(guild.id)] = new_server
         with open('utils/json/on_guild.json', 'w') as f:
             json.dump(data, f, indent=4)
+
+        with open('utils/json/warns.json', 'w') as f2:
+            data2 = json.load(f2)
+
+        new_warn = {
+            "warns": {}
+        }
+
+        data[str(guild.id)] = new_warn
+        with open('utils/json/warns.json', 'w') as f2:
+            json.dump(data2, f2, indent=4)
 
     @commands.Cog.listener()
     async def on_guild_leave(self, guild):
@@ -42,9 +51,7 @@ class on_guild(commands.Cog):
             "LEAVE_CHANNEL": (),
             "VERIFY_CHANNEL": (),
             "BOT_ROLE": (),
-            "VERIFIED_ROLE": (),
-            "WARNS": {
-                }
+            "VERIFIED_ROLE": ()
             }
         data[str(guild.id)].remove(old_server)
         with open('utils/json/on_guild.json', 'w') as f:

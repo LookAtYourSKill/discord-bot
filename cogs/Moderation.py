@@ -3,8 +3,8 @@ import json
 import discord
 from discord.ext import commands
 
-with open("./etc/config.json", "r") as f:
-    config = json.load(f)
+with open("./etc/config.json", "r") as f_org:
+    config = json.load(f_org)
 
 
 class moderation(commands.Cog):
@@ -16,6 +16,147 @@ class moderation(commands.Cog):
         self.channel = None
         self.message = None
         self.bot = bot
+
+    @commands.command(name='warn')
+    async def warn(self, ctx, member: discord.Member, *, reason=None):
+        """
+        Warn a user in your server. At 3 Warns the user will get banned!
+        """
+
+        with open('utils/json/warns.json', 'r+') as f:
+            data = json.load(f)
+
+        if str(member.id) not in data[str(ctx.guild.id)]["warns"]:
+            data[str(ctx.guild.id)]["warns"][str(member.id)] = {}
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Name"] = str(member)
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Punished By"] = str(ctx.author.id)
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] = 1
+            with open('utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            embed = discord.Embed(title='> Warn System', color=discord.Color.red())
+            embed.add_field(
+                name=f'Erste Verwarnung von {member}',
+                value=f':police_car: {member} hat seine **erste Verwarnung**, wegen dem Grund `{reason}` erhalten! :police_car:',
+                inline=False)
+            embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
+            await ctx.send(embed=embed)
+
+        elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
+            with open('utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            embed = discord.Embed(title='> Warn System', color=discord.Color.red())
+            embed.add_field(
+                name=f'Zweite Verwarnung von {member}',
+                value=f':police_car: {member} hat seine **zweite Verwarnung**, wegen dem Grund `{reason}` erhalten! :police_car:',
+                inline=False)
+            embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
+            await ctx.send(embed=embed)
+
+        elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
+            with open('utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            embed = discord.Embed(title='> Warn System', color=discord.Color.red())
+            embed.add_field(
+                name=f'Dritte Verwarnung von {member}',
+                value=f':police_car: {member} hat seine **dritte Verwarnung und wird somit gebannt**, wegen dem Grund `{reason}`! :police_car:',
+                inline=False)
+            embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
+            await ctx.send(embed=embed)
+
+            #await member.ban(reason=reason)
+
+    @commands.command(name='unwarn')
+    async def unwarn(self, ctx, *, member: int):
+        """
+        Here you can unwarn the user you warned before with the warn command
+        """
+
+        member = self.bot.get_user(member)
+        with open('utils/json/warns.json', 'r+') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
+            data[str(ctx.guild.id)]["warns"].pop(str(member.id))
+            with open('utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            embed = discord.Embed(title='> Warn System', color=discord.Color.green())
+            embed.add_field(name='Keine Verwarnung mehr!',
+                            value=f':police_car: {member} hat nun **keine Verwarnung** mehr! :police_car:',
+                            inline=False)
+            embed.set_footer(text=f'von {ctx.author}')
+            await ctx.send(embed=embed)
+
+        elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
+            data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
+            with open('utils/json/warns.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            embed = discord.Embed(title='> Warn System', color=discord.Color.orange())
+            embed.add_field(name='Eine Verwarnung noch!',
+                            value=f':police_car: {member} hat nun noch **eine Verwarnung**! :police_car:',
+                            inline=False)
+            embed.set_footer(text=f'von {ctx.author}')
+            await ctx.send(embed=embed)
+
+        elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 3:
+            try:
+                user = await self.bot.get_user(member.id)
+                if str(member) == str(user):
+                    await ctx.guild.unban(user)
+                    embed = discord.Embed(title='> Warn System', color=discord.Color.red())
+                    embed = discord.Embed(title='> Warn System', color=discord.Color.red())
+                    embed.add_field(name='Zwei Verwarnung noch!',
+                                    value=f':police_car: {member} hat nun noch **zwei Verwarnung** und **wurde entbannt**! :police_car:',
+                                    inline=False)
+                    embed.set_footer(text=f'von {ctx.author}')
+                    await ctx.send(embed=embed)
+                    return
+                else:
+                    ban_error = discord.Embed(title='__BAN ERROR__',
+                                              description='Der User konnte nicht Entbannt werden!',
+                                              color=discord.Color.green())
+                    await ctx.send(embed=ban_error)
+                data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
+                with open('utils/json/warns.json', 'w') as f:
+                    json.dump(data, f, indent=4)
+
+            except discord.Forbidden:
+                unban_error = discord.Embed(title='__ERROR__',
+                                            description='Ein Fehler ist aufgetreten!',
+                                            color=discord.Color.red())
+                await ctx.send(embed=unban_error)
+
+    @commands.command(name='warns')
+    async def warns(self, ctx, *, member: int):
+        member = self.bot.get_user(member)
+        with open('utils/json/warns.json', 'r+') as f:
+            data = json.load(f)
+
+        if str(member.id) in data[str(ctx.guild.id)]["warns"]:
+            if data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
+                embed = discord.Embed(title='> Warn System',
+                                      description=f':police_car: Der User `{data[str(ctx.guild.id)]["warns"][str(member.id)]["Name"]}` hat **einen Warn!** :police_car:',
+                                      color=discord.Color.green())
+                await ctx.send(embed=embed)
+            elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
+                embed = discord.Embed(title='> Warn System',
+                                      description=f':police_car: Der User `{data[str(ctx.guild.id)]["warns"][str(member.id)]["Name"]}` hat **zwei Warns!** :police_car:',
+                                      color=discord.Color.orange())
+                await ctx.send(embed=embed)
+            elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 3:
+                embed = discord.Embed(title='> Warn System',
+                                      description=f':police_car: Der User `{data[str(ctx.guild.id)]["warns"][str(member.id)]["Name"]}` hat **drei Warns** und **ist bereits gebannt**! :police_car:',
+                                      color=discord.Color.red())
+                await ctx.send(embed=embed)
+        else:
+            await ctx.send('Der User hat keine Warns oder wurde nicht Gefunden!')
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
