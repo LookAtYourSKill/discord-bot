@@ -125,7 +125,7 @@ class automod(commands.Cog):
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(name='channel_blacklist_add', aliases=['channelblacklistadd', 'chbladd'])
     @commands.has_permissions(manage_channels=True)
     async def channel_blacklist_add(self, ctx, id: int):
         with open("utils/json/channel_blacklist.json", "r") as f:
@@ -149,7 +149,7 @@ class automod(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(name='channel_blacklist_remove', aliases=['channelblacklistremove', 'chblrm'])
     @commands.has_permissions(manage_channels=True)
     async def channel_blacklist_remove(self, ctx, id: int):
         with open("utils/json/channel_blacklist.json", "r") as f:
@@ -173,7 +173,7 @@ class automod(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(name='channel_blacklist_show', aliases=['channelblacklistshow', 'chblshow'])
     @commands.has_permissions(manage_channels=True)
     async def channel_blacklist_show(self, ctx):
         with open('utils/json/channel_blacklist.json', 'r') as f:
@@ -195,7 +195,7 @@ class automod(commands.Cog):
                 await ctx.author.send(embed=embed)
                 await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(name='channel_blacklist_clear', aliases=['channelblacklistclear', 'chblclear'])
     @commands.has_permissions(manage_channels=True)
     async def channel_blacklist_clear(self, ctx):
 
