@@ -87,6 +87,49 @@ class administration(commands.Cog):
         role = ctx.guild.default_role
         await ctx.send(f'{role}, {text}')
 
+    @commands.command(name='load')
+    @commands.is_owner()
+    async def load(self, ctx, cog):
+        try:
+            self.bot.load_extension(f'cogs.{cog}')
+            embed = discord.Embed(description=f'`Das Modul {cog}` **wurde erfolgreich geladen!**',
+                                  color=discord.Color.green())
+            await ctx.send(embed=embed)
+        except discord.Forbidden:
+            embed = discord.Embed(
+                description=f'Ein Fehler ist aufgetreten... Eventuell gibt es die Extension `{cog}` garnicht... Überprüfe bitte deine schreibweise!',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+
+    @commands.command(name='unload')
+    @commands.is_owner()
+    async def unload(self, ctx, cog):
+        try:
+            self.bot.unload_extension(f'cogs.{cog}')
+            embed = discord.Embed(description=f'`Das Modul {cog}` **wurde erfolgreich entladen!**',
+                                  color=discord.Color.green())
+            await ctx.send(embed=embed)
+        except discord.Forbidden:
+            embed = discord.Embed(
+                description=f'Ein Fehler ist aufgetreten... Eventuell gibt es die Extension `{cog}` garnicht... Überprüfe bitte deine schreibweise!',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+
+    @commands.command(name='reload')
+    @commands.is_owner()
+    async def reload(self, ctx, cog):
+        try:
+            self.bot.unload_extension(f'cogs.{cog}')
+            self.bot.load_extension(f'cogs.{cog}')
+            embed = discord.Embed(description=f'`Das Modul {cog}` **wurde erfolgreich neu geladen!**',
+                                  color=discord.Color.green())
+            await ctx.send(embed=embed)
+        except discord.Forbidden:
+            embed = discord.Embed(
+                description=f'Ein Fehler ist aufgetreten... Eventuell gibt es die Extension `{cog}` garnicht... Überprüfe bitte deine schreibweise!',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(administration(bot))
