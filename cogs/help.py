@@ -33,7 +33,7 @@ class Help(commands.Cog):
                             value=f'`setstatus`, `lock`, `release`, `say`, `gawrole`, `muterole`, `rules`',
                             inline=False)
             embed.add_field(name='Utilities',
-                            value='`invite`, `invites`, `botinvite`, `embed`, `repeat`, `senddm`, `password`, `add`, `minus`, `multiplicate`, `divide`',
+                            value='`invite`, `invites`, `botinvite`, `embed`, `repeat`, `senddm`, `password`, `translate`, `add`, `minus`, `multiplicate`, `divide`',
                             inline=False)
             embed.add_field(name='Channel',
                             value='`deletechannel`, `createchannel`, `tempchannel`',
@@ -51,7 +51,7 @@ class Help(commands.Cog):
                             value='`verify`, `setup`, `toggle`, `new`, `close`, `addaccess`, `delaccess`, `addpingedrole`, `delpingedrole`, `addadminrole`, `deladminrole`',
                             inline=False)
             embed.add_field(name='Timers',
-                            value='`reminder`, `giveaway`',
+                            value='`reminder`, `giveaway`, `poll`',
                             inline=False)
             await ctx.send(embed=embed)
 
@@ -193,6 +193,9 @@ class Help(commands.Cog):
                             inline=False)
             embed.add_field(name='password',
                             value='Create a random generated password in your dms',
+                            inline=False)
+            embed.add_field(name='translator <language> <text/word>',
+                            value='Translate a text/word you want in any language!',
                             inline=False)
             embed.add_field(name='add <number 1> <number 2>',
                             value='Add two numbers together',
@@ -355,6 +358,9 @@ class Help(commands.Cog):
                             inline=False)
             embed.add_field(name='giveaway <time> <prize>',
                             value='Create a giveaway with reaction stuff',
+                            inline=False)
+            embed.add_field(name='poll <question>',
+                            value='Create a poll with reaction stuff and a question you can decide',
                             inline=False)
             embed.set_footer(text='[] optional | <> required')
             await ctx.send(embed=embed)
