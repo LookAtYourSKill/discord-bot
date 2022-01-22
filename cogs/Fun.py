@@ -25,7 +25,7 @@ class fun(commands.Cog):
 
         if data[str(ctx.guild.id)]["Fun"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Fun) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -57,7 +57,7 @@ class fun(commands.Cog):
 
         if data[str(ctx.guild.id)]["Fun"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Fun) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -87,7 +87,7 @@ class fun(commands.Cog):
 
         if data[str(ctx.guild.id)]["Fun"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Fun) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -111,7 +111,7 @@ class fun(commands.Cog):
 
         if data[str(ctx.guild.id)]["Fun"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Fun) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -174,7 +174,7 @@ class fun(commands.Cog):
 
         if data[str(ctx.guild.id)]["Fun"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Fun) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -216,7 +216,7 @@ class fun(commands.Cog):
 
         if data[str(ctx.guild.id)]["Fun"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Fun) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -240,7 +240,7 @@ class fun(commands.Cog):
 
         if data[str(ctx.guild.id)]["Fun"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Fun) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -264,7 +264,7 @@ class fun(commands.Cog):
 
         if data[str(ctx.guild.id)]["Fun"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Fun) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
