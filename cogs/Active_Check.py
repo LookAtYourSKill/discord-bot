@@ -9,7 +9,7 @@ class Active_Check(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def activate(self, ctx, cog):
+    async def activate(self, ctx, cog=None):
         with open('utils/json/active_check.json', 'r') as f:
             data = json.load(f)
 
