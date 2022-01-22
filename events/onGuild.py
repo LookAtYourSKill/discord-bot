@@ -96,20 +96,22 @@ class on_guild(commands.Cog):
         with open('utils/json/blacklist.json', 'w') as f:
             json.dump(data, f, indent=4)
 
-        with open('utils/json/utility_timers.json', 'r') as f:
+        with open('utils/json/utility_times.json', 'r') as f:
             data = json.load(f)
 
         new_utility_timer = {
-            "reminders": {
-
+            "giveaway-counter": 0,
+            "giveaways": {
+                "giveaway_info": {}
             },
-            "giveaway": {
-
+            "reminder-counter": 0,
+            "reminders": {
+                "reminder_info": {}
             }
         }
 
         data[str(guild.id)] = new_utility_timer
-        with open('utils/json/utility_timers.json', 'w') as f:
+        with open('utils/json/utility_times.json', 'w') as f:
             json.dump(data, f, indent=4)
 
 
