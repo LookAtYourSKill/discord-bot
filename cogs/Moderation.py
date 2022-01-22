@@ -222,16 +222,14 @@ class moderation(commands.Cog):
             await ctx.send(embed=embed)
         else:
             if member == ctx.author:
-                embed = discord.Embed(title='',
-                                      description=f'{member.mention}, du kannst dich **nicht selbst bannen**!',
+                embed = discord.Embed(description=f'{member.mention}, du kannst dich **nicht selbst bannen**!',
                                       color=0x4cd137, )
                 await ctx.send(embed=embed, delete_after=5)
                 await asyncio.sleep(1)
                 await ctx.message.delete()
             else:
                 await member.ban(reason=reason, delete_message_days=1)
-                embed = discord.Embed(title=f'',
-                                      description=f'Der User **{member.mention}** wurde wegen `{reason}` gebannt!',
+                embed = discord.Embed(description=f'Der User **{member.mention}** wurde wegen `{reason}` gebannt!',
                                       color=0x4cd137)
                 embed.add_field(name='**Information**',
                                 value=f'Gebannter User : `{member}`\n'
