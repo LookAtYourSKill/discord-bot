@@ -37,6 +37,34 @@ class on_guild(commands.Cog):
         with open('utils/json/warns.json', 'w') as f:
             json.dump(data, f, indent=4)
 
+        with open('utils/json/active_check.json', 'r+') as f:
+            data = json.load(f)
+
+        new_checks = {
+            "Administration": "true",
+            "Automod": "true",
+            "Channel": "true",
+            "Fun": "true",
+            "Help": "true",
+            "Info": "true",
+            "Math": "true",
+            "Moderation": "true",
+            "Music": "true",
+            "Poll": "true",
+            "Roles": "true",
+            "Rules": "true",
+            "Setup": "true",
+            "Ticket_System": "true",
+            "Timers": "true",
+            "Translator": "true",
+            "Utilities": "true",
+            "Verify": "true"
+        }
+
+        data[str(guild.id)] = new_checks
+        with open('utils/json/active_check.json', 'w') as f:
+            json.dump(data, f, indent=4)
+
     @commands.Cog.listener()
     async def on_guild_leave(self, guild):
         with open('utils/json/on_guild.json', 'r') as f:
