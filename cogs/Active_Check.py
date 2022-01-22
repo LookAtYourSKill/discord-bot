@@ -13,30 +13,35 @@ class Active_Check(commands.Cog):
         with open('utils/json/active_check.json', 'r') as f:
             data = json.load(f)
 
-        if str(ctx.guild.id) not in data:
-            new_checks = {
-                "Administration": "true",
-                "Automod": "true",
-                "Channel": "true",
-                "Fun": "true",
-                "Help": "true",
-                "Info": "true",
-                "Math": "true",
-                "Moderation": "true",
-                "Music": "true",
-                "Poll": "true",
-                "Roles": "true",
-                "Rules": "true",
-                "Setup": "true",
-                "Ticket_System": "true",
-                "Timers": "true",
-                "Translator": "true",
-                "Utilities": "true",
-                "Verify": "true"
-            }
-            data[str(ctx.guild.id)] = new_checks
-            with open('utils/json/active_check.json', 'w') as f:
-                json.dump(data, f, indent=4)
+        if not cog:
+            if str(ctx.guild.id) not in data:
+                new_checks = {
+                    "Administration": "true",
+                    "Automod": "true",
+                    "Channel": "true",
+                    "Fun": "true",
+                    "Help": "true",
+                    "Info": "true",
+                    "Math": "true",
+                    "Moderation": "true",
+                    "Music": "true",
+                    "Poll": "true",
+                    "Roles": "true",
+                    "Rules": "true",
+                    "Setup": "true",
+                    "Ticket_System": "true",
+                    "Timers": "true",
+                    "Translator": "true",
+                    "Utilities": "true",
+                    "Verify": "true"
+                }
+                data[str(ctx.guild.id)] = new_checks
+                with open('utils/json/active_check.json', 'w') as f:
+                    json.dump(data, f, indent=4)
+
+                embed = discord.Embed(description=f'Der Server `{ctx.guild.name}` wurde **erfolgreich registriert!**',
+                                      color=discord.Color.green())
+                await ctx.send(embed=embed)
 
         elif data[str(ctx.guild.id)][f"{cog}"] == 'true':
             embed = discord.Embed(description=f'Das `Modul {cog}` ist **bereits aktiviert!**',
@@ -44,7 +49,6 @@ class Active_Check(commands.Cog):
             await ctx.send(embed=embed)
 
         elif data[str(ctx.guild.id)][f"{cog}"] == 'false':
-
             data[str(ctx.guild.id)][f"{cog}"] = 'true'
             with open('utils/json/active_check.json', 'w') as f:
                 json.dump(data, f, indent=4)
@@ -54,8 +58,9 @@ class Active_Check(commands.Cog):
             await ctx.send(embed=embed)
 
         else:
-            embed = discord.Embed(description=f'**Unbekannter Fehler!** Versuche es in ein paar Sekunden erneut',
-                                  color=discord.Color.red())
+            embed = discord.Embed(
+                description=f'Dein Server scheint **nicht registriert zu sein!** **Registriere dein Server** bitte erst einmal **mit dem Befehl** `?activate`',
+                color=discord.Color.red())
             await ctx.send(embed=embed)
 
     @commands.command()
@@ -64,29 +69,9 @@ class Active_Check(commands.Cog):
             data = json.load(f)
 
         if str(ctx.guild.id) not in data:
-            new_checks = {
-                "Administration": "true",
-                "Automod": "true",
-                "Channel": "true",
-                "Fun": "true",
-                "Help": "true",
-                "Info": "true",
-                "Math": "true",
-                "Moderation": "true",
-                "Music": "true",
-                "Poll": "true",
-                "Roles": "true",
-                "Rules": "true",
-                "Setup": "true",
-                "Ticket_System": "true",
-                "Timers": "true",
-                "Translator": "true",
-                "Utilities": "true",
-                "Verify": "true"
-            }
-            data[str(ctx.guild.id)] = new_checks
-            with open('utils/json/active_check.json', 'w') as f:
-                json.dump(data, f, indent=4)
+            embed = discord.Embed(description=f'Dein Server scheint **nicht registriert zu sein!** **Registriere dein Server** bitte erst einmal **mit dem Befehl** `?activate`',
+                                  color=discord.Color.red())
+            await ctx.send(embed=embed)
 
         elif data[str(ctx.guild.id)][f"{cog}"] == 'false':
             embed = discord.Embed(description=f'Das `Modul {cog}` ist **bereits deaktiviert!**',
@@ -94,7 +79,6 @@ class Active_Check(commands.Cog):
             await ctx.send(embed=embed)
 
         elif data[str(ctx.guild.id)][f"{cog}"] == 'true':
-
             data[str(ctx.guild.id)][f"{cog}"] = 'false'
             with open('utils/json/active_check.json', 'w') as f:
                 json.dump(data, f, indent=4)
@@ -114,29 +98,10 @@ class Active_Check(commands.Cog):
             data = json.load(f)
 
         if str(ctx.guild.id) not in data:
-            new_checks = {
-                "Administration": "true",
-                "Automod": "true",
-                "Channel": "true",
-                "Fun": "true",
-                "Help": "true",
-                "Info": "true",
-                "Math": "true",
-                "Moderation": "true",
-                "Music": "true",
-                "Poll": "true",
-                "Roles": "true",
-                "Rules": "true",
-                "Setup": "true",
-                "Ticket_System": "true",
-                "Timers": "true",
-                "Translator": "true",
-                "Utilities": "true",
-                "Verify": "true"
-            }
-            data[str(ctx.guild.id)] = new_checks
-            with open('utils/json/active_check.json', 'w') as f:
-                json.dump(data, f, indent=4)
+            embed = discord.Embed(
+                description=f'Dein Server scheint **nicht registriert zu sein!** **Registriere dein Server** bitte erst einmal **mit dem Befehl** `?activate`',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
 
         elif data[str(ctx.guild.id)][f"{cog}"] == 'false':
             embed = discord.Embed(description=f'Das Modul `{cog}` ist **momentan deaktiviert!**',
@@ -160,7 +125,7 @@ class Active_Check(commands.Cog):
 
         if str(ctx.guild.id) not in data:
             embed = discord.Embed(
-                description=f'Dein Server ist anscheinend noch nicht registriert... Führe bitte zuerst den Command `?activate Moderation`, um den Server eintragen zu lassen!',
+                description=f'Dein Server scheint **nicht registriert zu sein!** **Registriere dein Server** bitte erst einmal **mit dem Befehl** `?activate`',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
 
