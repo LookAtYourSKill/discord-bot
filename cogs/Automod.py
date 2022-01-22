@@ -163,7 +163,7 @@ class automod(commands.Cog):
                 return
             else:
                 data[str(ctx.guild.id)]["channel_blacklist"].remove(id)
-        with open("utils/json/channel_blacklist.json", "w") as file:
+        with open("utils/json/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(color=discord.Color.green())
             embed.add_field(name='<:open:869959941321011260> **Channel Blacklist Remove**',
