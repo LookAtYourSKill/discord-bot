@@ -18,7 +18,6 @@ class on_guild(commands.Cog):
             "WELCOME_CHANNEL": (),
             "LEAVE_CHANNEL": (),
             "VERIFY_CHANNEL": (),
-            "BOT_ROLE": (),
             "VERIFIED_ROLE": ()
         }
 
@@ -95,6 +94,22 @@ class on_guild(commands.Cog):
 
         data[str(guild.id)] = new_blacklist
         with open('utils/json/blacklist.json', 'w') as f:
+            json.dump(data, f, indent=4)
+
+        with open('utils/json/utility_timers.json', 'r') as f:
+            data = json.load(f)
+
+        new_utility_timer = {
+            "reminders": {
+
+            },
+            "giveaway": {
+
+            }
+        }
+
+        data[str(guild.id)] = new_utility_timer
+        with open('utils/json/utility_timers.json', 'w') as f:
             json.dump(data, f, indent=4)
 
 
