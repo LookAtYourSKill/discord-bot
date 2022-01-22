@@ -1,10 +1,12 @@
 import asyncio
+import datetime
 import json
 import discord
 from discord.ext import commands
 
 with open("./etc/config.json", "r") as f_org:
     config = json.load(f_org)
+
 
 class moderation(commands.Cog):
     """
@@ -264,6 +266,10 @@ class moderation(commands.Cog):
         "d": day/s
         "w": week/s``
         """
+        with open('utils/json/temp_times.json', 'r') as f:
+            data = json.load(f)
+
+        punished_time = datetime.datetime.utcnow()
 
         if time is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -274,7 +280,6 @@ class moderation(commands.Cog):
         tempbantime = int(time[:-1]) * time_convert[time[-1]]
 
         guild = ctx.guild
-        await guild.ban(reason=reason)
         embed = discord.Embed(title=f'',
                               description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gebannt!',
                               color=0x4cd137)
@@ -286,10 +291,30 @@ class moderation(commands.Cog):
                               f'Gebannt von : `{ctx.author}`',
                         inline=False)
         await member.send(embed=embed)
+
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)] = {}
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)]["Name"] = str(member)
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)]["Punished By"] = str(ctx.author.id)
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)]["Punished At"] = punished_time.strftime(
+            "%m/%d/%Y, %H:%M:%S")
+        # %m=month, %d=day, %Y=year, %H:=hour:,%M:=minute:, %S=second
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)]["Time"] = str(time)
+        with open('utils/json/temp_times.json', 'w') as f:
+            json.dump(data, f, indent=4)
+
+        await guild.ban(user=member, reason=reason)
         await ctx.send(embed=embed, delete_after=5)
         await ctx.message.delete()  # Delete user's message
         await asyncio.sleep(tempbantime)
         await member.unban()
+
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)] = {}
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)]["Name"] = str(member)
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)]["Punished By"] = None
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)]["Punished At"] = None
+        data[str(ctx.guild.id)]["tempbans"][str(member.id)]["Time"] = None
+        with open('utils/json/temp_times.json', 'w') as f:
+            json.dump(data, f, indent=4)
 
         channel = self.bot.get_channel(id=config["moderation_log_channel"])
         await channel.send(embed=embed)
@@ -405,7 +430,7 @@ class moderation(commands.Cog):
 
     @commands.command(aliases=['tmute'])
     @commands.has_permissions(kick_members=True)
-    async def tempmute(self, ctx, member: discord.Member, time=None, *, reason=None):
+    async def tempmute(self, ctx, member: discord.Member, time=None, *, reason='Nicht Angegeben'):
         """
         Mute a user for a specific time
         - **?tempmute [`member`] [`time`] [`reason`]**
@@ -418,6 +443,11 @@ class moderation(commands.Cog):
         "w": week/s``
         """
 
+        with open('utils/json/temp_times.json', 'r') as f:
+            data = json.load(f)
+
+        punished_time = datetime.datetime.utcnow()
+
         if time is None:
             embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                   description='Du musst `eine Zeit` angeben!')
@@ -427,61 +457,6 @@ class moderation(commands.Cog):
         tempmutetime = int(time[:-1]) * time_convert[time[-1]]
         guild = ctx.guild
         mutedRole = discord.utils.get(guild.roles, name="Muted")
-
-        if reason is None:
-            reason = 'Nicht Angegeben'
-            embed = discord.Embed(description='Du hast kein Grund angegeben!\n'
-                                              f'Er wurde **automatisch auf {reason} gesetzt!**')
-            await ctx.author.send(embed=embed)
-
-            if not mutedRole:
-                mutedRole = await guild.create_role(name="Muted")
-                for channel in guild.channels:
-                    await channel.set_permissions(mutedRole,
-                                                  speak=False,
-                                                  send_messages=False,
-                                                  read_message_history=False,
-                                                  read_messages=False
-                                                  )
-
-            members_roles = member.roles
-
-            for i in range(len(members_roles) - 1):
-                await member.remove_roles(members_roles[i + 1])
-
-            await member.add_roles(mutedRole)
-
-            embed = discord.Embed(title=f'',
-                                  description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gemuted!',
-                                  color=0x4cd137)
-            embed.add_field(name='**Information**',
-                            value=f'Tempmuted User : `{member}`\n'
-                                  f'User ID : `{member.id}`\n'
-                                  f'Reason : `{reason}`\n'
-                                  f'Time : `{time}`\n'
-                                  f'Tempmuted von : `{ctx.author}`',
-                            inline=False)
-            await ctx.send(embed=embed, delete_after=5)
-            await ctx.message.delete()
-
-            channel = self.bot.get_channel(id=config['moderation_log_channel'])
-            await channel.send(embed=embed)
-
-            embed = discord.Embed(title=f'',
-                                  description=f'Du wurdest auf dem Server **{ctx.guild.name}** für `{time}` wegen `{reason}` gemuted!',
-                                  color=0x4cd137)
-            embed.add_field(name='**Information**',
-                            value=f'Tempmuted User : `{member}`\n'
-                                  f'User ID : `{member.id}`\n'
-                                  f'Reason : `{reason}`\n'
-                                  f'Time : `{time}`\n'
-                                  f'Tempmuted von : `{ctx.author}`',
-                            inline=False)
-            await member.send(embed=embed)
-
-            await asyncio.sleep(tempmutetime)
-            await member.remove_roles(mutedRole)
-            return
 
         if not mutedRole:
             mutedRole = await guild.create_role(name="Muted")
@@ -495,10 +470,10 @@ class moderation(commands.Cog):
 
         members_roles = member.roles
 
-        for i in range(len(members_roles) - 1):
-            await member.remove_roles(members_roles[i + 1])
+        # for i in range(len(members_roles) - 1):
+        #    await member.remove_roles(members_roles[i + 1])
 
-        await member.add_roles(mutedRole, reason=reason)
+        await member.add_roles(mutedRole)
         embed = discord.Embed(title=f'',
                               description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gemuted!',
                               color=0x4cd137)
@@ -515,9 +490,9 @@ class moderation(commands.Cog):
         channel = self.bot.get_channel(id=config['moderation_log_channel'])
         await channel.send(embed=embed)
 
-        embed = discord.Embed(title=f'',
-                              description=f'Du wurdest auf dem Server **{ctx.guild.name}** für `{time}` wegen `{reason}` gemuted!',
-                              color=0x4cd137)
+        embed = discord.Embed(
+            description=f'Du wurdest auf dem Server **{ctx.guild.name}** für `{time}` wegen `{reason}` gemuted!',
+            color=0x4cd137)
         embed.add_field(name='**Information**',
                         value=f'Tempmuted User : `{member}`\n'
                               f'User ID : `{member.id}`\n'
@@ -526,8 +501,27 @@ class moderation(commands.Cog):
                               f'Tempmuted von : `{ctx.author}`',
                         inline=False)
         await member.send(embed=embed)
+
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)] = {}
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)]["Name"] = str(member)
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)]["Punished By"] = str(ctx.author.id)
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)]["Punished At"] = punished_time.strftime(
+            "%m/%d/%Y, %H:%M:%S")
+        # %m=month, %d=day, %Y=year, %H:=hour:,%M:=minute:, %S=second
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)]["Time"] = str(time)
+        with open('utils/json/temp_times.json', 'w') as f:
+            json.dump(data, f, indent=4)
+
         await asyncio.sleep(tempmutetime)
         await member.remove_roles(mutedRole)
+
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)] = {}
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)]["Name"] = str(member)
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)]["Punished By"] = None
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)]["Punished At"] = None
+        data[str(ctx.guild.id)]["tempmutes"][str(member.id)]["Time"] = None
+        with open('utils/json/temp_times.json', 'w') as f:
+            json.dump(data, f, indent=4)
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
