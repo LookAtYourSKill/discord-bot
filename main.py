@@ -1,16 +1,14 @@
 import asyncio
 import json
 import time
-
 import discord
 from discord.ext import commands
 from termcolor import colored
 import os
 
-# TODO: Datenbank überarbeitung
-
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?', owner_id=493370963807830016)
 bot.remove_command('help')
+
 
 @bot.event
 async def on_ready():
@@ -27,6 +25,7 @@ async def on_ready():
         with open("utils/json/spam-detection.json",
                   "r+") as file:
             file.truncate(0)
+
 
 print(colored('COG PART', 'red'))
 for filename in os.listdir('./cogs'):
@@ -56,7 +55,7 @@ for filename in os.listdir('./listener'):
             print(colored(f'Error, something went wrong with {filename}!', 'red'))
 
 print(colored('Finished setting up files!', 'red'))
-#bot.load_extension('dch')
+# bot.load_extension('dch')
 
 with open('etc/config.json', 'r') as config_file:
     config = json.load(config_file)
