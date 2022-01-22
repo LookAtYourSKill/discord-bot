@@ -22,7 +22,7 @@ class automod(commands.Cog):
 
         with open("utils/json/blacklist.json", "r") as f:
             data = json.load(f)
-            if text in data["blacklist"]:
+            if text in data[str(ctx.guild.id)]["blacklist"]:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'`Das Wort ({text})` ist **bereits in der Blacklist!**',
                                       color=discord.Color.red())
@@ -30,7 +30,7 @@ class automod(commands.Cog):
                 await ctx.message.delete()
                 return
             else:
-                data["blacklist"].append(text)
+                data[str(ctx.guild.id)]["blacklist"].append(text)
         with open("utils/json/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(color=discord.Color.green())
@@ -51,7 +51,7 @@ class automod(commands.Cog):
 
         with open("utils/json/blacklist.json", "r") as f:
             data = json.load(f)
-            if text not in data["blacklist"]:
+            if text not in data[str(ctx.guild.id)]["blacklist"]:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'`Das Wort ({text})` ist **nicht in der Blacklist!**',
                                       color=discord.Color.red())
@@ -59,7 +59,7 @@ class automod(commands.Cog):
                 await ctx.message.delete()
                 return
             else:
-                data["blacklist"].remove(text)
+                data[str(ctx.guild.id)]["blacklist"].remove(text)
         with open("utils/json/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(color=discord.Color.green())
@@ -81,7 +81,7 @@ class automod(commands.Cog):
         with open('utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
 
-            if not data["blacklist"]:
+            if not data[str(ctx.guild.id)]["blacklist"]:
                 embed = discord.Embed(color=discord.Color.red())
                 embed.add_field(name='<:close:864599591692009513> **ERROR**',
                                 value='`Die Blacklist ist leer!`',
@@ -91,7 +91,7 @@ class automod(commands.Cog):
             else:
                 embed = discord.Embed(color=discord.Color.green())
                 embed.add_field(name='**Blacklist Words**',
-                                value=f'`{data["blacklist"]}`',
+                                value=f'`{data[str(ctx.guild.id)]["blacklist"]}`',
                                 inline=False)
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.author.send(embed=embed)
@@ -107,7 +107,7 @@ class automod(commands.Cog):
 
         with open('utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
-            if not data["blacklist"]:
+            if not data[str(ctx.guild.id)]["blacklist"]:
                 embed = discord.Embed(color=discord.Color.red())
                 embed.add_field(name='<:close:864599591692009513> **ERROR**',
                                 value='`Die Blacklist ist bereits leer!`',
@@ -115,7 +115,7 @@ class automod(commands.Cog):
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.message.delete()
             else:
-                data["blacklist"].remove(data)
+                data[str(ctx.guild.id)]["blacklist"].clear()
                 with open("utils/json/blacklist.json", "r+") as file:
                     json.dump(file, data, indent=4)
                 embed = discord.Embed(color=discord.Color.green())
@@ -128,9 +128,9 @@ class automod(commands.Cog):
     @commands.command(name='channel_blacklist_add', aliases=['channelblacklistadd', 'chbladd'])
     @commands.has_permissions(manage_channels=True)
     async def channel_blacklist_add(self, ctx, id: int):
-        with open("utils/json/channel_blacklist.json", "r") as f:
+        with open("utils/json/blacklist.json", "r") as f:
             data = json.load(f)
-            if id in data["channel_blacklist"]:
+            if id in data[str(ctx.guild.id)]["channel_blacklist"]:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'`Das Wort ({id})` ist **bereits in der Blacklist!**',
                                       color=discord.Color.red())
@@ -138,8 +138,8 @@ class automod(commands.Cog):
                 await ctx.message.delete()
                 return
             else:
-                data["channel_blacklist"].append(id)
-        with open("utils/json/channel_blacklist.json", "w") as file:
+                data[str(ctx.guild.id)]["channel_blacklist"].append(id)
+        with open("utils/json/blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(color=discord.Color.green())
             embed.add_field(name='<:open:869959941321011260> **Channel Blacklist Add**',
@@ -152,9 +152,9 @@ class automod(commands.Cog):
     @commands.command(name='channel_blacklist_remove', aliases=['channelblacklistremove', 'chblrm'])
     @commands.has_permissions(manage_channels=True)
     async def channel_blacklist_remove(self, ctx, id: int):
-        with open("utils/json/channel_blacklist.json", "r") as f:
+        with open("utils/json/blacklist.json", "r") as f:
             data = json.load(f)
-            if id not in data["channel_blacklist"]:
+            if id not in data[str(ctx.guild.id)]["channel_blacklist"]:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
                                       description=f'`Der Channel` `({id})` ist **nicht in der Channel Blacklist!**',
                                       color=discord.Color.red())
@@ -162,7 +162,7 @@ class automod(commands.Cog):
                 await ctx.message.delete()
                 return
             else:
-                data["channel_blacklist"].remove(id)
+                data[str(ctx.guild.id)]["channel_blacklist"].remove(id)
         with open("utils/json/channel_blacklist.json", "w") as file:
             json.dump(data, file, indent=4)
             embed = discord.Embed(color=discord.Color.green())
@@ -176,10 +176,10 @@ class automod(commands.Cog):
     @commands.command(name='channel_blacklist_show', aliases=['channelblacklistshow', 'chblshow'])
     @commands.has_permissions(manage_channels=True)
     async def channel_blacklist_show(self, ctx):
-        with open('utils/json/channel_blacklist.json', 'r') as f:
+        with open('utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
 
-            if not data["channel_blacklist"]:
+            if not data[str(ctx.guild.id)]["channel_blacklist"]:
                 embed = discord.Embed(color=discord.Color.red())
                 embed.add_field(name='<:close:864599591692009513> **ERROR**',
                                 value='`Die Channel Blacklist ist leer!`',
@@ -189,7 +189,7 @@ class automod(commands.Cog):
             else:
                 embed = discord.Embed(color=discord.Color.green())
                 embed.add_field(name='Channel Blacklist',
-                                value=f'`{data["channel_blacklist"]}`',
+                                value=f'`{data[str(ctx.guild.id)]["channel_blacklist"]}`',
                                 inline=False)
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.author.send(embed=embed)
@@ -198,11 +198,10 @@ class automod(commands.Cog):
     @commands.command(name='channel_blacklist_clear', aliases=['channelblacklistclear', 'chblclear'])
     @commands.has_permissions(manage_channels=True)
     async def channel_blacklist_clear(self, ctx):
-
-        with open('utils/json/channel_blacklist.json', 'r') as f:
+        with open('utils/json/blacklist.json', 'r') as f:
             data = json.load(f)
 
-            if not data["channel_blacklist"]:
+            if not data[str(ctx.guild.id)]["channel_blacklist"]:
                 embed = discord.Embed(color=discord.Color.red())
                 embed.add_field(name='<:close:864599591692009513> **ERROR**',
                                 value='`Die Channel Backlist ist bereits leer!`',
@@ -210,9 +209,8 @@ class automod(commands.Cog):
                 await ctx.send(embed=embed, delete_after=5)
                 await ctx.message.delete()
             else:
-                print(data["channel_blacklist"])
-                data["channel_blacklist"].remove(data)
-                with open("utils/json/channel_blacklist.json", "r+") as file:
+                data[str(ctx.guild.id)]["channel_blacklist"].remove(data)
+                with open("utils/json/blacklist.json", "r+") as file:
                     json.dump(file, data, indent=4)
                 embed = discord.Embed(color=discord.Color.green())
                 embed.add_field(name='<:open:869959941321011260> **Deleted All Blacklisted Words**',
