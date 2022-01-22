@@ -92,7 +92,7 @@ class administration(commands.Cog):
     async def load(self, ctx, cog):
         try:
             self.bot.load_extension(f'cogs.{cog}')
-            embed = discord.Embed(description=f'`Das Modul {cog}` **wurde erfolgreich geladen!**',
+            embed = discord.Embed(description=f'Das `Modul {cog}` wurde **erfolgreich geladen!**',
                                   color=discord.Color.green())
             await ctx.send(embed=embed)
         except discord.Forbidden:
@@ -106,7 +106,7 @@ class administration(commands.Cog):
     async def unload(self, ctx, cog):
         try:
             self.bot.unload_extension(f'cogs.{cog}')
-            embed = discord.Embed(description=f'`Das Modul {cog}` **wurde erfolgreich entladen!**',
+            embed = discord.Embed(description=f'Das `Modul {cog}` wurde **erfolgreich entladen!**',
                                   color=discord.Color.green())
             await ctx.send(embed=embed)
         except discord.Forbidden:
@@ -121,7 +121,7 @@ class administration(commands.Cog):
         try:
             self.bot.unload_extension(f'cogs.{cog}')
             self.bot.load_extension(f'cogs.{cog}')
-            embed = discord.Embed(description=f'`Das Modul {cog}` **wurde erfolgreich neu geladen!**',
+            embed = discord.Embed(description=f'Das `Modul {cog}` wurde **erfolgreich neu geladen!**',
                                   color=discord.Color.green())
             await ctx.send(embed=embed)
         except discord.Forbidden:
