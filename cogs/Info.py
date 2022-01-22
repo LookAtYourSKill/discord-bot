@@ -88,7 +88,6 @@ class info(commands.Cog):
         - **?server**
         """
 
-        de = pytz.timezone('Europe/Berlin')
         roles = self.getRoles(ctx.guild.roles)
         days = (datetime.datetime.utcnow() - ctx.guild.created_at).days
         statuses = [
