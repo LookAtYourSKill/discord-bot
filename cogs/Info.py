@@ -1,9 +1,9 @@
 import datetime
-import time
 import sys
 import discord
 import pytz
 from discord.ext import commands
+import json
 
 
 class info(commands.Cog):
@@ -30,12 +30,6 @@ class info(commands.Cog):
         else:
             return thing
 
-    @staticmethod
-    def dnd_member(ctx):
-        for member in ctx.guild.members:
-            if member.discord.status == 'do_not_disturb':
-                dnd_counter = + 1
-
     @commands.command(name='user', aliases=['userinfo', 'info'])
     async def user(self, ctx, member: discord.Member = None):
         """
@@ -43,43 +37,52 @@ class info(commands.Cog):
         - **?user [`member`]**
         """
 
-        if not member:
-            member = ctx.author
-        de = pytz.timezone('Europe/Berlin')
-        days = (datetime.datetime.utcnow() - member.created_at).days
-        days2 = (datetime.datetime.utcnow() - member.joined_at).days
-        members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
-        roles = self.getRoles(member.roles)
-        embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
-                              description='',
-                              color=0x4cd137,
-                              timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
 
-        embed.set_thumbnail(url=f'{member.avatar_url}')
-        embed.add_field(name='**Name**',
-                        value=f'```Name: {member.name}#{member.discriminator}\n'
-                              f'ID: {member.id}\n'
-                              f'Nick: {(member.nick if member.nick else "Nein")}\n```',
-                        inline=False)
-        embed.add_field(name='**Account**',
-                        value=f'```Discord Beigetreten: {member.created_at.strftime("%d.%m.%Y")}\n'
-                              f'Vor {days} Tagen erstellt\n'
-                              f'Bot : {("Ja" if member.bot else "Nein")}\n'
-                              f'Farbe : {member.color}\n'
-                              f'Status : {member.status}\n'
-                              f'Join Position : {str(members.index(member) + 1)}```',
-                        inline=False)
-        embed.add_field(name='**Server**',
-                        value=f'```Server Beigetreten : {member.joined_at.strftime("%d.%m.%Y")}\n'
-                              f'Vor {days2} Tagen beigetreten\n'
-                              f'Booster: {("Ja" if member.premium_since else "Nein")}```',
-                        inline=False)
-        embed.add_field(name=f'**Rollen [{len(member.roles) - 1}]**',
-                        value=f'{roles}',
-                        inline=False)
-        embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
-                         icon_url=ctx.author.avatar_url)
-        await ctx.send(embed=embed)
+        if data[str(ctx.guild.id)]["Info"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Info) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            if not member:
+                member = ctx.author
+            de = pytz.timezone('Europe/Berlin')
+            days = (datetime.datetime.utcnow() - member.created_at).days
+            days2 = (datetime.datetime.utcnow() - member.joined_at).days
+            members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
+            roles = self.getRoles(member.roles)
+            embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
+                                  description='',
+                                  color=0x4cd137,
+                                  timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+
+            embed.set_thumbnail(url=f'{member.avatar_url}')
+            embed.add_field(name='**Name**',
+                            value=f'```Name: {member.name}#{member.discriminator}\n'
+                                  f'ID: {member.id}\n'
+                                  f'Nick: {(member.nick if member.nick else "Nein")}\n```',
+                            inline=False)
+            embed.add_field(name='**Account**',
+                            value=f'```Discord Beigetreten: {member.created_at.strftime("%d.%m.%Y")}\n'
+                                  f'Vor {days} Tagen erstellt\n'
+                                  f'Bot : {("Ja" if member.bot else "Nein")}\n'
+                                  f'Farbe : {member.color}\n'
+                                  f'Status : {member.status}\n'
+                                  f'Join Position : {str(members.index(member) + 1)}```',
+                            inline=False)
+            embed.add_field(name='**Server**',
+                            value=f'```Server Beigetreten : {member.joined_at.strftime("%d.%m.%Y")}\n'
+                                  f'Vor {days2} Tagen beigetreten\n'
+                                  f'Booster: {("Ja" if member.premium_since else "Nein")}```',
+                            inline=False)
+            embed.add_field(name=f'**Rollen [{len(member.roles) - 1}]**',
+                            value=f'{roles}',
+                            inline=False)
+            embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
+                             icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
 
     @commands.command(name='server', aliases=['serverinfo', 'guild'])
     async def server(self, ctx):
@@ -88,52 +91,61 @@ class info(commands.Cog):
         - **?server**
         """
 
-        roles = self.getRoles(ctx.guild.roles)
-        days = (datetime.datetime.utcnow() - ctx.guild.created_at).days
-        statuses = [
-            len(list(filter(lambda m: str(m.status) == 'online', ctx.guild.members))),
-            len(list(filter(lambda m: str(m.status) == 'idle', ctx.guild.members))),
-            len(list(filter(lambda m: str(m.status) == 'dnd', ctx.guild.members))),
-            len(list(filter(lambda m: str(m.status) == 'offline', ctx.guild.members)))
-        ]
-        embed = discord.Embed(title=f' ',
-                              description=' ',
-                              color=0x4cd137,
-                              timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
 
-        embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
-        embed.add_field(name=f'> Info für {ctx.guild.name}',
-                        value=f'```Name : {ctx.guild.name}\n'
-                              f'ID : {ctx.guild.id}\n'
-                              f'Owner : {ctx.guild.owner}\n'
-                              f'Owner ID : {ctx.guild.owner_id}\n'
-                              f'Region : {ctx.guild.region}```',
-                        inline=False)
-        embed.add_field(name='**Daten**',
-                        value=f'```Erstellt: {ctx.guild.created_at.strftime("%d.%m.%Y")}\n'
-                              f'Vor {days} Tagen Erstellt\n'
-                              f'Member : {ctx.guild.member_count}\n'
-                              f'Boost Status : {ctx.guild.premium_subscription_count}/30```',
-                        inline=False)
-        embed.add_field(name='**Members**',
-                        value=f'```Statuses:\n'
-                              f'🟢 {statuses[0]} | 🟡 {statuses[1]} | 🔴 {statuses[2]} | 🔘 {statuses[3]} \n'
-                              f'User:\n'
-                              f'{len(list(filter(lambda m: not m.bot, ctx.guild.members)))}\n'
-                              f'Bots:\n'
-                              f'{len(list(filter(lambda m: m.bot, ctx.guild.members)))}```',
-                        inline=False)
-        embed.add_field(name='**Channel**',
-                        value=f'```Insgesamt : {len(ctx.guild.channels)}\n'
-                              f'Textchannel : {len(ctx.guild.text_channels)}\n'
-                              f'Voicechannel : {len(ctx.guild.voice_channels)}\n'
-                              f'Kategorien : {len(ctx.guild.categories)}```')
-        embed.add_field(name=f'**Rollen[{len(ctx.guild.roles) - 1}]**',
-                        value=f'{roles}',
-                        inline=False)
-        embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
-                         icon_url=ctx.author.avatar_url)
-        await ctx.send(embed=embed)
+        if data[str(ctx.guild.id)]["Info"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Info) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            roles = self.getRoles(ctx.guild.roles)
+            days = (datetime.datetime.utcnow() - ctx.guild.created_at).days
+            statuses = [
+                len(list(filter(lambda m: str(m.status) == 'online', ctx.guild.members))),
+                len(list(filter(lambda m: str(m.status) == 'idle', ctx.guild.members))),
+                len(list(filter(lambda m: str(m.status) == 'dnd', ctx.guild.members))),
+                len(list(filter(lambda m: str(m.status) == 'offline', ctx.guild.members)))
+            ]
+            embed = discord.Embed(title=f' ',
+                                  description=' ',
+                                  color=0x4cd137,
+                                  timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+
+            embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
+            embed.add_field(name=f'> Info für {ctx.guild.name}',
+                            value=f'```Name : {ctx.guild.name}\n'
+                                  f'ID : {ctx.guild.id}\n'
+                                  f'Owner : {ctx.guild.owner}\n'
+                                  f'Owner ID : {ctx.guild.owner_id}\n'
+                                  f'Region : {ctx.guild.region}```',
+                            inline=False)
+            embed.add_field(name='**Daten**',
+                            value=f'```Erstellt: {ctx.guild.created_at.strftime("%d.%m.%Y")}\n'
+                                  f'Vor {days} Tagen Erstellt\n'
+                                  f'Member : {ctx.guild.member_count}\n'
+                                  f'Boost Status : {ctx.guild.premium_subscription_count}/30```',
+                            inline=False)
+            embed.add_field(name='**Members**',
+                            value=f'```Statuses:\n'
+                                  f'🟢 {statuses[0]} | 🟡 {statuses[1]} | 🔴 {statuses[2]} | 🔘 {statuses[3]} \n'
+                                  f'User:\n'
+                                  f'{len(list(filter(lambda m: not m.bot, ctx.guild.members)))}\n'
+                                  f'Bots:\n'
+                                  f'{len(list(filter(lambda m: m.bot, ctx.guild.members)))}```',
+                            inline=False)
+            embed.add_field(name='**Channel**',
+                            value=f'```Insgesamt : {len(ctx.guild.channels)}\n'
+                                  f'Textchannel : {len(ctx.guild.text_channels)}\n'
+                                  f'Voicechannel : {len(ctx.guild.voice_channels)}\n'
+                                  f'Kategorien : {len(ctx.guild.categories)}```')
+            embed.add_field(name=f'**Rollen[{len(ctx.guild.roles) - 1}]**',
+                            value=f'{roles}',
+                            inline=False)
+            embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
+                             icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
 
     @commands.command(name='members')
     async def members(self, ctx):
@@ -142,9 +154,18 @@ class info(commands.Cog):
         - **?members**
         """
 
-        embed = discord.Embed(title='**Member Count**',
-                              description=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitglieder!')
-        await ctx.send(embed=embed)
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["Info"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Info) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title='**Member Count**',
+                                  description=f'Auf diesem Server sind `{ctx.guild.member_count}` Mitglieder!')
+            await ctx.send(embed=embed)
 
     @commands.command(name='joined')
     async def joined(self, ctx, member: discord.Member = None):
@@ -153,13 +174,22 @@ class info(commands.Cog):
         - **?joined [member]**
         """
 
-        if not member:
-            member = ctx.author
-        members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
-        embed = discord.Embed(title='**Member joined**',
-                              description=f'You joined at the `{member.joined_at.strftime("%d.%m.%Y")}`\n'
-                                          f'Join Position : `{str(members.index(member) + 1)}`')
-        await ctx.send(embed=embed)
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["Info"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Info) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            if not member:
+                member = ctx.author
+            members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
+            embed = discord.Embed(title='**Member joined**',
+                                  description=f'You joined at the `{member.joined_at.strftime("%d.%m.%Y")}`\n'
+                                              f'Join Position : `{str(members.index(member) + 1)}`')
+            await ctx.send(embed=embed)
 
     @commands.command(name='bot', aliases=['botinfo'])
     async def bot(self, ctx):
@@ -168,26 +198,35 @@ class info(commands.Cog):
         - **?bot**
         """
 
-        BOT_VERSION = 'v1.3'
-        PREFIX = '?'
-        python_version = '{}.{}.{}'.format(*sys.version_info[:3])
-        embed = discord.Embed(title=f'> Bot Info ',
-                              description='',
-                              color=0x4cd137,
-                              timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
 
-        embed.add_field(name='**Besitzer**',
-                        value='```LookAtYourSkill#6822\nID: 493370963807830016```',
-                        inline=True)
-        embed.add_field(name='Versionen',
-                        value=f'```Python: {python_version}\nDiscord: {discord.__version__}```',
-                        inline=True)
-        embed.add_field(name='**Other**',
-                        value=f'```Bot Version: {BOT_VERSION}\nBot Prefix: {PREFIX}\n',
-                        inline=True)
-        embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
-                         icon_url=ctx.author.avatar_url)
-        await ctx.send(embed=embed)
+        if data[str(ctx.guild.id)]["Info"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Info) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            BOT_VERSION = 'v1.3'
+            PREFIX = '?'
+            python_version = '{}.{}.{}'.format(*sys.version_info[:3])
+            embed = discord.Embed(title=f'> Bot Info ',
+                                  description='',
+                                  color=0x4cd137,
+                                  timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+
+            embed.add_field(name='**Besitzer**',
+                            value='```LookAtYourSkill#6822\nID: 493370963807830016```',
+                            inline=True)
+            embed.add_field(name='Versionen',
+                            value=f'```Python: {python_version}\nDiscord: {discord.__version__}```',
+                            inline=True)
+            embed.add_field(name='**Other**',
+                            value=f'```Bot Version: {BOT_VERSION}\nBot Prefix: {PREFIX}\n',
+                            inline=True)
+            embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
+                             icon_url=ctx.author.avatar_url)
+            await ctx.send(embed=embed)
 
     @commands.command(name='avatar', aliases=['av'])
     async def avatar(self, ctx, member: discord.Member = None):
@@ -196,18 +235,27 @@ class info(commands.Cog):
         - **?avatar [`member`]**
         """
 
-        if not member:
-            member = ctx.author
-        icon = member.avatar_url
-        embed = discord.Embed(title='',
-                              color=0x123456,
-                              timestamp=datetime.datetime.utcnow())
-        embed.set_author(name=f'{member}',
-                         icon_url=icon)
-        embed.set_image(url=icon)
-        embed.set_footer(icon_url=ctx.author.avatar_url,
-                         text=f'Angefordert von {ctx.author}')
-        await ctx.send(embed=embed)
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["Info"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Info) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            if not member:
+                member = ctx.author
+            icon = member.avatar_url
+            embed = discord.Embed(title='',
+                                  color=0x123456,
+                                  timestamp=datetime.datetime.utcnow())
+            embed.set_author(name=f'{member}',
+                             icon_url=icon)
+            embed.set_image(url=icon)
+            embed.set_footer(icon_url=ctx.author.avatar_url,
+                             text=f'Angefordert von {ctx.author}')
+            await ctx.send(embed=embed)
 
 
 def setup(bot):

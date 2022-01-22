@@ -2,6 +2,7 @@ import json
 import discord
 from discord.ext import commands
 
+
 class automod(commands.Cog):
     """
     `Automod which make you life easier`

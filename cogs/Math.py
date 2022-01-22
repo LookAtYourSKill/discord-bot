@@ -1,3 +1,4 @@
+import json
 import discord
 from discord.ext import commands
 
@@ -17,10 +18,19 @@ class math(commands.Cog):
         - **?add [`first`] [`second`]**
         """
 
-        result = first + second
-        embed = discord.Embed(title='**Math Addition**',
-                              description=f'The result from **{first}** and **{second}** is **{result}**!')
-        await ctx.send(embed=embed)
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["Math"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Math) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            result = first + second
+            embed = discord.Embed(title='**Math Addition**',
+                                  description=f'The result from **{first}** and **{second}** is **{result}**!')
+            await ctx.send(embed=embed)
 
     @commands.command(name='subtract', aliases=['sub', 'minus'])
     async def subtraction(self, ctx, first: int, second: int):
@@ -29,10 +39,19 @@ class math(commands.Cog):
         - **?minus [`first`] [`second`]**
         """
 
-        result = first - second
-        embed = discord.Embed(title='**Math Subtract**',
-                              description=f'The result from **{first}** and **{second}** is **{result}**!')
-        await ctx.send(embed=embed)
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["Math"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Math) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            result = first - second
+            embed = discord.Embed(title='**Math Subtract**',
+                                  description=f'The result from **{first}** and **{second}** is **{result}**!')
+            await ctx.send(embed=embed)
 
     @commands.command(name='multiplicate', aliases=['mal'])
     async def multiplication(self, ctx, first: int, second: int):
@@ -40,11 +59,19 @@ class math(commands.Cog):
         Multiply two number with each other
         - **?multiplicate [`first`] [`second`]**
         """
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
 
-        result = first * second
-        embed = discord.Embed(title='**Math Multiplicate**',
-                              description=f'The result from **{first}** and **{second}** is **{result}**!')
-        await ctx.send(embed=embed)
+        if data[str(ctx.guild.id)]["Math"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Math) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            result = first * second
+            embed = discord.Embed(title='**Math Multiplicate**',
+                                  description=f'The result from **{first}** and **{second}** is **{result}**!')
+            await ctx.send(embed=embed)
 
     @commands.command(name='divide', aliases=['geteilt'])
     async def dividation(self, ctx, first: int, second: int):
@@ -53,10 +80,20 @@ class math(commands.Cog):
         - **?divide [`first`] [`second`]**
         """
 
-        result = first / second
-        embed = discord.Embed(title='**Math Divide**',
-                              description=f'The result from **{first}** and **{second}** is **{result}**!')
-        await ctx.send(embed=embed)
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["Math"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Math) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            result = first / second
+            embed = discord.Embed(title='**Math Divide**',
+                                  description=f'The result from **{first}** and **{second}** is **{result}**!')
+            await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(math(bot))

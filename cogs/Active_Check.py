@@ -69,8 +69,9 @@ class Active_Check(commands.Cog):
             data = json.load(f)
 
         if str(ctx.guild.id) not in data:
-            embed = discord.Embed(description=f'Dein Server scheint **nicht registriert zu sein!** **Registriere dein Server** bitte erst einmal **mit dem Befehl** `?activate`',
-                                  color=discord.Color.red())
+            embed = discord.Embed(
+                description=f'Dein Server scheint **nicht registriert zu sein!** **Registriere dein Server** bitte erst einmal **mit dem Befehl** `?activate`',
+                color=discord.Color.red())
             await ctx.send(embed=embed)
 
         elif data[str(ctx.guild.id)][f"{cog}"] == 'false':

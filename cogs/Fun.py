@@ -201,7 +201,8 @@ class fun(commands.Cog):
                 else:
                     embed = discord.Embed(
                         description=f'**The Number is exactly what you thought...** ``The number was {ran_number}`` :tada:\n'
-                                    f'Hopefully you have the same luck next time :thumbsup:', colour=discord.Color.green())
+                                    f'Hopefully you have the same luck next time :thumbsup:',
+                        colour=discord.Color.green())
                     await ctx.send(embed=embed)
 
     @commands.command(name='simp', aliases=['simprate'])
