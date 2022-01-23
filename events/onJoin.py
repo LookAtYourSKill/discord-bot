@@ -30,20 +30,19 @@ class onJoin(commands.Cog):
         embed.set_footer(text=f'{member.name} joined ')
         await channel.send(embed=embed)
 
-    @commands.Cog.listener()
-    async def antialt(self, member: discord.Member = None):
         days = (datetime.datetime.utcnow() - member.created_at).days
         if days < 7:
-            embed = discord.Embed(title='**Antialt Detection Kick**',
-                                  description=f'Your Account has to be at least 7 Days old!\n'
-                                              f'Your Account Age : `{days}` days old\n'
-                                              f'Must atleast be : `7` Days old')
+            embed = discord.Embed(title='Antialt Detection Kick',
+                                  description=f'**Your Account** has to be **at least 7 days old!**\n'
+                                              f'**Your Account** Age : `{days}` days old\n'
+                                              f'**Must be** at least : `7` days old',
+                                  color=discord.Color.red())
             await member.send(embed=embed)
             await member.kick(reason='Anti Alt Detection')
 
-            embed = discord.Embed(title='**Antialt Detection Kick**',
-                                  description=f'{member} wurde von der Alt Detection gekickt.')
-
+            embed = discord.Embed(title='Antialt Detection Kick',
+                                  description=f'`{member}` wurde von der **Alt Detection gekickt!**',
+                                  color=discord.Color.green())
             channel = self.bot.get_channel(id=config['moderation_log_channel'])
             await channel.send(embed=embed)
 
