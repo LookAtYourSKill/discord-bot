@@ -48,7 +48,6 @@ class info(commands.Cog):
         else:
             if not member:
                 member = ctx.author
-            de = pytz.timezone('Europe/Berlin')
             days = (datetime.datetime.utcnow() - member.created_at).days
             days2 = (datetime.datetime.utcnow() - member.joined_at).days
             members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
@@ -56,7 +55,7 @@ class info(commands.Cog):
             embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
                                   description='',
                                   color=0x4cd137,
-                                  timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+                                  timestamp=datetime.datetime.utcnow())
 
             embed.set_thumbnail(url=f'{member.avatar_url}')
             embed.add_field(name='**Name**',
