@@ -38,7 +38,10 @@ class Help(commands.Cog):
                                 value='`ban`, `softban`, `warn`, `unwarn`, `warns`, `unban`, `unbanall`, `tempban`, `banned`, `mute`, `unmute`, `tempmute`, `kick`, `dc`, `clear`, `slowmode`, `nuke`, `block`, `unblock`',
                                 inline=False)
                 embed.add_field(name='Blacklist',
-                                value='`blacklistadd`, `blacklistremove`, `blacklistshow`, `blacklistclear`, `channel_blacklist_add`, `channel_blacklist_remove`, `channel_blacklist_show`, `channel_blacklist_clear`',
+                                value='`blacklistadd`, `blacklistremove`, `blacklistshow`, `blacklistclear`',
+                                inline=False)
+                embed.add_field(name='Channel Blacklist',
+                                value='`channel_blacklist_add`, `channel_blacklist_remove`, `channel_blacklist_show`, `channel_blacklist_clear`',
                                 inline=False)
                 embed.add_field(name=f'Administration',
                                 value=f'`setstatus`, `lock`, `release`, `say`, `gawrole`, `muterole`, `rules`',
