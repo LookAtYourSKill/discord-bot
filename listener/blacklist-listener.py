@@ -24,8 +24,9 @@ class blacklistListener(commands.Cog):
                         config = json.load(config_file)
 
                     log_channel = self.bot.get_channel(id=config["moderation_log_channel"])
-                    embed = discord.Embed(description=f'{message.author} hat ein Wort aus der Blacklist geschickt!',
-                                          color=discord.Color.red())
+                    embed = discord.Embed(
+                        description=f'{message.author} hat ein Wort aus der Blacklist geschrieben!',
+                        color=discord.Color.red())
                     await log_channel.send(embed=embed)
         except AttributeError:
             pass
