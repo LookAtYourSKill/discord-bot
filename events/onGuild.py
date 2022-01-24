@@ -53,7 +53,7 @@ class on_guild(commands.Cog):
             "Roles": "true",
             "Rules": "true",
             "Setup": "true",
-            "Ticket_System": "true",
+            "Ticket": "true",
             "Timers": "true",
             "Translator": "true",
             "Utilities": "true",

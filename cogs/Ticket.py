@@ -23,9 +23,9 @@ class ticket(commands.Cog):
         with open('utils/json/active_check.json', 'r') as f:
             data = json.load(f)
 
-        if data[str(ctx.guild.id)]["Ticket_System"] == 'false':
+        if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket_System) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
