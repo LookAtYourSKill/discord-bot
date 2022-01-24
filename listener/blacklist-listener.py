@@ -12,21 +12,23 @@ class blacklistListener(commands.Cog):
 
         with open("utils/json/blacklist.json", 'r') as f:
             data = json.load(f)
+        try:
+            for bad_word in data[str(message.guild.id)]["blacklist"]:
+                if bad_word in message.content:
+                    await message.delete()
+                    embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
+                                          description='Deine Message `wurde gelöscht`, da du ein Wort `aus der Blacklist darin hattest!`\n**Bitte unterlasse dies!**')
+                    await message.channel.send(embed=embed, delete_after=5)
 
-        for bad_word in data[str(message.guild.id)]["blacklist"]:
-            if bad_word in message.content:
-                await message.delete()
-                embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
-                                      description='Deine Message `wurde gelöscht`, da du ein Wort `aus der Blacklist darin hattest!`\n**Bitte unterlasse dies!**')
-                await message.channel.send(embed=embed, delete_after=5)
+                    with open('./etc/config.json', 'r') as config_file:
+                        config = json.load(config_file)
 
-                with open('./etc/config.json', 'r') as config_file:
-                    config = json.load(config_file)
-
-                log_channel = self.bot.get_channel(id=config["moderation_log_channel"])
-                embed = discord.Embed(description=f'{message.author} hat ein Wort aus der Blacklist geschickt!',
-                                      color=discord.Color.red())
-                await log_channel.send(embed=embed)
+                    log_channel = self.bot.get_channel(id=config["moderation_log_channel"])
+                    embed = discord.Embed(description=f'{message.author} hat ein Wort aus der Blacklist geschickt!',
+                                          color=discord.Color.red())
+                    await log_channel.send(embed=embed)
+        except AttributeError:
+            pass
 
 
 def setup(bot):
