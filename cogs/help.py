@@ -156,6 +156,26 @@ class Help(commands.Cog):
                 embed.set_footer(text='[] optional | <> required')
                 await ctx.send(embed=embed)
 
+            elif str(content) == 'Channel Blacklist' or str(content) == 'channel blacklist':
+                embed = discord.Embed(
+                    description=f'Use `{prefix}help <command>` to gain more information about the command',
+                    color=discord.Color.blurple())
+
+                embed.add_field(name='channel_blacklist_add <channel_id>',
+                                value='Add an id to the channel blacklist',
+                                inline=False)
+                embed.add_field(name='channel_blacklist_remove <channel_id>',
+                                value='Remove an id from the channel blacklist',
+                                inline=False)
+                embed.add_field(name='channel_blacklist_show',
+                                value='Display the whole channel blacklist',
+                                inline=False)
+                embed.add_field(name='channel_blacklist_clear',
+                                value='Clears the channel blacklist',
+                                inline=False)
+                embed.set_footer(text='[] optional | <> required')
+                await ctx.send(embed=embed)
+
             elif str(content) == 'Administration' or str(content) == 'administration':
                 embed = discord.Embed(
                     description=f'Use `{prefix}help <command>` to gain more information about the command',
