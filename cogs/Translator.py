@@ -23,7 +23,7 @@ class uebersetzer(commands.Cog):
             translator = Translator()
             translation = translator.translate(destination, dest=language)
             embed = discord.Embed(title=f"🇩🇪 Translator 🇬🇧",
-                                  description=f'Translation from `{destination}` is {translation.text}',
+                                  description=f'Translation from `{destination}` is `{translation.text}`',
                                   color=0x00ff00)
             await ctx.send(embed=embed)
 
