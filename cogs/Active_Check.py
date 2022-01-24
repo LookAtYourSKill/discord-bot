@@ -42,6 +42,10 @@ class Active_Check(commands.Cog):
                 embed = discord.Embed(description=f'Der Server `{ctx.guild.name}` wurde **erfolgreich registriert!**',
                                       color=discord.Color.green())
                 await ctx.send(embed=embed)
+            else:
+                embed = discord.Embed(description=f'Der Server `{ctx.guild.name}` ist **bereits registriert!**',
+                                      color=discord.Color.green())
+                await ctx.send(embed=embed)
 
         elif data[str(ctx.guild.id)][f"{cog}"] == 'true':
             embed = discord.Embed(description=f'Das `Modul {cog}` ist **bereits aktiviert!**',
