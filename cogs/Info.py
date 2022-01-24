@@ -1,7 +1,6 @@
 import datetime
 import sys
 import discord
-import pytz
 from discord.ext import commands
 import json
 
@@ -13,8 +12,6 @@ class info(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-
-        sys.path.append('C:/Users/simon/PycharmProjects/Mine/Discord Bot/Discord Bot/main.py')
 
     @staticmethod
     def getRoles(roles):
@@ -53,7 +50,6 @@ class info(commands.Cog):
             members = sorted(ctx.guild.members, key=lambda m: m.joined_at)
             roles = self.getRoles(member.roles)
             embed = discord.Embed(title=f'> Userinfo für {member.display_name}',
-                                  description='',
                                   color=0x4cd137,
                                   timestamp=datetime.datetime.utcnow())
 
@@ -77,7 +73,7 @@ class info(commands.Cog):
                                   f'Booster: {("Ja" if member.premium_since else "Nein")}```',
                             inline=False)
             embed.add_field(name=f'**Rollen [{len(member.roles) - 1}]**',
-                            value=f'{roles}',
+                            value=f'{(roles if roles else f"```Der Member noch hat keine Rollen!```")}',
                             inline=False)
             embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
                              icon_url=ctx.author.avatar_url)
@@ -107,10 +103,8 @@ class info(commands.Cog):
                 len(list(filter(lambda m: str(m.status) == 'dnd', ctx.guild.members))),
                 len(list(filter(lambda m: str(m.status) == 'offline', ctx.guild.members)))
             ]
-            embed = discord.Embed(title=f' ',
-                                  description=' ',
-                                  color=0x4cd137,
-                                  timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+            embed = discord.Embed(color=0x4cd137,
+                                  timestamp=datetime.datetime.utcnow())
 
             embed.set_thumbnail(url=f'{ctx.guild.icon_url}')
             embed.add_field(name=f'> Info für {ctx.guild.name}',
@@ -212,7 +206,7 @@ class info(commands.Cog):
             embed = discord.Embed(title=f'> Bot Info ',
                                   description='',
                                   color=0x4cd137,
-                                  timestamp=datetime.datetime.utcnow())  # .astimezone(tz=de))
+                                  timestamp=datetime.datetime.utcnow())
 
             embed.add_field(name='**Besitzer**',
                             value='```LookAtYourSkill#6822\nID: 493370963807830016```',
@@ -221,7 +215,7 @@ class info(commands.Cog):
                             value=f'```Python: {python_version}\nDiscord: {discord.__version__}```',
                             inline=True)
             embed.add_field(name='**Other**',
-                            value=f'```Bot Version: {BOT_VERSION}\nBot Prefix: {PREFIX}\n',
+                            value=f'```Bot Version: {BOT_VERSION}\nBot Prefix: {PREFIX}```\n',
                             inline=True)
             embed.set_footer(text=f'Angefordert von {ctx.author.name}#{ctx.author.discriminator}',
                              icon_url=ctx.author.avatar_url)
