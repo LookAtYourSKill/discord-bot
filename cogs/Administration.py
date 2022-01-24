@@ -3,9 +3,6 @@ import json
 import discord
 from discord.ext import commands
 
-with open("./etc/config.json", "r") as config_file:
-    config = json.load(config_file)
-
 
 class administration(commands.Cog):
     """
@@ -57,6 +54,9 @@ class administration(commands.Cog):
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
+            with open('utils/json/on_guild.json', 'r') as f:
+                guild_data = json.load(f)
+
             await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
             embed = discord.Embed(description=f'`{ctx.channel}` ist nun **im Lockdown**',
                                   color=0x4cd137)
@@ -67,7 +67,7 @@ class administration(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
             await channel.send(embed=embed)
 
     @commands.command(name='release', aliases=['unlock'])
@@ -87,6 +87,9 @@ class administration(commands.Cog):
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
+            with open('utils/json/on_guild.json', 'r') as f:
+                guild_data = json.load(f)
+
             await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
 
             embed = discord.Embed(title='',
@@ -99,7 +102,7 @@ class administration(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
             await channel.send(embed=embed)
 
     @commands.command(aliases=['announce'])

@@ -30,12 +30,12 @@ class verify(commands.Cog):
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
-            with open('./etc/config.json', 'r') as config_file:
-                config = json.load(config_file)
+            with open('utils/json/on_guild.json', 'r') as f:
+                guild_data = json.load(f)
 
-            role = get(ctx.guild.roles, id=config['verified_role'])
+            role = get(ctx.guild.roles, id=guild_data[str(ctx.guild.id)]['verified_role'])
 
-            if ctx.channel.id == config['verify_channel'] or ctx.channel.id == 920389678690091079:
+            if ctx.channel.id == guild_data[str(ctx.guild.id)]['verify_channel']:
 
                 if role in ctx.author.roles:
                     embed = discord.Embed(
@@ -50,7 +50,7 @@ class verify(commands.Cog):
                 def check(m):
                     return m.author == ctx.author
 
-                role = ctx.guild.get_role(config['verified_role'])
+                role = ctx.guild.get_role(guild_data[str(ctx.guild.id)]['verified_role'])
 
                 embed = discord.Embed(title=f'Verification',
                                       description=f'You have `1` attempt to verify. If you fail, you may be re-evaluated by executing the command again',
@@ -138,7 +138,8 @@ class verify(commands.Cog):
 
             else:
                 await ctx.message.delete()
-                embed = discord.Embed(description='Wrong Channel. Please use the verify channel :smile:',
+                embed = discord.Embed(description='Wrong Channel. Please use the verify channel :smile:\n'
+                                                  f'<#{guild_data[str(ctx.guild.id)]["verify_channel"]}>',
                                       color=discord.Color.red())
                 await ctx.send(embed=embed, delete_after=5)
 

@@ -12,13 +12,14 @@ class on_guild(commands.Cog):
             data = json.load(f)
 
         new_server = {
-            "SERVERNAME": f"{str(guild.name)}",
-            "MESSAGE_LOG_CHANNEL": (),
-            "MODERATION_LOG_CHANNEL": (),
-            "WELCOME_CHANNEL": (),
-            "LEAVE_CHANNEL": (),
-            "VERIFY_CHANNEL": (),
-            "VERIFIED_ROLE": ()
+            "server_name": f"{str(guild.name)}",
+            "message_log_channel": (),
+            "moderation_log_channel": (),
+            "welcome_channel": (),
+            "leave_channel": (),
+            "verify_channel": (),
+            "bot_role": (),
+            "verified_role": ()
         }
 
         data[str(guild.id)] = new_server

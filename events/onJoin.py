@@ -1,11 +1,7 @@
 import datetime
 import json
-
 import discord
 from discord.ext import commands
-
-with open('./etc/config.json', 'r') as config_file:
-    config = json.load(config_file)
 
 
 class onJoin(commands.Cog):
@@ -14,11 +10,14 @@ class onJoin(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        #if member.bot:
-        #    role = discord.utils.get(self.bot.guild.roles, id=config["bot_role"])
-        #    await self.bot.add_role(self.bot, role)
+        with open('utils/json/on_guild.json', 'r') as f:
+            guild_data = json.load(f)
 
-        channel = self.bot.get_channel(id=config['welcome_channel'])
+        if member.bot:
+            role = discord.utils.get(self.bot.guild.roles, id=guild_data[str(member.guild.id)]["bot_role"])
+            await self.bot.add_role(self.bot, role)
+
+        channel = self.bot.get_channel(id=guild_data[str(member.guild.id)]['welcome_channel'])
         embed = discord.Embed(title=f'> Welcome',
                               description=f'{member.mention} Joined **{member.guild.name}**',
                               color=discord.Color.random(),
@@ -43,7 +42,7 @@ class onJoin(commands.Cog):
             embed = discord.Embed(title='Antialt Detection Kick',
                                   description=f'`{member}` wurde von der **Alt Detection gekickt!**',
                                   color=discord.Color.green())
-            channel = self.bot.get_channel(id=config['moderation_log_channel'])
+            channel = self.bot.get_channel(id=guild_data[str(member.guild.id)]['moderation_log_channel'])
             await channel.send(embed=embed)
 
 

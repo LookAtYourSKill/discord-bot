@@ -13,8 +13,6 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     print(colored(f'Botid: {bot.user.id} - Name: {bot.user.name}#{bot.user.discriminator}', 'green'))
-    startTime = time.time()
-    print(f"Boot-Time: {round(time.time() - startTime, 2)}s")
     await bot.change_presence(
         activity=discord.Activity(
             type=discord.ActivityType.watching,
@@ -60,4 +58,4 @@ print(colored('Finished setting up files!', 'red'))
 with open('etc/config.json', 'r') as config_file:
     config = json.load(config_file)
 
-bot.run(config["token"])
+bot.run(config["token"]["token"])
