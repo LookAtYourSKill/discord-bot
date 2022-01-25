@@ -2,6 +2,7 @@ import datetime
 import json
 import discord
 from discord.ext import commands
+from discord.utils import get
 
 
 class onJoin(commands.Cog):
@@ -14,8 +15,8 @@ class onJoin(commands.Cog):
             guild_data = json.load(f)
 
         if member.bot:
-            role = discord.utils.get(self.bot.guild.roles, id=guild_data[str(member.guild.id)]["bot_role"])
-            await self.bot.add_role(self.bot, role)
+            role = get(member.guild.roles, id=guild_data[str(member.guild.id)]["bot_role"])
+            await member.add_roles(role)
 
         channel = self.bot.get_channel(id=guild_data[str(member.guild.id)]['welcome_channel'])
         embed = discord.Embed(title=f'> Welcome',
