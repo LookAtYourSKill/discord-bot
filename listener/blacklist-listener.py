@@ -23,11 +23,14 @@ class blacklistListener(commands.Cog):
                     with open('utils/json/on_guild.json', 'r') as f:
                         guild_data = json.load(f)
 
-                    log_channel = self.bot.get_channel(id=guild_data[str(message.author.guild.id)]["moderation_log_channel"])
-                    embed = discord.Embed(
-                        description=f'{message.author} hat ein Wort aus der Blacklist geschrieben!',
-                        color=discord.Color.red())
-                    await log_channel.send(embed=embed)
+                    if guild_data[str(message.author.guild.id)]["moderation_log_channel"]:
+                        log_channel = self.bot.get_channel(id=guild_data[str(message.author.guild.id)]["moderation_log_channel"])
+                        embed = discord.Embed(
+                            description=f'{message.author} hat ein Wort aus der Blacklist geschrieben!',
+                            color=discord.Color.red())
+                        await log_channel.send(embed=embed)
+                    else:
+                        return
         except AttributeError:
             pass
 

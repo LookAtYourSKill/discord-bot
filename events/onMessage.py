@@ -15,19 +15,23 @@ class onMessage(commands.Cog):
 
         if old.author.bot:
             return
-        channel = self.bot.get_channel(id=guild_data[str(old.guild.id)]['message_log_channel'])
-        embed = discord.Embed(title="",
-                              description=f"{old.author.mention} has edited a message in {old.channel.mention} \n[Jump to the Message]({new.jump_url})",
-                              color=discord.Color.random(),
-                              timestamp=datetime.datetime.utcnow())
-        embed.add_field(name="Old Message",
-                        value=f'{old.content}',
-                        inline=False)
-        embed.add_field(name="New Message",
-                        value=f'{new.content}',
-                        inline=False)
-        embed.set_author(name='Message Edited', icon_url=old.author.avatar_url)
-        await channel.send(embed=embed)
+
+        elif not guild_data[str(old.author.guild.id)]["message_log_channel"]:
+            return
+
+        else:
+            channel = self.bot.get_channel(id=guild_data[str(old.guild.id)]['message_log_channel'])
+            embed = discord.Embed(description=f"{old.author.mention} has edited a message in {old.channel.mention} \n[Jump to the Message]({new.jump_url})",
+                                  color=discord.Color.random(),
+                                  timestamp=datetime.datetime.utcnow())
+            embed.add_field(name="Old Message",
+                            value=f'{old.content}',
+                            inline=False)
+            embed.add_field(name="New Message",
+                            value=f'{new.content}',
+                            inline=False)
+            embed.set_author(name='Message Edited', icon_url=old.author.avatar_url)
+            await channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
@@ -37,6 +41,9 @@ class onMessage(commands.Cog):
         message_attachments = message.attachments
 
         if message.author.bot:
+            return
+
+        elif not guild_data[str(message.author.guild.id)]["message_log_channel"]:
             return
 
         elif len(message_attachments) > 0:

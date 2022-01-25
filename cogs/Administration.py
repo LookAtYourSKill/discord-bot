@@ -67,8 +67,11 @@ class administration(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
     @commands.command(name='release', aliases=['unlock'])
     @commands.has_permissions(administrator=True)
@@ -92,8 +95,7 @@ class administration(commands.Cog):
 
             await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
 
-            embed = discord.Embed(title='',
-                                  description=f'`{ctx.channel}` ist nun **nicht mehr im Lockdown**',
+            embed = discord.Embed(description=f'`{ctx.channel}` ist nun **nicht mehr im Lockdown**',
                                   color=0x4cd137)
             embed.add_field(name='**Information**',
                             value=f'Unlocked Channel : `{ctx.channel}`\n'
@@ -102,8 +104,11 @@ class administration(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
     @commands.command(aliases=['announce'])
     @commands.has_permissions(administrator=True)

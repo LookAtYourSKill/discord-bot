@@ -51,8 +51,11 @@ class moderation(commands.Cog):
                 embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
                 await ctx.send(embed=embed)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
             elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 1:
                 data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
@@ -67,8 +70,11 @@ class moderation(commands.Cog):
                 embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
                 await ctx.send(embed=embed)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
             elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
                 data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] += 1
@@ -83,8 +89,11 @@ class moderation(commands.Cog):
                 embed.set_footer(text=f'von {ctx.author} auf {ctx.guild.name}')
                 await ctx.send(embed=embed)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
                 await member.ban(reason=reason)
 
@@ -123,8 +132,11 @@ class moderation(commands.Cog):
                 embed.set_footer(text=f'von {ctx.author}')
                 await ctx.send(embed=embed)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
             elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 2:
                 data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] -= 1
@@ -138,8 +150,11 @@ class moderation(commands.Cog):
                 embed.set_footer(text=f'von {ctx.author}')
                 await ctx.send(embed=embed)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
             elif data[str(ctx.guild.id)]["warns"][str(member.id)]["Anzahl der Warns"] == 3:
                 try:
@@ -153,8 +168,11 @@ class moderation(commands.Cog):
                         embed.set_footer(text=f'von {ctx.author}')
                         await ctx.send(embed=embed)
 
-                        channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                        await channel.send(embed=embed)
+                        if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                            await channel.send(embed=embed)
+                        else:
+                            return
                         return
                     else:
                         ban_error = discord.Embed(title='__BAN ERROR__',
@@ -307,8 +325,11 @@ class moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
     @commands.command(aliases=['tban'])
     @commands.has_permissions(ban_members=True)
@@ -387,8 +408,11 @@ class moderation(commands.Cog):
             with open('utils/json/temp_times.json', 'w') as f:
                 json.dump(data, f, indent=4)
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
     @commands.command(name='banned')
     @commands.has_permissions(ban_members=True)
@@ -472,12 +496,15 @@ class moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
-            embed = discord.Embed(title=f'',
-                                  description=f'Du wurdest auf dem Server **{ctx.guild.name}** wegen `{reason}` gemuted!',
-                                  color=0x4cd137)
+            embed = discord.Embed(
+                description=f'Du wurdest auf dem Server **{ctx.guild.name}** wegen `{reason}` gemuted!',
+                color=0x4cd137)
             embed.add_field(name='**Information**',
                             value=f'Muted User : `{member}`\n'
                                   f'User ID : `{member.id}`\n'
@@ -519,11 +546,13 @@ class moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
-            embed = discord.Embed(title=f'',
-                                  description=f'Du wurdest auf dem Server **{ctx.guild.name}** unmuted!',
+            embed = discord.Embed(description=f'Du wurdest auf dem Server **{ctx.guild.name}** unmuted!',
                                   color=0x4cd137)
             embed.add_field(name='**Information**',
                             value=f'Unmuted User : `{member}`\n'
@@ -590,9 +619,9 @@ class moderation(commands.Cog):
             #    await member.remove_roles(members_roles[i + 1])
 
             await member.add_roles(mutedRole)
-            embed = discord.Embed(title=f'',
-                                  description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gemuted!',
-                                  color=0x4cd137)
+            embed = discord.Embed(
+                description=f'Der User **{member.name}** wurde für `{time}` wegen `{reason}` gemuted!',
+                color=0x4cd137)
             embed.add_field(name='**Information**',
                             value=f'Tempmuted User : `{member}`\n'
                                   f'User ID : `{member.id}`\n'
@@ -603,8 +632,11 @@ class moderation(commands.Cog):
             await ctx.send(embed=embed, delete_after=5)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
             embed = discord.Embed(
                 description=f'Du wurdest auf dem Server **{ctx.guild.name}** für `{time}` wegen `{reason}` gemuted!',
@@ -699,8 +731,7 @@ class moderation(commands.Cog):
                 guild_data = json.load(f)
 
             await member.edit(voice_channel=None)
-            embed = discord.Embed(title='',
-                                  description=f'**{member}** wurde `aus dem Voice Channel gekickt!`',
+            embed = discord.Embed(description=f'**{member}** wurde `aus dem Voice Channel gekickt!`',
                                   color=0xff00c8)
             embed.add_field(name='**Information**',
                             value=f'Disconnected User : `{member}`\n'
@@ -711,8 +742,11 @@ class moderation(commands.Cog):
             await asyncio.sleep(1)
             await ctx.message.delete()
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
     @commands.command(name='clear', aliases=['purge'])
     @commands.has_permissions(manage_messages=True)
@@ -738,8 +772,7 @@ class moderation(commands.Cog):
             await ctx.message.delete()
             await ctx.channel.purge(limit=amount)
             channel = ctx.channel
-            embed = discord.Embed(title=f'',
-                                  description=f'Es wurden `{amount} Nachrichten` gelöscht',
+            embed = discord.Embed(description=f'Es wurden `{amount} Nachrichten` gelöscht',
                                   color=0x4cd137)
             embed.add_field(name='**Information**',
                             value=f'Nachrichten gelöscht : `{amount}`\n'
@@ -749,8 +782,11 @@ class moderation(commands.Cog):
                             inline=False)
             await ctx.send(embed=embed, delete_after=5)
 
-            channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-            await channel.send(embed=embed)
+            if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                await channel.send(embed=embed)
+            else:
+                return
 
     @commands.command(name='nuke')
     @commands.has_permissions(manage_channels=True)
@@ -786,8 +822,11 @@ class moderation(commands.Cog):
                                 inline=False)
                 await new_channel.send(embed=embed, delete_after=5)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
             nuke_channel = discord.utils.get(ctx.guild.channels, name=channel.name)
 
@@ -804,8 +843,11 @@ class moderation(commands.Cog):
                                 inline=False)
                 await new_channel.send(embed=embed, delete_after=5)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
             else:
                 embed = discord.Embed(title='<:close:864599591692009513> **ERROR**',
@@ -846,8 +888,11 @@ class moderation(commands.Cog):
                                 inline=False)
                 await ctx.send(embed=embed, delete_after=5)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
             else:
                 channel = ctx.channel
@@ -865,8 +910,11 @@ class moderation(commands.Cog):
                 await ctx.message.delete()
                 await ctx.send(embed=embed, delete_after=5)
 
-                channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
-                await channel.send(embed=embed)
+                if guild_data[str(ctx.guild.id)]["moderation_log_channel"]:
+                    channel = self.bot.get_channel(id=guild_data[str(ctx.guild.id)]['moderation_log_channel'])
+                    await channel.send(embed=embed)
+                else:
+                    return
 
     @commands.command(name='softban')
     @commands.has_permissions(ban_members=True)
