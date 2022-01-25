@@ -1,4 +1,6 @@
 import json
+
+import discord
 from discord.ext import commands
 
 
@@ -114,6 +116,33 @@ class on_guild(commands.Cog):
         data[str(guild.id)] = new_utility_timer
         with open('utils/json/utility_times.json', 'w') as f:
             json.dump(data, f, indent=4)
+
+        embed = discord.Embed(description='Hallo :wave:! Freut mich das du mich auf dein Server eingeladen hast!\n'
+                                          'Hier sind ein paar nützliche Informationen, die das Discord Leben entspannter machen werden!\n'
+                                          'Für den Anfang solltest du die folgenden Commands, für den reibungslosen Verlauf des Bots ausführen!')
+        embed.add_field(name=f'setup_welcome_channel <channel_id>',
+                        value=f'Damit kannst du ein Channel einstellen, in den alle neu joinenden User reingeschrieben werden!',
+                        inline=False)
+        embed.add_field(name=f'setup_leave_channel <channel_id>',
+                        value=f'Damit kannst du ein Channel einstellen, in den alle verlassenden User reingeschrieben werden!',
+                        inline=False)
+        embed.add_field(name=f'setup_verify_channel <channel_id>',
+                        value=f'Damit kannst du ein Channel einstellen, in den alle neu joinenden User den `?verify` Command reinschreiben können!',
+                        inline=False)
+        embed.add_field(name=f'setup_message_log_channel <channel_id>',
+                        value=f'Damit kannst du ein Channel einstellen, in den alle editierten und gelöschten Nachrichten reingeschrieben werden!',
+                        inline=False)
+        embed.add_field(name=f'setup_moderation_log_channel <channel_id>',
+                        value=f'Damit kannst du ein Channel einstellen, in den alle Moderatoren Aktionen reingeschrieben werden!',
+                        inline=False)
+        embed.add_field(name=f'setup_bot_role <role_id>',
+                        value=f'Damit kannst du eine Rolle einstellen, die jeder neu joinende Bot erhält!!',
+                        inline=False)
+        embed.add_field(name=f'setup_verified_role <role_id>',
+                        value=f'Damit kannst du eine Rolle einstellen, die jeder User nach dem `?verify` Command erhält!',
+                        inline=False)
+        embed.set_footer(text='[] optional | <> required')
+        await guild.owner.send(embed=embed)
 
 
 @commands.Cog.listener()
