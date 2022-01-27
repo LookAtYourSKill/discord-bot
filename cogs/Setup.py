@@ -13,30 +13,40 @@ class server_setup(commands.Cog):
 
     @commands.command()
     async def setup(self, ctx):
-        embed = discord.Embed(description=f'Hinweis für die Setup Commands!', color=discord.Color.blurple())
-        embed.add_field(name=f'setup_welcome_channel <channel_id>',
-                        value=f'Damit kannst du ein Channel einstellen, in den alle neu joinenden User reingeschrieben werden!',
-                        inline=False)
-        embed.add_field(name=f'setup_leave_channel <channel_id>',
-                        value=f'Damit kannst du ein Channel einstellen, in den alle verlassenden User reingeschrieben werden!',
-                        inline=False)
-        embed.add_field(name=f'setup_verify_channel <channel_id>',
-                        value=f'Damit kannst du ein Channel einstellen, in den alle neu joinenden User den `?verify` Command reinschreiben können!',
-                        inline=False)
-        embed.add_field(name=f'setup_message_log_channel <channel_id>',
-                        value=f'Damit kannst du ein Channel einstellen, in den alle editierten und gelöschten Nachrichten reingeschrieben werden!',
-                        inline=False)
-        embed.add_field(name=f'setup_moderation_log_channel <channel_id>',
-                        value=f'Damit kannst du ein Channel einstellen, in den alle Moderatoren Aktionen reingeschrieben werden!',
-                        inline=False)
-        embed.add_field(name=f'setup_bot_role <role_id>',
-                        value=f'Damit kannst du eine Rolle einstellen, die jeder neu joinende Bot erhält!!',
-                        inline=False)
-        embed.add_field(name=f'setup_verified_role <role_id>',
-                        value=f'Damit kannst du eine Rolle einstellen, die jeder User nach dem `?verify` Command erhält!',
-                        inline=False)
-        embed.set_footer(text='[] optional | <> required')
-        await ctx.send(embed=embed)
+
+        with open('utils/json/active_check.json', 'r') as f:
+            data = json.load(f)
+
+        if data[str(ctx.guild.id)]["Setup"] == 'false':
+            embed = discord.Embed(
+                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
+                color=discord.Color.red())
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(description=f'Hinweis für die Setup Commands!', color=discord.Color.blurple())
+            embed.add_field(name=f'setup_welcome_channel <channel_id>',
+                            value=f'Damit kannst du ein Channel einstellen, in den alle neu joinenden User reingeschrieben werden!',
+                            inline=False)
+            embed.add_field(name=f'setup_leave_channel <channel_id>',
+                            value=f'Damit kannst du ein Channel einstellen, in den alle verlassenden User reingeschrieben werden!',
+                            inline=False)
+            embed.add_field(name=f'setup_verify_channel <channel_id>',
+                            value=f'Damit kannst du ein Channel einstellen, in den alle neu joinenden User den `?verify` Command reinschreiben können!',
+                            inline=False)
+            embed.add_field(name=f'setup_message_log_channel <channel_id>',
+                            value=f'Damit kannst du ein Channel einstellen, in den alle editierten und gelöschten Nachrichten reingeschrieben werden!',
+                            inline=False)
+            embed.add_field(name=f'setup_moderation_log_channel <channel_id>',
+                            value=f'Damit kannst du ein Channel einstellen, in den alle Moderatoren Aktionen reingeschrieben werden!',
+                            inline=False)
+            embed.add_field(name=f'setup_bot_role <role_id>',
+                            value=f'Damit kannst du eine Rolle einstellen, die jeder neu joinende Bot erhält!!',
+                            inline=False)
+            embed.add_field(name=f'setup_verified_role <role_id>',
+                            value=f'Damit kannst du eine Rolle einstellen, die jeder User nach dem `?verify` Command erhält!',
+                            inline=False)
+            embed.set_footer(text='[] optional | <> required')
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.has_permissions(administrator=True)
@@ -50,7 +60,7 @@ class server_setup(commands.Cog):
 
         if data[str(ctx.guild.id)]["Setup"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -102,7 +112,7 @@ class server_setup(commands.Cog):
 
         if data[str(ctx.guild.id)]["Setup"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -154,7 +164,7 @@ class server_setup(commands.Cog):
 
         if data[str(ctx.guild.id)]["Setup"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -206,7 +216,7 @@ class server_setup(commands.Cog):
 
         if data[str(ctx.guild.id)]["Setup"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -258,7 +268,7 @@ class server_setup(commands.Cog):
 
         if data[str(ctx.guild.id)]["Setup"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -310,7 +320,7 @@ class server_setup(commands.Cog):
 
         if data[str(ctx.guild.id)]["Setup"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -362,7 +372,7 @@ class server_setup(commands.Cog):
 
         if data[str(ctx.guild.id)]["Setup"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Setup) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:

@@ -53,7 +53,6 @@ for filename in os.listdir('./listener'):
             print(colored(f'Error, something went wrong with {filename}!', 'red'))
 
 print(colored('Finished setting up files!', 'red'))
-# bot.load_extension('dch')
 
 with open('etc/config.json', 'r') as config_file:
     config = json.load(config_file)

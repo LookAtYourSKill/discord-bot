@@ -24,7 +24,7 @@ class automod(commands.Cog):
 
         if data[str(ctx.guild.id)]["Automod"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -62,7 +62,7 @@ class automod(commands.Cog):
 
         if data[str(ctx.guild.id)]["Automod"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -100,7 +100,7 @@ class automod(commands.Cog):
 
         if data[str(ctx.guild.id)]["Automod"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -136,7 +136,7 @@ class automod(commands.Cog):
 
         if data[str(ctx.guild.id)]["Automod"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -168,7 +168,7 @@ class automod(commands.Cog):
 
         if data[str(ctx.guild.id)]["Automod"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -201,7 +201,7 @@ class automod(commands.Cog):
 
         if data[str(ctx.guild.id)]["Automod"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -234,7 +234,7 @@ class automod(commands.Cog):
 
         if data[str(ctx.guild.id)]["Automod"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -265,7 +265,7 @@ class automod(commands.Cog):
 
         if data[str(ctx.guild.id)]["Automod"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Automod) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:

@@ -23,7 +23,7 @@ class Channel(commands.Cog):
 
         if data[str(ctx.guild.id)]["Channel"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -54,7 +54,7 @@ class Channel(commands.Cog):
 
         if data[str(ctx.guild.id)]["Channel"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -90,7 +90,7 @@ class Channel(commands.Cog):
 
         if data[str(ctx.guild.id)]["Channel"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Channel) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:

@@ -24,7 +24,7 @@ class music(commands.Cog):
 
         if data[str(ctx.guild.id)]["Music"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -57,7 +57,7 @@ class music(commands.Cog):
 
         if data[str(ctx.guild.id)]["Music"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -77,7 +77,7 @@ class music(commands.Cog):
 
         if data[str(ctx.guild.id)]["Music"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -107,7 +107,7 @@ class music(commands.Cog):
 
         if data[str(ctx.guild.id)]["Music"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -127,7 +127,7 @@ class music(commands.Cog):
 
         if data[str(ctx.guild.id)]["Music"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -147,7 +147,7 @@ class music(commands.Cog):
 
         if data[str(ctx.guild.id)]["Music"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -172,7 +172,7 @@ class music(commands.Cog):
 
         if data[str(ctx.guild.id)]["Music"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Music) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:

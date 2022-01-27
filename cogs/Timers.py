@@ -26,7 +26,7 @@ class Timers(commands.Cog):
 
         if data[str(ctx.guild.id)]["Timers"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Timers) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Timers) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -117,7 +117,7 @@ class Timers(commands.Cog):
 
         if data[str(ctx.guild.id)]["Timers"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Timers) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Timers) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:

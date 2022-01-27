@@ -25,7 +25,7 @@ class ticket(commands.Cog):
 
         if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -114,7 +114,7 @@ class ticket(commands.Cog):
 
         if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -162,7 +162,7 @@ class ticket(commands.Cog):
 
         if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -229,7 +229,7 @@ class ticket(commands.Cog):
 
         if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -301,7 +301,7 @@ class ticket(commands.Cog):
 
         if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -369,7 +369,7 @@ class ticket(commands.Cog):
 
         if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -441,7 +441,7 @@ class ticket(commands.Cog):
 
         if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -480,7 +480,7 @@ class ticket(commands.Cog):
 
         if data[str(ctx.guild.id)]["Ticket"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Ticket) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:

@@ -25,7 +25,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -108,7 +108,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -197,7 +197,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -238,7 +238,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -274,7 +274,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -303,7 +303,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -351,7 +351,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -427,7 +427,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -459,7 +459,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -526,7 +526,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -581,7 +581,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -684,7 +684,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -723,7 +723,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -761,7 +761,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -801,7 +801,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -867,7 +867,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -929,7 +929,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -966,7 +966,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
@@ -990,7 +990,7 @@ class moderation(commands.Cog):
 
         if data[str(ctx.guild.id)]["Moderation"] == 'false':
             embed = discord.Embed(
-                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
+                description=f'Diese **Extension (Moderation) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#8691)',
                 color=discord.Color.red())
             await ctx.send(embed=embed)
         else:
