@@ -768,9 +768,11 @@ class moderation(commands.Cog):
             with open('utils/json/on_guild.json', 'r') as f:
                 guild_data = json.load(f)
 
+            check_func = lambda msg: not msg.pinned
+
             await asyncio.sleep(1)
             await ctx.message.delete()
-            await ctx.channel.purge(limit=amount)
+            await ctx.channel.purge(limit=amount, check=check_func)
             channel = ctx.channel
             embed = discord.Embed(description=f'Es wurden `{amount} Nachrichten` gelöscht',
                                   color=0x4cd137)
