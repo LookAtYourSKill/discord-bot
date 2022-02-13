@@ -156,7 +156,7 @@ class Help(commands.Cog):
                 embed.set_footer(text='[] optional | <> required')
                 await ctx.send(embed=embed)
 
-            elif str(content) == 'Channel Blacklist' or str(content) == 'channel blacklist':
+            elif str(content) == 'Channel_Blacklist' or str(content) == 'channel_blacklist':
                 embed = discord.Embed(
                     description=f'Use `{prefix}help <command>` to gain more information about the command',
                     color=discord.Color.blurple())

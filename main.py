@@ -1,8 +1,8 @@
 import asyncio
 import json
+from termcolor import colored
 import discord
 from discord.ext import commands
-from termcolor import colored
 import os
 
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix='?', owner_id=493370963807830016)
