@@ -145,7 +145,7 @@ class ticket(commands.Cog):
                         json.dump(data, f)
 
                 except asyncio.TimeoutError:
-                    em = discord.Embed(title="Auroris Tickets",
+                    em = discord.Embed(title="Ticket System",
                                        description="You have run out of time to close this ticket. Please run the command again.",
                                        color=0x00a8ff)
                     await ctx.send(embed=em)
