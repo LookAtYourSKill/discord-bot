@@ -1,7 +1,7 @@
 import json
-import discord
+import disnake as discord
 import youtube_dl
-from discord.ext import commands
+from disnake.ext import commands
 
 
 class music(commands.Cog):

@@ -1,7 +1,7 @@
 import datetime
 import sys
-import discord
-from discord.ext import commands
+import disnake as discord
+from disnake.ext import commands
 import json
 
 
