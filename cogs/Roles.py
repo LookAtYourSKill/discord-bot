@@ -1,7 +1,7 @@
 import asyncio
 import json
-import discord
-from discord.ext import commands
+import disnake as discord
+from disnake.ext import commands
 
 with open("./etc/config.json", "r") as f_org:
     config = json.load(f_org)

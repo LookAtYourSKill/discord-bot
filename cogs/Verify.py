@@ -1,8 +1,8 @@
 import json
 import random
-import discord
-from discord.ext import commands
-from discord.utils import get
+import disnake as discord
+from disnake.ext import commands
+from disnake.utils import get
 
 
 class verify(commands.Cog):

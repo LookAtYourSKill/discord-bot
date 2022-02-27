@@ -1,6 +1,5 @@
-import discord
-from discord.ext import commands
-from discord.ext.commands import has_permissions
+import disnake as discord
+from disnake.ext import commands
 import json
 import asyncio
 

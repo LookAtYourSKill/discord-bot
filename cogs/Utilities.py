@@ -3,8 +3,8 @@ import json
 import os
 import string
 import random
-import discord
-from discord.ext import commands
+import disnake as discord
+from disnake.ext import commands
 
 
 class utilities(commands.Cog):

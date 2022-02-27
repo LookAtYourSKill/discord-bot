@@ -1,6 +1,6 @@
 import json
-import discord
-from discord.ext import commands
+import disnake as discord
+from disnake.ext import commands
 
 
 class server_setup(commands.Cog):

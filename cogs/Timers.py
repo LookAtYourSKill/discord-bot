@@ -2,8 +2,8 @@ import asyncio
 import datetime
 import json
 import random
-import discord
-from discord.ext import commands
+import disnake as discord
+from disnake.ext import commands
 
 
 class Timers(commands.Cog):
