@@ -428,7 +428,7 @@ class ticket(commands.Cog):
                 await ctx.send(embed=em)
 
     @commands.command()
-    @has_permissions(administrator=True)
+    @commands.has_permissions(administrator=True)
     async def addadminrole(self, ctx, role_id=None):
         """
         This command gives all users with a specific role access to the admin-level commands for the bot, such as `?addpingedrole` and `?addaccess`.
@@ -467,7 +467,7 @@ class ticket(commands.Cog):
                 await ctx.send(embed=em)
 
     @commands.command()
-    @has_permissions(administrator=True)
+    @commands.has_permissions(administrator=True)
     async def deladminrole(self, ctx, role_id=None):
         """
         This command removes all users with a specific role access to the admin-level commands for the bot, such as `?addpingedrole` and `?addaccess`.
