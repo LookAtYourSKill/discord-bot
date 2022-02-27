@@ -1,7 +1,7 @@
 import asyncio
 import json
-import discord
-from discord.ext import commands
+import disnake as discord
+from disnake.ext import commands
 
 
 class administration(commands.Cog):
