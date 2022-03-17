@@ -144,3 +144,4 @@ class Active_Check(commands.Cog):
 
 def setup(bot):
     bot.add_cog(Active_Check(bot))
+lol
