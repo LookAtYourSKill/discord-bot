@@ -12,31 +12,6 @@ class administration(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="setstatus")
-    @commands.is_owner()
-    @commands.cooldown(rate=30, per=1)
-    async def setstatus(self, ctx: commands.Context, *, text: str):
-        """
-        Change or set the status for the bot
-        **Usage :** ``?setstatus [text]``
-        """
-
-        with open('utils/json/active_check.json', 'r') as f:
-            data = json.load(f)
-
-        if data[str(ctx.guild.id)]["Administration"] == 'false':
-            embed = discord.Embed(
-                description=f'Diese **Extension (Administration) ist momentan deaktiviert!** Wende dich bitte an **den Owner vom Bot** (LookAtYourSkill#6666)',
-                color=discord.Color.red())
-            await ctx.send(embed=embed)
-        else:
-            await self.bot.change_presence(activity=discord.Game(name=text))
-            embed = discord.Embed(title='<:open:869959941321011260> Erfolgreich',
-                                  description=f'Successfully changed bot status to **{text}**')
-            await ctx.send(embed=embed, delete_after=5)
-            await asyncio.sleep(1)
-            await ctx.message.delete()
-
     @commands.command(name='lock', aliases=['lockdown'])
     @commands.has_permissions(administrator=True)
     async def lock(self, ctx):
